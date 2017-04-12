@@ -10,7 +10,7 @@ For more about spack and what you can do with it, spack has lots of
 ## Repo Installation
 
 Once you've set up spack itself, you need to teach it about this collection
-('repository' in spack lingo) of pacakges.  Go to the top-level directory of
+('repository' in spack lingo) of packages.  Go to the top-level directory of
 this project and execute the following command:
 
     spack repo add .
@@ -27,7 +27,7 @@ CCI's TCP transport), simply build margo:
     spack install margo
 
 
-### System boost vs. spack boost
+### Side note: System boost vs. spack boost
 
 The largest dependency for Mercury is the Boost package.  If your system
 already has Boost, you can teach spack about it and other
@@ -50,7 +50,7 @@ packages:
 
 One consequence of the spack design (where packages are installed into a prefix
 based on a hash of their configuration and compiler) is that library and header
-paths are unwieldy.  An environment-managment tool such as `moudles` helps a
+paths are unwieldy.  An environment-management tool such as `modules` helps a
 lot here, and is nicely integrated into spack:
 
 ```
@@ -72,7 +72,7 @@ Load the margo module into your environment:
     module add margo-master-gcc-4.7.2-uy4in2w
 
 The dependency resolution does not appear to be automatic (perhaps RobL needs
-to adjust or declare runtime depenencies?), so you'll have to
+to adjust or declare runtime dependencies?), so you'll have to
 add mercury, argobots, and abt-snoozer by hand as well.
 
 ```
@@ -84,9 +84,14 @@ Currently Loaded Modulefiles:
   4) argobots-master-gcc-4.7.2-4wxy6p3
 ```
 
-The modules framework will update the `PKG_CONFIG_PATH` for you:
+The modules framework will update the `PKG_CONFIG_PATH` for you (slightly reformatted to wrap the long lines)
 
 ```
  pkg-config --cflags margo
- -I/blues/gpfs/home/robl/src/spack/opt/spack/linux-centos6-x86_64/gcc-4.7.2/argobots-master-4wxy6p3thpyhwgo67t6icducpy3ik6y5/include -I/blues/gpfs/home/robl/src/spack/opt/spack/linux-centos6-x86_64/gcc-4.7.2/abtsnoozer-master-4ygmjeptxkfddgojrupre624olf2w6mq/include -I/blues/gpfs/home/robl/src/spack/opt/spack/linux-centos6-x86_64/gcc-4.7.2/mercury-master-eiyjtqsdv6yynaylgtm5g7jib7fvnshh/include -I/blues/gpfs/home/robl/src/spack/opt/spack/linux-centos6-x86_64/gcc-4.7.2/boost-1.63.0-ds3fbl3vdsk6u5soirxcdoe3e6dw3iwx/include -I/blues/gpfs/home/robl/src/spack/opt/spack/linux-centos6-x86_64/gcc-4.7.2/cci-2.0-5y6vgzqccmk7n7vehrrcxl5ogukwv3gh/include -I/blues/gpfs/home/robl/src/spack/opt/spack/linux-centos6-x86_64/gcc-4.7.2/margo-master-uy4in2w6xniwn43iio7h6ko3j6hbxvfr/include
+ -I/blues/gpfs/home/robl/src/spack/opt/spack/linux-centos6-x86_64/gcc-4.7.2/argobots-master-4wxy6p3thpyhwgo67t6icducpy3ik6y5/include \
+ 	-I/blues/gpfs/home/robl/src/spack/opt/spack/linux-centos6-x86_64/gcc-4.7.2/abtsnoozer-master-4ygmjeptxkfddgojrupre624olf2w6mq/include \
+	-I/blues/gpfs/home/robl/src/spack/opt/spack/linux-centos6-x86_64/gcc-4.7.2/mercury-master-eiyjtqsdv6yynaylgtm5g7jib7fvnshh/include \
+	-I/blues/gpfs/home/robl/src/spack/opt/spack/linux-centos6-x86_64/gcc-4.7.2/boost-1.63.0-ds3fbl3vdsk6u5soirxcdoe3e6dw3iwx/include \
+	-I/blues/gpfs/home/robl/src/spack/opt/spack/linux-centos6-x86_64/gcc-4.7.2/cci-2.0-5y6vgzqccmk7n7vehrrcxl5ogukwv3gh/include \
+	-I/blues/gpfs/home/robl/src/spack/opt/spack/linux-centos6-x86_64/gcc-4.7.2/margo-master-uy4in2w6xniwn43iio7h6ko3j6hbxvfr/include
  ```
