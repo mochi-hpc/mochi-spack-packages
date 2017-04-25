@@ -33,4 +33,5 @@ class Cci(AutotoolsPackage):
     homepage = "http://cci-forum.com/"
     url      = "http://cci-forum.com/wp-content/uploads/2016/06/cci-2.0.tar.gz"
 
+    version('master', git='https://github.com/CCI/cci.git')
     version('2.0', '070b2ba4eca92a846c093f2cd000d3b2')
