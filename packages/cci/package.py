@@ -24,6 +24,9 @@
 ##############################################################################
 
 from spack import *
+# to execute our custom autoreconf script
+from subprocess import call
+
 
 
 class Cci(AutotoolsPackage):
@@ -33,6 +36,11 @@ class Cci(AutotoolsPackage):
     homepage = "http://cci-forum.com/"
     url      = "http://cci-forum.com/wp-content/uploads/2016/06/cci-2.0.tar.gz"
 
+    depends_on('m4', type='build', when='@master');
+    depends_on('autoconf', type='build', when='@master');
+    depends_on('automake', type='build', when='@master');
+    depends_on('libtool', type='build', when='@master');
+
     version('master', git='https://github.com/CCI/cci.git')
     version('2.0', '070b2ba4eca92a846c093f2cd000d3b2')
     def configure_args(self):
@@ -40,3 +48,8 @@ class Cci(AutotoolsPackage):
 	    args = ['--without-gni',
 			    '--without-verbs']
 	    return args
+
+    # need to override 'autoreconf' so we can run CCI's 'autogen.pl' script
+    def autoreconf(self, spec, prefix):
+	    with working_dir(self.configure_directory):
+		    call("./autogen.pl");
