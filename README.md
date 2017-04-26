@@ -95,3 +95,14 @@ The modules framework will update the `PKG_CONFIG_PATH` for you (slightly reform
 	-I/blues/gpfs/home/robl/src/spack/opt/spack/linux-centos6-x86_64/gcc-4.7.2/cci-2.0-5y6vgzqccmk7n7vehrrcxl5ogukwv3gh/include \
 	-I/blues/gpfs/home/robl/src/spack/opt/spack/linux-centos6-x86_64/gcc-4.7.2/margo-master-uy4in2w6xniwn43iio7h6ko3j6hbxvfr/include
  ```
+
+## Possible issues
+
+If you encounter a problem in the build log about `possibly undefined macro:
+AM_DISABLE_STATIC`, it's possible the package is using system's (possibly
+older) `libtool` and not spack's `libtool`.  I could only resolve this by
+loading spack's libtool module: (precise name quite likely to be different on
+your system)
+
+    $ module load libtool-2.4.6-gcc-4.7.2-nxthahu
+
