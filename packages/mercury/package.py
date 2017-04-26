@@ -37,7 +37,7 @@ class Mercury(CMakePackage):
     variant('cci', default=True, description="Use CCI for network transport")
     variant('bmi', default=False, description="Use BMI for network transport")
 
-    depends_on('cci', when="+cci", type=("build", "link", "run"))
+    depends_on('cci@master', when="+cci", type=("build", "link", "run"))
     depends_on('bmi', when="+bmi", type=("build", "link", "run"))
     depends_on('boost')
 
