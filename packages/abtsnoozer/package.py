@@ -35,7 +35,7 @@ class Abtsnoozer(AutotoolsPackage):
     # version('1.2.3', '0123456789abcdef0123456789abcdef')
     version('master', git='https://xgitlab.cels.anl.gov/sds/abt-snoozer.git')
 
-    depends_on('argobots')
+    depends_on('argobots@dev-get-dev-basic')
     depends_on('m4')
     depends_on('autoconf')
     depends_on('automake')
