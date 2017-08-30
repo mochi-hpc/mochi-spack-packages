@@ -36,8 +36,11 @@ class Mercury(CMakePackage):
 
     variant('cci', default=True, description="Use CCI for network transport")
     variant('bmi', default=False, description="Use BMI for network transport")
+    variant('fabric',default=False, description="Use libfabric for net transport")
 
+    # if nothing specified, build good ol' BMI
     depends_on('cci@master', when="+cci", type=("build", "link", "run"))
+    depends_on('libfabric', when="+fabric", type=("build", "link", "run"))
     depends_on('bmi', when="+bmi", type=("build", "link", "run"))
     depends_on('boost')
 
@@ -49,5 +52,7 @@ class Mercury(CMakePackage):
 		args.extend(["-DNA_USE_CCI:BOOL=ON"])
 	if (self.spec.variants['bmi'].value):
 		args.extend(["-DNA_USE_BMI:BOOL=ON"])
+	if (self.spec.variants['fabric'].value):
+		args.extend(["-DNA_USE_OFI:BOOL=ON"])
 
         return args
