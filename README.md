@@ -71,9 +71,13 @@ Load the margo module into your environment:
 
     module add margo-master-gcc-4.7.2-uy4in2w
 
-The dependency resolution does not appear to be automatic (perhaps RobL needs
-to adjust or declare runtime dependencies?), so you'll have to
-add mercury, argobots, and abt-snoozer by hand as well.
+Spack integrages with modules: the integration helps with naming
+
+    spack load margo
+
+The integration can also help you load in all the dependencies:
+
+    source $(spack module loads  --dependencies margo)
 
 ```
  module list
