@@ -9,10 +9,12 @@ For more about spack and what you can do with it, spack has lots of
 
 ## Repo Installation
 
-Once you've set up spack itself, you need to teach it about this collection
+Once you've set up spack itself (you added `spack` to your `$PATH`, right?),
+ you need to teach it about this collection
 ('repository' in spack lingo) of packages.  Go to the top-level directory of
 this project and execute the following command:
 
+    cd sds-repo
     spack repo add .
 
 Did it work?
