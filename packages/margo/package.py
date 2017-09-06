@@ -38,3 +38,4 @@ class Margo(AutotoolsPackage):
     depends_on('abtsnoozer')
     depends_on('libev')
     depends_on('autoconf@2.65:')
+    depends_on('libtool', type=("build"))
