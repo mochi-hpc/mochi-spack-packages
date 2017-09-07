@@ -79,7 +79,7 @@ Spack integrages with modules: the integration helps with naming
 
 The integration can also help you load in all the dependencies:
 
-    source $(spack module loads  --dependencies margo)
+    source <(spack module loads  --dependencies margo)
 
 ```
  module list
