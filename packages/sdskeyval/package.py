@@ -29,6 +29,7 @@ class Sdskeyval(AutotoolsPackage):
     """a library that provides a Margo-based keyval service"""
 
     homepage = "https://xgitlab.cels.anl.gov/sds/sds-keyval"
+    url = "https://xgitlab.cels.anl.gov/sds/sds-keyval"
 
     version('master', git='https://xgitlab.cels.anl.gov/sds/sds-keyval.git')
 
