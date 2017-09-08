@@ -40,3 +40,11 @@ class Sdskeyval(AutotoolsPackage):
     depends_on('autoconf@2.65:')
     depends_on('automake@1.15:')
     depends_on('libtool', type=("build"))
+
+    # requires c++11
+    conflicts('%gcc@:4.8.0')
+    # clang fullly implemented C++11 in 3
+    # intel implemented c++11 in 13.0
+    # but neither clang nor intel compile the BwTree data structure
+    conflicts('%clang')
+    conflicts('%intel')
