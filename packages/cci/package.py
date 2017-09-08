@@ -42,6 +42,8 @@ class Cci(AutotoolsPackage):
     depends_on('libtool', type='build', when='@master');
 
     patch('0001-Werror-is-a-little-aggressive.patch');
+    # some libverbs libraries return 'void' instead of a value
+    patch('cci-rdma-destroy-ep.patch');
 
     version('master', git='https://github.com/CCI/cci.git')
     version('2.0', '070b2ba4eca92a846c093f2cd000d3b2')
