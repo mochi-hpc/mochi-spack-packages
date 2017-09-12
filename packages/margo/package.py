@@ -32,6 +32,9 @@ class Margo(AutotoolsPackage):
     homepage = "https://xgitlab.cels.anl.gov/sds/margo"
 
     version('master', git='https://xgitlab.cels.anl.gov/sds/margo.git')
+    version('margo-registered-data',
+            git='https://xgitlab.cels.anl.gov/sds/margo.git',
+            branch='margo-registered-data')
 
     depends_on('mercury', type=("build", "link", "run"))
     depends_on('argobots')
