@@ -29,7 +29,7 @@ CCI's TCP transport), simply build margo:
     spack install margo
 
 
-### Side note: System boost vs. spack boost
+### Side note: System packages vs spack packages
 
 The largest dependency for Mercury is the Boost package.  If your system
 already has Boost, you can teach spack about it and other
@@ -37,7 +37,7 @@ already has Boost, you can teach spack about it and other
 
 Let's say you installed Boost through your distribution (an RPM or DEB package)
 To inform spack about Boost you e.g. installed from an RPM, you would add it to
-`~/.spack/packages.yaml`
+`~/.spack/<arch>/packages.yaml`
 
 ```
 packages:
@@ -47,6 +47,48 @@ packages:
         version: [system]
         buildable: False
 ```
+
+I have found several other large dependencies that are handled just fine by the
+operating system.  My `${HOME}/.spack/linux/packages.yaml` file looks like
+this:
+
+```
+packages:
+    openssl:
+        paths:
+            openssl@1.0.2g: /usr
+        buildable: False
+    cmake:
+        paths:
+            cmake@3.9.1: /usr
+        buildable: False
+    boost:
+        paths:
+            boost@1.62: /usr
+        buildable: False
+    autoconf:
+        paths:
+            autoconf@2.69: /usr
+        buildable: False
+    automake:
+        paths:
+            automake@1.15.1: /usr
+        buildable: False
+    mpich:
+        paths:
+            mpich@master: /home/robl/work/soft/mpich
+        buildable: False
+```
+
+You can see that I have flagged several packages as `buildable: False`,
+generaly because they are either large packages or have large dependencies.  I
+tend to work from MPICH's latest version in git, so I have also told spack
+about my locally installed MPICH.
+
+These `packages` files live in a platform-specific directory (run `spack arch
+-p` to see what platform spack thinks you are on).  Pretty helpful for e.g.
+Argonne, where a home file system is shared between a linux cluster, a blue
+gene, and a Cray.  You can describe `packages.py` for each platform.
 
 ## Using Mochi Suite
 
@@ -73,7 +115,7 @@ Load the margo module into your environment:
 
     module add margo-master-gcc-4.7.2-uy4in2w
 
-Spack integrages with modules: the integration helps with naming
+Spack integrages with modules: the integration helps with managing spack's hash-oriented naming convention
 
     spack load margo
 
