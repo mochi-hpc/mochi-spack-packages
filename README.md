@@ -123,6 +123,10 @@ The integration can also help you load in all the dependencies:
 
     source <(spack module loads  --dependencies margo)
 
+sometimes I get `Error: this command needs exactly **one** module type active`: pass 	`-m tcl` like this
+
+    source <(spack module loads  -m tcl --dependencies margo)
+
 ```
  module list
 Currently Loaded Modulefiles:
