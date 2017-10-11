@@ -40,5 +40,5 @@ class Argobots(AutotoolsPackage):
     depends_on('libtool')
 
     def configure_args(self):
-        args = []
+        args = ["--enable-perf-opt"]
         return args
