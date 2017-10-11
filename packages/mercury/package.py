@@ -34,9 +34,9 @@ class Mercury(CMakePackage):
     version('master', git='https://github.com/mercury-hpc/mercury.git',
             submodules=True)
 
-    variant('cci', default=True, description="Use CCI for network transport")
+    variant('cci', default=False, description="Use CCI for network transport")
     variant('bmi', default=False, description="Use BMI for network transport")
-    variant('fabric',default=False, description="Use libfabric for net transport")
+    variant('fabric',default=True, description="Use libfabric for net transport")
 
     # if nothing specified, build good ol' BMI
     depends_on('cci@master', when="+cci", type=("build", "link", "run"))
