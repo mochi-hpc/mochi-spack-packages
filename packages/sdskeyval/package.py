@@ -33,6 +33,11 @@ class Sdskeyval(AutotoolsPackage):
 
     version('master', git='https://xgitlab.cels.anl.gov/sds/sds-keyval.git')
 
+    variant('bwtree', default=True, description="Enable BwTree keyval backend")
+    variant('bdb', default=False, description="Enable Berkely DB keyval backend")
+    variant('leveldb', default=False, description="Enable LevelDB keyval backend")
+    variant('lmdb', default=False, description="Enable lmdb keyval backend")
+
     depends_on('margo', type=("build", "link", "run"))
     depends_on('mercury', type=("build", "link", "run"))
     depends_on('argobots')
@@ -43,10 +48,25 @@ class Sdskeyval(AutotoolsPackage):
     depends_on('libtool', type=("build"))
     depends_on('pkg-config', type=("build"))
 
-    # requires c++11
-    conflicts('%gcc@:4.8.0')
+    # variable dependencies
+    depends_on('berkeley-db', when="+bdb")
+
+    # requires c++11 if bwtree selected
+    conflicts('%gcc@:4.8.0', when="+bwtree")
     # clang fullly implemented C++11 in 3
     # intel implemented c++11 in 13.0
     # but neither clang nor intel compile the BwTree data structure
-    conflicts('%clang')
-    conflicts('%intel')
+    conflicts('%clang', when="+bwtree")
+    conflicts('%intel', when="+bwtree")
+
+    def configure_args(self):
+        spec = self.spec
+        extra_args = []
+
+        if '+bdb' in spec:
+            extra_args.extend([
+                "--disable-bwtree"
+                ])
+        # no support yet for leveldb or lmdb backends
+        return extra_args
+
