@@ -33,7 +33,15 @@ class Mobject(AutotoolsPackage):
 
     version('master', git='https://xgitlab.cels.anl.gov/sds/mobject-store.git')
     depends_on('margo')
-    depends_on('ssg')
+    depends_on('mpi')
+    depends_on('ssg+mpi')
     depends_on('autoconf')
     depends_on('automake')
     depends_on('libtool')
+    depends_on('sdskeyval')
+    depends_on('bake-bulk')
+    depends_on('mercury+selfforward')
+
+    def configure_args(self):
+        extra_args = ['CC=%s' % self.spec['mpi'].mpicc]
+        return extra_args

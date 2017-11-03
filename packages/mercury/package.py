@@ -37,6 +37,7 @@ class Mercury(CMakePackage):
     variant('cci', default=False, description="Use CCI for network transport")
     variant('bmi', default=False, description="Use BMI for network transport")
     variant('fabric',default=True, description="Use libfabric for net transport")
+    variant('selfforward', default=False, description="Mercury will short-circuit operations by forwarding to itself when possible")
 
     # if nothing specified, build good ol' BMI
     depends_on('cci@master', when="+cci", type=("build", "link", "run"))
@@ -54,5 +55,7 @@ class Mercury(CMakePackage):
 		args.extend(["-DNA_USE_BMI:BOOL=ON"])
 	if (self.spec.variants['fabric'].value):
 		args.extend(["-DNA_USE_OFI:BOOL=ON"])
+        if (self.spec.variants['selfforward'].value):
+                args.extend(["-DMERCURY_USE_SELF_FORWARD=ON"])
 
         return args
