@@ -32,6 +32,8 @@ class Sdskeyval(AutotoolsPackage):
     url = "https://xgitlab.cels.anl.gov/sds/sds-keyval"
 
     version('master', git='https://xgitlab.cels.anl.gov/sds/sds-keyval.git')
+    version('dor-sds', git='https://xgitlab.cels.anl.gov/sds/sds-keyval.git', branch='dor-sync-review')
+
 
     variant('bwtree', default=True, description="Enable BwTree keyval backend")
     variant('bdb', default=False, description="Enable Berkely DB keyval backend")
@@ -39,7 +41,7 @@ class Sdskeyval(AutotoolsPackage):
     variant('lmdb', default=False, description="Enable lmdb keyval backend")
 
     depends_on('margo', type=("build", "link", "run"))
-    depends_on('mercury', type=("build", "link", "run"))
+    depends_on('mercury+selfforward', type=("build", "link", "run"))
     depends_on('argobots')
     depends_on('abtsnoozer')
     depends_on('libev')
@@ -47,9 +49,12 @@ class Sdskeyval(AutotoolsPackage):
     depends_on('automake@1.15:')
     depends_on('libtool', type=("build"))
     depends_on('pkg-config', type=("build"))
+    depends_on('ch-placement')
+    depends_on('ssg+mpi')
 
     # variable dependencies
     depends_on('berkeley-db', when="+bdb")
+    depends_on('leveldb', when="+leveldb")
 
     # requires c++11 if bwtree selected
     conflicts('%gcc@:4.8.0', when="+bwtree")
@@ -65,8 +70,11 @@ class Sdskeyval(AutotoolsPackage):
 
         if '+bdb' in spec:
             extra_args.extend([
-                "--disable-bwtree"
+                "--enable-berkeleydb"
                 ])
-        # no support yet for leveldb or lmdb backends
+        if '+leveldb' in spec:
+            extra_args.extend([
+                "--enable-leveldb"
+                ])
         return extra_args
 
