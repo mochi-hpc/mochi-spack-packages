@@ -36,5 +36,10 @@ class Pmem(Package):
     version('1.2.3',       '5e3fba2bf4fd6b0c16db4e91d32df4b0')
     version('1.2.2',       'f02832e9e0e2617e2c996f7b83b2e5ec')
 
+    # experimental rpmem
+    depends_on('libfabric@1.4.2:')
+    # gcc7 warns about buffer overflows
+    patch('0001-benchmark-fix-buffer-overflow-in-rpmem_persist.patch')
+
     def install(self, spec, prefix):
         make("install", "prefix=%s" % prefix)
