@@ -76,5 +76,13 @@ class Sdskeyval(AutotoolsPackage):
             extra_args.extend([
                 "--enable-leveldb"
                 ])
+
+        # cray compilers needed -latomic to build BwTree; gcc7 on my Ubuntu
+        # laptop did, also, but I don't know how to be that precise when
+        # specifying
+        if '+bwtree' in spec:
+            if 'platform=cray' in self.spec:
+                args.extend(['LDFLAGS=-latomic'])
+
         return extra_args
 
