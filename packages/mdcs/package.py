@@ -5,9 +5,9 @@ class Mdcs(CMakePackage):
     homepage = "https://xgitlab.cels.anl.gov/sds/mdcs"
     url = "https://xgitlab.cels.anl.gov/sds/mdcs"
 
-    version('develop', git='https://xgitlab.cels.anl.gov/sds/mdcs.git')
+    version('master', git='https://xgitlab.cels.anl.gov/sds/mdcs.git')
 
     depends_on('boost')
     depends_on('mercury')
     depends_on('argobots')
-    depends_on('margo@margo-registered-data')
+    depends_on('margo')
