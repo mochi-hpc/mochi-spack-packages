@@ -90,6 +90,28 @@ These `packages` files live in a platform-specific directory (run `spack arch
 Argonne, where a home file system is shared between a linux cluster, a blue
 gene, and a Cray.  You can describe `packages.py` for each platform.
 
+### Further package configuration
+
+Spack has a bit of trouble resolving a dependency if it is not exactly the same
+between packages.  For example, the `ssg` package depends on mercury.
+`sdskeyval` depends on mercury too, but explicitly requests the
+`mercury+selfforward` variant.  If you install `ssg`, then install `sdskeyval`,
+you will end up with two instances of mercury.  If you remember to install
+`ssg` with the `mercury+selfforward` variant, you can avoid this duplication,
+but it's easy to forget (and kind of a pain) to type `spack install
+ssg^mercury+selffforward`.
+
+In my `~/.spack/linux/packages.yaml` I tell spack I'd like to always build particular variants:
+
+```
+packages:
+    mercury:
+        variants: +selfforward
+    ssg:
+        variants: +mpi
+```
+
+
 ## Using Mochi Suite
 
 One consequence of the spack design (where packages are installed into a prefix
