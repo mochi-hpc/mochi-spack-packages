@@ -41,3 +41,4 @@ class Abtsnoozer(AutotoolsPackage):
     depends_on('automake')
     depends_on('libtool')
     depends_on('libev')
+    depends_on('pkg-config')

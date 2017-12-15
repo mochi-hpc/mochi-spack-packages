@@ -41,4 +41,8 @@ class Margo(AutotoolsPackage):
     depends_on('abtsnoozer')
     depends_on('libev')
     depends_on('autoconf@2.65:')
+    depends_on('automake', type=("build"))
     depends_on('libtool', type=("build"))
+    # 'timeout' is part of coreutils
+    depends_on('coreutils')
+    depends_on('pkg-config')
