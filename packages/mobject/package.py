@@ -39,7 +39,7 @@ class Mobject(AutotoolsPackage):
     depends_on('automake')
     depends_on('libtool')
     depends_on('sdskeyval')
-    depends_on('bake-bulk')
+    depends_on('bake')
     depends_on('mercury+selfforward')
 
     def configure_args(self):
