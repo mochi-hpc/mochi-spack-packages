@@ -33,11 +33,6 @@ class Mercury(CMakePackage):
 
     version('master', git='https://github.com/mercury-hpc/mercury.git',
             submodules=True)
-    # Phil's experimental performance branch
-    version('dev-hg-never-block-option', git='https://github.com/carns/mercury.git',
-            branch='dev-hg-never-block-option',
-            submodules=True)
-
 
     variant('cci', default=False, description="Use CCI for network transport")
     variant('bmi', default=False, description="Use BMI for network transport")
