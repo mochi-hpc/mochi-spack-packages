@@ -35,12 +35,13 @@ class Mobject(AutotoolsPackage):
     depends_on('margo')
     depends_on('mpi')
     depends_on('ssg+mpi')
+    depends_on('ch-placement')
     depends_on('autoconf')
     depends_on('automake')
     depends_on('libtool')
     depends_on('sdskeyval')
     depends_on('bake')
-    depends_on('mercury+selfforward')
+#    depends_on('mercury')
 
     def configure_args(self):
         extra_args = ['CC=%s' % self.spec['mpi'].mpicc]
