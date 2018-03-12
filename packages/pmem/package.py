@@ -32,9 +32,8 @@ class Pmem(Package):
     homepage = "http://pmem.io/"
     url      = "https://github.com/pmem/nvml/archive/1.3.tar.gz"
 
-    version('1.3',         'd1e843579a0b44301176bcd6142911cb')
-    version('1.2.3',       '5e3fba2bf4fd6b0c16db4e91d32df4b0')
-    version('1.2.2',       'f02832e9e0e2617e2c996f7b83b2e5ec')
+    # in the nvml -> pmdk name change, these hashes needed to be updated
+    version('1.3',         '32c41d0d7f1c855b7d2b9622631a6bc3')
 
     # experimental rpmem
     depends_on('libfabric@1.4.2:')
