@@ -41,7 +41,10 @@ class Mobject(AutotoolsPackage):
     depends_on('libtool')
     depends_on('sdskeyval')
     depends_on('bake')
-#    depends_on('mercury')
+    # 'margo' already brings in mercury, but we want to explicitly request the
+    # self-forward variant: we imagine sending to services on the same node
+    # pretty often and we can't think of a good reason not to enable it
+    depends_on('mercury+selfforward')
 
     def configure_args(self):
         extra_args = ['CC=%s' % self.spec['mpi'].mpicc]
