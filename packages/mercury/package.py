@@ -33,6 +33,8 @@ class Mercury(CMakePackage):
 
     version('master', git='https://github.com/mercury-hpc/mercury.git',
             submodules=True)
+    version('pre-scalable-ep', git='https://github.com/mercury-hpc/mercury.git',
+            commit='6c82baf7819a553b6b8235fbe7c180989a1e17fe', submodules=True)
 
     variant('cci', default=False, description="Use CCI for network transport")
     variant('bmi', default=False, description="Use BMI for network transport")

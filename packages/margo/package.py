@@ -36,7 +36,7 @@ class Margo(AutotoolsPackage):
             git='https://xgitlab.cels.anl.gov/sds/margo.git',
             branch='margo-registered-data')
 
-    depends_on('mercury', type=("build", "link", "run"))
+    depends_on('mercury@pre-scalable-ep', type=("build", "link", "run"))
     depends_on('argobots')
     depends_on('abtsnoozer')
     depends_on('libev')

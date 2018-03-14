@@ -8,6 +8,6 @@ class Mdcs(CMakePackage):
     version('master', git='https://xgitlab.cels.anl.gov/sds/mdcs.git')
 
     depends_on('boost')
-    depends_on('mercury')
+    depends_on('mercury@pre-scalable-ep')
     depends_on('argobots')
     depends_on('margo')

@@ -10,6 +10,7 @@ class Bake(AutotoolsPackage):
     version('master', git='git@xgitlab.cels.anl.gov:sds/bake.git')
 
     depends_on('margo')
+    depends_on('mercury@pre-scalable-ep')
     depends_on('libuuid')
     depends_on('pmem')
 #    depends_on('pandoc', type=("build") );
