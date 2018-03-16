@@ -49,13 +49,13 @@ class Mercury(CMakePackage):
 
     def cmake_args(self):
         args = ["-DMERCURY_USE_BOOST_PP:BOOL=ON",
-		"-DBUILD_SHARED_LIBS=ON" ]
-	if (self.spec.variants['cci'].value):
-		args.extend(["-DNA_USE_CCI:BOOL=ON"])
-	if (self.spec.variants['bmi'].value):
-		args.extend(["-DNA_USE_BMI:BOOL=ON"])
-	if (self.spec.variants['fabric'].value):
-		args.extend(["-DNA_USE_OFI:BOOL=ON"])
+                "-DBUILD_SHARED_LIBS=ON" ]
+        if (self.spec.variants['cci'].value):
+            args.extend(["-DNA_USE_CCI:BOOL=ON"])
+        if (self.spec.variants['bmi'].value):
+            args.extend(["-DNA_USE_BMI:BOOL=ON"])
+        if (self.spec.variants['fabric'].value):
+            args.extend(["-DNA_USE_OFI:BOOL=ON"])
         if (self.spec.variants['selfforward'].value):
                 args.extend(["-DMERCURY_USE_SELF_FORWARD=ON"])
 
