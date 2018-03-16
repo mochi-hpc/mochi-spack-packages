@@ -38,8 +38,8 @@ class Bmi(AutotoolsPackage):
     # need to override 'autoreconf' so we can run BMI's 'prepare' script
     def autoreconf(self, spec, prefix):
         with working_dir(self.configure_directory):
-		call("./prepare");
+            call("./prepare");
 
     def configure_args(self):
-	args = ["--enable-shared", "--enable-bmi-only"]
-	return args;
+        args = ["--enable-shared", "--enable-bmi-only"]
+        return args;
