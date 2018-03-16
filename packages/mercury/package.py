@@ -48,8 +48,7 @@ class Mercury(CMakePackage):
     depends_on('boost')
 
     def cmake_args(self):
-        args = ["-DNA_CCI_USE_POLL:BOOL=ON",
-		"-DMERCURY_USE_BOOST_PP:BOOL=ON",
+        args = ["-DMERCURY_USE_BOOST_PP:BOOL=ON",
 		"-DBUILD_SHARED_LIBS=ON" ]
 	if (self.spec.variants['cci'].value):
 		args.extend(["-DNA_USE_CCI:BOOL=ON"])
