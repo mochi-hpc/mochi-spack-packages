@@ -16,7 +16,7 @@ class Ssg(AutotoolsPackage):
     variant('mpi', default=False, description='Build with MPI support')
 
     depends_on('mpi', when='+mpi')
-    depends_on('mercury')
+    depends_on('mercury@pre-scalable-ep')
     depends_on('argobots')
     depends_on('margo')
     depends_on('abtsnoozer')

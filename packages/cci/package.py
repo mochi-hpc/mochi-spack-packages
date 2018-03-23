@@ -46,14 +46,14 @@ class Cci(AutotoolsPackage):
     version('master', git='https://github.com/CCI/cci.git')
     version('2.0', '070b2ba4eca92a846c093f2cd000d3b2')
     def configure_args(self):
-	    # TODO: need variants for verbs and ugni
-	    args = ['--without-gni',
-	            '--without-verbs',
-	            '--disable-picky'
+        # TODO: need variants for verbs and ugni
+            args = ['--without-gni',
+                    '--without-verbs',
+                    '--disable-picky'
 ]
-	    return args
+            return args
 
     # need to override 'autoreconf' so we can run CCI's 'autogen.pl' script
     def autoreconf(self, spec, prefix):
-	    with working_dir(self.configure_directory):
-		    call("./autogen.pl");
+        with working_dir(self.configure_directory):
+                call("./autogen.pl");

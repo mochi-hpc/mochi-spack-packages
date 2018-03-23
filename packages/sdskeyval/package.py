@@ -41,7 +41,8 @@ class Sdskeyval(AutotoolsPackage):
     variant('lmdb', default=False, description="Enable lmdb keyval backend")
 
     depends_on('margo', type=("build", "link", "run"))
-    depends_on('mercury+selfforward', type=("build", "link", "run"))
+    depends_on('mercury+selfforward@pre-scalable-ep',
+            type=("build", "link", "run"))
     depends_on('argobots')
     depends_on('abtsnoozer')
     depends_on('libev')

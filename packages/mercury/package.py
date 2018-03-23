@@ -33,6 +33,8 @@ class Mercury(CMakePackage):
 
     version('master', git='https://github.com/mercury-hpc/mercury.git',
             submodules=True)
+    version('pre-scalable-ep', git='https://github.com/mercury-hpc/mercury.git',
+            commit='6c82baf7819a553b6b8235fbe7c180989a1e17fe', submodules=True)
 
     variant('cci', default=False, description="Use CCI for network transport")
     variant('bmi', default=False, description="Use BMI for network transport")
@@ -46,15 +48,14 @@ class Mercury(CMakePackage):
     depends_on('boost')
 
     def cmake_args(self):
-        args = ["-DNA_CCI_USE_POLL:BOOL=ON",
-		"-DMERCURY_USE_BOOST_PP:BOOL=ON",
-		"-DBUILD_SHARED_LIBS=ON" ]
-	if (self.spec.variants['cci'].value):
-		args.extend(["-DNA_USE_CCI:BOOL=ON"])
-	if (self.spec.variants['bmi'].value):
-		args.extend(["-DNA_USE_BMI:BOOL=ON"])
-	if (self.spec.variants['fabric'].value):
-		args.extend(["-DNA_USE_OFI:BOOL=ON"])
+        args = ["-DMERCURY_USE_BOOST_PP:BOOL=ON",
+                "-DBUILD_SHARED_LIBS=ON" ]
+        if (self.spec.variants['cci'].value):
+            args.extend(["-DNA_USE_CCI:BOOL=ON"])
+        if (self.spec.variants['bmi'].value):
+            args.extend(["-DNA_USE_BMI:BOOL=ON"])
+        if (self.spec.variants['fabric'].value):
+            args.extend(["-DNA_USE_OFI:BOOL=ON"])
         if (self.spec.variants['selfforward'].value):
                 args.extend(["-DMERCURY_USE_SELF_FORWARD=ON"])
 
