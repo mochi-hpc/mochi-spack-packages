@@ -34,9 +34,9 @@ class PyMargo(PythonPackage):
     """Python wrapper for the Margo library"""
 
     homepage = "https://xgitlab.cels.anl.gov/sds/py-margo"
-    url      = "git@xgitlab.cels.anl.gov:sds/py-margo.git"
+    url      = "https://xgitlab.cels.anl.gov/sds/py-margo.git"
 
-    version('master',  git="git@xgitlab.cels.anl.gov:sds/py-margo.git")
+    version('master',  git="https://xgitlab.cels.anl.gov/sds/py-margo.git")
 
     depends_on('margo')
     depends_on('boost+python')

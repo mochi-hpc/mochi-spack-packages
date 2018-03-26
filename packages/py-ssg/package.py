@@ -34,9 +34,9 @@ class PySsg(PythonPackage):
     """Python wrapper for the SSG library"""
 
     homepage = "https://xgitlab.cels.anl.gov/sds/py-ssg"
-    url      = "git@xgitlab.cels.anl.gov:sds/py-ssg.git"
+    url      = "https://xgitlab.cels.anl.gov/sds/py-ssg.git"
 
-    version('master',  git="git@xgitlab.cels.anl.gov:sds/py-ssg.git")
+    version('master',  git="https://xgitlab.cels.anl.gov/sds/py-ssg.git")
 
     depends_on('ssg')
     depends_on('py-margo')

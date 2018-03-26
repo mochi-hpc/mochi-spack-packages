@@ -33,9 +33,9 @@ class PyBake(PythonPackage):
     """Python wrapper for the Bake library"""
 
     homepage = "https://xgitlab.cels.anl.gov/sds/py-bake"
-    url      = "git@xgitlab.cels.anl.gov:sds/py-bake.git"
+    url      = "https://xgitlab.cels.anl.gov/sds/py-bake.git"
 
-    version('master',  git="git@xgitlab.cels.anl.gov:sds/py-bake.git")
+    version('master',  git="https://xgitlab.cels.anl.gov/sds/py-bake.git")
 
     depends_on('bake')
     depends_on('py-margo')

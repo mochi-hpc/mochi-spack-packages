@@ -33,9 +33,9 @@ class PySdskv(PythonPackage):
     """Python wrapper for the SDS-KeyVal library"""
 
     homepage = "https://xgitlab.cels.anl.gov/sds/py-sdskv"
-    url      = "git@xgitlab.cels.anl.gov:sds/py-sdskv.git"
+    url      = "https://xgitlab.cels.anl.gov/sds/py-sdskv.git"
 
-    version('master',  git="git@xgitlab.cels.anl.gov:sds/py-sdskv.git")
+    version('master',  git="https://xgitlab.cels.anl.gov/sds/py-sdskv.git")
 
     depends_on('sdskeyval')
     depends_on('py-margo')
