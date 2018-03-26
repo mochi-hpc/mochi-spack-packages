@@ -10,5 +10,3 @@ class Thallium(CMakePackage):
 #depends_on('mercury')
 #depends_on('argobots')
     depends_on('margo')
-
-    patch('0001-my-c-installation-needed-an-explicit-cast.patch')
