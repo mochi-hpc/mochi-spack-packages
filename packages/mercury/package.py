@@ -36,6 +36,9 @@ class Mercury(CMakePackage):
     version('pre-scalable-ep', git='https://github.com/mercury-hpc/mercury.git',
             commit='6c82baf7819a553b6b8235fbe7c180989a1e17fe', submodules=True)
 
+    version('provider', git='https://github.com/carns/mercury.git', submodules=True,
+		    branch='dev-registered-cb')
+
     variant('cci', default=False, description="Use CCI for network transport")
     variant('bmi', default=False, description="Use BMI for network transport")
     variant('fabric',default=True, description="Use libfabric for net transport")

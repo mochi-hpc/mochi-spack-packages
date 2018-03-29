@@ -32,19 +32,20 @@ class Mobject(AutotoolsPackage):
     url = "https://xgitlab.cels.anl.gov/sds/mobject-store"
 
     version('master', git='https://xgitlab.cels.anl.gov/sds/mobject-store.git')
-    depends_on('margo')
+    version('provider', git='https://xgitlab.cels.anl.gov/sds/mobject-store.git', branch='dev-provider-id')
+
+    depends_on('margo', when='@master')
+    depends_on('margo@provider', when='@provider')
     depends_on('mpi')
     depends_on('ssg+mpi')
     depends_on('ch-placement')
     depends_on('autoconf')
     depends_on('automake')
     depends_on('libtool')
-    depends_on('sdskeyval')
-    depends_on('bake')
-    # 'margo' already brings in mercury, but we want to explicitly request the
-    # self-forward variant: we imagine sending to services on the same node
-    # pretty often and we can't think of a good reason not to enable it
-    depends_on('mercury+selfforward@pre-scalable-ep')
+    depends_on('sdskeyval', when='@master')
+    depends_on('bake', when='@master')
+    depends_on('sdskeyval@provider', when='@provider')
+    depends_on('bake@provider', when='@provider')
 
     def configure_args(self):
         extra_args = ['CC=%s' % self.spec['mpi'].mpicc]

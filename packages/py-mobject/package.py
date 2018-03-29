@@ -36,12 +36,17 @@ class PyMobject(PythonPackage):
     url      = "git@xgitlab.cels.anl.gov:sds/py-mobject.git"
 
     version('master',  git="git@xgitlab.cels.anl.gov:sds/py-mobject.git")
+    version('provider', git="git@xgitlab.cels.anl.gov:sds/py-mobject.git", branch='dev-provider-id')
 
-    depends_on('py-bake')
-    depends_on('py-sdskv')
-    depends_on('py-margo')
+    depends_on('py-bake',  when='@master')
+    depends_on('py-sdskv', when='@master')
+    depends_on('py-margo', when='@master')
     depends_on('py-ssg')
+    depends_on('mobject',  when='@master')
+    depends_on('py-bake@provider',  when='@provider')
+    depends_on('py-sdskv@provider', when='@provider')
+    depends_on('py-margo@provider', when='@provider')
+    depends_on('mobject@provider',  when='@provider')
     depends_on('py-mpi4py')
-    depends_on('mobject')
     depends_on('mpi')
     depends_on('py-pkgconfig')
