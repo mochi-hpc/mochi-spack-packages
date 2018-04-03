@@ -6,7 +6,5 @@ class Mdcs(CMakePackage):
     url = "https://xgitlab.cels.anl.gov/sds/mdcs"
 
     version('master', git='https://xgitlab.cels.anl.gov/sds/mdcs.git')
-    version('provider', git='https://xgitlab.cels.anl.gov/sds/mdcs.git', branch='dev-provider-id')
 
-    depends_on('margo', when='@master')
-    depends_on('margo@provider', when='@provider')
+    depends_on('margo')

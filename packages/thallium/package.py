@@ -6,7 +6,5 @@ class Thallium(CMakePackage):
     url = "https://xgitlab.cels.anl.gov/sds/thallium"
 
     version('master', git='https://xgitlab.cels.anl.gov/sds/thallium.git')
-    version('provider', git='https://xgitlab.cels.anl.gov/sds/thallium.git', branch='dev-provider-id')
 
-    depends_on('margo', when='@master')
-    depends_on('margo@provider', when='@provider')
+    depends_on('margo')

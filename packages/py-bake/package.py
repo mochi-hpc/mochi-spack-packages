@@ -36,9 +36,6 @@ class PyBake(PythonPackage):
     url      = "https://xgitlab.cels.anl.gov/sds/py-bake.git"
 
     version('master',  git="https://xgitlab.cels.anl.gov/sds/py-bake.git")
-    version('provider',  git="https://xgitlab.cels.anl.gov/sds/py-bake.git", branch='dev-provider-id')
 
-    depends_on('bake', when='@master')
-    depends_on('py-margo', when='@master')
-    depends_on('bake@provider', when='@provider')
-    depends_on('py-margo@provider', when='@provider')
+    depends_on('bake')
+    depends_on('py-margo')

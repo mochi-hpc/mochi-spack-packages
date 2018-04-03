@@ -32,20 +32,16 @@ class Mobject(AutotoolsPackage):
     url = "https://xgitlab.cels.anl.gov/sds/mobject-store"
 
     version('master', git='https://xgitlab.cels.anl.gov/sds/mobject-store.git')
-    version('provider', git='https://xgitlab.cels.anl.gov/sds/mobject-store.git', branch='dev-provider-id')
 
-    depends_on('margo', when='@master')
-    depends_on('margo@provider', when='@provider')
+    depends_on('margo')
     depends_on('mpi')
     depends_on('ssg+mpi')
     depends_on('ch-placement')
     depends_on('autoconf')
     depends_on('automake')
     depends_on('libtool')
-    depends_on('sdskeyval', when='@master')
-    depends_on('bake', when='@master')
-    depends_on('sdskeyval@provider', when='@provider')
-    depends_on('bake@provider', when='@provider')
+    depends_on('sdskeyval')
+    depends_on('bake')
 
     def configure_args(self):
         extra_args = ['CC=%s' % self.spec['mpi'].mpicc]
