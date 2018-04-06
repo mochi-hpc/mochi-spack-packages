@@ -90,6 +90,25 @@ These `packages` files live in a platform-specific directory (run `spack arch
 Argonne, where a home file system is shared between a linux cluster, a blue
 gene, and a Cray.  You can describe `packages.py` for each platform.
 
+### Side note: using modules
+
+Spack works well with the module command for loading and unloading
+particular packages in your environment once they have been built.  You can
+get the module command using any of these methods:
+
+* install the environment-modules package in your distribution
+    * then add . /etc/profile.d/modules.sh to your bashrc
+* install the lmod package in your distribution
+    * see lmod documentation for what to do next
+    * this is a competitor to environment-modules that has similar syntax
+* run spack bootstrap
+    * this will make spack build and install its very own
+      environment-modules package, as well as a variety of other system
+      utilities that it might want
+
+The remainder of this document assumes that you will use the module command
+to load and unload packages once built.
+
 ### Further package configuration
 
 Spack has a bit of trouble resolving a dependency if it is not exactly the same
