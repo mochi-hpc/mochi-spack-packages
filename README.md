@@ -85,6 +85,16 @@ generaly because they are either large packages or have large dependencies.  I
 tend to work from MPICH's latest version in git, so I have also told spack
 about my locally installed MPICH.
 
+Note that if you prefer to have spack use mpich over openmpi any time that
+"mpi" is a package dependency, add this to your packages.yaml as well:
+
+```
+    all:
+        providers:
+            # prefer MPICH by default
+            mpi: [mpich,openmpi]
+```
+
 These `packages` files live in a platform-specific directory (run `spack arch
 -p` to see what platform spack thinks you are on).  Pretty helpful for e.g.
 Argonne, where a home file system is shared between a linux cluster, a blue
