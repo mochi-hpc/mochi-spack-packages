@@ -103,18 +103,15 @@ gene, and a Cray.  You can describe `packages.py` for each platform.
 ### Side note: using modules
 
 Spack works well with the module command for loading and unloading
-particular packages in your environment once they have been built.  You can
-get the module command using any of these methods:
+particular packages in your environment once they have been built. In theory
+you could integrate it with an existing environment-modules or lmod package
+on your system.  Alternatively you can have spack set up its own modules
+system:
 
-* install the environment-modules package in your distribution
-    * then add . /etc/profile.d/modules.sh to your bashrc
-* install the lmod package in your distribution
-    * see lmod documentation for what to do next
-    * this is a competitor to environment-modules that has similar syntax
-* run spack bootstrap
+* run ```spack bootstrap```
     * this will make spack build and install its very own
-      environment-modules package, as well as a variety of other system
-      utilities that it might want
+      environment-modules package that is automatically aware of packages
+      that have been installed via spack
 
 The remainder of this document assumes that you will use the module command
 to load and unload packages once built.
