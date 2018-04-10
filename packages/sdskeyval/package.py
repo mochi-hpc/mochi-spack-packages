@@ -63,6 +63,10 @@ class Sdskeyval(AutotoolsPackage):
         spec = self.spec
         extra_args = []
 
+        extra_args.extend([
+            "CXXFLAGS=-std=c++11"
+            ])
+
         if '+bdb' in spec:
             extra_args.extend([
                 "--enable-berkeleydb"
