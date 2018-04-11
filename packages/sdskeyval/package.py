@@ -66,7 +66,9 @@ class Sdskeyval(AutotoolsPackage):
 	extra_args.extend([
 		"--with-boost-libdir="
 		+ spec['boost'].prefix +'/lib'])
-
+        extra_args.extend([
+            "CXXFLAGS=-std=c++11"
+            ])
         if '+bdb' in spec:
             extra_args.extend([
                 "--with-berkeleydb="

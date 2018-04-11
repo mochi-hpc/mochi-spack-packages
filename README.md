@@ -85,10 +85,36 @@ generaly because they are either large packages or have large dependencies.  I
 tend to work from MPICH's latest version in git, so I have also told spack
 about my locally installed MPICH.
 
+Note that if you prefer to have spack use mpich over openmpi any time that
+"mpi" is a package dependency, add this to your packages.yaml as well:
+
+```
+    all:
+        providers:
+            # prefer MPICH by default
+            mpi: [mpich,openmpi]
+```
+
 These `packages` files live in a platform-specific directory (run `spack arch
 -p` to see what platform spack thinks you are on).  Pretty helpful for e.g.
 Argonne, where a home file system is shared between a linux cluster, a blue
 gene, and a Cray.  You can describe `packages.py` for each platform.
+
+### Side note: using modules
+
+Spack works well with the module command for loading and unloading
+particular packages in your environment once they have been built. In theory
+you could integrate it with an existing environment-modules or lmod package
+on your system.  Alternatively you can have spack set up its own modules
+system:
+
+* run ```spack bootstrap```
+    * this will make spack build and install its very own
+      environment-modules package that is automatically aware of packages
+      that have been installed via spack
+
+The remainder of this document assumes that you will use the module command
+to load and unload packages once built.
 
 ### Further package configuration
 
