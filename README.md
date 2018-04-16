@@ -48,6 +48,11 @@ packages:
         buildable: False
 ```
 
+The sdskeyval package (for now) requires Boost, but we're working on removing
+that dependency.  In the mean time, please don't put a trailing slash on your
+"boost@system" directive or it will break our fragile workaround.
+
+
 I have found several other large dependencies that are handled just fine by the
 operating system.  My `${HOME}/.spack/linux/packages.yaml` file looks like
 this:
