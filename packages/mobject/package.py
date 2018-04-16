@@ -44,5 +44,7 @@ class Mobject(AutotoolsPackage):
     depends_on('bake')
 
     def configure_args(self):
-        extra_args = ['CC=%s' % self.spec['mpi'].mpicc]
+        extra_args = []
+        extra_args.extend(['CC=%s' % self.spec['mpi'].mpicc])
+        extra_args.extend(['CXX=%s' % self.spec['mpi'].mpicxx])
         return extra_args
