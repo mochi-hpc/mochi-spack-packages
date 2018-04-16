@@ -63,9 +63,10 @@ class Sdskeyval(AutotoolsPackage):
         spec = self.spec
         extra_args = []
 
-	extra_args.extend([
-		"--with-boost-libdir="
-		+ spec['boost'].prefix +'/lib'])
+        if spec['boost'].prefix != "/usr":
+            extra_args.extend([
+                    "--with-boost-libdir="
+                    + spec['boost'].prefix +'/lib'])
         if '+bdb' in spec:
             extra_args.extend([
                 "--with-berkeleydb="
