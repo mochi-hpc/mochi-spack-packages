@@ -44,9 +44,11 @@ class Mercury(CMakePackage):
     depends_on('cci@master', when="+cci", type=("build", "link", "run"))
     depends_on('libfabric', when="+fabric", type=("build", "link", "run"))
     depends_on('bmi', when="+bmi", type=("build", "link", "run"))
-    depends_on('boost')
 
     def cmake_args(self):
+        # as of mercury commit 662423eb360b, the boost preprocessor macros are
+        # rolled up inside mercury itself, so we can use the boost convienience
+        # macros without pulling in all of boost
         args = ["-DMERCURY_USE_BOOST_PP:BOOL=ON",
                 "-DBUILD_SHARED_LIBS=ON" ]
         if (self.spec.variants['cci'].value):
