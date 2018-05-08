@@ -35,17 +35,14 @@ class Sdskeyval(AutotoolsPackage):
     version('dor-sds', git='https://xgitlab.cels.anl.gov/sds/sds-keyval.git', branch='dor-sync-review')
 
     variant('bwtree', default=True, description="Enable BwTree keyval backend")
-    variant('bdb', default=True, description="Enable Berkely DB keyval backend")
-    variant('leveldb', default=True, description="Enable LevelDB keyval backend")
+    variant('bdb', default=False, description="Enable Berkely DB keyval backend")
+    variant('leveldb', default=False, description="Enable LevelDB keyval backend")
     variant('lmdb', default=False, description="Enable lmdb keyval backend")
 
     depends_on('margo', type=("build", "link", "run"))
     depends_on('autoconf@2.65:')
     depends_on('automake@1.13.4:')
     depends_on('libtool', type=("build"))
-#depends_on('ch-placement')
-#depends_on('ssg+mpi')
-    depends_on('boost+system+filesystem')
 
     # variable dependencies
     depends_on('berkeley-db', when="+bdb")
@@ -63,10 +60,6 @@ class Sdskeyval(AutotoolsPackage):
         spec = self.spec
         extra_args = []
 
-        if spec['boost'].prefix != "/usr":
-            extra_args.extend([
-                    "--with-boost-libdir="
-                    + spec['boost'].prefix +'/lib'])
         if '+bdb' in spec:
             extra_args.extend([
                 "--with-berkeleydb="
