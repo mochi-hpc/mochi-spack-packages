@@ -38,9 +38,12 @@ class Pmem(Package):
 
     # experimental rpmem
     depends_on('libfabric@1.4.2:')
+    depends_on('coreutils@8.15:')
+
     # documentation requires doxygen and a bunch of other depenedncies that
     # were not working properly on our contianers
     patch('0001-make-doc-building-explicit.patch')
+    patch('0002-remove-secure-getenv.patch', when='@1.4')
 
     def install(self, spec, prefix):
         make("install", "prefix=%s" % prefix)
