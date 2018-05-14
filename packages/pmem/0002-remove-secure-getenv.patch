@@ -1,0 +1,11 @@
+--- a/src/common/os_posix.c	2018-03-29 16:42:27.000000000 +0000
++++ b/src/common/os_posix.c	2018-05-09 09:16:01.100000000 +0000
+@@ -278,7 +278,7 @@
+ char *
+ os_getenv(const char *name)
+ {
+-	return secure_getenv(name);
++	return getenv(name);
+ }
+ 
+ /*

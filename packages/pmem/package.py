@@ -30,15 +30,20 @@ class Pmem(Package):
     """The NVM Library is a library for using memory-mapped persistence, optimized specifically for persistent memory"""
 
     homepage = "http://pmem.io/"
-    url      = "https://github.com/pmem/nvml/archive/1.3.tar.gz"
+    url      = "https://github.com/pmem/nvml/archive/1.4.tar.gz"
 
     # in the nvml -> pmdk name change, these hashes needed to be updated
+    version('1.4',       '8813455d9518b8d7e0c296a706314940')
     version('1.3',         '32c41d0d7f1c855b7d2b9622631a6bc3')
 
     # experimental rpmem
     depends_on('libfabric@1.4.2:')
-    # gcc7 warns about buffer overflows
-    patch('0001-benchmark-fix-buffer-overflow-in-rpmem_persist.patch')
+    depends_on('coreutils@8.15:')
+
+    # documentation requires doxygen and a bunch of other depenedncies that
+    # were not working properly on our contianers
+    patch('0001-make-doc-building-explicit.patch')
+    patch('0002-remove-secure-getenv.patch', when='@1.4')
 
     def install(self, spec, prefix):
         make("install", "prefix=%s" % prefix)
