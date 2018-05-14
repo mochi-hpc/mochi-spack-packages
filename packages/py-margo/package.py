@@ -40,3 +40,4 @@ class PyMargo(PythonPackage):
 
     depends_on('margo')
     depends_on('boost+python')
+    depends_on('py-pkgconfig')
