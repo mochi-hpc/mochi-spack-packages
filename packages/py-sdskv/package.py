@@ -36,12 +36,7 @@ class PySdskv(PythonPackage):
     url      = "https://xgitlab.cels.anl.gov/sds/py-sdskv.git"
 
     version('master',  git="https://xgitlab.cels.anl.gov/sds/py-sdskv.git")
-#    version('provider',  git="https://xgitlab.cels.anl.gov/sds/py-sdskv.git", branch='dev-provider-id')
 
     depends_on('sdskeyval')
     depends_on('py-margo')
-#    depends_on('sdskeyval', when='@master')
-#    depends_on('py-margo', when='@master')
     depends_on('py-pkgconfig')
-#    depends_on('sdskeyval@provider', when='@provider')
-#    depends_on('py-margo@provider', when='@provider')
