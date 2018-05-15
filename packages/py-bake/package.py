@@ -37,5 +37,10 @@ class PyBake(PythonPackage):
 
     version('master',  git="https://xgitlab.cels.anl.gov/sds/py-bake.git")
 
+    variant('numpy',default=False, description="Enables Numpy support")
+
+    depends_on('py-pkgconfig', type=('build'))
     depends_on('bake')
+    depends_on('boost+python@1.67.0:', when='~numpy', type=('build','run'))
+    depends_on('boost+python+numpy@1.67.0:', when='+numpy', type=('build','run'))
     depends_on('py-margo')
