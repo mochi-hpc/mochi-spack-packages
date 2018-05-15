@@ -38,7 +38,9 @@ class PySsg(PythonPackage):
 
     version('master',  git="https://xgitlab.cels.anl.gov/sds/py-ssg.git")
 
-    depends_on('ssg+mpi')
-    depends_on('py-mpi4py')
+    variant('mpi', default=False, description="Enable MPI support")
+    depends_on('ssg+mpi', when='+mpi')
+    depends_on('ssg', when='~mpi')
+    depends_on('py-mpi4py', when='+mpi')
     depends_on('py-margo')
     depends_on('py-pkgconfig')
