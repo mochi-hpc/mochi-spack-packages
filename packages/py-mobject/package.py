@@ -40,7 +40,7 @@ class PyMobject(PythonPackage):
     depends_on('py-bake')
     depends_on('py-sdskv')
     depends_on('py-margo')
-    depends_on('py-ssg')
+    depends_on('py-ssg+mpi')
     depends_on('mobject')
     depends_on('py-mpi4py')
     depends_on('mpi')
