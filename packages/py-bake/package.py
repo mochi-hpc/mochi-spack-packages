@@ -41,6 +41,7 @@ class PyBake(PythonPackage):
 
     depends_on('py-pkgconfig', type=('build'))
     depends_on('bake')
-    depends_on('boost+python@1.67.0:', when='~numpy', type=('build','run'))
-    depends_on('boost+python+numpy@1.67.0:', when='+numpy', type=('build','run'))
+    depends_on('boost+python@1.67.0:', when='~numpy')
+    depends_on('boost+python+numpy@1.67.0:', when='+numpy')
     depends_on('py-margo')
+    depends_on('py-numpy', when='+numpy')
