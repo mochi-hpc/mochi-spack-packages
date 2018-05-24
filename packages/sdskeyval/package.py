@@ -34,9 +34,9 @@ class Sdskeyval(AutotoolsPackage):
     version('master', git='https://xgitlab.cels.anl.gov/sds/sds-keyval.git')
     version('dor-sds', git='https://xgitlab.cels.anl.gov/sds/sds-keyval.git', branch='dor-sync-review')
 
-    variant('bwtree', default=True, description="Enable BwTree keyval backend")
-    variant('bdb', default=False, description="Enable Berkely DB keyval backend")
-    variant('leveldb', default=False, description="Enable LevelDB keyval backend")
+    variant('bwtree', default=False, description="Enable BwTree keyval backend")
+    variant('bdb', default=True, description="Enable Berkely DB keyval backend")
+    variant('leveldb', default=True, description="Enable LevelDB keyval backend")
     variant('lmdb', default=False, description="Enable lmdb keyval backend")
 
     depends_on('margo', type=("build", "link", "run"))
