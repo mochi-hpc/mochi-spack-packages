@@ -39,4 +39,5 @@ class PySdskv(PythonPackage):
 
     depends_on('sdskeyval')
     depends_on('py-margo')
-    depends_on('py-pkgconfig')
+    depends_on('py-pkgconfig', type=('build'))
+    depends_on('py-pybind11', type=('build'))

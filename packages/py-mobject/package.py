@@ -44,4 +44,5 @@ class PyMobject(PythonPackage):
     depends_on('mobject')
     depends_on('py-mpi4py')
     depends_on('mpi')
-    depends_on('py-pkgconfig')
+    depends_on('py-pkgconfig', type=('build'))
+    depends_on('py-pybind11', type=('build'))

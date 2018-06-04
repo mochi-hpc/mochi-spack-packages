@@ -39,5 +39,5 @@ class PyMargo(PythonPackage):
     version('master',  git="https://xgitlab.cels.anl.gov/sds/py-margo.git")
 
     depends_on('margo')
-    depends_on('boost+python@1.67.0:')
-    depends_on('py-pkgconfig')
+    depends_on('py-pybind11', type=('build'))
+    depends_on('py-pkgconfig', type=('build'))

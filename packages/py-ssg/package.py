@@ -43,4 +43,5 @@ class PySsg(PythonPackage):
     depends_on('ssg', when='~mpi')
     depends_on('py-mpi4py', when='+mpi')
     depends_on('py-margo')
-    depends_on('py-pkgconfig')
+    depends_on('py-pkgconfig', type=('build'))
+    depends_on('py-pybind11', type=('build'))
