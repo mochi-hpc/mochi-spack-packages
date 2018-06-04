@@ -34,8 +34,6 @@ class Margo(AutotoolsPackage):
     version('master', git='https://xgitlab.cels.anl.gov/sds/margo.git')
     depends_on('mercury', type=("build", "link", "run"))
     depends_on('argobots')
-    depends_on('abtsnoozer')
-    depends_on('libev')
     depends_on('autoconf@2.65:')
     depends_on('automake', type=("build"))
     depends_on('libtool', type=("build"))
