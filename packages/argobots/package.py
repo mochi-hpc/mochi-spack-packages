@@ -34,10 +34,10 @@ class Argobots(AutotoolsPackage):
     version('master', git='https://github.com/pmodels/argobots.git');
     version('dev-get-dev-basic', git='https://github.com/carns/argobots.git', branch='dev-get-dev-basic')
 
-    depends_on('m4')
-    depends_on('autoconf')
-    depends_on('automake')
-    depends_on('libtool')
+    depends_on('m4', type=("build"))
+    depends_on('autoconf', type=("build"))
+    depends_on('automake', type=("build"))
+    depends_on('libtool', type=("build"))
 
     def configure_args(self):
         args = ["--enable-perf-opt"]

@@ -34,9 +34,9 @@ class Margo(AutotoolsPackage):
     version('master', git='https://xgitlab.cels.anl.gov/sds/margo.git')
     depends_on('mercury', type=("build", "link", "run"))
     depends_on('argobots')
-    depends_on('autoconf@2.65:')
+    depends_on('autoconf@2.65:', type=("build"))
     depends_on('automake', type=("build"))
     depends_on('libtool', type=("build"))
     # 'timeout' is part of coreutils
     depends_on('coreutils')
-    depends_on('pkg-config')
+    depends_on('pkg-config', type=("build"))
