@@ -8,3 +8,7 @@ class Thallium(CMakePackage):
     version('master', git='https://xgitlab.cels.anl.gov/sds/thallium.git')
 
     depends_on('margo')
+
+    def cmake_args(self):
+        args = ["-DBUILD_SHARED_LIBS:BOOL=ON" ]
+        return args
