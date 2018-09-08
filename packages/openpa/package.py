@@ -29,5 +29,5 @@ class Openpa(AutotoolsPackage):
     (and related constructs) for high performance, concurrent software"""
 
     homepage = "https://trac.mpich.org/projects/openpa"
-    url      = "https://trac.mpich.org/projects/openpa/raw-attachment/wiki/Downloads/openpa-1.0.4.tar.gz"
+    url      = "https://github.com/pmodels/openpa/releases/download/v1.0.4/openpa-1.0.4.tar.gz"
     version('1.0.4', '3ad998bb26ac84ee7de262db94dd7656') 

@@ -17,6 +17,7 @@ class Ssg(AutotoolsPackage):
 
     depends_on('mpi', when='+mpi')
     depends_on('margo')
+    depends_on('autoconf@2.69', type='build')
 
     def configure_args(self):
         spec = self.spec

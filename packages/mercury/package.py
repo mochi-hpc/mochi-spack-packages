@@ -44,6 +44,7 @@ class Mercury(CMakePackage):
     depends_on('cci@master', when="+cci", type=("build", "link", "run"))
     depends_on('libfabric', when="+fabric", type=("build", "link", "run"))
     depends_on('bmi', when="+bmi", type=("build", "link", "run"))
+    depends_on('openpa', type=("build", "link", "run"))
 
     def cmake_args(self):
         # as of mercury commit 662423eb360b, the boost preprocessor macros are

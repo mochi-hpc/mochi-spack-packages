@@ -33,12 +33,12 @@ class Pmem(Package):
     url      = "https://github.com/pmem/nvml/archive/1.4.tar.gz"
 
     # in the nvml -> pmdk name change, these hashes needed to be updated
+    version('1.4.2',     sha256='df7e658e75d28cd80f6d2ff7b9fc9ae2885d52f8923fdbacecfd46215115fb4c')
     version('1.4',       '8813455d9518b8d7e0c296a706314940')
     version('1.3',         '32c41d0d7f1c855b7d2b9622631a6bc3')
 
     # experimental rpmem
     depends_on('libfabric@1.4.2:')
-    depends_on('coreutils@8.15:')
 
     # documentation requires doxygen and a bunch of other depenedncies that
     # were not working properly on our contianers
@@ -46,4 +46,4 @@ class Pmem(Package):
     patch('0002-remove-secure-getenv.patch', when='@1.4')
 
     def install(self, spec, prefix):
-        make("install", "prefix=%s" % prefix)
+        make("install", "prefix=%s" % prefix, "NDCTL_ENABLE=n")

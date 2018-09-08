@@ -1,0 +1,27 @@
+From f6883b2c19f9e35ee90e923d6e4ac0b00c16d1bf Mon Sep 17 00:00:00 2001
+From: Rob Latham <robl@mcs.anl.gov>
+Date: Thu, 23 Aug 2018 16:35:54 -0500
+Subject: [PATCH] hack make install for spack
+
+---
+ Makefile | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+
+diff --git a/Makefile b/Makefile
+index 4671d580..230dc327 100644
+--- a/Makefile
++++ b/Makefile
+@@ -17,7 +17,9 @@ sharedlib:
+ 	cd ./bin && make pmemkv
+ 
+ install:
+-	cp ./bin/libpmemkv.so $(prefix)/lib
++	mkdir -p $(prefix)/lib
++	mkdir -p $(prefix)/include
++	cp spack-build/libpmemkv.so $(prefix)/lib
+ 	cp ./src/pmemkv.h $(prefix)/include/libpmemkv.h
+ 
+ uninstall:
+-- 
+2.17.1
+

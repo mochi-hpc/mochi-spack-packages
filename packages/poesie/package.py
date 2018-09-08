@@ -53,10 +53,9 @@ class Poesie(AutotoolsPackage):
             extra_args.extend([
                 "--enable-python"
                 ])
-	if '~python' in spec:
-	    extra_args.extend([
+        if '~python' in spec:
+            extra_args.extend([
                 "--disable-python"
-		])
+                ])
 
         return extra_args
-
