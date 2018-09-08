@@ -13,5 +13,6 @@ class Bake(AutotoolsPackage):
     depends_on('automake@1.13.4:', type=("build"))
     depends_on('libtool', type=("build"))
     depends_on('margo')
+    depends_on('remi')
     depends_on('libuuid')
     depends_on('pmem')
