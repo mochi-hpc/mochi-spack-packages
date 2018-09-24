@@ -43,6 +43,7 @@ class Sdskeyval(AutotoolsPackage):
     depends_on('autoconf@2.65:')
     depends_on('automake@1.13.4:')
     depends_on('libtool', type=("build"))
+    depends_on('remi')
 
     # variable dependencies
     depends_on('berkeley-db', when="+bdb")
