@@ -38,7 +38,13 @@ class Argobots(AutotoolsPackage):
     depends_on('autoconf', type=("build"))
     depends_on('automake', type=("build"))
     depends_on('libtool', type=("build"))
+    depends_on('valgrind', when='+valgrind')
+
+    variant('valgrind', default=False, description="Enable Valgrind")
 
     def configure_args(self):
         args = ["--enable-perf-opt"]
+        if (self.spec.variants['valgrind'].value):
+            args.extend(["--enable-valgrind"])
+
         return args
