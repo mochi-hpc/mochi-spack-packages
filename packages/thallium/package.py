@@ -8,6 +8,9 @@ class Thallium(CMakePackage):
     version('master', git='https://xgitlab.cels.anl.gov/sds/thallium.git')
 
     depends_on('margo')
+    # thallium relies on std::decay_t
+    conflicts('%gcc@:4.9.0');
+
 
     def cmake_args(self):
         args = ["-DBUILD_SHARED_LIBS:BOOL=ON" ]
