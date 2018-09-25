@@ -46,4 +46,4 @@ class Pmem(Package):
     patch('0002-remove-secure-getenv.patch', when='@1.4')
 
     def install(self, spec, prefix):
-        make("install", "prefix=%s" % prefix, "NDCTL_ENABLE=n")
+        make("install", "prefix=%s" % prefix, "NDCTL_ENABLE=n", "EXTRA_CFLAGS=-Wno-error")
