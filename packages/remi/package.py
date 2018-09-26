@@ -12,6 +12,7 @@ class Remi(CMakePackage):
     version('master', git='https://xgitlab.cels.anl.gov/sds/remi.git')
 
     depends_on('thallium')
+    patch('0001-explicitly-request-C-14.patch')
 
     def cmake_args(self):
         args = ["-DBUILD_SHARED_LIBS:BOOL=ON" ]

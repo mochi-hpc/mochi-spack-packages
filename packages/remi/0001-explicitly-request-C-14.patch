@@ -1,0 +1,25 @@
+From 587be53004bf8cbedf221b5a2ed54d6abae7c0a2 Mon Sep 17 00:00:00 2001
+From: Rob Latham <robl@mcs.anl.gov>
+Date: Tue, 25 Sep 2018 16:42:49 -0500
+Subject: [PATCH] explicitly request C++14
+
+---
+ CMakeLists.txt | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 364f0f0a6e56..bb3b6825f35e 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -12,6 +12,8 @@ cmake_minimum_required (VERSION 3.0)
+ project (remi C CXX)
+ enable_testing ()
+ 
++set(CMAKE_CXX_STANDARD 14)
++
+ # add our cmake module directory to the path
+ set (CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH}
+      "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
+-- 
+1.8.3.1
+
