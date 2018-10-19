@@ -12,6 +12,9 @@ class Remi(CMakePackage):
     version('master', git='https://xgitlab.cels.anl.gov/sds/remi.git')
 
     depends_on('thallium')
+    depends_on('libuuid')
+    depends_on('abt-io')
+
     patch('0001-explicitly-request-C-14.patch')
 
     def cmake_args(self):
