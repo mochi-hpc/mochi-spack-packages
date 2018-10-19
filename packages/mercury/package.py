@@ -42,7 +42,8 @@ class Mercury(CMakePackage):
 
     # if nothing specified, build good ol' BMI
     depends_on('cci@master', when="+cci", type=("build", "link", "run"))
-    depends_on('libfabric@develop', when="+fabric", type=("build", "link", "run"))
+    depends_on('libfabric', when="+fabric", type=("build", "link", "run"))
+    depends_on('libfabric@develop', when="+fabric platform=cray", type=("build", "link", "run"))
     depends_on('bmi', when="+bmi", type=("build", "link", "run"))
     depends_on('openpa', type=("build", "link", "run"))
 
