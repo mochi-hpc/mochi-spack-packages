@@ -38,7 +38,7 @@ class Pmem(Package):
     version('1.3',         '32c41d0d7f1c855b7d2b9622631a6bc3')
 
     # experimental rpmem
-    depends_on('libfabric@1.4.2:')
+    #depends_on('libfabric@1.4.2:')
 
     # documentation requires doxygen and a bunch of other depenedncies that
     # were not working properly on our contianers
