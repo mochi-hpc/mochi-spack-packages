@@ -44,7 +44,7 @@ class Pmem(Package):
     # documentation requires doxygen and a bunch of other depenedncies that
     # were not working properly on our contianers
     patch('0001-make-doc-building-explicit.patch')
-    patch('0002-remove-secure-getenv.patch', when='@1.4')
+    patch('0002-remove-secure-getenv.patch', when='@1.4:')
 
     def install(self, spec, prefix):
         make("install", "prefix=%s" % prefix, "NDCTL_ENABLE=n", "EXTRA_CFLAGS=-Wno-error", "BUILD_RPMEM=n")
