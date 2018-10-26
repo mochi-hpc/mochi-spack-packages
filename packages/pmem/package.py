@@ -32,6 +32,7 @@ class Pmem(Package):
     homepage = "http://pmem.io/"
     url      = "https://github.com/pmem/nvml/archive/1.4.tar.gz"
 
+    version('1.5',     sha256='6b069d7207febeb62440e89245e8b18fcdf40b6170d2ec2ef33c252ed16db2d4')
     # in the nvml -> pmdk name change, these hashes needed to be updated
     version('1.4.2',     sha256='df7e658e75d28cd80f6d2ff7b9fc9ae2885d52f8923fdbacecfd46215115fb4c')
     version('1.4',       '8813455d9518b8d7e0c296a706314940')
