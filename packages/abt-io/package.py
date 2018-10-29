@@ -28,10 +28,13 @@ from spack import *
 class AbtIo(AutotoolsPackage):
     """a library that provides Argobots bindings to POSIX I/O functions."""
 
-    homepage = "https://xgitlab.cels.anl.gov/sds/abt-io"
+    homepage = 'https://xgitlab.cels.anl.gov/sds/abt-io'
+    git = 'https://xgitlab.cels.anl.gov/sds/abt-io.git'
 
-    version('master', git='https://xgitlab.cels.anl.gov/sds/abt-io.git')
-    depends_on('argobots')
+    version('develop', branch='master')
+    version('0.1', tag='v0.1', preferred=True)
+
+    depends_on('argobots@develop')
     depends_on('autoconf@2.65:')
     depends_on('automake', type=("build"))
     depends_on('libtool', type=("build"))
