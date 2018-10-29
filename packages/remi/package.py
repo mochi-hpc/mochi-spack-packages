@@ -8,12 +8,14 @@ class Remi(CMakePackage):
 
     homepage = "https://xgitlab.cels.anl.gov/sds/remi"
     url = "https://xgitlab.cels.anl.gov/sds/remi"
+    git='https://xgitlab.cels.anl.gov/sds/remi.git'
 
-    version('master', git='https://xgitlab.cels.anl.gov/sds/remi.git')
+    version('develop', branch='master')
+    version('0.1', tag='v0.1')
 
-    depends_on('thallium')
+    depends_on('thallium@0.3:')
     depends_on('libuuid')
-    depends_on('abt-io')
+    depends_on('abt-io@0.1:')
 
     patch('0001-explicitly-request-C-14.patch')
 
