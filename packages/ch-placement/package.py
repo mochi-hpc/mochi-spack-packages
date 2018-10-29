@@ -25,11 +25,16 @@ from spack import *
 
 
 class ChPlacement(AutotoolsPackage):
-    """libch-placement is a modular consistent hashing library. It can be used by a distributed storage system to access multiple hashing algorithms, distance metrics, and virtual node settings using a consistent API."""
+    """libch-placement is a modular consistent hashing library.
+    It can be used by a distributed storage system to access multiple
+    hashing algorithms, distance metrics, and virtual node settings using a consistent API."""
 
     homepage = "https://xgitlab.cels.anl.gov/codes/ch-placement"
     url      = "https://xgitlab.cels.anl.gov/codes/ch-placement"
-    version('master', git='https://xgitlab.cels.anl.gov/codes/ch-placement.git')
+    git      = 'https://xgitlab.cels.anl.gov/codes/ch-placement.git'
+
+    version('develop', branch='master')
+    version('0.1', tag='v0.1')
 
     depends_on('m4')
     depends_on('autoconf')
