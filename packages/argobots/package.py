@@ -31,7 +31,7 @@ class Argobots(AutotoolsPackage):
     homepage = "http://www.argobots.org/"
     url = "http://www.argobots.org/"
 
-    version('master', git='https://github.com/pmodels/argobots.git');
+    version('develop', git='https://github.com/pmodels/argobots.git');
     version('dev-get-dev-basic', git='https://github.com/carns/argobots.git', branch='dev-get-dev-basic')
 
     depends_on('m4', type=("build"))
