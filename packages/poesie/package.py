@@ -30,13 +30,15 @@ class Poesie(AutotoolsPackage):
 
     homepage = "https://xgitlab.cels.anl.gov/sds/poesie"
     url = "https://xgitlab.cels.anl.gov/sds/poesie"
+    git = "https://xgitlab.cels.anl.gov/sds/poesie.git"
 
-    version('master', git='https://xgitlab.cels.anl.gov/sds/poesie.git')
+    version('develop', branch='master')
+    version('0.1', tag='v0.1')
 
     variant('lua',    default=True, description="Enable Lua interpreters")
     variant('python', default=True, description="Enable Python interpreters")
 
-    depends_on('margo', type=("build", "link", "run"))
+    depends_on('margo@0.4:', type=("build", "link", "run"))
     # variable dependencies
     depends_on('lua', when="+lua")
     depends_on('python', when="+python")
