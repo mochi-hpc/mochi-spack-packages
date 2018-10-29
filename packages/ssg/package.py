@@ -10,13 +10,15 @@ class Ssg(AutotoolsPackage):
     information"""
 
     homepage = "https://xgitlab.cels.anl.gov/sds/ssg"
+    git='https://xgitlab.cels.anl.gov/sds/ssg.git'
 
-    version('master', git='https://xgitlab.cels.anl.gov/sds/ssg.git')
+    version('develop', branch='master')
+    version('0.2', tag='v0.2')
 
     variant('mpi', default=False, description='Build with MPI support')
 
     depends_on('mpi', when='+mpi')
-    depends_on('margo')
+    depends_on('margo@0.4:')
     depends_on('autoconf@2.69', type='build')
 
     def configure_args(self):
