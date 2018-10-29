@@ -40,6 +40,7 @@ class Pmem(Package):
 
     # experimental rpmem
     #depends_on('libfabric@1.4.2:')
+    depends_on('ncurses', when='@1.5:')
 
     # documentation requires doxygen and a bunch of other depenedncies that
     # were not working properly on our contianers
