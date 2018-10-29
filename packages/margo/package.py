@@ -26,13 +26,16 @@ from spack import *
 
 
 class Margo(AutotoolsPackage):
-    """a library that provides Argobots bindings to the Mercury RPC
+    """A library that provides Argobots bindings to the Mercury RPC
     implementation."""
 
-    homepage = "https://xgitlab.cels.anl.gov/sds/margo"
+    homepage = 'https://xgitlab.cels.anl.gov/sds/margo'
+    git = 'https://xgitlab.cels.anl.gov/sds/margo.git'
 
-    version('master', git='https://xgitlab.cels.anl.gov/sds/margo.git')
-    depends_on('mercury', type=("build", "link", "run"))
+    version('develop', branch='master')
+    version('0.4', tag='v0.4', preferred=True)
+
+    depends_on('mercury@1.0.0:', type=("build", "link", "run"))
     depends_on('argobots')
     depends_on('autoconf@2.65:', type=("build"))
     depends_on('automake', type=("build"))
