@@ -30,10 +30,13 @@ class Mercury(CMakePackage):
 
     homepage = "https://mercury-hpc.github.io/"
     url = "https://mercury-hpc.github.io/"
+    git = "https://github.com/mercury-hpc/mercury.git"
 
 
-    version('master', git='https://github.com/mercury-hpc/mercury.git',
-            submodules=True)
+    version('develop', branch='master', submodules=True)
+    version ('master', branch='master', submodules=True)
+    version('1.0.0rc1', tag='v1.0.0rc1', submodules=True, preferred=True)
+    version('0.9.0', tag='v0.9.0', submodules=True)
 
     variant('cci', default=False, description="Use CCI for network transport")
     variant('bmi', default=False, description="Use BMI for network transport")
