@@ -35,12 +35,12 @@ class Hepnos(CMakePackage):
     version('0.1.2', git='https://xgitlab.cels.anl.gov/sds/HEPnOS.git', tag='v0.1.2')
     version('0.1.1', git='https://xgitlab.cels.anl.gov/sds/HEPnOS.git', tag='v0.1.1')
     version('0.1', git='https://xgitlab.cels.anl.gov/sds/HEPnOS.git', tag='v0.1')
-    version('master', git='https://xgitlab.cels.anl.gov/sds/HEPnOS.git')
+    version('develop', git='https://xgitlab.cels.anl.gov/sds/HEPnOS.git')
 
     depends_on('mpi')
-    depends_on('ch-placement')
-    depends_on('sdskeyval')
-    depends_on('bake')
+    depends_on('ch-placement@0.1:')
+    depends_on('sdskeyval@0.1:')
+    depends_on('bake@0.1:')
     depends_on('yaml-cpp@develop')
     depends_on('boost+serialization')
 
