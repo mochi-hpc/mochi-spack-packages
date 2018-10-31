@@ -34,14 +34,18 @@ class PySsg(PythonPackage):
     """Python wrapper for the SSG library"""
 
     homepage = "https://xgitlab.cels.anl.gov/sds/py-ssg"
-    url      = "https://xgitlab.cels.anl.gov/sds/py-ssg.git"
+    url      = "https://xgitlab.cels.anl.gov/sds/py-ssg"
+    git      = "https://xgitlab.cels.anl.gov/sds/py-ssg.git"
+    
+    version('develop',  branch='master')
+    version('0.1', tag='v0.1')
 
-    version('master',  git="https://xgitlab.cels.anl.gov/sds/py-ssg.git")
+    variant('mpi', default=True, description="Enable MPI support")
 
-    variant('mpi', default=False, description="Enable MPI support")
-    depends_on('ssg+mpi', when='+mpi')
-    depends_on('ssg', when='~mpi')
+    depends_on('mpi', when='+mpi', type=("build"))
+    depends_on('ssg+mpi@0.1:', when='+mpi')
+    depends_on('ssg@0.1:', when='~mpi')
     depends_on('py-mpi4py', when='+mpi')
-    depends_on('py-margo')
+    depends_on('py-margo@0.1:')
     depends_on('py-pkgconfig', type=('build'))
     depends_on('py-pybind11', type=('build'))
