@@ -33,11 +33,13 @@ class PySdskv(PythonPackage):
     """Python wrapper for the SDS-KeyVal library"""
 
     homepage = "https://xgitlab.cels.anl.gov/sds/py-sdskv"
-    url      = "https://xgitlab.cels.anl.gov/sds/py-sdskv.git"
+    url      = "https://xgitlab.cels.anl.gov/sds/py-sdskv"
+    git      = "https://xgitlab.cels.anl.gov/sds/py-sdskv.git"
 
-    version('master',  git="https://xgitlab.cels.anl.gov/sds/py-sdskv.git")
+    version('develop',  branch="master")
+    version('0.1', tag='v0.1')
 
-    depends_on('sdskeyval')
-    depends_on('py-margo')
+    depends_on('sdskeyval@0.1:')
+    depends_on('py-margo@0.1:')
     depends_on('py-pkgconfig', type=('build'))
     depends_on('py-pybind11', type=('build'))
