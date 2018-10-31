@@ -15,7 +15,7 @@ class Ssg(AutotoolsPackage):
     version('develop', branch='master')
     version('0.2', tag='v0.2')
 
-    variant('mpi', default=False, description='Build with MPI support')
+    variant('mpi', default=True, description='Build with MPI support')
 
     depends_on('mpi', when='+mpi')
     depends_on('margo@0.4:')
