@@ -34,13 +34,15 @@ class PyBake(PythonPackage):
 
     homepage = "https://xgitlab.cels.anl.gov/sds/py-bake"
     url      = "https://xgitlab.cels.anl.gov/sds/py-bake.git"
+    git      = "https://xgitlab.cels.anl.gov/sds/py-bake.git"
 
-    version('master',  git="https://xgitlab.cels.anl.gov/sds/py-bake.git")
+    version('develop',  branch="master")
+    version('0.1', tag='v0.1')
 
     variant('numpy',default=False, description="Enables Numpy support")
 
     depends_on('py-pybind11', type=('build'))
     depends_on('py-pkgconfig', type=('build'))
-    depends_on('bake')
-    depends_on('py-margo')
+    depends_on('bake@0.1:')
+    depends_on('py-margo@0.1:')
     depends_on('py-numpy', when='+numpy')
