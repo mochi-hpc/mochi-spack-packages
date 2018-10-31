@@ -11,12 +11,14 @@ class Flamestore(PythonPackage):
     """Transient distributed object store for deep learning"""
 
     homepage = "https://xgitlab.cels.anl.gov/sds/flame-store"
-    url      = "https://xgitlab.cels.anl.gov/sds/flame-store.git"
+    url      = "https://xgitlab.cels.anl.gov/sds/flame-store"
+    git      = "https://xgitlab.cels.anl.gov/sds/flame-store.git"
 
-    version('master',  git="https://xgitlab.cels.anl.gov/sds/flame-store.git")
+    version('develop', branch='master')
+    version('0.1', tag='v0.1')
 
-    depends_on('py-margo')
-    depends_on('py-bake+numpy')
+    depends_on('py-margo@0.1:')
+    depends_on('py-bake+numpy@0.1:')
     depends_on('py-h5py')
     depends_on('py-keras')
     depends_on('py-mpi4py')
