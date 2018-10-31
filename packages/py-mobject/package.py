@@ -33,15 +33,17 @@ class PyMobject(PythonPackage):
     """Python wrapper for the Mobject library"""
 
     homepage = "https://xgitlab.cels.anl.gov/sds/py-mobject"
-    url      = "git@xgitlab.cels.anl.gov:sds/py-mobject.git"
+    url      = "https://xgitlab.cels.anl.gov/sds/py-mobject"
+    git      = "https://xgitlab.cels.anl.gov/sds/py-mobject.git"
 
-    version('master',  git="git@xgitlab.cels.anl.gov:sds/py-mobject.git")
+    version('develop',  branch="master")
+    version('0.1', tag='v0.1')
 
-    depends_on('py-bake')
-    depends_on('py-sdskv')
-    depends_on('py-margo')
-    depends_on('py-ssg+mpi')
-    depends_on('mobject')
+    depends_on('py-bake@0.1:')
+    depends_on('py-sdskv@0.1:')
+    depends_on('py-margo@0.1:')
+    depends_on('py-ssg+mpi@0.1:')
+    depends_on('mobject@0.1:')
     depends_on('py-mpi4py')
     depends_on('mpi')
     depends_on('py-pkgconfig', type=('build'))
