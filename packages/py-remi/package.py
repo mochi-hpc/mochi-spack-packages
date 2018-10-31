@@ -33,11 +33,12 @@ class PyRemi(PythonPackage):
     """Python wrapper for the REMI library"""
 
     homepage = "https://xgitlab.cels.anl.gov/sds/py-remi"
-    url      = "https://xgitlab.cels.anl.gov/sds/py-remi.git"
+    git      = "https://xgitlab.cels.anl.gov/sds/py-remi.git"
 
-    version('master',  git="https://xgitlab.cels.anl.gov/sds/py-remi.git")
+    version('develop',  branch='master')
+    version('0.1', tag='v0.1')
 
-    depends_on('remi')
-    depends_on('py-margo')
+    depends_on('remi@0.1:')
+    depends_on('py-margo@0.1:')
     depends_on('py-pkgconfig', type=('build'))
     depends_on('py-pybind11', type=('build'))
