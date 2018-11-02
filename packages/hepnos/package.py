@@ -30,12 +30,14 @@ class Hepnos(CMakePackage):
 
     homepage = "https://xgitlab.cels.anl.gov/sds/HEPnOS"
     url = "https://xgitlab.cels.anl.gov/sds/HEPnOS"
+    git = 'https://xgitlab.cels.anl.gov/sds/HEPnOS.git'
 
-    version('0.1.3', git='https://xgitlab.cels.anl.gov/sds/HEPnOS.git', tag='v0.1.3', preferred=True)
-    version('0.1.2', git='https://xgitlab.cels.anl.gov/sds/HEPnOS.git', tag='v0.1.2')
-    version('0.1.1', git='https://xgitlab.cels.anl.gov/sds/HEPnOS.git', tag='v0.1.1')
-    version('0.1', git='https://xgitlab.cels.anl.gov/sds/HEPnOS.git', tag='v0.1')
-    version('develop', git='https://xgitlab.cels.anl.gov/sds/HEPnOS.git')
+    version('0.1.4', tag='v0.1.4', preffered=True)
+    version('0.1.3', tag='v0.1.3')
+    version('0.1.2', tag='v0.1.2')
+    version('0.1.1', tag='v0.1.1')
+    version('0.1',   tag='v0.1')
+    version('develop', branch='develop')
 
     depends_on('mpi')
     depends_on('ch-placement@0.1:')
