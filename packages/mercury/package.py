@@ -44,11 +44,8 @@ class Mercury(CMakePackage):
 
     # if nothing specified, build good ol' BMI
     depends_on('cci@master', when="+cci", type=("build", "link", "run"))
-    # depends_on('libfabric', when="+fabric", type=("build", "link", "run"))
-    # depends_on('libfabric@develop', when="+fabric platform=cray", type=("build", "link", "run"))
-    # as of Nov 2, 2018, use git master for libfabric on all platforms; we 
-    #   need to test unreleased features on both gni and verbs at least
-    depends_on('libfabric@develop', when="+fabric", type=("build", "link", "run"))
+    depends_on('libfabric', when="+fabric", type=("build", "link", "run"))
+    depends_on('libfabric@develop', when="+fabric platform=cray", type=("build", "link", "run"))
     depends_on('bmi', when="+bmi", type=("build", "link", "run"))
     depends_on('openpa', type=("build", "link", "run"))
 
