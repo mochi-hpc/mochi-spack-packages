@@ -35,6 +35,7 @@ class Margo(AutotoolsPackage):
     version('develop', branch='master')
     version('0.4', tag='v0.4', preferred=True)
 
+    depends_on('mercury@develop', when='@develop', type=("build", "link", "run"))
     depends_on('mercury@1.0.0:', type=("build", "link", "run"))
     depends_on('argobots@develop')
     depends_on('autoconf@2.65:', type=("build"))
