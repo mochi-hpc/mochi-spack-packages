@@ -11,6 +11,8 @@ class Bake(AutotoolsPackage):
     version('develop', branch='master')
     version('0.1', tag='v0.1')
 
+    variant('sizecheck', default=False, description="Enable size/bound checking (may degrade performance)")
+
     depends_on('autoconf@2.65:', type=("build"))
     depends_on('automake@1.13.4:', type=("build"))
     depends_on('libtool', type=("build"))
@@ -18,3 +20,14 @@ class Bake(AutotoolsPackage):
     depends_on('remi@0.1:')
     depends_on('libuuid')
     depends_on('pmem')
+
+    def configure_args(self):
+        spec = self.spec
+        extra_args = []
+
+        if '+sizecheck' in spec:
+            extra_args.append('--enable-sizecheck')
+        else:
+            extra_args.append('--disable-sizecheck')
+
+        return extra_args
