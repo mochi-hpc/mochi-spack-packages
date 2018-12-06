@@ -12,6 +12,7 @@ class Bake(AutotoolsPackage):
     version('0.1', tag='v0.1')
 
     variant('sizecheck', default=False, description="Enable size/bound checking (may degrade performance)")
+    variant('timers', default=False, description="Enable timers on stdout (use for performance tuning)")
 
     depends_on('autoconf@2.65:', type=("build"))
     depends_on('automake@1.13.4:', type=("build"))
