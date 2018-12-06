@@ -30,4 +30,9 @@ class Bake(AutotoolsPackage):
         else:
             extra_args.append('--disable-sizecheck')
 
+        if '+timers' in spec:
+            extra_args.append('--enable-timers')
+        else:
+            extra_args.append('--disable-timers')
+
         return extra_args
