@@ -38,9 +38,11 @@ class PyMargo(PythonPackage):
     git      = "https://xgitlab.cels.anl.gov/sds/py-margo.git"
 
     version('develop',  branch="master")
+    version('0.2', tag='v0.2')
     version('0.1', tag='v0.1')
 
     depends_on('margo@0.4:')
     depends_on('python')
+    depends_on('py-numpy', when='@0.2:')
     depends_on('py-pybind11', type=('build'))
     depends_on('py-pkgconfig', type=('build'))

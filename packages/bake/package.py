@@ -9,6 +9,7 @@ class Bake(AutotoolsPackage):
     git      = 'https://xgitlab.cels.anl.gov/sds/bake.git'
 
     version('develop', branch='master')
+    version('0.2', tag='v0.2')
     version('0.1', tag='v0.1')
 
     variant('sizecheck', default=False, description="Enable size/bound checking (may degrade performance)")
