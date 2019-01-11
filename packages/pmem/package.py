@@ -23,6 +23,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 ##############################################################################
 from spack import *
+import spack.architecture
 import os
 
 
@@ -48,4 +49,17 @@ class Pmem(Package):
     patch('0002-remove-secure-getenv.patch', when='@1.4:')
 
     def install(self, spec, prefix):
-        make("install", "prefix=%s" % prefix, "NDCTL_ENABLE=n", "EXTRA_CFLAGS=-Wno-error", "BUILD_RPMEM=n")
+
+	make_args = [
+            'prefix=%s' % prefix,
+            'NDCTL_ENABLE=n',
+            'EXTRA_CFLAGS=-Wno-error',
+            'BUILD_RPMEM=n',
+	]
+
+	# pmdk is particular about the ARCH specification, must be 
+        #  exactly "x86_64" for build to work
+    	if 'x86_64' in spack.architecture.sys_type():
+	     make_args += ['ARCH=x86_64']
+
+	make("install", *make_args)
