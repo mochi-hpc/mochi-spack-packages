@@ -33,6 +33,7 @@ class Mobject(AutotoolsPackage):
     git = 'https://xgitlab.cels.anl.gov/sds/mobject-store.git'
 
     version('develop', branch='master')
+    version('0.2', tag='v0.2')
     version('0.1', tag='v0.1')
 
     depends_on('margo@0.4:')
