@@ -10,7 +10,7 @@ class LibpmemobjCpp(CMakePackage):
     version('master', git='https://github.com/pmem/libpmemobj-cpp.git')
 
 
-    depends_on('pmem@1.4')
+    depends_on('pmdk@1.4')
 
     def cmake_args(self):
         # Add arguments other than

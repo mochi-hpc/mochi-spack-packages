@@ -21,7 +21,7 @@ class Bake(AutotoolsPackage):
     depends_on('margo@0.4:')
     depends_on('remi@0.1:')
     depends_on('libuuid')
-    depends_on('pmem')
+    depends_on('pmdk')
 
     def configure_args(self):
         spec = self.spec

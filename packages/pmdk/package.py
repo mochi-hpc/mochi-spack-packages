@@ -27,12 +27,14 @@ import spack.architecture
 import os
 
 
-class Pmem(Package):
-    """The NVM Library is a library for using memory-mapped persistence, optimized specifically for persistent memory"""
+class Pmdk(Package):
+    """The Persistent Memory Development Kit (PMDK), formerly known as NVML, is a library for using memory-mapped persistence, optimized specifically for persistent memory"""
 
-    homepage = "http://pmem.io/"
-    url      = "https://github.com/pmem/nvml/archive/1.4.tar.gz"
+    homepage = "http://pmem.io/pmdk/"
+    url      = "https://github.com/pmem/pmdk/archive/1.5.tar.gz"
+    git      = "https://github.com/pmem/pmdk.git"
 
+    version('develop', branch='master')
     version('1.5',     sha256='6b069d7207febeb62440e89245e8b18fcdf40b6170d2ec2ef33c252ed16db2d4')
     # in the nvml -> pmdk name change, these hashes needed to be updated
     version('1.4.2',     sha256='df7e658e75d28cd80f6d2ff7b9fc9ae2885d52f8923fdbacecfd46215115fb4c')
@@ -46,6 +48,7 @@ class Pmem(Package):
     # documentation requires doxygen and a bunch of other depenedncies that
     # were not working properly on our contianers
     patch('0001-make-doc-building-explicit.patch')
+
     patch('0002-remove-secure-getenv.patch', when='@1.4:')
 
     def install(self, spec, prefix):
