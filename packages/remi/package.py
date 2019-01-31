@@ -11,6 +11,7 @@ class Remi(CMakePackage):
     git='https://xgitlab.cels.anl.gov/sds/remi.git'
 
     version('develop', branch='master')
+    version('0.1.1', tag='v0.1.1')
     version('0.1', tag='v0.1')
 
     depends_on('thallium@0.3:')
