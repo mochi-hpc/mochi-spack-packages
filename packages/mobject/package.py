@@ -33,6 +33,7 @@ class Mobject(AutotoolsPackage):
     git = 'https://xgitlab.cels.anl.gov/sds/mobject-store.git'
 
     version('develop', branch='master')
+    version('0.3', tag='v0.3')
     version('0.2', tag='v0.2')
     version('0.1', tag='v0.1')
 
@@ -45,6 +46,7 @@ class Mobject(AutotoolsPackage):
     depends_on('libtool')
     depends_on('sdskeyval@0.1:')
     depends_on('bake@0.1:')
+    depends_on('bake@0.3:', when='@0.3:')
 
     def configure_args(self):
         extra_args = []
