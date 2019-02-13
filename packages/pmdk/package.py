@@ -53,16 +53,16 @@ class Pmdk(Package):
 
     def install(self, spec, prefix):
 
-	make_args = [
+        make_args = [
             'prefix=%s' % prefix,
             'NDCTL_ENABLE=n',
             'EXTRA_CFLAGS=-Wno-error',
             'BUILD_RPMEM=n',
-	]
+    ]
 
-	# pmdk is particular about the ARCH specification, must be 
-        #  exactly "x86_64" for build to work
-    	if 'x86_64' in spack.architecture.sys_type():
-	     make_args += ['ARCH=x86_64']
+    # pmdk is particular about the ARCH specification, must be 
+    #  exactly "x86_64" for build to work
+    if 'x86_64' in spack.architecture.sys_type():
+        make_args += ['ARCH=x86_64']
 
-	make("install", *make_args)
+    make("install", *make_args)
