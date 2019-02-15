@@ -1,0 +1,53 @@
+From 0ee24e707fc2be9cf8f0e61ea2fe852d5272b782 Mon Sep 17 00:00:00 2001
+From: Rob Latham <robl@mcs.anl.gov>
+Date: Tue, 12 Feb 2019 09:54:32 -0600
+Subject: [PATCH] DO NOT MERGE: mobject-specific hackery
+
+---
+ src/Makefile.am   | 1 -
+ src/aiori-RADOS.c | 2 +-
+ src/ior.h         | 3 ++-
+ 3 files changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/src/Makefile.am b/src/Makefile.am
+index 51fb8734951a..6f78a18bf79b 100755
+--- a/src/Makefile.am
++++ b/src/Makefile.am
+@@ -67,7 +67,6 @@ endif
+ 
+ if USE_RADOS_AIORI
+ extraSOURCES += aiori-RADOS.c
+-extraLDADD += -lrados
+ endif
+ 
+ if USE_S3_AIORI
+diff --git a/src/aiori-RADOS.c b/src/aiori-RADOS.c
+index 090414d24aae..adec732cdad8 100755
+--- a/src/aiori-RADOS.c
++++ b/src/aiori-RADOS.c
+@@ -20,7 +20,7 @@
+ #include <stdio.h>
+ #include <stdlib.h>
+ #include <sys/stat.h>
+-#include <rados/librados.h>
++#include <librados-mobject-store.h>
+ 
+ #include "ior.h"
+ #include "iordef.h"
+diff --git a/src/ior.h b/src/ior.h
+index ad543ffe5a03..fc37280608c4 100755
+--- a/src/ior.h
++++ b/src/ior.h
+@@ -30,7 +30,8 @@
+ #endif
+ 
+ #ifdef USE_RADOS_AIORI
+-#  include <rados/librados.h>
++#include <librados-mobject-store.h>
++
+ #else
+     typedef void *rados_t;
+     typedef void *rados_ioctx_t;
+-- 
+1.8.3.1
+
