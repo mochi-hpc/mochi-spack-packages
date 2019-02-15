@@ -32,6 +32,12 @@ class Ior(AutotoolsPackage):
     depends_on('mpi')
     depends_on('hdf5+mpi', when='+hdf5')
     depends_on('parallel-netcdf', when='+ncmpi')
+
+    depends_on('argobots', when='+mobject')
+    depends_on('ch-placement', when='+mobject')
+    depends_on('mercury', when='+mobject')
+    depends_on('ssg', when='+mobject')
+    depends_on('margo', when='+mobject')
     depends_on('mobject', when='+mobject')
 
     patch('0001-DO-NOT-MERGE-mobject-specific-hackery.patch', when='+mobject')
@@ -58,14 +64,10 @@ class Ior(AutotoolsPackage):
             config_args.append('--without-ncmpi')
 
 	if '+mobject' in spec:
-	    os.environ["PKG_CONFIG_ALLOW_SYSTEM_CFLAGS"]="yes"
 	    pkg_config=which('pkg-config')
-	    extra_cflags = "CPPFLAGS="
-	    extra_ldflags="LDFLAGS="
-	    extra_cflags  += subprocess.check_output([str(pkg_config), "--cflags",  "mobject-store"]).strip('\n')
-	    extra_ldflags += subprocess.check_output([str(pkg_config), "--libs", "mobject-store"]).strip('\n')
+	    extra_libs="LIBS="
+	    extra_libs += subprocess.check_output([str(pkg_config), "--libs-only-l", "mobject-store"]).strip('\n')
 	    config_args.append('--with-rados')
-	    config_args.append(extra_cflags)
-	    config_args.append(extra_ldflags)
+	    config_args.append(extra_libs)
 
         return config_args
