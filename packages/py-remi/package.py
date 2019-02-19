@@ -36,6 +36,7 @@ class PyRemi(PythonPackage):
     git      = "https://xgitlab.cels.anl.gov/sds/py-remi.git"
 
     version('develop',  branch='master')
+    version('0.1.1', tag='v0.1.1')
     version('0.1', tag='v0.1')
 
     depends_on('remi@0.1:')
