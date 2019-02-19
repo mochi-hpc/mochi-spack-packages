@@ -33,7 +33,7 @@ class Margo(AutotoolsPackage):
     git = 'https://xgitlab.cels.anl.gov/sds/margo.git'
 
     version('develop', branch='master')
-    version('0.4.1', tag='v0.4.1', preferred=True)
+    version('0.4.2', tag='v0.4.2', preferred=True)
 
     depends_on('mercury@develop', when='@develop', type=("build", "link", "run"))
     depends_on('mercury@1.0.0:', type=("build", "link", "run"))
