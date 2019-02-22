@@ -9,7 +9,8 @@ class Thallium(CMakePackage):
     git = "https://xgitlab.cels.anl.gov/sds/thallium.git"
 
     version('develop', branch='master')
-    version('0.3', tag='v0.3', preferred=True)
+    version('0.3.1', tag='v0.3.1', preffered=True)
+    version('0.3', tag='v0.3')
 
     depends_on('margo@0.4:')
     # thallium relies on std::decay_t
