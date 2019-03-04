@@ -33,6 +33,7 @@ class Sdskeyval(AutotoolsPackage):
     git='https://xgitlab.cels.anl.gov/sds/sds-keyval.git'
 
     version('develop', branch='master')
+    version('0.1.1', tag='v0.1.1')
     version('0.1', tag='v0.1')
 
     variant('bwtree', default=False, description="Enable BwTree keyval backend")
