@@ -11,6 +11,13 @@ class Pmemkv(CMakePackage):
     version('master', git='https://github.com/pmem/pmemkv.git')
 
     depends_on('libpmemobj-cpp')
+    # there are no pmemkv releases.  memkind dependency showed up October 2018
+    # in pmemkv:e3dcfb9917a0
+    depends_on('memkind')
+    depends_on('libpmemobj-cpp@1.5:')
+    # showed up November 2018 in pmemkv:fa4ee70d3c00
+    depends_on('rapidjson')
+
     patch('0001-hack-make-install-for-spack.patch')
 
     def cmake_args(self):
