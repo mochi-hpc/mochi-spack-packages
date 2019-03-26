@@ -23,7 +23,8 @@ class Hdf5(AutotoolsPackage):
     git      = "https://bitbucket.hdfgroup.org/scm/hdffv/hdf5.git"
 
     version('develop', branch='develop')
-    version('rados-develop', branch='hdf5_rados', commit='22ac1b00767400f9f461a0b4fed45e6d8ec3c077')
+    version('rados-develop', branch='feature/rados_vol')
+    version('rados-old', branch='feature/hdf5_rados')
 
     version('1.10.5', '6d4ce8bf902a97b050f6f491f4268634e252a63dadd6656a1a9be5b7b7726fa8')
     version('1.10.4', '8f60dc4dd6ab5fcd23c750d1dc5bca3d0453bdce5c8cdaf0a4a61a9d1122adb2')
@@ -66,6 +67,11 @@ class Hdf5(AutotoolsPackage):
     depends_on('libtool',  type='build', when='@develop')
     depends_on('m4',       type='build', when='@develop')
 
+    depends_on('autoconf', type='build', when='@rados-old')
+    depends_on('automake', type='build', when='@rados-old')
+    depends_on('libtool',  type='build', when='@rados-old')
+    depends_on('m4',       type='build', when='@rados-old')
+    depends_on('pkgconfig',type='build', when='@rados-old')
     depends_on('autoconf', type='build', when='@rados-develop')
     depends_on('automake', type='build', when='@rados-develop')
     depends_on('libtool',  type='build', when='@rados-develop')
@@ -128,6 +134,11 @@ class Hdf5(AutotoolsPackage):
         return url.format(version.up_to(2), version)
 
     @when('@develop')
+    def autoreconf(self, spec, prefix):
+        autogen = Executable('./autogen.sh')
+        autogen()
+
+    @when('@rados-old')
     def autoreconf(self, spec, prefix):
         autogen = Executable('./autogen.sh')
         autogen()
@@ -222,7 +233,7 @@ class Hdf5(AutotoolsPackage):
         else:
             extra_args.append('--without-szlib')
 
-        if self.spec.satisfies('@1.10:') or self.spec.satisfies('@rados-develop'):
+        if self.spec.satisfies('@1.10:') or self.spec.satisfies('@rados-develop') or self.spec.satisfies('@rados-old'):
             if '+debug' in self.spec:
                 extra_args.append('--enable-build-mode=debug')
             else:
