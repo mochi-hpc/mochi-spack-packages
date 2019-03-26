@@ -1,0 +1,732 @@
+From 274c67cf7ce7443778cf9fca464f24c2f0370374 Mon Sep 17 00:00:00 2001
+From: Rob Latham <robl@mcs.anl.gov>
+Date: Thu, 21 Mar 2019 14:21:07 -0500
+Subject: [PATCH] crude timing information
+
+---
+ src/client/cluster.c              | 74 +++++++++++++++++++++++++++++--
+ src/server/core/core-read-op.cpp  | 37 ++++++++++++++++
+ src/server/core/core-write-op.cpp | 57 ++++++++++++++++++++++++
+ 3 files changed, 164 insertions(+), 4 deletions(-)
+
+diff --git a/src/client/cluster.c b/src/client/cluster.c
+index 58e0a094..671ea4c4 100644
+--- a/src/client/cluster.c
++++ b/src/client/cluster.c
+@@ -21,12 +21,16 @@
+ #include "src/rpc-types/read-op.h"
+ #include "src/util/log.h"
+ 
++#define TIMER_START double start_time__, elapsed_time__ = ABT_get_wtime();
++#define TIMER_END  do {start_time__ = elapsed_time__; elapsed_time__  = ABT_get_wtime() - elapsed_time__; \
++              fprintf(stdout, "CLIENT: %g %s %g\n", start_time__, __func__, elapsed_time__); } while (0);
+ static unsigned long sdbm_hash(const char* str);
+ 
+ static int mobject_store_shutdown_servers(struct mobject_store_handle *cluster_handle);
+ 
+ int mobject_store_create(mobject_store_t *cluster, const char * const id)
+ {
++    TIMER_START
+     struct mobject_store_handle *cluster_handle;
+     char *cluster_file;
+     int ret;
+@@ -61,11 +65,13 @@ int mobject_store_create(mobject_store_t *cluster, const char * const id)
+     /* set the returned cluster handle */
+     *cluster = cluster_handle;
+ 
++    TIMER_END;
+     return 0;
+ }
+ 
+ int mobject_store_connect(mobject_store_t cluster)
+ {
++    TIMER_START;
+     struct mobject_store_handle *cluster_handle;
+     char *svr_addr_str;
+     char proto[24] = {0};
+@@ -171,11 +177,13 @@ int mobject_store_connect(mobject_store_t cluster)
+ 
+     free(svr_addr_str);
+ 
++    TIMER_END;
+     return 0;
+ }
+ 
+ void mobject_store_shutdown(mobject_store_t cluster)
+ {
++    TIMER_START;
+     struct mobject_store_handle *cluster_handle;
+     char *svr_kill_env_str;
+     int ret;
+@@ -206,22 +214,27 @@ void mobject_store_shutdown(mobject_store_t cluster)
+     ch_placement_finalize(cluster_handle->ch_instance);
+     free(cluster_handle);
+ 
++    TIMER_END;
+     return;
+ }
+ 
+ int mobject_store_pool_create(mobject_store_t cluster, const char * pool_name)
+ {
++    TIMER_START;
+     /* XXX: this is a NOOP -- we don't implement pools currently */
+     (void)cluster;
+     (void)pool_name;
++    TIMER_END;
+     return 0;
+ }
+ 
+ int mobject_store_pool_delete(mobject_store_t cluster, const char * pool_name)
+ {
++    TIMER_START;
+     /* XXX: this is a NOOP -- we don't implement pools currently */
+     (void)cluster;
+     (void)pool_name;
++    TIMER_END;
+     return 0;
+ }
+ 
+@@ -230,33 +243,44 @@ int mobject_store_ioctx_create(
+         const char * pool_name,
+         mobject_store_ioctx_t *ioctx)
+ {
++    TIMER_START
+     *ioctx = (mobject_store_ioctx_t)calloc(1, sizeof(**ioctx));
+     (*ioctx)->pool_name = strdup(pool_name);
+     (*ioctx)->cluster   = cluster;
++    TIMER_END
+     return 0;
+ }
+ 
+ void mobject_store_ioctx_destroy(mobject_store_ioctx_t ioctx)
+ {
++    TIMER_START;
+     if(ioctx) free(ioctx->pool_name);
+     free(ioctx);
++    TIMER_END;
+ }
+ 
+ mobject_store_write_op_t mobject_store_create_write_op(void)
+ {
+-    return mobject_create_write_op();
++    TIMER_START;
++    mobject_store_write_op_t ret = mobject_create_write_op();
++    TIMER_END;
++    return ret;
+ }
+ 
+ void mobject_store_release_write_op(mobject_store_write_op_t write_op)
+ {
++    TIMER_START;
+     mobject_release_write_op(write_op);
++    TIMER_END;
+ }
+ 
+ void mobject_store_write_op_create(mobject_store_write_op_t write_op,
+         int exclusive,
+         const char* category)
+ {
++    TIMER_START;
+     mobject_write_op_create(write_op, exclusive, category);
++    TIMER_END;
+ }
+ 
+ void mobject_store_write_op_write(mobject_store_write_op_t write_op,
+@@ -264,15 +288,20 @@ void mobject_store_write_op_write(mobject_store_write_op_t write_op,
+         size_t len,
+         uint64_t offset)
+ {
++    TIMER_START
+     // fields are exchanged in the mobject-client API, it's normal
+     mobject_write_op_write(write_op, buffer, offset, len);
++    TIMER_END
+ }
+ 
+ void mobject_store_write_op_write_full(mobject_store_write_op_t write_op,
+         const char *buffer,
+         size_t len)
+ {
+-    return mobject_write_op_write_full(write_op, buffer, len);
++    TIMER_START
++    mobject_write_op_write_full(write_op, buffer, len);
++    TIMER_END;
++    return;
+ }
+ 
+ void mobject_store_write_op_writesame(mobject_store_write_op_t write_op,
+@@ -281,33 +310,43 @@ void mobject_store_write_op_writesame(mobject_store_write_op_t write_op,
+         size_t write_len,
+         uint64_t offset)
+ {
++    TIMER_START
+     // fields are exchanged in the mobject-client API, it's normal
+     mobject_write_op_write_same(write_op, buffer, offset, data_len, write_len);
++    TIMER_END
+ }
+ 
+ void mobject_store_write_op_append(mobject_store_write_op_t write_op,
+         const char *buffer,
+         size_t len)
+ {
++    TIMER_START
+     mobject_write_op_append(write_op, buffer, len);
++    TIMER_END
+ }
+ 
+ void mobject_store_write_op_remove(mobject_store_write_op_t write_op)
+ {
++    TIMER_START
+     mobject_write_op_remove(write_op);
++    TIMER_END
+ }
+ 
+ void mobject_store_write_op_truncate(mobject_store_write_op_t write_op,
+         uint64_t offset)
+ {
++    TIMER_START
+     mobject_write_op_truncate(write_op, offset);
++    TIMER_END
+ }
+ 
+ void mobject_store_write_op_zero(mobject_store_write_op_t write_op,
+         uint64_t offset,
+         uint64_t len)
+ {
++    TIMER_START
+     mobject_write_op_zero(write_op, offset, len);
++    TIMER_END
+ }
+ 
+ void mobject_store_write_op_omap_set(mobject_store_write_op_t write_op,
+@@ -316,14 +355,18 @@ void mobject_store_write_op_omap_set(mobject_store_write_op_t write_op,
+         const size_t *lens,
+         size_t num)
+ {
++    TIMER_START
+     mobject_write_op_omap_set(write_op, keys, vals, lens, num);
++    TIMER_END
+ }
+ 
+ void mobject_store_write_op_omap_rm_keys(mobject_store_write_op_t write_op,
+         char const* const* keys,
+         size_t keys_len)
+ {
++    TIMER_START
+     mobject_write_op_omap_rm_keys(write_op, keys, keys_len);
++    TIMER_END
+ }
+ 
+ int mobject_store_write_op_operate(mobject_store_write_op_t write_op,
+@@ -332,6 +375,7 @@ int mobject_store_write_op_operate(mobject_store_write_op_t write_op,
+         time_t *mtime,
+         int flags)
+ {
++    TIMER_START
+     mobject_provider_handle_t mph = MOBJECT_PROVIDER_HANDLE_NULL;
+     uint64_t oid_hash = sdbm_hash(oid);
+     unsigned long server_idx;
+@@ -346,17 +390,23 @@ int mobject_store_write_op_operate(mobject_store_write_op_t write_op,
+ 
+     r = mobject_write_op_operate(mph, write_op, io->pool_name, oid, mtime, flags);
+     mobject_provider_handle_release(mph);
++    TIMER_END
+     return r;
+ }
+ 
+ mobject_store_read_op_t mobject_store_create_read_op(void)
+ {
+-    return mobject_create_read_op();
++    TIMER_START;
++    mobject_store_read_op_t ret = mobject_create_read_op();
++    TIMER_END
++    return ret;
+ }
+ 
+ void mobject_store_release_read_op(mobject_store_read_op_t read_op)
+ {
++    TIMER_START
+     mobject_release_read_op(read_op);
++    TIMER_END
+ }
+ 
+ void mobject_store_read_op_stat(mobject_store_read_op_t read_op,
+@@ -364,7 +414,9 @@ void mobject_store_read_op_stat(mobject_store_read_op_t read_op,
+         time_t *pmtime,
+         int *prval)
+ {
++    TIMER_START
+     mobject_read_op_stat(read_op, psize, pmtime, prval);
++    TIMER_END
+ }
+ 
+ void mobject_store_read_op_read(mobject_store_read_op_t read_op,
+@@ -374,7 +426,9 @@ void mobject_store_read_op_read(mobject_store_read_op_t read_op,
+         size_t *bytes_read,
+         int *prval)
+ {
++    TIMER_START
+     mobject_read_op_read(read_op, buffer, offset, len, bytes_read, prval);
++    TIMER_END
+ }
+ 
+ void mobject_store_read_op_omap_get_keys(mobject_store_read_op_t read_op,
+@@ -383,7 +437,9 @@ void mobject_store_read_op_omap_get_keys(mobject_store_read_op_t read_op,
+         mobject_store_omap_iter_t *iter,
+         int *prval)
+ {
++    TIMER_START
+     mobject_read_op_omap_get_keys(read_op, start_after, max_return, iter, prval);
++    TIMER_END
+ }
+ 
+ void mobject_store_read_op_omap_get_vals(mobject_store_read_op_t read_op,
+@@ -393,7 +449,9 @@ void mobject_store_read_op_omap_get_vals(mobject_store_read_op_t read_op,
+         mobject_store_omap_iter_t *iter,
+         int *prval)
+ {
++    TIMER_START
+     mobject_read_op_omap_get_vals(read_op, start_after, filter_prefix, max_return, iter, prval);
++    TIMER_END
+ }
+ 
+ void mobject_store_read_op_omap_get_vals_by_keys(mobject_store_read_op_t read_op,
+@@ -402,7 +460,9 @@ void mobject_store_read_op_omap_get_vals_by_keys(mobject_store_read_op_t read_op
+         mobject_store_omap_iter_t *iter,
+         int *prval)
+ {
++    TIMER_START
+     mobject_read_op_omap_get_vals_by_keys(read_op, keys, keys_len, iter, prval);
++    TIMER_END
+ }
+ 
+ int mobject_store_read_op_operate(mobject_store_read_op_t read_op,
+@@ -410,6 +470,7 @@ int mobject_store_read_op_operate(mobject_store_read_op_t read_op,
+         const char *oid,
+         int flags)
+ {
++    TIMER_START
+     mobject_provider_handle_t mph = MOBJECT_PROVIDER_HANDLE_NULL;
+     uint64_t oid_hash = sdbm_hash(oid);
+     unsigned long server_idx;
+@@ -422,12 +483,14 @@ int mobject_store_read_op_operate(mobject_store_read_op_t read_op,
+ 
+     r = mobject_read_op_operate(mph,read_op, ioctx->pool_name, oid, flags);
+     mobject_provider_handle_release(mph);
++    TIMER_END
+     return r;
+ }
+ 
+ // send a shutdown signal to a server cluster
+ static int mobject_store_shutdown_servers(struct mobject_store_handle *cluster_handle)
+ {
++    TIMER_START
+     hg_addr_t svr_addr;
+ 
+     /* get the address of the first server */
+@@ -438,7 +501,10 @@ static int mobject_store_shutdown_servers(struct mobject_store_handle *cluster_h
+         return -1;
+     }
+     // TODO we should actually call that for all the members of the group
+-    return mobject_shutdown(cluster_handle->mobject_clt, svr_addr);
++    int ret=  mobject_shutdown(cluster_handle->mobject_clt, svr_addr);
++    TIMER_END;
++    return ret;
++
+ }
+ 
+ static unsigned long sdbm_hash(const char* str)
+diff --git a/src/server/core/core-read-op.cpp b/src/server/core/core-read-op.cpp
+index 85d37d59..66c13fbe 100644
+--- a/src/server/core/core-read-op.cpp
++++ b/src/server/core/core-read-op.cpp
+@@ -60,6 +60,25 @@ struct read_request_t {
+ };
+ #endif
+ 
++enum {
++    RD_BEGIN,
++    RD_STAT,
++    RD_READ,
++    RD_GET_KEYS,
++    RD_GET_VALS,
++    RD_GET_VALS_BY_KEYS,
++    RD_END,
++    RD_STATES
++    };
++static std::vector<double> mobject_read_times(RD_STATES, 0);
++void mobject_read_time_dump(void)
++{
++    std::cout << "#TIMING: READ ";
++    for (auto x: mobject_read_times)
++        std::cout << x << " ";
++    std::cout << std::endl;
++}
++
+ static struct read_op_visitor read_op_exec = {
+ 	.visit_begin                 = read_op_exec_begin,
+ 	.visit_stat                  = read_op_exec_stat,
+@@ -73,11 +92,13 @@ static struct read_op_visitor read_op_exec = {
+ extern "C" void core_read_op(mobject_store_read_op_t read_op, server_visitor_args_t vargs)
+ {
+ 	execute_read_op_visitor(&read_op_exec, read_op, (void*)vargs);
++        mobject_read_time_dump();
+ }
+ 
+ void read_op_exec_begin(void* u)
+ {
+     ENTERING;
++    double start_time = ABT_get_wtime();
+     auto vargs = static_cast<server_visitor_args_t>(u);
+     // find oid
+     const char* object_name = vargs->object_name;
+@@ -88,12 +109,14 @@ void read_op_exec_begin(void* u)
+         oid = get_oid_from_name(sdskv_ph, name_db_id, object_name);
+         vargs->oid = oid;
+     }
++    mobject_read_times[RD_BEGIN] += ABT_get_wtime() - start_time;
+     LEAVING
+ }
+ 
+ void read_op_exec_stat(void* u, uint64_t* psize, time_t* pmtime, int* prval)
+ {
+     ENTERING;
++    double start_time = ABT_get_wtime();
+     auto vargs = static_cast<server_visitor_args_t>(u);
+     sdskv_provider_handle_t sdskv_ph = vargs->srv_ctx->sdskv_ph;
+     sdskv_database_id_t seg_db_id = vargs->srv_ctx->segment_db_id;
+@@ -101,6 +124,7 @@ void read_op_exec_stat(void* u, uint64_t* psize, time_t* pmtime, int* prval)
+     oid_t oid = vargs->oid;
+     if(oid == 0) {
+         *prval = -1;
++        mobject_read_times[RD_STAT] = ABT_get_wtime() - start_time;
+         LEAVING;
+         return;
+     }
+@@ -108,12 +132,14 @@ void read_op_exec_stat(void* u, uint64_t* psize, time_t* pmtime, int* prval)
+     time_t ts = time(NULL);
+     *psize = mobject_compute_object_size(sdskv_ph, seg_db_id, oid, ts);
+ 
++    mobject_read_times[RD_STAT] = ABT_get_wtime() - start_time;
+     LEAVING;
+ }
+ 
+ void read_op_exec_read(void* u, uint64_t offset, size_t len, buffer_u buf, size_t* bytes_read, int* prval)
+ {
+     ENTERING;
++    double start_time = ABT_get_wtime();
+     auto vargs = static_cast<server_visitor_args_t>(u);
+     bake_provider_handle_t bph = vargs->srv_ctx->bake_ph;
+     bake_target_id_t bti = vargs->srv_ctx->bake_tid;
+@@ -135,6 +161,7 @@ void read_op_exec_read(void* u, uint64_t offset, size_t len, buffer_u buf, size_
+     if(oid == 0) {
+         *prval = -1;
+         ERROR fprintf(stderr,"oid == 0\n");
++        mobject_read_times[RD_READ] = ABT_get_wtime() - start_time;
+         LEAVING;
+         return;
+     }
+@@ -175,6 +202,7 @@ void read_op_exec_read(void* u, uint64_t offset, size_t len, buffer_u buf, size_
+         if(ret != SDSKV_SUCCESS) {
+             ERROR fprintf(stderr, "sdskv_list_keyvals returned %d\n", ret);
+             *prval = -1;
++            mobject_read_times[RD_READ] = ABT_get_wtime() - start_time;
+             LEAVING;
+             return;
+         }
+@@ -274,6 +302,7 @@ void read_op_exec_read(void* u, uint64_t offset, size_t len, buffer_u buf, size_
+         if(num_segments != max_segments) done = true;
+     }
+     *bytes_read = coverage.bytes_read();
++    mobject_read_times[RD_READ] = ABT_get_wtime() - start_time;
+     LEAVING;
+ }
+ 
+@@ -281,6 +310,7 @@ void read_op_exec_omap_get_keys(void* u, const char* start_after, uint64_t max_r
+ 				mobject_store_omap_iter_t* iter, int* prval)
+ {
+     ENTERING;
++    double start_time = ABT_get_wtime();
+     auto vargs = static_cast<server_visitor_args_t>(u);
+     const char* object_name = vargs->object_name;
+     sdskv_provider_handle_t sdskv_ph = vargs->srv_ctx->sdskv_ph;
+@@ -337,12 +367,14 @@ void read_op_exec_omap_get_keys(void* u, const char* start_after, uint64_t max_r
+ 
+ out:
+     free(lb);
++    mobject_read_times[RD_GET_KEYS] = ABT_get_wtime() - start_time;
+     LEAVING;
+ }
+ 
+ void read_op_exec_omap_get_vals(void* u, const char* start_after, const char* filter_prefix, uint64_t max_return, mobject_store_omap_iter_t* iter, int* prval)
+ {
+     ENTERING;
++    double start_time = ABT_get_wtime();
+     auto vargs = static_cast<server_visitor_args_t>(u);
+     const char* object_name = vargs->object_name;
+     sdskv_provider_handle_t sdskv_ph = vargs->srv_ctx->sdskv_ph;
+@@ -421,6 +453,7 @@ void read_op_exec_omap_get_vals(void* u, const char* start_after, const char* fi
+     } while(items_retrieved == max_items && count < max_return);
+ 
+ out:
++    mobject_read_times[RD_GET_VALS] = ABT_get_wtime() - start_time;
+     free(lb);
+     LEAVING;
+ }
+@@ -428,6 +461,7 @@ out:
+ void read_op_exec_omap_get_vals_by_keys(void* u, char const* const* keys, size_t num_keys, mobject_store_omap_iter_t* iter, int* prval)
+ {
+     ENTERING;
++    double start_time = ABT_get_wtime();
+     auto vargs = static_cast<server_visitor_args_t>(u);
+     const char* object_name = vargs->object_name;
+     sdskv_provider_handle_t sdskv_ph = vargs->srv_ctx->sdskv_ph;
+@@ -480,12 +514,15 @@ void read_op_exec_omap_get_vals_by_keys(void* u, char const* const* keys, size_t
+         }
+         omap_iter_append(*iter, keys[i], value.data(), vsize);
+     }
++    mobject_read_times[RD_GET_VALS_BY_KEYS] = ABT_get_wtime() - start_time;
+     LEAVING;
+ }
+ 
+ void read_op_exec_end(void* u)
+ {
++    double start_time = ABT_get_wtime();
+     auto vargs = static_cast<server_visitor_args_t>(u);
++    mobject_read_times[RD_END] = ABT_get_wtime() - start_time;
+ }
+ 
+ static oid_t get_oid_from_name( 
+diff --git a/src/server/core/core-write-op.cpp b/src/server/core/core-write-op.cpp
+index 5a2f1e03..d866d96b 100644
+--- a/src/server/core/core-write-op.cpp
++++ b/src/server/core/core-write-op.cpp
+@@ -7,6 +7,7 @@
+ #include <cstring>
+ #include <string>
+ #include <iostream>
++#include <vector>
+ #include <limits>
+ #include <bake-client.h>
+ #include "src/server/visitor-args.h"
+@@ -66,6 +67,34 @@ uint64_t mobject_compute_object_size(
+                 sdskv_database_id_t seg_db_id,
+                 oid_t oid, time_t ts);
+ 
++
++/* a timing data structure */
++enum {
++    WR_BEGIN,
++    WR_CREATE,
++    WR_WRITE,
++    WR_WRITEFULL,
++    WR_WRITESAME,
++    WR_APPEND,
++    WR_REMOVE,
++    WR_TRUNCATE,
++    WR_ZERO,
++    WR_OMAP_SET,
++    WR_OMAP_RM_KEYS,
++    WR_END,
++    WR_STATES
++};
++
++static std::vector<double> mobject_write_times(WR_STATES, 0);
++void mobject_write_time_dump(void)
++{
++    std::cout << "#TIMING: WRITE ";
++    for (auto x: mobject_write_times)
++        std::cout << x << " ";
++    std::cout << std::endl;
++}
++
++
+ static struct write_op_visitor write_op_exec = {
+ 	.visit_begin        = write_op_exec_begin,
+ 	.visit_create       = write_op_exec_create,
+@@ -85,26 +114,33 @@ extern "C" void core_write_op(mobject_store_write_op_t write_op, server_visitor_
+ {
+ 	/* Execute the operation chain */
+ 	execute_write_op_visitor(&write_op_exec, write_op, (void*)vargs);
++        mobject_write_time_dump();
+ }
+ 
+ void write_op_exec_begin(void* u)
+ {
++    double start_time = ABT_get_wtime();
+ 	auto vargs = static_cast<server_visitor_args_t>(u);
+     sdskv_provider_handle_t sdskv_ph = vargs->srv_ctx->sdskv_ph;
+     sdskv_database_id_t name_db_id = vargs->srv_ctx->name_db_id;
+     sdskv_database_id_t oid_db_id  = vargs->srv_ctx->oid_db_id;
+     oid_t oid = get_or_create_oid(sdskv_ph, name_db_id, oid_db_id, vargs->object_name);
+     vargs->oid = oid;
++    mobject_write_times[WR_BEGIN] = ABT_get_wtime() - start_time;
++
+ }
+ 
+ void write_op_exec_end(void* u)
+ {
++    double start_time = ABT_get_wtime();
+ 	auto vargs = static_cast<server_visitor_args_t>(u);
++        mobject_write_times[WR_END] = ABT_get_wtime() - start_time;
+ }
+ 
+ void write_op_exec_create(void* u, int exclusive)
+ {
+     ENTERING;
++    double start_time = ABT_get_wtime();
+     auto vargs = static_cast<server_visitor_args_t>(u);
+     oid_t oid = vargs->oid; 
+     if(oid == 0) {
+@@ -112,16 +148,19 @@ void write_op_exec_create(void* u, int exclusive)
+     }
+     /* nothing to do, the object is actually created in write_op_exec_begin
+        if it did not exist before */
++    mobject_write_times[WR_CREATE] = ABT_get_wtime() - start_time;
+     LEAVING;
+ }
+ 
+ void write_op_exec_write(void* u, buffer_u buf, size_t len, uint64_t offset)
+ {
+     ENTERING;
++    double start_time = ABT_get_wtime();
+ 	auto vargs = static_cast<server_visitor_args_t>(u);
+     oid_t oid = vargs->oid;
+     if(oid == 0) {
+         ERROR fprintf(stderr,"oid == 0\n");
++        mobject_write_times[WR_WRITE] = ABT_get_wtime() - start_time;
+         LEAVING;
+         return;
+     }
+@@ -171,25 +210,30 @@ void write_op_exec_write(void* u, buffer_u buf, size_t len, uint64_t offset)
+ 
+         insert_small_region_log_entry(vargs->srv_ctx, oid, offset, len, data);
+     }
++    mobject_write_times[WR_WRITE] = ABT_get_wtime() - start_time;
+     LEAVING;
+ }
+ 
+ void write_op_exec_write_full(void* u, buffer_u buf, size_t len)
+ {
+     ENTERING;
++    double start_time = ABT_get_wtime();
+     // truncate to 0 then write
+     write_op_exec_truncate(u,0);
+     write_op_exec_write(u, buf, len, 0);
++    mobject_write_times[WR_WRITEFULL] = ABT_get_wtime() - start_time;
+     LEAVING;
+ }
+ 
+ void write_op_exec_writesame(void* u, buffer_u buf, size_t data_len, size_t write_len, uint64_t offset)
+ {
+     ENTERING;
++    double start_time = ABT_get_wtime();
+     auto vargs = static_cast<server_visitor_args_t>(u);
+     oid_t oid = vargs->oid;
+     if(oid == 0) {
+         ERROR fprintf(stderr,"oid == 0\n");
++        mobject_write_times[WR_WRITESAME] = ABT_get_wtime() - start_time;
+         LEAVING;
+         return;
+     }
+@@ -259,12 +303,14 @@ void write_op_exec_writesame(void* u, buffer_u buf, size_t data_len, size_t writ
+                     std::min(data_len, write_len-i), data);
+         }
+     }
++    mobject_write_times[WR_WRITESAME] = ABT_get_wtime() - start_time;
+     LEAVING;
+ }
+ 
+ void write_op_exec_append(void* u, buffer_u buf, size_t len)
+ {
+     ENTERING;
++    double start_time = ABT_get_wtime();
+ 	auto vargs = static_cast<server_visitor_args_t>(u);
+     oid_t oid = vargs->oid;
+     if(oid == 0) {
+@@ -320,12 +366,14 @@ void write_op_exec_append(void* u, buffer_u buf, size_t len)
+ 
+         insert_small_region_log_entry(vargs->srv_ctx, oid, offset, len, data);
+     }
++    mobject_write_times[WR_APPEND] = ABT_get_wtime() - start_time;
+     LEAVING;
+ }
+ 
+ void write_op_exec_remove(void* u)
+ {
+     ENTERING;
++    double start_time = ABT_get_wtime();
+ 	auto vargs = static_cast<server_visitor_args_t>(u);
+     const char *object_name = vargs->object_name;
+     oid_t oid = vargs->oid;
+@@ -429,12 +477,14 @@ void write_op_exec_remove(void* u)
+         seg_start_ndx = 1;
+     }
+ 
++    mobject_write_times[WR_REMOVE] = ABT_get_wtime() - start_time;
+     LEAVING;
+ }
+ 
+ void write_op_exec_truncate(void* u, uint64_t offset)
+ {
+     ENTERING;
++    double start_time = ABT_get_wtime();
+ 	auto vargs = static_cast<server_visitor_args_t>(u);
+     oid_t oid = vargs->oid;
+     if(oid == 0) {
+@@ -443,12 +493,14 @@ void write_op_exec_truncate(void* u, uint64_t offset)
+     }
+ 
+     insert_punch_log_entry(vargs->srv_ctx, oid, offset);
++    mobject_write_times[WR_TRUNCATE] = ABT_get_wtime() - start_time;
+     LEAVING;
+ }
+ 
+ void write_op_exec_zero(void* u, uint64_t offset, uint64_t len)
+ {
+     ENTERING;
++    double start_time = ABT_get_wtime();
+ 	auto vargs = static_cast<server_visitor_args_t>(u);
+     oid_t oid = vargs->oid;
+     if(oid == 0) {
+@@ -458,6 +510,7 @@ void write_op_exec_zero(void* u, uint64_t offset, uint64_t len)
+     }
+ 
+     insert_zero_log_entry(vargs->srv_ctx, oid, offset, len);
++    mobject_write_times[WR_ZERO] = ABT_get_wtime() - start_time;
+     LEAVING;
+ }
+ 
+@@ -467,6 +520,7 @@ void write_op_exec_omap_set(void* u, char const* const* keys,
+                                      size_t num)
+ {
+     ENTERING;
++    double start_time = ABT_get_wtime();
+     int ret;
+ 	auto vargs = static_cast<server_visitor_args_t>(u);
+     sdskv_provider_handle_t sdskv_ph = vargs->srv_ctx->sdskv_ph;
+@@ -503,12 +557,14 @@ void write_op_exec_omap_set(void* u, char const* const* keys,
+         }
+     }
+     free(k);
++    mobject_write_times[WR_OMAP_SET] = ABT_get_wtime() - start_time;
+     LEAVING;
+ }
+ 
+ void write_op_exec_omap_rm_keys(void* u, char const* const* keys, size_t num_keys)
+ {
+     ENTERING;
++    double start_time = ABT_get_wtime();
+     int ret;
+ 	auto vargs = static_cast<server_visitor_args_t>(u);
+     sdskv_provider_handle_t sdskv_ph = vargs->srv_ctx->sdskv_ph;
+@@ -528,6 +584,7 @@ void write_op_exec_omap_rm_keys(void* u, char const* const* keys, size_t num_key
+         if(ret != SDSKV_SUCCESS)
+             fprintf(stderr, "write_op_exec_omap_rm_keys: error in sdskv_erase() (ret = %d)\n", ret);
+     }
++    mobject_write_times[WR_OMAP_RM_KEYS] = ABT_get_wtime() - start_time;
+     LEAVING;
+ }
+ 
+-- 
+2.17.1
+

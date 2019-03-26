@@ -37,6 +37,8 @@ class Mobject(AutotoolsPackage):
     version('0.2', tag='v0.2')
     version('0.1', tag='v0.1')
 
+    variant('timing', default=False, description="crude timing information")
+
     depends_on('margo@0.4:')
     depends_on('mpi')
     depends_on('ssg+mpi@0.2')
@@ -47,6 +49,8 @@ class Mobject(AutotoolsPackage):
     depends_on('sdskeyval@0.1:')
     depends_on('bake@0.1:')
     depends_on('bake@0.3:', when='@0.3:')
+
+    patch('0001-crude-timing-information.patch', when="+timing")
 
     def configure_args(self):
         extra_args = []
