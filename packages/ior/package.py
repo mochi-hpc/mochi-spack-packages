@@ -17,6 +17,7 @@ class Ior(AutotoolsPackage):
     git = 'https://github.com/shanedsnyder/ior'
 
 
+    version('develop', branch='master', submodules=True)
     version('mobject', branch='mobject-ior', submodules=True)
     version('3.2.0',    sha256='0cda0e00b7f070c6754ef8acb3873eb3a625bd8dee3f2e220291656be1322bbb')
     version('3.0.1', '71150025e0bb6ea1761150f48b553065')
