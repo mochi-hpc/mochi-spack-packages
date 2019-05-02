@@ -33,6 +33,7 @@ class Sdskeyval(AutotoolsPackage):
     git='https://xgitlab.cels.anl.gov/sds/sds-keyval.git'
 
     version('develop', branch='master')
+    version('0.1.2', tag='v0.1.2')
     version('0.1.1', tag='v0.1.1')
     version('0.1', tag='v0.1')
 
@@ -45,7 +46,8 @@ class Sdskeyval(AutotoolsPackage):
     depends_on('autoconf@2.65:')
     depends_on('automake@1.13.4:')
     depends_on('libtool', type=("build"))
-    depends_on('remi@0.1:')
+    depends_on('remi@0.1:', when='@:0.1.1')
+    depends_on('remi@0.2.1:', when='@0.1.2:')
 
     # variable dependencies
     depends_on('berkeley-db', when="+bdb")
