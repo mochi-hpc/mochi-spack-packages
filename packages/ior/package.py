@@ -64,11 +64,11 @@ class Ior(AutotoolsPackage):
         else:
             config_args.append('--without-ncmpi')
 
-	if '+mobject' in spec:
-	    pkg_config=which('pkg-config')
-	    extra_libs="LIBS="
-	    extra_libs += subprocess.check_output([str(pkg_config), "--libs-only-l", "mobject-store"]).strip('\n')
-	    config_args.append('--with-rados')
-	    config_args.append(extra_libs)
+        if '+mobject' in spec:
+            pkg_config=which('pkg-config')
+            extra_libs="LIBS="
+            extra_libs += subprocess.check_output([str(pkg_config), "--libs-only-l", "mobject-store"]).strip('\n')
+            config_args.append('--with-rados')
+            config_args.append(extra_libs)
 
         return config_args
