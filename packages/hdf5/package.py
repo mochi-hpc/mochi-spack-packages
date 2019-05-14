@@ -23,6 +23,7 @@ class Hdf5(AutotoolsPackage):
     git      = "https://bitbucket.hdfgroup.org/scm/hdffv/hdf5.git"
 
     version('develop', branch='develop')
+    version('extvol-develop', branch='feature/external_vol_changes')
     version('rados-develop', branch='feature/rados_vol')
     version('rados-old', branch='feature/hdf5_rados')
 
@@ -67,17 +68,25 @@ class Hdf5(AutotoolsPackage):
     depends_on('libtool',  type='build', when='@develop')
     depends_on('m4',       type='build', when='@develop')
 
+    depends_on('autoconf', type='build', when='@extvol-develop')
+    depends_on('automake', type='build', when='@extvol-develop')
+    depends_on('libtool',  type='build', when='@extvol-develop')
+    depends_on('m4',       type='build', when='@extvol-develop')
+    depends_on('pkgconfig',type='build', when='@extvol-develop')
+
     depends_on('autoconf', type='build', when='@rados-old')
     depends_on('automake', type='build', when='@rados-old')
     depends_on('libtool',  type='build', when='@rados-old')
     depends_on('m4',       type='build', when='@rados-old')
     depends_on('pkgconfig',type='build', when='@rados-old')
+
     depends_on('autoconf', type='build', when='@rados-develop')
     depends_on('automake', type='build', when='@rados-develop')
     depends_on('libtool',  type='build', when='@rados-develop')
     depends_on('m4',       type='build', when='@rados-develop')
     depends_on('pkgconfig',type='build', when='@rados-develop')
-    depends_on('mobject', when='+mobject')
+
+    depends_on('mobject@develop', when='+mobject')
 
     depends_on('mpi', when='+mpi')
     # numactl does not currently build on darwin
@@ -134,6 +143,11 @@ class Hdf5(AutotoolsPackage):
         return url.format(version.up_to(2), version)
 
     @when('@develop')
+    def autoreconf(self, spec, prefix):
+        autogen = Executable('./autogen.sh')
+        autogen()
+
+    @when('@extvol-develop')
     def autoreconf(self, spec, prefix):
         autogen = Executable('./autogen.sh')
         autogen()
@@ -233,7 +247,7 @@ class Hdf5(AutotoolsPackage):
         else:
             extra_args.append('--without-szlib')
 
-        if self.spec.satisfies('@1.10:') or self.spec.satisfies('@rados-develop') or self.spec.satisfies('@rados-old'):
+        if self.spec.satisfies('@1.10:') or self.spec.satisfies('@extvol-develop') or self.spec.satisfies('@rados-develop') or self.spec.satisfies('@rados-old'):
             if '+debug' in self.spec:
                 extra_args.append('--enable-build-mode=debug')
             else:
