@@ -23,7 +23,7 @@ class Hdf5Rados(CMakePackage):
     depends_on('hdf5@extvol-develop+mpi')
 
     def cmake_args(self):
-        """Populate cmake arguments for Mercury."""
+        """Populate cmake arguments for HDF5 RADOS."""
         spec = self.spec
         variant_bool = lambda feature: str(feature in spec)
         parallel_tests = '+mpi' in spec and self.run_tests
