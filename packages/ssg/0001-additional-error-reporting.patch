@@ -1,0 +1,97 @@
+From 91adeaace004c2ab5fef84c12db68fde414daa44 Mon Sep 17 00:00:00 2001
+From: Rob Latham <robl@mcs.anl.gov>
+Date: Tue, 7 May 2019 21:23:07 -0500
+Subject: [PATCH] additional error reporting
+
+---
+ src/ssg.c | 39 ++++++++++++++++++++++++++++++++-------
+ 1 file changed, 32 insertions(+), 7 deletions(-)
+
+diff --git a/src/ssg.c b/src/ssg.c
+index f4dc73bb..4f941756 100644
+--- a/src/ssg.c
++++ b/src/ssg.c
+@@ -141,7 +141,10 @@ ssg_group_id_t ssg_group_create(
+     int sret;
+     ssg_group_id_t group_id = SSG_GROUP_ID_NULL;
+ 
+-    if (!ssg_inst) return group_id;
++    if (!ssg_inst) {
++        fprintf(stderr, "Error: calling SSG routine before initializing SSG\n");
++        return group_id;
++    }
+ 
+     ssg_hashlittle2(group_name, strlen(group_name), &lower, &upper);
+     name_hash = lower + (((uint64_t)upper)<<32);
+@@ -341,7 +344,10 @@ ssg_group_id_t ssg_group_create_mpi(
+     hg_return_t hret;
+     ssg_group_id_t group_id = SSG_GROUP_ID_NULL;
+ 
+-    if (!ssg_inst) goto fini;
++    if (!ssg_inst) {
++        fprintf(stderr, "Error: calling SSG routine before initializing SSG\n");
++        goto fini;
++    }
+ 
+     /* get my address */
+     hret = margo_addr_self(ssg_inst->mid, &self_addr);
+@@ -438,7 +444,14 @@ int ssg_group_attach(
+     const char **addr_strs = NULL;
+     int sret = SSG_FAILURE;
+ 
+-    if (!ssg_inst || group_id == SSG_GROUP_ID_NULL) goto fini;
++    if (!ssg_inst) {
++        fprintf(stderr, "Error: calling SSG routine before initializing SSG\n");
++        goto fini;
++    }
++    if (group_id == SSG_GROUP_ID_NULL) {
++        fprintf(stderr, "Error: cannot attach to NULL group\n");
++        goto fini;
++    }
+ 
+     if (group_descriptor->owner_status == SSG_OWNER_IS_MEMBER)
+     {
+@@ -457,11 +470,17 @@ int ssg_group_attach(
+      */
+     sret = ssg_group_attach_send(group_descriptor, &group_name,
+         &group_size, &view_buf);
+-    if (sret != SSG_SUCCESS || !group_name || !view_buf) goto fini;
++    if (sret != SSG_SUCCESS || !group_name || !view_buf) {
++        fprintf(stderr, "Error: unable to attach to SSG group:\n");
++        goto fini;
++    }
+ 
+     /* set up address string array for group members */
+     addr_strs = ssg_addr_str_buf_to_list(view_buf, group_size);
+-    if (!addr_strs) goto fini;
++    if (!addr_strs) {
++        fprintf(stderr, "Error: unable to convert membership view to string\n");
++        goto fini;
++    }
+ 
+     /* allocate an SSG attached group data structure and initialize some of it */
+     ag = malloc(sizeof(*ag));
+@@ -469,12 +488,18 @@ int ssg_group_attach(
+     memset(ag, 0, sizeof(*ag));
+     ag->name = group_name;
+     ag->descriptor = ssg_group_descriptor_dup(group_descriptor);
+-    if (!ag->descriptor) goto fini;
++    if (!ag->descriptor) {
++        fprintf(stderr, "Error: unable to obtain group descriptor\n");
++        goto fini;
++    }
+     ag->descriptor->owner_status = SSG_OWNER_IS_ATTACHER;
+ 
+     /* create the view for the group */
+     sret = ssg_group_view_create(addr_strs, NULL, group_size, &ag->view, NULL);
+-    if (sret != SSG_SUCCESS) goto fini;
++    if (sret != SSG_SUCCESS) {
++        fprintf(stderr, "Error: unable to create view\n");
++        goto fini;
++    }
+ 
+     /* add this group reference to our group table */
+     HASH_ADD(hh, ssg_inst->attached_group_table, descriptor->name_hash,
+-- 
+2.17.1
+

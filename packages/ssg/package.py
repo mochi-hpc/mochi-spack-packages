@@ -15,6 +15,8 @@ class Ssg(AutotoolsPackage):
     version('develop', branch='master')
     version('0.2', tag='v0.2')
 
+    patch('0001-additional-error-reporting.patch')
+
     variant('mpi', default=True, description='Build with MPI support')
 
     depends_on('mpi', when='+mpi')
