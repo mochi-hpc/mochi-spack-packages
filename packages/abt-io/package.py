@@ -32,7 +32,8 @@ class AbtIo(AutotoolsPackage):
     git = 'https://xgitlab.cels.anl.gov/sds/abt-io.git'
 
     version('develop', branch='master')
-    version('0.3', tag='v0.3', preferred=True)
+    version('0.3', tag='v0.3.1', preferred=True)
+    version('0.3', tag='v0.3')
     version('0.2', tag='v0.2')
     version('0.1', tag='v0.1')
 
