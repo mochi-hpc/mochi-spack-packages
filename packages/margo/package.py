@@ -33,6 +33,7 @@ class Margo(AutotoolsPackage):
     git = 'https://xgitlab.cels.anl.gov/sds/margo.git'
 
     version('develop', branch='master')
+    version('develop-rpc-breadcrumb', branch='carns/dev-rpc-breadcrumb-redo2')
     version('0.5',   tag='v0.5')
     version('0.4.7', tag='v0.4.7')
     version('0.4.6', tag='v0.4.6')
@@ -42,6 +43,7 @@ class Margo(AutotoolsPackage):
     version('0.4.2', tag='v0.4.2')
 
     depends_on('mercury@1.0.0:', type=("build", "link", "run"))
+    depends_on('mercury@master', type=("build", "link", "run"), when='@develop-rpc-breadcrumb')
     depends_on('argobots@develop')
     depends_on('autoconf@2.65:', type=("build"))
     depends_on('m4', type=('build'))
