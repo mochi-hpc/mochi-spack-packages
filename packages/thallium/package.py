@@ -9,13 +9,15 @@ class Thallium(CMakePackage):
     git = "https://xgitlab.cels.anl.gov/sds/thallium.git"
 
     version('develop', branch='master')
+    version('0.4', tag='v0.4')
     version('0.3.4', tag='v0.3.4')
     version('0.3.3', tag='v0.3.3')
     version('0.3.2', tag='v0.3.2')
     version('0.3.1', tag='v0.3.1')
     version('0.3', tag='v0.3')
 
-    depends_on('margo@0.4:')
+    depends_on('margo@0.4:', when='@:0.3.4')
+    depends_on('margo@0.5:', when='@0.4:')
     # thallium relies on std::decay_t
     conflicts('%gcc@:4.9.0');
 
