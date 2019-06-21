@@ -23,7 +23,7 @@ class Hdf5(AutotoolsPackage):
     git      = "https://bitbucket.hdfgroup.org/scm/hdffv/hdf5.git"
 
     version('develop', branch='develop')
-    version('extvol-develop', branch='feature/external_vol_changes')
+    version('extvol-develop', commit='474b0571462956d282331a9ee12c208d50f41032')
     version('rados-develop', branch='feature/rados_vol')
     version('rados-old', branch='feature/hdf5_rados')
 
