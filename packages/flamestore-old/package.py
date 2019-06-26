@@ -7,12 +7,12 @@
 from spack import *
 
 
-class Flamestore(PythonPackage):
+class FlamestoreOld(PythonPackage):
     """Transient distributed object store for deep learning"""
 
-    homepage = "https://xgitlab.cels.anl.gov/sds/flame-store"
-    url      = "https://xgitlab.cels.anl.gov/sds/flame-store"
-    git      = "https://xgitlab.cels.anl.gov/sds/flame-store.git"
+    homepage = "https://xgitlab.cels.anl.gov/sds/flame-store-old"
+    url      = "https://xgitlab.cels.anl.gov/sds/flame-store-old"
+    git      = "https://xgitlab.cels.anl.gov/sds/flame-store-old.git"
 
     version('develop', branch='master')
     version('0.1', tag='v0.1')
