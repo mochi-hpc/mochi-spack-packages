@@ -31,4 +31,4 @@ class Remi(CMakePackage):
         args = ["-DBUILD_SHARED_LIBS:BOOL=ON" ]
         if(not self.spec.variants['cxx11abi'].value):
             args.extend(['-DCMAKE_CXX_FLAGS=-D_GLIBCXX_USE_CXX11_ABI=0 -D_GLIBCXX_USE_CXX14_ABI=0'])
-            return args
+        return args
