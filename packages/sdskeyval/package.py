@@ -68,7 +68,7 @@ class Sdskeyval(AutotoolsPackage):
         if '+bdb' in spec:
             extra_args.extend([
                 "--with-berkeleydb="
-		+ spec['berkeley-db'].prefix
+            + spec['berkeley-db'].prefix
                 ])
         if '+leveldb' in spec:
             extra_args.extend([
