@@ -34,6 +34,7 @@ class Margo(AutotoolsPackage):
 
     version('develop', branch='master')
     version('develop-rpc-breadcrumb', branch='carns/dev-rpc-breadcrumb-redo2')
+    version('0.5.1', tag='v0.5.1')
     version('0.5',   tag='v0.5')
     version('0.4.7', tag='v0.4.7')
     version('0.4.6', tag='v0.4.6')
