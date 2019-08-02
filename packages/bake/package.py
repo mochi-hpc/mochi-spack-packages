@@ -10,6 +10,7 @@ class Bake(AutotoolsPackage):
 
     version('develop', branch='master')
     version('dev-file-backend', branch='carns/dev-file-backend')
+    version('0.3.3', tag='v0.3.3')
     version('0.3.2', tag='v0.3.2')
     version('0.3.1', tag='v0.3.1')
     version('0.3', tag='v0.3')
