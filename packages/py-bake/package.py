@@ -37,6 +37,7 @@ class PyBake(PythonPackage):
     git      = "https://xgitlab.cels.anl.gov/sds/py-bake.git"
 
     version('develop',  branch="master")
+    version('0.3', tag='v0.3')
     version('0.2.1', tag='v0.2.1')
     version('0.2', tag='v0.2')
     version('0.1', tag='v0.1')
@@ -45,7 +46,8 @@ class PyBake(PythonPackage):
 
     depends_on('py-pybind11', type=('build'))
     depends_on('py-pkgconfig', type=('build'))
+    depends_on('bake@0.3.1:', when='@0.3:')
     depends_on('bake@0.1', when='@0.1')
-    depends_on('bake@0.2:', when='@0.2:')
+    depends_on('bake@0.3', when='@0.2')
     depends_on('py-margo@0.1:')
     depends_on('py-numpy', when='+numpy')
