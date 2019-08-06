@@ -17,6 +17,7 @@ class Bake(AutotoolsPackage):
     version('0.2', tag='v0.2')
     version('0.1', tag='v0.1')
 
+    variant('remi', default=False, description="Enable support for migration with REMI")
     variant('sizecheck', default=False, description="Enable size/bound checking (may degrade performance)")
     variant('timers', default=False, description="Enable timers on stdout (use for performance tuning)")
 
@@ -24,7 +25,8 @@ class Bake(AutotoolsPackage):
     depends_on('automake@1.13.4:', type=("build"))
     depends_on('libtool', type=("build"))
     depends_on('margo@0.4:')
-    depends_on('remi@0.1:')
+    depends_on('remi@0.1:', when='@:0.3.3')
+    depends_on('remi@0.2.2:', when='+remi @0.3.4:')
     depends_on('libuuid')
     depends_on('pmdk')
 
@@ -41,5 +43,11 @@ class Bake(AutotoolsPackage):
             extra_args.append('--enable-timers')
         else:
             extra_args.append('--disable-timers')
+
+        if spec.satisfies('@0.3.4:'):
+            if '+remi' in spec:
+                extra_args.append('--enable-remi')
+            else:
+                extra_args.append('--disable-remi')
 
         return extra_args
