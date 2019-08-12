@@ -46,6 +46,7 @@ class Sdskeyval(AutotoolsPackage):
     variant('lmdb', default=False, description="Enable lmdb keyval backend")
 
     depends_on('margo@0.4:', type=("build", "link", "run"))
+    depends_on('abt-io', type=("build", "link", "run"))
     depends_on('autoconf@2.65:')
     depends_on('automake@1.13.4:')
     depends_on('libtool', type=("build"))
