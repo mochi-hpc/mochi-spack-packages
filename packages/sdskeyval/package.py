@@ -33,6 +33,7 @@ class Sdskeyval(AutotoolsPackage):
     git='https://xgitlab.cels.anl.gov/sds/sds-keyval.git'
 
     version('develop', branch='master')
+    version('0.1.5', tag='v0.1.5')
     version('0.1.4', tag='v0.1.4')
     version('0.1.3', tag='v0.1.3')
     version('0.1.2', tag='v0.1.2')
