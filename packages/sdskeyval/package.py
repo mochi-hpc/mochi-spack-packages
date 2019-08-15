@@ -40,6 +40,7 @@ class Sdskeyval(AutotoolsPackage):
     version('0.1.1', tag='v0.1.1')
     version('0.1', tag='v0.1')
 
+    variant('benchmark', default=False, description='Compiles a benchmark')
     variant('remi', default=False, description="Enables migration support using REMI")
     variant('bwtree', default=False, description="Enable BwTree keyval backend")
     variant('bdb', default=True, description="Enable Berkely DB keyval backend")
@@ -54,6 +55,7 @@ class Sdskeyval(AutotoolsPackage):
     depends_on('remi@0.1:', when='@:0.1.1')
     depends_on('remi@0.2.1:', when='@0.1.2:0.1.3')
     depends_on('remi@0.2.2:', when='+remi @0.1.4:')
+    depends_on('jsoncpp', when='+benchmark')
 
     # variable dependencies
     depends_on('berkeley-db', when="+bdb")
@@ -80,6 +82,11 @@ class Sdskeyval(AutotoolsPackage):
             extra_args.extend([
                 "--enable-leveldb"
                 ])
+
+        if '+benchmark' in spec:
+            extra_args.append('--enable-benchmark')
+        else:
+            extra_args.append('--disable-benchmark')
 
         if spec.satisfies('@0.1.4:'):
             if '+remi' in spec:
