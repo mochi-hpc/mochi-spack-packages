@@ -86,6 +86,7 @@ class Sdskeyval(AutotoolsPackage):
 
         if '+benchmark' in spec:
             extra_args.append('--enable-benchmark')
+            extra_args.append('CXX=%s' % spec['mpi'].mpicxx)
         else:
             extra_args.append('--disable-benchmark')
 
