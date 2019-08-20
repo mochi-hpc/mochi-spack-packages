@@ -28,6 +28,8 @@ class Bake(AutotoolsPackage):
     depends_on('margo@0.4:')
     depends_on('remi@0.1:', when='@:0.3.3')
     depends_on('remi@0.2.2:', when='+remi @0.3.4:')
+    # dev-file-backend version still requires remi until it is rebased
+    depends_on('remi@0.2.2:', when='@dev-file-backend')
     depends_on('libuuid')
     depends_on('pmdk')
 
