@@ -7,12 +7,12 @@
 from spack import *
 
 
-class Mochio(AutotoolsPackage):
+class Benvolio(AutotoolsPackage):
     """Mochi services for I/O"""
 
-    homepage = "https://xgitlab.cels.anl.gov/sds/mochio"
-    url      = "https://xgitlab.cels.anl.gov/sds/mochio"
-    git      = "https://xgitlab.cels.anl.gov/sds/mochio.git"
+    homepage = "https://xgitlab.cels.anl.gov/sds/benvolio"
+    url      = "https://xgitlab.cels.anl.gov/sds/benvolio"
+    git      = "https://xgitlab.cels.anl.gov/sds/benvolio.git"
 
     version('develop', branch='master')
 
