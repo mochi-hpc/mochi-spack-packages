@@ -26,6 +26,7 @@ class Ior(AutotoolsPackage):
     variant('ncmpi', default=False, description='support IO with NCMPI backend')
     variant('rados', default=False, description='support IO with RADOS backend')
     variant('mobject', default=False, description='support IO with RADOS-like Mobject backend')
+    variant('gpfs', default=False, description='support configurable GPFS in IOR')
 
     depends_on('autoconf', type='build')
     depends_on('automake', type='build')
@@ -78,5 +79,8 @@ class Ior(AutotoolsPackage):
             config_args.append(extra_libs)
 	else:
             config_args.append('--without-rados')
+
+        if '-gpfs' in self.spec:
+            config_args.append('--without-gpfs')
 
         return config_args
