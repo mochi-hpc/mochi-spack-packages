@@ -33,6 +33,7 @@ class Sdskeyval(AutotoolsPackage):
     git='https://xgitlab.cels.anl.gov/sds/sds-keyval.git'
 
     version('develop', branch='master')
+    version('0.1.6', tag='v0.1.6')
     version('0.1.5', tag='v0.1.5')
     version('0.1.4', tag='v0.1.4')
     version('0.1.3', tag='v0.1.3')
@@ -47,7 +48,8 @@ class Sdskeyval(AutotoolsPackage):
     variant('leveldb', default=True, description="Enable LevelDB keyval backend")
     variant('lmdb', default=False, description="Enable lmdb keyval backend")
 
-    depends_on('margo@0.4:', type=("build", "link", "run"))
+    depends_on('margo@0.4:', type=("build", "link", "run"), when='@:0.1.3')
+    depends_on('margo@0.5.2:', type=("build", "link", "run"), when='@0.1.4:')
     depends_on('abt-io', type=("build", "link", "run"))
     depends_on('autoconf@2.65:')
     depends_on('automake@1.13.4:')
