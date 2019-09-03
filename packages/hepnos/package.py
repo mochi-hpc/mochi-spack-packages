@@ -32,7 +32,8 @@ class Hepnos(CMakePackage):
     url = "https://xgitlab.cels.anl.gov/sds/HEPnOS"
     git = 'https://xgitlab.cels.anl.gov/sds/HEPnOS.git'
 
-    version('0.1.7', tag='v0.1.7', preffered=True)
+    version('0.1.8', tag='v0.1.8')
+    version('0.1.7', tag='v0.1.7')
     version('0.1.6', tag='v0.1.6')
     version('0.1.5', tag='v0.1.5')
     version('0.1.4', tag='v0.1.4')
@@ -40,17 +41,20 @@ class Hepnos(CMakePackage):
     version('0.1.2', tag='v0.1.2')
     version('0.1.1', tag='v0.1.1')
     version('0.1',   tag='v0.1')
-    version('develop', branch='develop')
+    version('develop', branch='master')
 
     depends_on('mpi')
     depends_on('ch-placement@0.1:')
+    depends_on('margo@0.5.2:', when='@0.1.8:')
+    depends_on('mercury@master', when='@0.1.8:')
     depends_on('sdskeyval@0.1:')
-    depends_on('bake@0.1:')
+    depends_on('sdskeyval@0.1.6:', when='@0.1.8:')
+    depends_on('bake@0.1:', when='@:0.1.7')
     depends_on('yaml-cpp@develop')
     depends_on('boost+serialization')
+    depends_on('cmake@3.1.0:')
 
     def cmake_args(self):
         extra_args = []
-        extra_args.extend(['-DCMAKE_CC_COMPILER=%s'  % self.spec['mpi'].mpicc])
         extra_args.extend(['-DCMAKE_CXX_COMPILER=%s' % self.spec['mpi'].mpicxx])
         return extra_args
