@@ -66,9 +66,9 @@ class Ior(AutotoolsPackage):
         else:
             config_args.append('--without-ncmpi')
 
-	if '+rados' in spec:
+        if '+rados' in spec:
             config_args.append('--with-rados')
-	else:
+        else:
             config_args.append('--without-rados')
 
         if '+mobject' in spec:
@@ -77,7 +77,7 @@ class Ior(AutotoolsPackage):
             extra_libs += subprocess.check_output([str(pkg_config), "--libs-only-l", "mobject-store"]).strip('\n')
             config_args.append('--with-rados')
             config_args.append(extra_libs)
-	else:
+        else:
             config_args.append('--without-rados')
 
         if '-gpfs' in self.spec:
