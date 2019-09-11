@@ -55,6 +55,6 @@ class Hepnos(CMakePackage):
     depends_on('cmake@3.1.0:')
 
     def cmake_args(self):
-        extra_args = []
+        extra_args = ['-DBUILD_SHARED_LIBS=ON']
         extra_args.extend(['-DCMAKE_CXX_COMPILER=%s' % self.spec['mpi'].mpicxx])
         return extra_args
