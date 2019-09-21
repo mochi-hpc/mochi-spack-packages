@@ -38,7 +38,7 @@ class Sdsdkv(AutotoolsPackage):
     depends_on('libtool', type=("build"))
 
     depends_on('sdskeyval +leveldb~bwtree~bdb')
-    depends_on('ssg+mpi')
+    depends_on('ssg+mpi@0.2')
     depends_on('ch-placement')
 
     def configure_args(self):

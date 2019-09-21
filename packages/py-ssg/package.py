@@ -44,8 +44,8 @@ class PySsg(PythonPackage):
     variant('mpi', default=True, description="Enable MPI support")
 
     depends_on('mpi', when='+mpi', type=("build"))
-    depends_on('ssg+mpi@0.1:', when='+mpi')
-    depends_on('ssg@0.1:', when='~mpi')
+    depends_on('ssg+mpi@0.1:0.2', when='+mpi')
+    depends_on('ssg@0.1:0.2', when='~mpi')
     depends_on('py-mpi4py', when='+mpi')
     depends_on('py-margo@0.1:')
     depends_on('py-pkgconfig', type=('build'))

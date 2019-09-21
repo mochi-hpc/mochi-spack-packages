@@ -13,9 +13,10 @@ class Ssg(AutotoolsPackage):
     git='https://xgitlab.cels.anl.gov/sds/ssg.git'
 
     version('develop', branch='master')
+    version('0.3.0', tag='v0.3.0')
     version('0.2', tag='v0.2')
 
-    patch('0001-additional-error-reporting.patch')
+    patch('0001-additional-error-reporting.patch', when='@0.2')
 
     variant('mpi', default=True, description='Build with MPI support')
 

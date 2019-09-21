@@ -39,7 +39,7 @@ class Mobject(AutotoolsPackage):
 
     depends_on('margo@0.4:')
     depends_on('mpi')
-    depends_on('ssg+mpi@0.2:')
+    depends_on('ssg+mpi@0.2')
     depends_on('ch-placement@0.1:')
     depends_on('autoconf')
     depends_on('automake')

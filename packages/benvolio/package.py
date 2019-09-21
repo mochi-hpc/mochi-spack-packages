@@ -21,7 +21,7 @@ class Benvolio(AutotoolsPackage):
     depends_on('libtool')
     depends_on('thallium@0.3.4:')
     depends_on('abt-io@0.2:')
-    depends_on('ssg+mpi@0.2:')
+    depends_on('ssg+mpi@0.2')
 
     def configure_args(self):
         extra_args = []
