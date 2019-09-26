@@ -35,7 +35,7 @@ class Ssg(AutotoolsPackage):
                 "--enable-mpi",
                 "CC=%s" % spec['mpi'].mpicc
                 ])
-        else if '+pmix' in spec:
+        elif '+pmix' in spec:
             extra_args.extend([
                 "--enable-pmix"
                 ])
