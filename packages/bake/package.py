@@ -10,6 +10,7 @@ class Bake(AutotoolsPackage):
 
     version('develop', branch='master')
     version('dev-file-backend', branch='carns/dev-file-backend')
+    version('0.3.5', tag='v0.3.5')
     version('0.3.4', tag='v0.3.4')
     version('0.3.3', tag='v0.3.3')
     version('0.3.2', tag='v0.3.2')
@@ -18,6 +19,7 @@ class Bake(AutotoolsPackage):
     version('0.2', tag='v0.2')
     version('0.1', tag='v0.1')
 
+    variant('benchmark', default=False, description='Enable building bake-benchmark')
     variant('remi', default=False, description="Enable support for migration with REMI")
     variant('sizecheck', default=False, description="Enable size/bound checking (may degrade performance)")
     variant('timers', default=False, description="Enable timers on stdout (use for performance tuning)")
@@ -32,10 +34,19 @@ class Bake(AutotoolsPackage):
     depends_on('remi@0.2.2:', when='@dev-file-backend')
     depends_on('libuuid')
     depends_on('pmdk')
+    depends_on('jsoncpp', when='+benchmark')
+    depends_on('mpi', when='+benchmark')
 
     def configure_args(self):
         spec = self.spec
         extra_args = []
+
+        if '+benchmark' in spec:
+            extra_args.append('--enable-benchmark')
+            extra_args.append('CXX=%s' % spec['mpi'].mpicxx)
+            extra_args.append('CC=%s' % spec['mpi'].mpicc)
+        else:
+            extra_args.append('--disable-benchmark')
 
         if '+sizecheck' in spec:
             extra_args.append('--enable-sizecheck')
