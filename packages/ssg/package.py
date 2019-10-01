@@ -19,8 +19,10 @@ class Ssg(AutotoolsPackage):
     patch('0001-additional-error-reporting.patch', when='@0.2')
 
     variant('mpi', default=True, description='Build with MPI support')
+    variant('pmix', default=False, description='Build with PMIx support')
 
     depends_on('mpi', when='+mpi')
+    depends_on('pmix', when='+pmix')
     depends_on('margo@0.4:')
     depends_on('autoconf@2.69', type='build')
 
@@ -33,6 +35,11 @@ class Ssg(AutotoolsPackage):
                 "--enable-mpi",
                 "CC=%s" % spec['mpi'].mpicc
                 ])
+        elif '+pmix' in spec:
+            extra_args.extend([
+                "--enable-pmix"
+                ])
+
 
         return extra_args
 
