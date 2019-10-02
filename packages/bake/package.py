@@ -34,7 +34,7 @@ class Bake(AutotoolsPackage):
     depends_on('remi@0.2.2:', when='@dev-file-backend')
     depends_on('libuuid')
     depends_on('pmdk')
-    depends_on('jsoncpp', when='+benchmark')
+    depends_on('jsoncpp@1.9.1:', when='+benchmark')
     depends_on('mpi', when='+benchmark')
 
     def configure_args(self):

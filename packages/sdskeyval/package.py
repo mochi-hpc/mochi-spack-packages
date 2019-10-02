@@ -57,7 +57,7 @@ class Sdskeyval(AutotoolsPackage):
     depends_on('remi@0.1:', when='@:0.1.1')
     depends_on('remi@0.2.1:', when='@0.1.2:0.1.3')
     depends_on('remi@0.2.2:', when='+remi @0.1.4:')
-    depends_on('jsoncpp', when='+benchmark')
+    depends_on('jsoncpp@1.9.1:', when='+benchmark')
     depends_on('mpi', when='+benchmark')
 
     # variable dependencies
