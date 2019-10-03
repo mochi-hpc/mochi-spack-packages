@@ -36,11 +36,6 @@ class Ior(AutotoolsPackage):
     depends_on('hdf5+mpi', when='+hdf5')
     depends_on('parallel-netcdf', when='+ncmpi')
 
-    depends_on('argobots', when='+mobject')
-    depends_on('ch-placement', when='+mobject')
-    depends_on('mercury', when='+mobject')
-    depends_on('ssg', when='+mobject')
-    depends_on('margo', when='+mobject')
     depends_on('mobject', when='+mobject')
 
     patch('0001-DO-NOT-MERGE-mobject-specific-hackery.patch', when='+mobject')
