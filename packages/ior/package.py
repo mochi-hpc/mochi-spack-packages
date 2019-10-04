@@ -4,8 +4,6 @@
 # SPDX-License-Identifier: (Apache-2.0 OR MIT)
 
 from spack import *
-import subprocess
-import os
 
 
 class Ior(AutotoolsPackage):
@@ -67,9 +65,10 @@ class Ior(AutotoolsPackage):
             config_args.append('--without-rados')
 
         if '+mobject' in spec:
-            pkg_config=which('pkg-config')
             extra_libs="LIBS="
-            extra_libs += subprocess.check_output([str(pkg_config), "--libs-only-l", "mobject-store"]).strip('\n')
+            pkg_config = which('pkg-config')
+            extra_libs += pkg_config('--libs-only-l', "mobject-store", output=str)
+
             config_args.append('--with-rados')
             config_args.append(extra_libs)
         else:
