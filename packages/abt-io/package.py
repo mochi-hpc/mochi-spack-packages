@@ -37,7 +37,7 @@ class AbtIo(AutotoolsPackage):
     version('0.2', tag='v0.2')
     version('0.1', tag='v0.1')
 
-    depends_on('argobots@develop')
+    depends_on('argobots@1.0rc2:')
     depends_on('autoconf@2.65:')
     depends_on('automake', type=("build"))
     depends_on('libtool', type=("build"))

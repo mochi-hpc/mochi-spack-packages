@@ -47,7 +47,7 @@ class Margo(AutotoolsPackage):
     # (until mercury has a release we can track
     depends_on('mercury@1.0.0:', type=("build", "link", "run"), when='@:0.5.1')
     depends_on('mercury@master', type=("build", "link", "run"), when='@0.5.2:')
-    depends_on('argobots@develop')
+    depends_on('argobots@1.0rc2:')
     depends_on('autoconf@2.65:', type=("build"))
     depends_on('m4', type=('build'))
     depends_on('automake', type=("build"))
