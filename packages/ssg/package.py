@@ -13,6 +13,7 @@ class Ssg(AutotoolsPackage):
     git='https://xgitlab.cels.anl.gov/sds/ssg.git'
 
     version('develop', branch='master')
+    version('0.4.0', tag='v0.4.0')
     version('0.3.0', tag='v0.3.0')
     version('0.2', tag='v0.2')
 
