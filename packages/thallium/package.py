@@ -9,6 +9,7 @@ class Thallium(CMakePackage):
     git = "https://xgitlab.cels.anl.gov/sds/thallium.git"
 
     version('develop', branch='master')
+    version('0.5', tag='v0.5')
     version('0.4.2', tag='v0.4.2')
     version('0.4.1', tag='v0.4.1')
     version('0.4', tag='v0.4')
@@ -21,8 +22,10 @@ class Thallium(CMakePackage):
     variant('cereal', default=False,
             description='Use the cereal library for serialization')
 
+    depends_on('margo@develop', when='@develop')
+    depends_on('margo@0.6:', when='@0.5:')
     depends_on('margo@0.4:', when='@:0.3.4')
-    depends_on('margo@0.5:', when='@0.4:')
+    depends_on('margo@0.5:', when='@0.4:0.4.2')
     depends_on('cereal', when='@0.4.1: +cereal')
     # thallium relies on std::decay_t
     conflicts('%gcc@:4.9.0');
