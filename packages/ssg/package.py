@@ -13,6 +13,7 @@ class Ssg(AutotoolsPackage):
     git='https://xgitlab.cels.anl.gov/sds/ssg.git'
 
     version('develop', branch='master')
+    version('0.4.1', tag='v0.4.1')
     version('0.4.0', tag='v0.4.0')
     version('0.3.0', tag='v0.3.0')
     version('0.2', tag='v0.2')
@@ -25,6 +26,7 @@ class Ssg(AutotoolsPackage):
     depends_on('mpi', when='+mpi')
     depends_on('pmix', when='+pmix')
     depends_on('margo@0.4:')
+    depends_on('margo@0.6:', when='@0.4.1:')
     depends_on('autoconf@2.69', type='build')
 
     def configure_args(self):

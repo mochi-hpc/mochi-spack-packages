@@ -48,6 +48,9 @@ class Ior(AutotoolsPackage):
 
         env['CC'] = spec['mpi'].mpicc
 
+        if '-gpfs' in self.spec:
+            config_args.append('--without-gpfs')
+
         if '+hdf5' in spec:
             config_args.append('--with-hdf5')
             #env['CC'] = 'h5pcc'
@@ -74,7 +77,5 @@ class Ior(AutotoolsPackage):
         else:
             config_args.append('--without-rados')
 
-        if '-gpfs' in self.spec:
-            config_args.append('--without-gpfs')
 
         return config_args
