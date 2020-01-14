@@ -10,7 +10,15 @@ class PyTmci(PythonPackage):
 
     version('develop',  branch="master")
 
+    variant('theta', default=False, description='')
+
     depends_on('python@3:')
-    depends_on('py-setuptools')
-    depends_on('tensorflow@2.0.0:')
+    depends_on('py-tensorflow@2.0.0:')
     depends_on('py-pybind11', type=('build'))
+
+    @run_before('build')
+    def move_file(self):
+        if '+theta' in self.spec:
+            src = self.stage.source_path+'/theta/tensorflow.json'
+            dst = self.stage.source_path+'/tensorflow.json'
+            copy(src, dst)
