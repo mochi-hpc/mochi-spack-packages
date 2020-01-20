@@ -30,6 +30,7 @@ class Flamestore(PythonPackage):
     depends_on('spdlog')
     depends_on('py-pkgconfig')
     depends_on('py-pybind11')
+    depends_on('py-tmci')
 
     @run_before('build')
     def move_file(self):
