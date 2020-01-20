@@ -33,6 +33,7 @@ class Margo(AutotoolsPackage):
     git = 'https://xgitlab.cels.anl.gov/sds/margo.git'
 
     version('develop', branch='master')
+    version('0.6.1', tag='v0.6.1')
     version('0.6', tag='v0.6')
     version('0.5.2', tag='v0.5.2')
     version('0.5.1', tag='v0.5.1')
