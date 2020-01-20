@@ -15,7 +15,10 @@ class Flamestore(PythonPackage):
     git      = "https://xgitlab.cels.anl.gov/sds/flamestore.git"
 
     version('develop', branch='dev-refactoring')
-    
+   
+    variant('theta', default=False,
+            description='Option to enable when building on Theta')
+
     depends_on('margo@0.6:')
     depends_on('bake')
     depends_on('ssg@0.4:')
@@ -27,3 +30,10 @@ class Flamestore(PythonPackage):
     depends_on('spdlog')
     depends_on('py-pkgconfig')
     depends_on('py-pybind11')
+
+    @run_before('build')
+    def move_file(self):
+        if '+theta' in self.spec:
+            src = self.stage.source_path+'/theta/tensorflow.json'
+            dst = self.stage.source_path+'/tensorflow.json'
+            copy(src, dst)

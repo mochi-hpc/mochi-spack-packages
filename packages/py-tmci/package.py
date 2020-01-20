@@ -10,7 +10,8 @@ class PyTmci(PythonPackage):
 
     version('develop',  branch="master")
 
-    variant('theta', default=False, description='')
+    variant('theta', default=False,
+            description='Option to enable when building on Theta')
 
     depends_on('python@3:')
     depends_on('py-tensorflow@2.0.0:')
