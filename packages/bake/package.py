@@ -9,7 +9,7 @@ class Bake(AutotoolsPackage):
     git      = 'https://xgitlab.cels.anl.gov/sds/bake.git'
 
     version('develop', branch='master')
-    version('dev-multi-backend', branch='dev-multibackend')
+    version('0.4', tag='v0.4')
     version('dev-file-backend', branch='carns/dev-file-backend')
     version('0.3.6', tag='v0.3.6')
     version('0.3.5', tag='v0.3.5')
