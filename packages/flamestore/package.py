@@ -20,7 +20,7 @@ class Flamestore(PythonPackage):
             description='Option to enable when building on Theta')
 
     depends_on('margo@0.6:')
-    depends_on('py-bake')
+    depends_on('py-bake@0.3')
     depends_on('ssg@0.4:')
     depends_on('sdskeyval')
     depends_on('py-margo@0.3:')

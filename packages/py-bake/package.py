@@ -46,7 +46,7 @@ class PyBake(PythonPackage):
 
     depends_on('py-pybind11', type=('build'))
     depends_on('py-pkgconfig', type=('build'))
-    depends_on('bake@0.3.1:', when='@0.3:')
+    depends_on('bake@0.3.1:0.3.6', when='@0.3:')
     depends_on('bake@0.1', when='@0.1')
     depends_on('bake@0.3', when='@0.2')
     depends_on('py-margo@0.1:')

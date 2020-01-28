@@ -49,7 +49,7 @@ class Hepnos(CMakePackage):
     depends_on('mercury@master', when='@0.1.8:')
     depends_on('sdskeyval@0.1:')
     depends_on('sdskeyval@0.1.6:', when='@0.1.8:')
-    depends_on('bake@0.1:', when='@:0.1.7')
+    depends_on('bake@0.1:0.3.6', when='@:0.1.7')
     depends_on('yaml-cpp@develop')
     depends_on('boost+serialization')
     depends_on('cmake@3.1.0:')
