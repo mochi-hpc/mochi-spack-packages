@@ -52,7 +52,7 @@ class Mobject(AutotoolsPackage):
     depends_on('sdskeyval@0.1:')
     depends_on('bake@0.1:')
     depends_on('bake@0.3:0.3.6', when='@0.3:')
-    depends_on('bake@0.4:', when '@0.4.2:')
+    depends_on('bake@0.4:', when='@0.4.2:')
 
     patch('0001-crude-timing-information.patch', when="+timing")
 
