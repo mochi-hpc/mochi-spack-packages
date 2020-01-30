@@ -45,6 +45,7 @@ class Hepnos(CMakePackage):
 
     depends_on('mpi')
     depends_on('ch-placement@0.1:')
+    depends_on('thallium@develop', when='@develop')
     depends_on('margo@0.5.2:', when='@0.1.8:')
     depends_on('mercury@master', when='@0.1.8:')
     depends_on('sdskeyval@0.1:')
