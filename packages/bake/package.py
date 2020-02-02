@@ -35,7 +35,8 @@ class Bake(AutotoolsPackage):
     # dev-file-backend version still requires remi until it is rebased
     depends_on('remi@0.2.2:', when='@dev-file-backend')
     depends_on('libuuid')
-    depends_on('pmdk')
+    # this spec prevents @dev-file-backend from depending on pmdk
+    depends_on('pmdk', when='@0.0.0:')
     depends_on('jsoncpp@1.9.1:', when='+benchmark')
     depends_on('mpi', when='+benchmark')
 
