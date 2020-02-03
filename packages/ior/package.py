@@ -34,7 +34,7 @@ class Ior(AutotoolsPackage):
     depends_on('hdf5+mpi', when='+hdf5')
     depends_on('parallel-netcdf', when='+ncmpi')
 
-    depends_on('mobject', when='+mobject')
+    depends_on('mobject@0.4.1', when='+mobject')
 
     patch('0001-DO-NOT-MERGE-mobject-specific-hackery.patch', when='+mobject')
 
