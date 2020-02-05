@@ -30,16 +30,24 @@ class Sdsdkv(AutotoolsPackage):
 
     homepage = "https://xgitlab.cels.anl.gov/sds/sdsdkv"
     url = "https://xgitlab.cels.anl.gov/sds/sdsdkv"
+    git = 'git@xgitlab.cels.anl.gov:sds/sdsdkv.git'
 
-    version('master', git='https://xgitlab.cels.anl.gov/sds/sdsdkv.git')
+    version('master', branch='master')
+    version('0.1', tag='v0.1')
 
     depends_on('autoconf@2.65:')
     depends_on('automake@1.13.4:')
     depends_on('libtool', type=("build"))
 
     depends_on('sdskeyval +leveldb~bwtree~bdb')
-    depends_on('ssg+mpi@0.2')
+    depends_on('ssg+mpi@0.2', when='@0.1')
     depends_on('ch-placement')
+
+    patch('0001-update-missing-configure-macros.patch', when='@0.1')
+
+    def autoreconf(self, spec, prefix):
+        autogen = Executable('./autogen')
+        autogen()
 
     def configure_args(self):
         return [
