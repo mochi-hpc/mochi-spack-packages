@@ -44,15 +44,15 @@ class Mobject(AutotoolsPackage):
     depends_on('margo@0.4:')
     depends_on('mpi')
     depends_on('ssg+mpi@0.2', when='@:0.3')
-    depends_on('ssg+mpi@0.4.0:', when='@0.4')
+    depends_on('ssg+mpi@0.4.0:', when='@0.4:')
     depends_on('ch-placement@0.1:')
     depends_on('autoconf')
     depends_on('automake')
     depends_on('libtool')
     depends_on('sdskeyval@0.1:')
     depends_on('bake@0.1:')
-    depends_on('bake@0.3:0.3.6', when='@0.3:')
-    depends_on('bake@0.4:', when='@0.4.2:')
+    depends_on('bake@0.3:0.3.6', when='@:0.4.1')
+    depends_on('bake@0.4:', when='@0.4.2:');
 
     patch('0001-crude-timing-information.patch', when="+timing")
 
