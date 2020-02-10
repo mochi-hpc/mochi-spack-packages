@@ -25,7 +25,7 @@ class Ior(Ior):
 
     def configure_args(self):
         spec = self.spec
-        config_args = super().configure_args()
+        config_args = super(Ior, self).configure_args()
 
         if '+rados' in spec:
             config_args.append('--with-rados')

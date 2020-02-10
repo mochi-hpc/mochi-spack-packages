@@ -19,7 +19,7 @@ class Hdf5(Hdf5):
     depends_on('mobject@develop', when='+mobject')
 
     def configure_args(self):
-        config_args = super().configure_args()
+        config_args = super(Hdf5, self).configure_args()
 
         if '+mobject' in self.spec:
             pkg_config = which('pkg-config')
