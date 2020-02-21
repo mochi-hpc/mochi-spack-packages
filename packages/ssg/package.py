@@ -22,12 +22,14 @@ class Ssg(AutotoolsPackage):
 
     variant('mpi', default=True, description='Build with MPI support')
     variant('pmix', default=False, description='Build with PMIx support')
+    variant('drc', default=False, description='Support Cray Dynamic RDMA Credentials')
 
     depends_on('mpi', when='+mpi')
     depends_on('pmix', when='+pmix')
     depends_on('margo@0.4:')
     depends_on('margo@0.6:', when='@0.4.1:')
     depends_on('autoconf@2.69', type='build')
+    depends_on('rdma-credentials', when="+drc")
 
     def configure_args(self):
         spec = self.spec
@@ -43,15 +45,12 @@ class Ssg(AutotoolsPackage):
                 "--enable-pmix"
                 ])
 
+        if '+drc' in spec:
+            extra_args.extend([
+                "--enable-drc"
+            ])
 
         return extra_args
-
-
-
-
-
-
-
 
     def install(self, spec, prefix):
         # FIXME: Unknown build system
