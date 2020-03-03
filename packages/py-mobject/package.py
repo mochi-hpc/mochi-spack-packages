@@ -30,7 +30,7 @@
 from spack import *
 
 class PyMobject(PythonPackage):
-    """Python wrapper for the Mobject library"""
+    """Python wrapper for the Mobject microservice"""
 
     homepage = "https://xgitlab.cels.anl.gov/sds/py-mobject"
     url      = "https://xgitlab.cels.anl.gov/sds/py-mobject"
@@ -40,10 +40,10 @@ class PyMobject(PythonPackage):
     version('0.1.1', tag='v0.1.1')
     version('0.1', tag='v0.1')
 
-    depends_on('py-bake@0.1:')
-    depends_on('py-sdskv@0.1:')
-    depends_on('py-margo@0.1:')
-    depends_on('py-ssg+mpi@0.1:')
+    depends_on('py-mochi-bake@0.1:')
+    depends_on('py-mochi-kv@0.1:')
+    depends_on('py-mochi-margo@0.1:')
+    depends_on('py-mochi-ssg+mpi@0.1:')
     depends_on('mobject@0.1:')
     depends_on('py-mpi4py')
     depends_on('mpi')

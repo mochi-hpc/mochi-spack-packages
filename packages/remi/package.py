@@ -1,30 +1,9 @@
-from spack import *
+# Copyright 2013-2019 Lawrence Livermore National Security, LLC and other
+# Spack Project Developers. See the top-level COPYRIGHT file for details.
+#
+# SPDX-License-Identifier: (Apache-2.0 OR MIT)
 
+from spack.pkg.mochi.mochi_remi import MochiRemi
 
-class Remi(CMakePackage):
-    """REMI is a Mochi microservice designed to handle the migration of sets of files
-    from a node to another. It uses RDMA and memory mapping to efficiently transfer
-    potentially large groups of files at once."""
-
-    homepage = "https://xgitlab.cels.anl.gov/sds/remi"
-    url = "https://xgitlab.cels.anl.gov/sds/remi"
-    git='https://xgitlab.cels.anl.gov/sds/remi.git'
-
-    version('develop', branch='master')
-    version('0.2.2', tag='v0.2.2')
-    version('0.2.1', tag='v0.2.1')
-    version('0.2', tag='v0.2')
-    version('0.1.1', tag='v0.1.1')
-    version('0.1', tag='v0.1')
-
-    depends_on('thallium@0.4.2:', when='@0.2.2:')
-    depends_on('thallium@0.3:', when='@:0.2.1')
-    depends_on('libuuid')
-    depends_on('abt-io@0.1:')
-
-    patch('0001-explicitly-request-C-14.patch')
-
-
-    def cmake_args(self):
-        args = ["-DBUILD_SHARED_LIBS:BOOL=ON" ]
-        return args
+class Remi(MochiRemi):
+    pass
