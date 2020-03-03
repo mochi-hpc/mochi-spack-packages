@@ -20,10 +20,10 @@ class Benvolio(AutotoolsPackage):
     depends_on('autoconf')
     depends_on('libtool')
     # thallium-0.5 provided engine::wrap()
-    depends_on('thallium@0.5:')
-    depends_on('abt-io@0.2:')
+    depends_on('mochi-thallium@0.5:')
+    depends_on('mochi-abt-io@0.2:')
     # pick up ssg API rework that landed in ssg-0.4.0
-    depends_on('ssg+mpi@0.4.0:')
+    depends_on('mochi-ssg+mpi@0.4.0:')
 
     def configure_args(self):
         extra_args = []

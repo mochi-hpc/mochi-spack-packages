@@ -1,10 +1,9 @@
-from spack import *
+# Copyright 2013-2019 Lawrence Livermore National Security, LLC and other
+# Spack Project Developers. See the top-level COPYRIGHT file for details.
+#
+# SPDX-License-Identifier: (Apache-2.0 OR MIT)
 
-class Mdcs(CMakePackage):
-    """MDCS is Mochi's Diagnostic Counters Service, a service that exposes a set of counters in a server to be accessible by remote clients for monitoring the server."""
-    homepage = "https://xgitlab.cels.anl.gov/sds/mdcs"
-    url = "https://xgitlab.cels.anl.gov/sds/mdcs"
+from spack.pkg.mochi.mochi_mdcs import MochiMdcs
 
-    version('master', git='https://xgitlab.cels.anl.gov/sds/mdcs.git')
-
-    depends_on('margo')
+class Mdcs(MochiMdcs):
+    pass

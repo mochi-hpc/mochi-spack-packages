@@ -19,18 +19,18 @@ class Flamestore(PythonPackage):
     variant('theta', default=False,
             description='Option to enable when building on Theta')
 
-    depends_on('margo@0.6:')
-    depends_on('py-bake@0.3')
-    depends_on('ssg@0.4:')
-    depends_on('sdskeyval')
-    depends_on('py-margo@0.3:')
-    depends_on('thallium@0.5:')
+    depends_on('mochi-margo@0.6:')
+    depends_on('py-mochi-bake@0.3')
+    depends_on('mochi-ssg@0.4:')
+    depends_on('mochi-kv')
+    depends_on('py-mochi-margo@0.3:')
+    depends_on('mochi-thallium@0.5:')
     depends_on('jsoncpp')
     depends_on('py-spdlog')
     depends_on('spdlog')
     depends_on('py-pkgconfig')
     depends_on('py-pybind11')
-    depends_on('py-tmci')
+    depends_on('py-mochi-tmci')
 
     @run_before('build')
     def move_file(self):

@@ -26,13 +26,14 @@ from spack import *
 
 
 class Mobject(AutotoolsPackage):
-    """A microservice object store built on Margo, sds-keyval, and other components"""
+    """A Mochi microservice object store built on Margo, sds-keyval, and other components"""
 
     homepage = "https://xgitlab.cels.anl.gov/sds/mobject-store"
     url = "https://xgitlab.cels.anl.gov/sds/mobject-store"
     git = 'https://xgitlab.cels.anl.gov/sds/mobject-store.git'
 
     version('develop', branch='master')
+    version('0.4.2', tag='v0.4.2')
     version('0.4.1', tag='v0.4.1')
     version('0.4', tag='v0.4')
     version('0.3', tag='v0.3')
@@ -41,18 +42,18 @@ class Mobject(AutotoolsPackage):
 
     variant('timing', default=False, description="crude timing information")
 
-    depends_on('margo@0.4:')
+    depends_on('mochi-margo@0.4:')
     depends_on('mpi')
-    depends_on('ssg+mpi@0.2', when='@:0.3')
-    depends_on('ssg+mpi@0.4.0:', when='@0.4:')
-    depends_on('ch-placement@0.1:')
+    depends_on('mochi-ssg+mpi@0.2', when='@:0.3')
+    depends_on('mochi-ssg+mpi@0.4.0:', when='@0.4:')
+    depends_on('mochi-ch-placement@0.1:')
     depends_on('autoconf')
     depends_on('automake')
     depends_on('libtool')
-    depends_on('sdskeyval@0.1:')
-    depends_on('bake@0.1:')
-    depends_on('bake@0.3:0.3.6', when='@:0.4.1')
-    depends_on('bake@0.4:', when='@0.4.2:');
+    depends_on('mochi-kv@0.1:')
+    depends_on('mochi-bake@0.1:')
+    depends_on('mochi-bake@0.3:0.3.6', when='@:0.4.1')
+    depends_on('mochi-bake@0.4:', when='@0.4.2:');
 
     patch('0001-crude-timing-information.patch', when="+timing")
 
