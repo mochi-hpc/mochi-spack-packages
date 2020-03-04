@@ -25,7 +25,7 @@
 from spack import *
 
 
-class MochiDkv(AutotoolsPackage):
+class MochiSdsdkv(AutotoolsPackage):
     """a Mochi library that provides a distributed Margo-based keyval service"""
 
     homepage = "https://xgitlab.cels.anl.gov/sds/sdsdkv"
@@ -39,7 +39,7 @@ class MochiDkv(AutotoolsPackage):
     depends_on('automake@1.13.4:')
     depends_on('libtool', type=("build"))
 
-    depends_on('mochi-kv +leveldb~bwtree~bdb')
+    depends_on('mochi-sdskv +leveldb~bwtree~bdb')
     depends_on('mochi-ssg+mpi@0.2', when='@0.1')
     depends_on('mochi-ch-placement')
 

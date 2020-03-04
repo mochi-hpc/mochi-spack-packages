@@ -3,7 +3,8 @@
 #
 # SPDX-License-Identifier: (Apache-2.0 OR MIT)
 
-from spack.pkg.mochi.mochi_kv import MochiKv
+from spack.pkg.mochi.mochi_sdskv import MochiSdskv
 
-class Sdskeyval(MochiKv):
+
+class Sdskeyval(MochiSdskv):
     pass

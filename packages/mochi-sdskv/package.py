@@ -25,7 +25,7 @@
 from spack import *
 
 
-class MochiKv(AutotoolsPackage):
+class MochiSdskv(AutotoolsPackage):
     """A Mochi library that provides a Margo-based keyval service"""
 
     homepage = "https://xgitlab.cels.anl.gov/sds/sds-keyval"
