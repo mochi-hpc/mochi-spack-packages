@@ -32,6 +32,7 @@ class Hepnos(CMakePackage):
     url = "https://xgitlab.cels.anl.gov/sds/HEPnOS"
     git = 'https://xgitlab.cels.anl.gov/sds/HEPnOS.git'
 
+    version('0.2.0', tag='v0.2.0')
     version('0.1.8', tag='v0.1.8')
     version('0.1.7', tag='v0.1.7')
     version('0.1.6', tag='v0.1.6')
@@ -42,18 +43,25 @@ class Hepnos(CMakePackage):
     version('0.1.1', tag='v0.1.1')
     version('0.1',   tag='v0.1')
     version('develop', branch='master')
+    version('master', branch='master')
 
     depends_on('mpi')
-    depends_on('mochi-ch-placement@0.1:')
-    depends_on('mochi-thallium@develop', when='@develop')
-    depends_on('mochi-margo@0.5.2:', when='@0.1.8:')
-    depends_on('mercury@master', when='@0.1.8:')
-    depends_on('mochi-kv@0.1:')
-    depends_on('mochi-kv@0.1.7:', when='@0.1.8:')
-    depends_on('mochi-bake@0.1:0.3.6', when='@:0.1.7')
     depends_on('yaml-cpp@develop')
     depends_on('boost+serialization')
     depends_on('cmake@3.1.0:')
+    depends_on('libuuid', when='@0.2.0:')
+    # Mochi dependencies for non-develop versions
+    depends_on('mochi-ch-placement@0.1:')
+    depends_on('mochi-thallium@0.5.2:', when='@0.2.0:')
+    depends_on('mochi-margo@0.5.2:', when='@0.1.8') # past 0.1.8, HEPnOS requires thallium
+    depends_on('mochi-kv@0.1.8:', when='@0.2.0:')
+    depends_on('mochi-kv@0.1.7:', when='@0.1.8:')
+    depends_on('mochi-kv@0.1:')
+    depends_on('mochi-bake@0.1:0.3.6', when='@:0.1.7') # after 0.1.7, HEPnOS does not require bake
+    # Mochi dependencies for develop version
+    depends_on('mochi-ch-placement@develop', when='@develop')
+    depends_on('mochi-thallium@develop', when='@develop')
+    depends_on('mochi-kv@develop', when='@develop')
 
     def cmake_args(self):
         extra_args = ['-DBUILD_SHARED_LIBS=ON']
