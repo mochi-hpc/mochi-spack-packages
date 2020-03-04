@@ -50,7 +50,7 @@ class Mobject(AutotoolsPackage):
     depends_on('autoconf')
     depends_on('automake')
     depends_on('libtool')
-    depends_on('mochi-kv@0.1:')
+    depends_on('mochi-sdskv@0.1:')
     depends_on('mochi-bake@0.1:')
     depends_on('mochi-bake@0.3:0.3.6', when='@:0.4.1')
     depends_on('mochi-bake@0.4:', when='@0.4.2:');

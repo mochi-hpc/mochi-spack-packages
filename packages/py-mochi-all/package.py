@@ -10,7 +10,7 @@ class PyMochiAll(PythonPackage):
     version('master', branch='master')
 
     depends_on('py-mochi-bake')
-    depends_on('py-mochi-kv')
+    depends_on('py-mochi-sdskv')
     depends_on('py-mochi-margo')
     depends_on('py-mochi-remi')
     depends_on('py-mochi-ssg')
