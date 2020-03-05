@@ -9,6 +9,7 @@ class MochiBake(AutotoolsPackage):
     git      = 'https://xgitlab.cels.anl.gov/sds/bake.git'
 
     version('develop', branch='master')
+    version('0.4.1', tag='v0.4.1')
     version('0.4', tag='v0.4')
     version('dev-file-backend', branch='carns/dev-file-backend')
     version('0.3.6', tag='v0.3.6')
