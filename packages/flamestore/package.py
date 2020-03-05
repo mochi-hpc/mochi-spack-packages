@@ -22,7 +22,7 @@ class Flamestore(PythonPackage):
     depends_on('mochi-margo@0.6:')
     depends_on('py-mochi-bake@0.3')
     depends_on('mochi-ssg@0.4:')
-    depends_on('mochi-kv')
+    depends_on('mochi-sdskv')
     depends_on('py-mochi-margo@0.3:')
     depends_on('mochi-thallium@0.5:')
     depends_on('jsoncpp')

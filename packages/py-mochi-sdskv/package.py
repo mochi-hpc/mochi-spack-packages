@@ -29,7 +29,7 @@
 #
 from spack import *
 
-class PyMochiKv(PythonPackage):
+class PyMochiSdskv(PythonPackage):
     """Python wrapper for the Mochi KV library"""
 
     homepage = "https://xgitlab.cels.anl.gov/sds/py-sdskv"
@@ -42,8 +42,8 @@ class PyMochiKv(PythonPackage):
     version('0.1.1', tag='v0.1.1')
     version('0.1', tag='v0.1')
 
-    depends_on('mochi-kv@0.1:')
-    depends_on('mochi-kv@0.1.3:', when='@0.1.3:')
+    depends_on('mochi-sdskv@0.1:')
+    depends_on('mochi-sdskv@0.1.3:', when='@0.1.3:')
     depends_on('py-mochi-margo@0.1:', when='@:0.1.1')
     depends_on('py-mochi-margo@0.2.4:', when='@0.1.2:')
     depends_on('py-pkgconfig', type=('build'))

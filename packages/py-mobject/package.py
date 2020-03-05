@@ -41,7 +41,7 @@ class PyMobject(PythonPackage):
     version('0.1', tag='v0.1')
 
     depends_on('py-mochi-bake@0.1:')
-    depends_on('py-mochi-kv@0.1:')
+    depends_on('py-mochi-sdskv@0.1:')
     depends_on('py-mochi-margo@0.1:')
     depends_on('py-mochi-ssg+mpi@0.1:')
     depends_on('mobject@0.1:')
