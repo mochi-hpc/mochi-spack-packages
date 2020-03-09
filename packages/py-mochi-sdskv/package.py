@@ -37,14 +37,17 @@ class PyMochiSdskv(PythonPackage):
     git      = "https://xgitlab.cels.anl.gov/sds/py-sdskv.git"
 
     version('develop',  branch="master")
+    version('master',  branch="master")
     version('0.1.3', tag='v0.1.3')
     version('0.1.2', tag='v0.1.2')
     version('0.1.1', tag='v0.1.1')
     version('0.1', tag='v0.1')
 
-    depends_on('mochi-sdskv@0.1:')
-    depends_on('mochi-sdskv@0.1.3:', when='@0.1.3:')
-    depends_on('py-mochi-margo@0.1:', when='@:0.1.1')
-    depends_on('py-mochi-margo@0.2.4:', when='@0.1.2:')
     depends_on('py-pkgconfig', type=('build'))
     depends_on('py-pybind11', type=('build'))
+    depends_on('mochi-sdskv@0.1:')
+    depends_on('mochi-sdskv@0.1.3:', when='@0.1.3:')
+    depends_on('mochi-sdskv@develop', when='@develop')
+    depends_on('py-mochi-margo@0.1:', when='@:0.1.1')
+    depends_on('py-mochi-margo@develop', when='@develop')
+    depends_on('py-mochi-margo@0.2.4:', when='@0.1.2:')

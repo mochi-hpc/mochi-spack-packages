@@ -14,6 +14,7 @@ class Benvolio(AutotoolsPackage):
     url      = "https://xgitlab.cels.anl.gov/sds/benvolio"
     git      = "https://xgitlab.cels.anl.gov/sds/benvolio.git"
 
+    version('master', branch='master', preferred=True)
     version('develop', branch='master')
 
     depends_on('automake')
@@ -24,6 +25,10 @@ class Benvolio(AutotoolsPackage):
     depends_on('mochi-abt-io@0.2:')
     # pick up ssg API rework that landed in ssg-0.4.0
     depends_on('mochi-ssg+mpi@0.4.0:')
+
+    # @develop version
+    depends_on('mochi-thallium@develop', when='@develop')
+    depends_on('mochi-ssg+mpi@develop', when='@develop')
 
     def configure_args(self):
         extra_args = []

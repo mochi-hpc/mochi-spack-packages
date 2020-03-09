@@ -37,6 +37,7 @@ class PyMochiBake(PythonPackage):
     git      = "https://xgitlab.cels.anl.gov/sds/py-bake.git"
 
     version('develop',  branch="master")
+    version('master',  branch="master")
     version('0.4', tag='v0.4')
     version('0.3', tag='v0.3')
     version('0.2.1', tag='v0.2.1')
@@ -46,10 +47,14 @@ class PyMochiBake(PythonPackage):
     variant('numpy', default=False, description="Enables Numpy support")
 
     depends_on('py-pybind11', type=('build'))
+    depends_on('py-numpy', when='+numpy')
     depends_on('py-pkgconfig', type=('build'))
+
     depends_on('mochi-bake@0.4:', when='@0.4:')
     depends_on('mochi-bake@0.3.1:0.3.6', when='@0.3')
     depends_on('mochi-bake@0.1', when='@0.1')
     depends_on('mochi-bake@0.3', when='@0.2')
     depends_on('py-mochi-margo@0.1:')
-    depends_on('py-numpy', when='+numpy')
+
+    depends_on('mochi-bake@develop', when='@develop')
+    depends_on('py-mochi-margo@develop', when='@develop')

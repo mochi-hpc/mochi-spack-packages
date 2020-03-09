@@ -33,12 +33,14 @@ class MochiPoesie(AutotoolsPackage):
     git = "https://xgitlab.cels.anl.gov/sds/poesie.git"
 
     version('develop', branch='master')
+    version('master', branch='master')
     version('0.1', tag='v0.1')
 
     variant('lua',    default=True, description="Enable Lua interpreters")
     variant('python', default=True, description="Enable Python interpreters")
 
     depends_on('mochi-margo@0.4:', type=("build", "link", "run"))
+    depends_on('mochi-margo@develop', type=("build", "link", "run"), when='@develop')
     # variable dependencies
     depends_on('lua', when="+lua")
     depends_on('python', when="+python")

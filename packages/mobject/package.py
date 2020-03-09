@@ -32,28 +32,38 @@ class Mobject(AutotoolsPackage):
     url = "https://xgitlab.cels.anl.gov/sds/mobject-store"
     git = 'https://xgitlab.cels.anl.gov/sds/mobject-store.git'
 
-    version('develop', branch='master')
     version('0.4.2', tag='v0.4.2')
     version('0.4.1', tag='v0.4.1')
     version('0.4', tag='v0.4')
     version('0.3', tag='v0.3')
     version('0.2', tag='v0.2')
     version('0.1', tag='v0.1')
+    version('develop', branch='master')
+    version('master', branch='master')
 
     variant('timing', default=False, description="crude timing information")
 
-    depends_on('mochi-margo@0.4:')
     depends_on('mpi')
-    depends_on('mochi-ssg+mpi@0.2', when='@:0.3')
-    depends_on('mochi-ssg+mpi@0.4.0:', when='@0.4:')
-    depends_on('mochi-ch-placement@0.1:')
     depends_on('autoconf')
     depends_on('automake')
     depends_on('libtool')
+
+    # Mochi dependencies for normal versions
+    depends_on('mochi-margo@0.4:')
+    depends_on('mochi-ssg+mpi@0.2', when='@:0.3')
+    depends_on('mochi-ssg+mpi@0.4.0:', when='@0.4:')
+    depends_on('mochi-ch-placement@0.1:')
     depends_on('mochi-sdskv@0.1:')
     depends_on('mochi-bake@0.1:')
     depends_on('mochi-bake@0.3:0.3.6', when='@:0.4.1')
     depends_on('mochi-bake@0.4:', when='@0.4.2:');
+
+    # Mochi dependencies for develop version
+    depends_on('mochi-margo@develop', when='@develop')
+    depends_on('mochi-ssg+mpi@develop', when='@develop')
+    depends_on('mochi-ch-placement@develop', when='@develop')
+    depends_on('mochi-sdskv@develop', when='@develop')
+    depends_on('mochi-bake@develop', when='@develop')
 
     patch('0001-crude-timing-information.patch', when="+timing")
 
