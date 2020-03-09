@@ -8,7 +8,7 @@ class MochiMdcs(CMakePackage):
     url = "https://xgitlab.cels.anl.gov/sds/mdcs"
     git='https://xgitlab.cels.anl.gov/sds/mdcs.git'
 
-    version('master', branch='master')
+    version('master', branch='master', preferred=True)
     version('develop', branch='master')
 
     depends_on('mochi-margo')
