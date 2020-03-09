@@ -46,6 +46,7 @@ class MochiSdsdkv(AutotoolsPackage):
 
     # dependencies for develop version
     depends_on('mochi-sdskv +leveldb~bwtree~bdb @develop', when='@develop')
+    depends_on('mochi-ssg+mpi@develop', when='@develop')
     depends_on('mochi-ch-placement@develop', when='@develop')
 
     patch('0001-update-missing-configure-macros.patch', when='@0.1')
