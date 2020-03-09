@@ -13,7 +13,7 @@ class MochiAll(PythonPackage):
     depends_on('mochi-abt-io')
     depends_on('mochi-bake')
     depends_on('mochi-ch-placement')
-    depends_on('mochi-dkv')
+    depends_on('mochi-sdsdkv')
     depends_on('mochi-sdskv')
     depends_on('mochi-margo')
     depends_on('mochi-mdcs')
