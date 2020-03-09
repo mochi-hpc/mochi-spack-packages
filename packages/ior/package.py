@@ -9,6 +9,7 @@ class Ior(Ior):
 
     git = 'https://github.com/shanedsnyder/ior'
     version('develop', branch='master', submodules=True)
+    version('master', branch='master', submodules=True)
     version('hdf5-rados', branch='hdf5-rados-ior', submodules=True)
 
     variant('rados', default=False, description='support IO with RADOS backend')
@@ -16,7 +17,8 @@ class Ior(Ior):
     variant('gpfs', default=False, description='support configurable GPFS in IOR')
 
     # depend on latest mobject to bring in latest bake
-    depends_on('mobject@develop', when='+mobject')
+    depends_on('mobject@master', when='+mobject') # TODO change @master to a release of mobject
+    depends_on('mobject@develop', when='+mobject @develop')
     # rados and mobject are incompatible
     conflicts('+mobject', when='+rados')
     conflicts('+rados', when='+mobject')
