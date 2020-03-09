@@ -38,15 +38,21 @@ class PyMochiSsg(PythonPackage):
     git      = "https://xgitlab.cels.anl.gov/sds/py-ssg.git"
     
     version('develop',  branch='master')
+    version('master',  branch='master')
     version('0.1.1', tag='v0.1.1')
     version('0.1', tag='v0.1')
 
     variant('mpi', default=True, description="Enable MPI support")
 
-    depends_on('mpi', when='+mpi', type=("build"))
-    depends_on('mochi-ssg+mpi@0.1:0.2', when='+mpi')
-    depends_on('mochi-ssg@0.1:0.2', when='~mpi')
-    depends_on('py-mpi4py', when='+mpi')
-    depends_on('py-mochi-margo@0.1:')
     depends_on('py-pkgconfig', type=('build'))
     depends_on('py-pybind11', type=('build'))
+    depends_on('py-mpi4py', when='+mpi')
+    depends_on('mpi', when='+mpi', type=("build"))
+
+    depends_on('mochi-ssg+mpi@0.1:0.2', when='+mpi')
+    depends_on('mochi-ssg@0.1:0.2', when='~mpi')
+    depends_on('py-mochi-margo@0.1:')
+
+    depends_on('mochi-ssg+mpi@develop', when='+mpi @develop')
+    depends_on('mochi-ssg@develop', when='~mpi @develop')
+    depends_on('py-mochi-margo@develop', when='@develop')

@@ -9,6 +9,7 @@ class MochiBake(AutotoolsPackage):
     git      = 'https://xgitlab.cels.anl.gov/sds/bake.git'
 
     version('develop', branch='master')
+    version('master', branch='master')
     version('0.4.1', tag='v0.4.1')
     version('0.4', tag='v0.4')
     version('dev-file-backend', branch='carns/dev-file-backend')
@@ -40,6 +41,10 @@ class MochiBake(AutotoolsPackage):
     depends_on('pmdk', when='@0.0.0:')
     depends_on('jsoncpp@1.9.1:', when='+benchmark')
     depends_on('mpi', when='+benchmark')
+
+    # dependencies for develop version
+    depends_on('mochi-margo@develop', when='@develop')
+    depends_on('mochi-remi@develop', when='@develop')
 
     def configure_args(self):
         spec = self.spec

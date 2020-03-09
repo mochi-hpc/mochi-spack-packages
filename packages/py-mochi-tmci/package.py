@@ -8,7 +8,8 @@ class PyMochiTmci(PythonPackage):
     url      = "https://xgitlab.cels.anl.gov/sds/tmci.git"
     git      = "https://xgitlab.cels.anl.gov/sds/tmci.git"
 
-    version('develop',  branch="master")
+    version('develop', branch="master")
+    version('master', branch="master")
 
     variant('theta', default=False,
             description='Option to enable when building on Theta')

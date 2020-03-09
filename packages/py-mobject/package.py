@@ -37,15 +37,23 @@ class PyMobject(PythonPackage):
     git      = "https://xgitlab.cels.anl.gov/sds/py-mobject.git"
 
     version('develop',  branch="master")
+    version('master',  branch="master")
     version('0.1.1', tag='v0.1.1')
     version('0.1', tag='v0.1')
+
+    depends_on('py-mpi4py')
+    depends_on('mpi')
+    depends_on('py-pkgconfig', type=('build'))
+    depends_on('py-pybind11', type=('build'))
 
     depends_on('py-mochi-bake@0.1:')
     depends_on('py-mochi-sdskv@0.1:')
     depends_on('py-mochi-margo@0.1:')
     depends_on('py-mochi-ssg+mpi@0.1:')
     depends_on('mobject@0.1:')
-    depends_on('py-mpi4py')
-    depends_on('mpi')
-    depends_on('py-pkgconfig', type=('build'))
-    depends_on('py-pybind11', type=('build'))
+
+    depends_on('py-mochi-bake@develop', when='@develop')
+    depends_on('py-mochi-sdskv@develop', when='@develop')
+    depends_on('py-mochi-margo@develop', when='@develop')
+    depends_on('py-mochi-ssg+mpi@develop', when='@develop')
+    depends_on('mobject@develop', when='@develop')

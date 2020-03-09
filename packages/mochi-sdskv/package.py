@@ -33,6 +33,7 @@ class MochiSdskv(AutotoolsPackage):
     git='https://xgitlab.cels.anl.gov/sds/sds-keyval.git'
 
     version('develop', branch='master')
+    version('master', branch='master')
     version('0.1.8', tag='v0.1.8')
     version('0.1.7.1', tag='v0.1.7.1')
     version('0.1.7', tag='v0.1.7')
@@ -51,17 +52,22 @@ class MochiSdskv(AutotoolsPackage):
     variant('leveldb', default=True, description="Enable LevelDB keyval backend")
     variant('lmdb', default=False, description="Enable lmdb keyval backend")
 
-    depends_on('mochi-margo@0.4:', type=("build", "link", "run"), when='@:0.1.3')
-    depends_on('mochi-margo@0.5.2:', type=("build", "link", "run"), when='@0.1.4:')
-    depends_on('mochi-abt-io', type=("build", "link", "run"))
     depends_on('autoconf@2.65:')
     depends_on('automake@1.13.4:')
     depends_on('libtool', type=("build"))
+    depends_on('jsoncpp@1.9.1:', when='+benchmark')
+    depends_on('mpi', when='+benchmark')
+    depends_on('mochi-margo@0.4:', type=("build", "link", "run"), when='@:0.1.3')
+    depends_on('mochi-margo@0.5.2:', type=("build", "link", "run"), when='@0.1.4:')
+    depends_on('mochi-abt-io', type=("build", "link", "run"))
     depends_on('mochi-remi@0.1:', when='@:0.1.1')
     depends_on('mochi-remi@0.2.1:', when='@0.1.2:0.1.3')
     depends_on('mochi-remi@0.2.2:', when='+remi @0.1.4:')
-    depends_on('jsoncpp@1.9.1:', when='+benchmark')
-    depends_on('mpi', when='+benchmark')
+
+    # dependencies for develop version
+    depends_on('mochi-margo@develop', when='@develop')
+    depends_on('mochi-abt-io@develop', when='@develop')
+    depends_on('mochi-remi@develop', when='+remi @develop')
 
     # variable dependencies
     depends_on('berkeley-db', when="+bdb")

@@ -33,6 +33,7 @@ class MochiSdsdkv(AutotoolsPackage):
     git = 'git@xgitlab.cels.anl.gov:sds/sdsdkv.git'
 
     version('master', branch='master')
+    version('develop', branch='master')
     version('0.1', tag='v0.1')
 
     depends_on('autoconf@2.65:')
@@ -42,6 +43,10 @@ class MochiSdsdkv(AutotoolsPackage):
     depends_on('mochi-sdskv +leveldb~bwtree~bdb')
     depends_on('mochi-ssg+mpi@0.2', when='@0.1')
     depends_on('mochi-ch-placement')
+
+    # dependencies for develop version
+    depends_on('mochi-sdskv +leveldb~bwtree~bdb @develop', when='@develop')
+    depends_on('mochi-ch-placement@develop', when='@develop')
 
     patch('0001-update-missing-configure-macros.patch', when='@0.1')
 
