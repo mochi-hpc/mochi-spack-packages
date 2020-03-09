@@ -7,7 +7,7 @@ class PyMochiAll(PythonPackage):
     homepage = "https://xgitlab.cels.anl.gov/sds/mochi-all"
     git='https://xgitlab.cels.anl.gov/sds/mochi-all.git'
 
-    version('master', branch='master')
+    version('master', branch='master', preferred=True)
     version('develop', branch='master')
 
     depends_on('py-mochi-bake')
