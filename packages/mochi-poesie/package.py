@@ -34,11 +34,15 @@ class MochiPoesie(AutotoolsPackage):
 
     version('develop', branch='master')
     version('master', branch='master')
-    version('0.1', tag='v0.1')
+    version('0.1.1', tag='v0.1.1')
 
     variant('lua',    default=True, description="Enable Lua interpreters")
     variant('python', default=True, description="Enable Python interpreters")
 
+    depends_on('autoconf@2.65:', type=("build"))
+    depends_on('automake@1.13.4:', type=("build"))
+    depends_on('libtool', type=("build"))
+    depends_on('m4', type=("build"))
     depends_on('mochi-margo@0.4:', type=("build", "link", "run"))
     depends_on('mochi-margo@develop', type=("build", "link", "run"), when='@develop')
     # variable dependencies
