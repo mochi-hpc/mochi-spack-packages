@@ -1,7 +1,7 @@
 from spack import *
 
 
-class PyMochiAll(PythonPackage):
+class PyMochiAll(CMakePackage):
     """Meta package for all Mochi Python components"""
 
     homepage = "https://xgitlab.cels.anl.gov/sds/mochi-all"
