@@ -30,7 +30,7 @@ class MochiSdsdkv(AutotoolsPackage):
 
     homepage = "https://xgitlab.cels.anl.gov/sds/sdsdkv"
     url = "https://xgitlab.cels.anl.gov/sds/sdsdkv"
-    git = 'git@xgitlab.cels.anl.gov:sds/sdsdkv.git'
+    git = 'https://xgitlab.cels.anl.gov/sds/sdsdkv.git'
 
     version('master', branch='master')
     version('develop', branch='master')
