@@ -32,7 +32,7 @@ class Hepnos(CMakePackage):
     url = "https://xgitlab.cels.anl.gov/sds/HEPnOS"
     git = 'https://xgitlab.cels.anl.gov/sds/HEPnOS.git'
 
-    vetsion('0.3.0', tag='v0.3.0')
+    version('0.3.0', tag='v0.3.0')
     version('0.2.0', tag='v0.2.0')
     version('0.1.8', tag='v0.1.8')
     version('0.1.7', tag='v0.1.7')
