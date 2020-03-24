@@ -34,6 +34,7 @@ class MochiSdskv(AutotoolsPackage):
 
     version('develop', branch='master')
     version('master', branch='master')
+    version('0.1.9', tag='v0.1.9')
     version('0.1.8', tag='v0.1.8')
     version('0.1.7.1', tag='v0.1.7.1')
     version('0.1.7', tag='v0.1.7')

@@ -32,6 +32,7 @@ class Hepnos(CMakePackage):
     url = "https://xgitlab.cels.anl.gov/sds/HEPnOS"
     git = 'https://xgitlab.cels.anl.gov/sds/HEPnOS.git'
 
+    version('0.3.1', tag='v0.3.1')
     version('0.3.0', tag='v0.3.0')
     version('0.2.0', tag='v0.2.0')
     version('0.1.8', tag='v0.1.8')
@@ -55,6 +56,7 @@ class Hepnos(CMakePackage):
     depends_on('mochi-ch-placement@0.1:')
     depends_on('mochi-thallium@0.5.2:', when='@0.2.0:')
     depends_on('mochi-margo@0.5.2:', when='@0.1.8') # past 0.1.8, HEPnOS requires thallium
+    depends_on('mochi-sdskv@0.1.9:', when='@0.3.1:')
     depends_on('mochi-sdskv@0.1.8:', when='@0.2.0:')
     depends_on('mochi-sdskv@0.1.7:', when='@0.1.8:')
     depends_on('mochi-sdskv@0.1:')
