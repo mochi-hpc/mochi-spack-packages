@@ -14,10 +14,10 @@ class MochiSonata(CMakePackage):
     depends_on('mochi-thallium@develop', when='@develop')
     depends_on('mochi-thallium')
     depends_on('unqlite')
-    depends_on('tclap')
+    depends_on('tclap', type=('build', 'link'))
     depends_on('jsoncpp')
     depends_on('spdlog')
-    depends_on('cmake')
+    depends_on('cmake', type=('build'))
 
     def cmake_args(self):
         args = ["-DBUILD_SHARED_LIBS:BOOL=ON" ]
