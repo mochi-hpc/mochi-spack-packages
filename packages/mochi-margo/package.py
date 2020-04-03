@@ -54,7 +54,7 @@ class MochiMargo(AutotoolsPackage):
     depends_on('automake', type=("build"))
     depends_on('libtool', type=("build"))
     depends_on('pkg-config', type=("build"))
-    depends_on('argobots@1.0rc2:')
+    depends_on('argobots@1.0:')
     depends_on('mercury@1.0.0:', type=("build", "link", "run"), when='@:0.5.1')
     depends_on('mercury@2.0.0a1:', type=("build", "link", "run"), when='@0.5.2:')
 
