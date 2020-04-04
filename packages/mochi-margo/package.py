@@ -32,6 +32,7 @@ class MochiMargo(AutotoolsPackage):
     homepage = 'https://xgitlab.cels.anl.gov/sds/margo'
     git = 'https://xgitlab.cels.anl.gov/sds/margo.git'
 
+    version('master', branch='master')
     version('develop', branch='master')
     version('0.6.3', tag='v0.6.3')
     version('0.6.2', tag='v0.6.2')
