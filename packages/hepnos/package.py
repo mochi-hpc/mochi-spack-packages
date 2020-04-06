@@ -28,9 +28,9 @@ from spack import *
 class Hepnos(CMakePackage):
     """Object store for High Energy Physics, build around Mochi components"""
 
-    homepage = "https://xgitlab.cels.anl.gov/sds/HEPnOS"
-    url = "https://xgitlab.cels.anl.gov/sds/HEPnOS"
-    git = 'https://xgitlab.cels.anl.gov/sds/HEPnOS.git'
+    homepage = "https://xgitlab.cels.anl.gov/sds/hep/HEPnOS"
+    url = "https://xgitlab.cels.anl.gov/sds/hep/HEPnOS"
+    git = 'https://xgitlab.cels.anl.gov/sds/hep/HEPnOS.git'
 
     version('0.3.1', tag='v0.3.1')
     version('0.3.0', tag='v0.3.0')
