@@ -15,7 +15,7 @@ class PyMochiTmci(PythonPackage):
             description='Option to enable when building on Theta')
 
     depends_on('python@3:')
-    depends_on('py-tensorflow@2.0.0:')
+    depends_on('py-tensorflow@2.0.0:', type=('build', 'link', 'run'))
     depends_on('py-pybind11', type=('build'))
 
     @run_before('build')
