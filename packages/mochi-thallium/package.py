@@ -10,6 +10,7 @@ class MochiThallium(CMakePackage):
 
     version('master', branch='master')
     version('develop', branch='master')
+    version('0.5.3', tag='v0.5.3')
     version('0.5.2', tag='v0.5.2')
     version('0.5.1', tag='v0.5.1')
     version('0.5', tag='v0.5')
