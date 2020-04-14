@@ -27,7 +27,6 @@ class MochiThallium(CMakePackage):
     variant('cereal', default=False,
             description='Use the cereal library for serialization')
 
-    depends_on('argobots@master', when='@0.5.4:')
     depends_on('mochi-margo@develop', when='@develop')
     depends_on('mochi-margo@0.6:', when='@0.5:')
     depends_on('mochi-margo@0.4:', when='@:0.3.4')
