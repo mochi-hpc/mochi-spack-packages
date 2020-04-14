@@ -39,7 +39,7 @@ class HepnosDataloader(CMakePackage):
 
     depends_on('cmake@3.1.0:', type=('build'))
     depends_on('mpi')
-    depends_on('hepnos@0.3.1:')
+    depends_on('hepnos@master:')
     depends_on('tclap')
     depends_on('spdlog')
     depends_on('hdf5')
