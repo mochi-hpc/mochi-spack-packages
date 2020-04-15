@@ -34,12 +34,13 @@ class HepnosDataloader(CMakePackage):
 
     version('develop', branch='master')
     version('master', branch='master')
-    version('0.2',   tag='v0.2')
-    version('0.1',   tag='v0.1')
+    version('0.2.1', tag='v0.2.1')
+    version('0.2', tag='v0.2')
+    version('0.1', tag='v0.1')
 
-    depends_on('cmake@3.1.0:', type=('build'))
+    depends_on('cmake@3.9.0:', type=('build'))
     depends_on('mpi')
-    depends_on('hepnos@master:')
+    depends_on('hepnos@0.3.2:')
     depends_on('tclap')
     depends_on('spdlog')
     depends_on('hdf5')

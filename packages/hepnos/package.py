@@ -32,6 +32,7 @@ class Hepnos(CMakePackage):
     url = "https://xgitlab.cels.anl.gov/sds/hep/HEPnOS"
     git = 'https://xgitlab.cels.anl.gov/sds/hep/HEPnOS.git'
 
+    version('0.3.2', tag='v0.3.2')
     version('0.3.1', tag='v0.3.1')
     version('0.3.0', tag='v0.3.0')
     version('0.2.0', tag='v0.2.0')
@@ -50,7 +51,7 @@ class Hepnos(CMakePackage):
     depends_on('mpi')
     depends_on('yaml-cpp@develop')
     depends_on('boost+serialization')
-    depends_on('cmake@3.1.0:')
+    depends_on('cmake@3.12.0:')
     depends_on('libuuid', when='@0.2.0:')
     # Mochi dependencies for non-develop versions
     depends_on('mochi-ch-placement@0.1:')
