@@ -14,6 +14,7 @@ class MochiSonata(CMakePackage):
     depends_on('mochi-thallium@develop', when='@develop')
     depends_on('mochi-thallium')
     depends_on('unqlite')
+    depends_on('mpi')
     depends_on('tclap', type=('build', 'link'))
     depends_on('jsoncpp')
     depends_on('spdlog')
@@ -21,4 +22,5 @@ class MochiSonata(CMakePackage):
 
     def cmake_args(self):
         args = ["-DBUILD_SHARED_LIBS:BOOL=ON" ]
+        args.append("-DCMAKE_CXX_COMPILER=%s" % self.spec['mpi'].mpicxx])
         return args
