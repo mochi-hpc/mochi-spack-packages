@@ -26,7 +26,7 @@ class MochiSonata(CMakePackage):
     def cmake_args(self):
         args = ['-DBUILD_SHARED_LIBS:BOOL=ON' ]
         if '+benchmark' in spec:
-            args.append('-DCMAKE_CXX_COMPILER=%s' % self.spec['mpi'].mpicxx])
+            args.append('-DCMAKE_CXX_COMPILER=%s' % self.spec['mpi'].mpicxx)
             args.append('-DENABLE_BENCHMARK=ON')
         if '+daemon' in spec:
             args.append('-DENABLE_DAEMON=ON')
