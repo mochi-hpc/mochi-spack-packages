@@ -11,16 +11,23 @@ class MochiSonata(CMakePackage):
     version('develop', branch='master')
     version('0.1', tag='v0.1')
 
+    variant('benchmark', default=False, description='Enable building sonata-benchmark')
+    variant('daemon', default=True, description='Enable building sonata-daemon')
+
     depends_on('mochi-thallium@develop', when='@develop')
     depends_on('mochi-thallium')
     depends_on('unqlite')
-    depends_on('mpi')
+    depends_on('mpi', when='+benchmark')
     depends_on('tclap', type=('build', 'link'))
     depends_on('jsoncpp')
     depends_on('spdlog')
     depends_on('cmake', type=('build'))
 
     def cmake_args(self):
-        args = ["-DBUILD_SHARED_LIBS:BOOL=ON" ]
-        args.append("-DCMAKE_CXX_COMPILER=%s" % self.spec['mpi'].mpicxx])
+        args = ['-DBUILD_SHARED_LIBS:BOOL=ON' ]
+        if '+benchmark' in spec:
+            args.append('-DCMAKE_CXX_COMPILER=%s' % self.spec['mpi'].mpicxx])
+            args.append('-DENABLE_BENCHMARK=ON')
+        if '+daemon' in spec:
+            args.append('-DENABLE_DAEMON=ON')
         return args
