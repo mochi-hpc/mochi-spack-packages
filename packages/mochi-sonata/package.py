@@ -9,6 +9,7 @@ class MochiSonata(CMakePackage):
 
     version('master', branch='master', preferred=True)
     version('develop', branch='master')
+    version('0.2', tag='v0.2')
     version('0.1', tag='v0.1')
 
     variant('benchmark', default=False, description='Enable building sonata-benchmark')
@@ -16,7 +17,7 @@ class MochiSonata(CMakePackage):
 
     depends_on('mochi-thallium@develop', when='@develop')
     depends_on('mochi-thallium')
-    depends_on('unqlite')
+    depends_on('unqlite', when='@0.1') # beyond 0.1, unqlite is included in the code
     depends_on('mpi', when='+benchmark')
     depends_on('tclap', type=('build', 'link'))
     depends_on('jsoncpp')
