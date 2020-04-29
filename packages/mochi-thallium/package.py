@@ -38,4 +38,6 @@ class MochiThallium(CMakePackage):
 
     def cmake_args(self):
         args = ["-DBUILD_SHARED_LIBS:BOOL=ON" ]
+        if '+cereal' in self.spec:
+            args.append("-DENABLE_CEREAL:BOOL=ON")
         return args
