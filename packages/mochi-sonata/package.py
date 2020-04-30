@@ -7,7 +7,7 @@ class MochiSonata(CMakePackage):
     url = "https://xgitlab.cels.anl.gov/sds/sonata"
     git = "https://xgitlab.cels.anl.gov/sds/sonata.git"
 
-    version('master', branch='master', preferred=True)
+    version('master', branch='master')
     version('develop', branch='master')
     version('0.2', tag='v0.2')
     version('0.1', tag='v0.1')
