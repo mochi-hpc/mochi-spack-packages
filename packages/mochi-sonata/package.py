@@ -15,8 +15,8 @@ class MochiSonata(CMakePackage):
     variant('benchmark', default=False, description='Enable building sonata-benchmark')
     variant('daemon', default=True, description='Enable building sonata-daemon')
 
-    depends_on('mochi-thallium@develop', when='@develop')
-    depends_on('mochi-thallium')
+    depends_on('mochi-thallium@develop+cereal', when='@develop')
+    depends_on('mochi-thallium+cereal')
     depends_on('unqlite', when='@0.1') # beyond 0.1, unqlite is included in the code
     depends_on('mpi', when='+benchmark')
     depends_on('tclap', type=('build', 'link'))
