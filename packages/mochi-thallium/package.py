@@ -10,6 +10,7 @@ class MochiThallium(CMakePackage):
 
     version('master', branch='master')
     version('develop', branch='master')
+    version('0.6.1', tag='v0.6.1')
     version('0.6', tag='v0.6')
     version('0.5.4', tag='v0.5.4')
     version('0.5.3', tag='v0.5.3')
@@ -25,7 +26,7 @@ class MochiThallium(CMakePackage):
     version('0.3.1', tag='v0.3.1')
     version('0.3', tag='v0.3')
 
-    variant('cereal', default=False,
+    variant('cereal', default=True,
             description='Use the cereal library for serialization')
 
     depends_on('mochi-margo@develop', when='@develop')
