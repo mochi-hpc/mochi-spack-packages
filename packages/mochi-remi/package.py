@@ -12,6 +12,7 @@ class MochiRemi(CMakePackage):
 
     version('develop', branch='master')
     version('master', branch='master')
+    version('0.2.3', tag='v0.2.3')
     version('0.2.2', tag='v0.2.2')
     version('0.2.1', tag='v0.2.1')
     version('0.2', tag='v0.2')
@@ -19,7 +20,8 @@ class MochiRemi(CMakePackage):
     version('0.1', tag='v0.1')
 
     depends_on('libuuid')
-    depends_on('mochi-thallium@0.4.2:', when='@0.2.2:')
+    depends_on('mochi-thallium@0.6.0:+cereal', when='@0.2.3:')
+    depends_on('mochi-thallium@0.4.2:', when='@0.2.2')
     depends_on('mochi-thallium@0.3:', when='@:0.2.1')
     depends_on('mochi-abt-io@0.1:')
 
