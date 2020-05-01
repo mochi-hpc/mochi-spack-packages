@@ -46,7 +46,7 @@ class MochiBake(AutotoolsPackage):
 
     # dependencies for develop version
     depends_on('mochi-margo@develop', when='@develop')
-    depends_on('mochi-remi@develop', when='@develop')
+    depends_on('mochi-remi@develop', when='+remi @develop')
     depends_on('mochi-abt-io@develop', when='@develop')
 
     def configure_args(self):
