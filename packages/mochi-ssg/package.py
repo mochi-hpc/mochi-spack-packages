@@ -20,6 +20,7 @@ class MochiSsg(AutotoolsPackage):
     version('0.2', tag='v0.2')
 
     patch('0001-additional-error-reporting.patch', when='@0.2')
+    patch('0001-Add-an-explicit-check-for-pmix-libs.patch', when='@0.4.1')
 
     variant('mpi', default=True, description='Build with MPI support')
     variant('pmix', default=False, description='Build with PMIx support')
