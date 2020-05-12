@@ -15,7 +15,7 @@ class MochiSonata(CMakePackage):
 
     variant('benchmark', default=False, description='Enable building sonata-benchmark')
     variant('daemon', default=True, description='Enable building sonata-daemon')
-    variant('unqlite_threadsafe', default=True, description='Enable native thread safety in UnQLite')
+    variant('unqlite_st', default=True, description='Single-threaded UnQLite')
 
     depends_on('mochi-thallium@develop+cereal', when='@develop')
     depends_on('mochi-thallium+cereal')
@@ -33,6 +33,6 @@ class MochiSonata(CMakePackage):
             args.append('-DENABLE_BENCHMARK=ON')
         if '+daemon' in self.spec:
             args.append('-DENABLE_DAEMON=ON')
-        if '+unqlite_threadsafe' in self.spec:
-            args.append('-DENABLE_UNQLITE_THREADS=ON')
+        if '+unqlite_st' in self.spec:
+            args.append('-DENABLE_UNQLITE_THREADS=OFF')
         return args
