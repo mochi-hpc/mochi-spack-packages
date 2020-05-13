@@ -7,19 +7,17 @@ from spack.pkg.builtin.libfabric import Libfabric
 
 class Libfabric(Libfabric):
 
-    version('1.9.1',
-    sha256='c305c6035c992523e08c7591a6a3707225ba3e72de40443eaed837a10df6771a',
-        url='https://github.com/ofiwg/libfabric/releases/download/v1.9.1/libfabric-1.9.1.tar.bz2', preferred=True)
-    version('1.10.rc3', tag='v1.10.0rc3')
-    depends_on('m4', when='@1.10.rc3', type=('build'))
-    depends_on('autoconf', when='@1.10.rc3', type=('build'))
-    depends_on('automake', when='@1.10.rc3', type=('build'))
-    depends_on('libtool', when='@1.10.rc3', type=('build'))
-
-    @when('@1.10.rc3')
-    def autoreconf(self, spec, prefix):
-        bash = which('bash')
-        bash('./autogen.sh')
-        with working_dir('fabtests'):
-            bash('./autogen.sh')
-
+    version('1.10.1',
+    sha256='889fa8c99eed1ff2a5fd6faf6d5222f2cf38476b24f3b764f2cbb5900fee8284',
+        url='https://github.com/ofiwg/libfabric/releases/download/v1.10.1/libfabric-1.10.1.tar.bz2', preferred=True)
+#    depends_on('m4', when='@1.10.1', type=('build'))
+#    depends_on('autoconf', when='@1.10.1', type=('build'))
+#    depends_on('automake', when='@1.10.1', type=('build'))
+#    depends_on('libtool', when='@1.10.1', type=('build'))
+#
+#    @when('@1.10.1')
+#    def autoreconf(self, spec, prefix):
+#        bash = which('bash')
+#        bash('./autogen.sh')
+#        with working_dir('fabtests'):
+#            bash('./autogen.sh')
