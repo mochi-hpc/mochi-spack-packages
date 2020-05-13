@@ -10,6 +10,7 @@ class MochiBake(AutotoolsPackage):
 
     version('develop', branch='master')
     version('master', branch='master')
+    version('0.5', tag='v0.5.0')
     version('0.4.1', tag='v0.4.1')
     version('0.4', tag='v0.4')
     version('dev-file-backend', branch='carns/dev-file-backend')
@@ -32,17 +33,15 @@ class MochiBake(AutotoolsPackage):
     depends_on('automake@1.13.4:', type=("build"))
     depends_on('libtool', type=("build"))
     depends_on('mochi-margo@0.4:')
+    depends_on('mochi-abt-io')
+    depends_on('pmdk')
     depends_on('mochi-remi@0.1:', when='@:0.3.3')
     depends_on('mochi-remi@0.2.2:', when='+remi @0.3.4:')
     # dev-file-backend version still requires remi until it is rebased
     depends_on('mochi-remi@0.2.2:', when='@dev-file-backend')
     depends_on('libuuid')
-    # this spec prevents @dev-file-backend from depending on pmdk
-    depends_on('pmdk', when='@0.0.0:')
     depends_on('jsoncpp@1.9.1:', when='+benchmark')
     depends_on('mpi', when='+benchmark')
-    # master now depends on abt-io for file backend
-    depends_on('mochi-abt-io', when='@master')
 
     # dependencies for develop version
     depends_on('mochi-margo@develop', when='@develop')
