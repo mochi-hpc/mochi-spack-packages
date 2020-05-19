@@ -1,0 +1,40 @@
+From 15157473a8d6bfdca27c9265e7337a446f19a007 Mon Sep 17 00:00:00 2001
+From: Rob Latham <robl@mcs.anl.gov>
+Date: Mon, 11 May 2020 15:54:02 -0500
+Subject: [PATCH] Improve deserialize error reporting
+
+---
+ src/ssg.c | 17 ++++++++++++++++-
+ 1 file changed, 16 insertions(+), 1 deletion(-)
+
+diff --git a/src/ssg.c b/src/ssg.c
+index 46b512f7..2c88ddbd 100644
+--- a/src/ssg.c
++++ b/src/ssg.c
+@@ -1475,7 +1475,22 @@ void ssg_group_id_deserialize(
+     *group_id_p = SSG_GROUP_ID_INVALID;
+     *num_addrs = 0;
+ 
+-    if (!ssg_rt || !buf || buf_size == 0 || tmp_num_addrs == 0) return;
++    if (!ssg_rt) {
++        fprintf(stderr, "SSG: Must initialize SSG first\n");
++        return;
++    }
++    if (!buf) {
++        fprintf(stderr, "SSG: Cannot deserialize a NULL buffer\n");
++        return;
++    }
++    if (buf_size == 0) {
++        fprintf(stderr, "SSG: Attempt to deserialize 0 bytes\n");
++        return;
++    }
++    if (tmp_num_addrs == 0) {
++        fprintf(stderr, "SSG: Requested deserializing 0 addresses\n");
++        return;
++    }
+ 
+     /* check to ensure the buffer contains enough data to make a group ID */
+     min_buf_size = (sizeof(magic_nr) + sizeof(g_desc->g_id) + sizeof(num_addrs_buf) + 1);
+-- 
+2.25.1
+
