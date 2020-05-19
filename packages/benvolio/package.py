@@ -24,14 +24,12 @@ class Benvolio(AutotoolsPackage):
     depends_on('mochi-thallium@0.5:')
     depends_on('mochi-abt-io@0.2:')
     # pick up ssg API rework that landed in ssg-0.4.0
-    depends_on('mochi-ssg+mpi@0.4.0:')
+    # rely on PMIx for booting, not MPI
+    depends_on('mochi-ssg+pmix@0.4.0:')
 
     # @develop version
-    depends_on('mochi-thallium@develop', when='@develop')
-    depends_on('mochi-ssg+mpi@develop', when='@develop')
+    #depends_on('mochi-thallium@develop', when='@develop')
+    #depends_on('mochi-ssg+mpi@develop', when='@develop')
 
-    def configure_args(self):
-        extra_args = []
-        extra_args.extend(['CC=%s' % self.spec['mpi'].mpicc])
-        extra_args.extend(['CXX=%s' % self.spec['mpi'].mpicc])
-        return extra_args
+    # no longer require a custom configure_args now that we don't build with
+    # MPI wraper
