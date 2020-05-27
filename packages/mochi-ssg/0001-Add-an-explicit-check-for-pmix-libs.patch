@@ -1,0 +1,25 @@
+From d7d9e03a7bf80034c40ec6a2439266561f811c10 Mon Sep 17 00:00:00 2001
+From: Rob Latham <robl@mcs.anl.gov>
+Date: Fri, 8 May 2020 10:47:18 -0500
+Subject: [PATCH] Add an explicit check for pmix libs
+
+I wasn't using 'pcc' so PMIx libraries did not show up at configure time
+---
+ configure.ac | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/configure.ac b/configure.ac
+index 8cb83072..39ff06ed 100755
+--- a/configure.ac
++++ b/configure.ac
+@@ -98,6 +98,7 @@ if test "x${check_mpi}" = xauto -o "x${check_mpi}" = xyes ; then
+ fi
+ 
+ check_pmix_status=fail
++AC_CHECK_LIB([pmix], [PMIx_Init])
+ if test "x${check_pmix}" = xauto -o "x${check_pmix}" = xyes ; then
+     AC_MSG_CHECKING([If PMIx programs can be compiled])
+     AC_LINK_IFELSE(
+-- 
+2.25.1
+
