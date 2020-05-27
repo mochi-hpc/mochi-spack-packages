@@ -14,8 +14,8 @@ class Flamestore(PythonPackage):
     url      = "https://xgitlab.cels.anl.gov/sds/flamestore"
     git      = "https://xgitlab.cels.anl.gov/sds/flamestore.git"
 
-    version('master', branch='dev-refactoring', preferred=True)
-    version('develop', branch='dev-refactoring')
+    version('master', branch='develop', preferred=True)
+    version('develop', branch='develop')
    
     variant('theta', default=False,
             description='Option to enable when building on Theta')
