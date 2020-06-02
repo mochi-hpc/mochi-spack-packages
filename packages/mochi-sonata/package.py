@@ -9,6 +9,7 @@ class MochiSonata(CMakePackage):
 
     version('master', branch='master')
     version('develop', branch='master')
+    version('0.4', tag='v0.4')
     version('0.3', tag='v0.3')
     version('0.2', tag='v0.2')
     version('0.1', tag='v0.1')
@@ -17,8 +18,8 @@ class MochiSonata(CMakePackage):
     variant('daemon', default=True, description='Enable building sonata-daemon')
     variant('unqlite_st', default=True, description='Single-threaded UnQLite')
 
-    depends_on('mochi-thallium@develop+cereal', when='@develop')
-    depends_on('mochi-thallium+cereal')
+    depends_on('mochi-thallium@develop', when='@develop')
+    depends_on('mochi-thallium')
     depends_on('unqlite', when='@0.1') # beyond 0.1, unqlite is included in the code
     depends_on('mpi', when='+benchmark')
     depends_on('tclap', type=('build', 'link'))
