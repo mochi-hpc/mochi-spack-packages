@@ -31,7 +31,7 @@ class MochiThallium(CMakePackage):
             description='Use the cereal library for serialization')
 
     depends_on('mochi-margo@develop', when='@develop')
-    depends_on('mochi-margo@0.7:', whem='@0.7:')
+    depends_on('mochi-margo@0.7:', when='@0.7:')
     depends_on('mochi-margo@0.6:', when='@0.5:')
     depends_on('mochi-margo@0.4:', when='@:0.3.4')
     depends_on('mochi-margo@0.5:', when='@0.4:0.4.2')
