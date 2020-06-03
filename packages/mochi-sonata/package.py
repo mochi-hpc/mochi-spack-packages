@@ -20,6 +20,7 @@ class MochiSonata(CMakePackage):
 
     depends_on('mochi-thallium@develop', when='@develop')
     depends_on('mochi-thallium')
+    depends_on('mochi-thallium@0.7:', when='@0.4:')
     depends_on('unqlite', when='@0.1') # beyond 0.1, unqlite is included in the code
     depends_on('mpi', when='+benchmark')
     depends_on('tclap', type=('build', 'link'))
