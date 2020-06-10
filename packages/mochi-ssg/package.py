@@ -29,8 +29,13 @@ class MochiSsg(AutotoolsPackage):
 
     depends_on('mpi', when='+mpi')
     depends_on('pmix', when='+pmix')
-    depends_on('autoconf@2.69', type='build')
     depends_on('rdma-credentials', when="+drc")
+
+    depends_on('autoconf@2.69', type=('build'))
+    depends_on('m4', type=('build'))
+    depends_on('automake', type=("build"))
+    depends_on('libtool', type=("build"))
+    depends_on('pkg-config', type=("build"))
 
     depends_on('mochi-margo@0.4:')
     depends_on('mochi-margo@0.6:', when='@0.4.1:')
