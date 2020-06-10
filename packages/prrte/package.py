@@ -1,7 +1,6 @@
 from spack.pkg.builtin.prrte import Prrte
 
 class Prrte(Prrte):
-    depends_on('libev')
 
     def configure_args(self):
         # spack-0.14.2 prrte configure asks for libev (--with-libev) but passes
