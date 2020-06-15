@@ -1,8 +1,7 @@
 from spack.pkg.builtin.mpich import Mpich
 
 class Mpich(Mpich):
-    git = "https://github.com/roblatham00/mpich.git"
-    version('3.4.benvolio', branch='benvolio', submodules=True)
+    version('benvolio', branch='benvolio', git="https://github.com/roblatham00/mpich.git", submodules=True, preferred=False)
     variant('benvolio', default=False, description="build ROMIO with support for Benvolio i/o proxy")
 
     depends_on('benvolio@master', when='+benvolio')
