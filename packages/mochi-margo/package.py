@@ -65,3 +65,12 @@ class MochiMargo(AutotoolsPackage):
     depends_on('argobots@master', type=("build", "link", "run"), when='@develop')
     depends_on('mercury@master', type=("build", "link", "run"), when='@develop')
 
+    def configure_args(self):
+        spec = self.spec
+        extra_args = []
+
+        extra_args.append('LDFLAGS=-Wl,-rpath=%s' %
+        spec['mercury'].prefix.lib)
+
+        return extra_args
+
