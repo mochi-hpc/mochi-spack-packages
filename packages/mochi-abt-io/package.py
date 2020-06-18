@@ -39,7 +39,6 @@ class MochiAbtIo(AutotoolsPackage):
     version('master', branch='master')
 
     depends_on('argobots@1.0:')
-#    depends_on('argobots@master', when='@develop')
     depends_on('autoconf@2.67:')
     depends_on('m4', type=("build"))
     depends_on('automake', type=("build"))
