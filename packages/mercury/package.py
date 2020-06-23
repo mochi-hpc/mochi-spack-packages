@@ -9,3 +9,4 @@ class Mercury(Mercury):
 
     git = 'https://github.com/mercury-hpc/mercury.git'
     version('2.0.0a1', tag='v2.0.0a1', submodules=True)
+    version('2.0.0rc1', tag='v2.0.0rc1', submodules=True)
