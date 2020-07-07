@@ -12,6 +12,7 @@ class MochiColza(CMakePackage):
     version('develop', branch='master')
     version('master', branch='master', preferred=True)
 
+    depends_on('libuuid')
     depends_on('mochi-thallium @0.8:')
     depends_on('mochi-ssg @0.4: +mpi')
 
