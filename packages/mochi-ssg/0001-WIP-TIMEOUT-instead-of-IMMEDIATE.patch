@@ -1,0 +1,36 @@
+From 7b43eb61daa46409b451f93c0d426ac482fb8f51 Mon Sep 17 00:00:00 2001
+From: Rob Latham <robl@mcs.anl.gov>
+Date: Wed, 17 Jun 2020 10:09:39 -0400
+Subject: [PATCH] WIP: TIMEOUT instead of IMMEDIATE
+
+---
+ src/ssg.c | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
+
+diff --git a/src/ssg.c b/src/ssg.c
+index 5d4cffb5..fb05aea0 100644
+--- a/src/ssg.c
++++ b/src/ssg.c
+@@ -425,7 +425,8 @@ ssg_group_id_t ssg_group_create_pmix(
+     snprintf(key, 512, "ssg-%s-%d-id", proc.nspace, proc.rank);
+     PMIX_INFO_CREATE(info, 1);
+     flag = true;
+-    PMIX_INFO_LOAD(info, PMIX_IMMEDIATE, &flag, PMIX_BOOL);
++    int wait_secs=1;
++    PMIX_INFO_LOAD(info, PMIX_TIMEOUT, &wait_secs, PMIX_INT);
+     ret = PMIx_Get(&proc, key, info, 1, &val_p);
+     PMIX_INFO_FREE(info, 1);
+     if (ret != PMIX_SUCCESS)
+@@ -2343,7 +2344,8 @@ void ssg_pmix_proc_failure_notify_fn(
+     snprintf(key, 512, "ssg-%s-%d-id", source->nspace, source->rank);
+     PMIX_INFO_CREATE(get_info, 1);
+     flag = true;
+-    PMIX_INFO_LOAD(get_info, PMIX_IMMEDIATE, &flag, PMIX_BOOL);
++    int wait_secs=1;
++    PMIX_INFO_LOAD(get_info, PMIX_TIMEOUT, &wait_secs, PMIX_INT);
+     ret = PMIx_Get(source, key, get_info, 1, &val_p);
+     PMIX_INFO_FREE(get_info, 1);
+     if (ret != PMIX_SUCCESS)
+-- 
+1.8.3.1
+
