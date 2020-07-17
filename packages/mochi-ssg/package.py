@@ -32,7 +32,7 @@ class MochiSsg(AutotoolsPackage):
     depends_on('pmix', when='+pmix')
     depends_on('rdma-credentials', when="+drc")
 
-    depends_on('autoconf@2.69', type=('build'))
+    depends_on('autoconf@2.69:', type=('build'))
     depends_on('m4', type=('build'))
     depends_on('automake', type=("build"))
     depends_on('libtool', type=("build"))
