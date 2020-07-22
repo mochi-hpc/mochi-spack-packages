@@ -39,6 +39,7 @@ class PyMochiMargo(PythonPackage):
 
     version('develop', branch="master")
     version('master', branch="master")
+    version('0.3.1', tag='v0.3.1')
     version('0.3', tag='v0.3')
     version('0.2.4', tag='v0.2.4')
     version('0.2.3', tag='v0.2.3')
