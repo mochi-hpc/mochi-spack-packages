@@ -9,6 +9,7 @@ class MochiSonata(CMakePackage):
 
     version('master', branch='master')
     version('develop', branch='master')
+    version('0.5', tag='v0.5')
     version('0.4', tag='v0.4')
     version('0.3', tag='v0.3')
     version('0.2', tag='v0.2')
@@ -21,7 +22,7 @@ class MochiSonata(CMakePackage):
     depends_on('pkg-config', type=('build', 'link'))
     depends_on('mochi-thallium@develop', when='@develop')
     depends_on('mochi-thallium@0.7', when='@:0.4')
-    depends_on('mochi-thallium@0.8:', when='@master') # TODO when=0.5: when 0.5 comes out 
+    depends_on('mochi-thallium@0.8:', when='@0.5:')
     depends_on('unqlite', when='@0.1') # beyond 0.1, unqlite is included in the code
     depends_on('mpi', when='+benchmark')
     depends_on('tclap', type=('build', 'link'))

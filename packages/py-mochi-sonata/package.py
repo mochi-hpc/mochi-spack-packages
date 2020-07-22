@@ -34,9 +34,10 @@ class PyMochiSonata(PythonPackage):
 
     version('develop', branch="master")
     version('master', branch="master")
+    version('0.1', tag='v0.1')
 
     depends_on('python')
     depends_on('py-pkgconfig', type=('build'))
     depends_on('py-pybind11', type=('build'))
     depends_on('py-mochi-margo')
-    depends_on('mochi-sonata@0.4:')
+    depends_on('mochi-sonata@0.5:')
