@@ -6,8 +6,10 @@ class Mpich(Mpich):
              preferred=False)
 
     variant('benvolio', default=False, description="build ROMIO with support for Benvolio i/o proxy")
+    variant('argobots', default=False, description="enable Argobots support")
 
     depends_on('benvolio@master', when='+benvolio')
+    depends_on('argobots', when='+argobots')
 
     def configure_args(self):
         spec = self.spec
@@ -15,4 +17,9 @@ class Mpich(Mpich):
 
         if '+benvolio' in spec:
             config_args.append('--with-file-system=ufs+testfs+benvolio')
+
+        if '+argobots' in spec:
+            config_args.append('--with-thread-package=argobots')
+            config_args.append('--with-argobots=' + spec['argobots'].prefix)
+
         return config_args
