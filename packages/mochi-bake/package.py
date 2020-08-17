@@ -10,10 +10,11 @@ class MochiBake(AutotoolsPackage):
 
     version('develop', branch='master')
     version('master', branch='master')
+    # branch with misc experimental features combined for testing
+    version('head-carns-exp', branch='carns/dev-experimental')
     version('0.5', tag='v0.5.0')
     version('0.4.1', tag='v0.4.1')
     version('0.4', tag='v0.4')
-    version('dev-file-backend', branch='carns/dev-file-backend')
     version('0.3.6', tag='v0.3.6')
     version('0.3.5', tag='v0.3.5')
     version('0.3.4', tag='v0.3.4')
