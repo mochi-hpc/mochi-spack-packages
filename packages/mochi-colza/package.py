@@ -17,3 +17,4 @@ class MochiColza(CMakePackage):
 
     # dependencies for develop version
     depends_on('mochi-thallium @develop', when='@develop')
+    depends_on('mpi')
