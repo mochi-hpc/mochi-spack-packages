@@ -17,6 +17,9 @@ class Benvolio(AutotoolsPackage):
     version('master', branch='master', preferred=True)
     version('develop', branch='master')
 
+    variant('mpi', default=False, description='Bootstrap Benvolio providers with MPI');
+    variant('pmix', default=True, description='Bootstrap Benvolio providers with PMIx');
+
     depends_on('automake')
     depends_on('autoconf')
     depends_on('libtool')
@@ -24,12 +27,20 @@ class Benvolio(AutotoolsPackage):
     depends_on('mochi-thallium@0.5:')
     depends_on('mochi-abt-io@0.2:')
     # pick up ssg API rework that landed in ssg-0.4.0
-    # rely on PMIx for booting, not MPI
-    depends_on('mochi-ssg+pmix@0.4.0:')
+    # can bootstrap with either pmix or mpi.. not sure how to specify that in spack
+    depends_on('mochi-ssg@0.4.0:+pmix', when='+pmix')
+    depends_on('mochi-ssg@0.4.0:+mpi', when='+mpi')
 
     # @develop version
     #depends_on('mochi-thallium@develop', when='@develop')
     #depends_on('mochi-ssg+mpi@develop', when='@develop')
 
-    # no longer require a custom configure_args now that we don't build with
-    # MPI wraper
+    # Require a custom configure_args if we need to build with MPI wrapper
+
+    def configure_args(self):
+        extra_args = []
+        if '+mpi' in spec:
+            extra_args.extend(['CC=%s' % self.spec['mpi'].mpicc])
+            extra_args.extend(['CXX=%s' % self.spec['mpi'].mpicc])
+
+        return extra_args
