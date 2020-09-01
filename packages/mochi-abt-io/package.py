@@ -39,9 +39,9 @@ class MochiAbtIo(AutotoolsPackage):
     version('master', branch='master')
 
     depends_on('argobots@1.0:')
-    depends_on('autoconf@2.67:')
+    depends_on('autoconf@2.67:', type=("build"))
     depends_on('m4', type=("build"))
     depends_on('automake', type=("build"))
     depends_on('libtool', type=("build"))
-    depends_on('pkg-config')
+    depends_on('pkg-config', type=("build"))
     depends_on('openssl', type=("build", "link", "run"))
