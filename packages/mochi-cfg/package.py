@@ -31,6 +31,7 @@ class MochiCfg(AutotoolsPackage):
     homepage = 'https://xgitlab.cels.anl.gov/sds/mochi-cfg'
     git = 'https://xgitlab.cels.anl.gov/sds/mochi-cfg.git'
 
+    version('0.1', tag='v0.1', preferred=True)
     version('develop', branch='master')
     version('master', branch='master')
 
