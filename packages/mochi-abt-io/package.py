@@ -31,13 +31,15 @@ class MochiAbtIo(AutotoolsPackage):
     homepage = 'https://xgitlab.cels.anl.gov/sds/abt-io'
     git = 'https://xgitlab.cels.anl.gov/sds/abt-io.git'
 
-    version('0.3.1', tag='v0.3.1', preferred=True)
+    version('0.4', tag='v0.4', preferred=True)
+    version('0.3.1', tag='v0.3.1')
     version('0.3', tag='v0.3')
     version('0.2', tag='v0.2')
     version('0.1', tag='v0.1')
     version('develop', branch='master')
     version('master', branch='master')
 
+    depends_on('mochi-cfg@0.1:', when='@0.4:')
     depends_on('argobots@1.0:')
     depends_on('autoconf@2.67:', type=("build"))
     depends_on('m4', type=("build"))
@@ -45,3 +47,6 @@ class MochiAbtIo(AutotoolsPackage):
     depends_on('libtool', type=("build"))
     depends_on('pkg-config', type=("build"))
     depends_on('openssl', type=("build", "link", "run"))
+
+    # dependencies for develop version
+    depends_on('mochi-cfg@develop', when='@develop')
