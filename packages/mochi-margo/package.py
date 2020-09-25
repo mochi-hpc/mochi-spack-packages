@@ -35,6 +35,7 @@ class MochiMargo(AutotoolsPackage):
     version('master', branch='master')
     version('develop', branch='master')
     version('head-prio-pool', branch='carns/dev-prio-pool')
+    version('0.8', tag='v0.8')
     version('0.7.2', tag='v0.7.2')
     version('0.7.1', tag='v0.7.1')
     version('0.7', tag='v0.7')
@@ -53,8 +54,7 @@ class MochiMargo(AutotoolsPackage):
     version('0.4.3', tag='v0.4.3')
     version('0.4.2', tag='v0.4.2')
 
-    # RPC breadcrubmb support introduced in margo-0.5.2 requires latest mercury
-    # (until mercury has a release we can track
+    depends_on('mochi-cfg@0.1:', when='@0.8:')
     depends_on('autoconf@2.65:', type=("build"))
     depends_on('m4', type=('build'))
     depends_on('automake', type=("build"))
@@ -66,4 +66,4 @@ class MochiMargo(AutotoolsPackage):
 
     # dependencies for develop version
     depends_on('mercury@master', type=("build", "link", "run"), when='@develop')
-
+    depends_on('mochi-cfg@develop', when='@develop')
