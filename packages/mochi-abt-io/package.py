@@ -31,7 +31,8 @@ class MochiAbtIo(AutotoolsPackage):
     homepage = 'https://xgitlab.cels.anl.gov/sds/abt-io'
     git = 'https://xgitlab.cels.anl.gov/sds/abt-io.git'
 
-    version('0.4', tag='v0.4', preferred=True)
+    version('0.4.1', tag='v0.4.1', preferred=True)
+    version('0.4', tag='v0.4')
     version('0.3.1', tag='v0.3.1')
     version('0.3', tag='v0.3')
     version('0.2', tag='v0.2')
