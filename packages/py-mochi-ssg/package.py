@@ -39,6 +39,7 @@ class PyMochiSsg(PythonPackage):
     
     version('develop',  branch='master')
     version('master',  branch='master')
+    version('0.1.2', tag='v0.1.2')
     version('0.1.1', tag='v0.1.1')
     version('0.1', tag='v0.1')
 
@@ -48,7 +49,9 @@ class PyMochiSsg(PythonPackage):
     depends_on('py-pybind11', type=('build'))
     depends_on('py-mpi4py', when='+mpi')
     depends_on('mpi', when='+mpi', type=("build"))
-
+    
+    depends_on('mochi-ssg+mpi@0.4.1:', when='@master +mpi')
+    depends_on('mochi-ssg@0.4.1:', when='@master')
     depends_on('mochi-ssg+mpi@0.1:0.2', when='@:0.1.1 +mpi')
     depends_on('mochi-ssg@0.1:0.2', when='@:0.1.1 ~mpi')
     depends_on('py-mochi-margo@0.1:')

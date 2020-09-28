@@ -37,6 +37,7 @@ class PyMochiRemi(PythonPackage):
 
     version('develop',  branch='master')
     version('master',  branch='master')
+    version('0.1.2', tag='v0.1.2')
     version('0.1.1', tag='v0.1.1')
     version('0.1', tag='v0.1')
 
