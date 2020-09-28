@@ -25,28 +25,19 @@
 from spack import *
 
 
-class MochiAbtIo(AutotoolsPackage):
-    """a Mochi library that provides Argobots bindings to POSIX I/O functions."""
+class MochiCfg(AutotoolsPackage):
+    """Configuration management utilities for Mochi components"""
 
-    homepage = 'https://xgitlab.cels.anl.gov/sds/abt-io'
-    git = 'https://xgitlab.cels.anl.gov/sds/abt-io.git'
+    homepage = 'https://xgitlab.cels.anl.gov/sds/mochi-cfg'
+    git = 'https://xgitlab.cels.anl.gov/sds/mochi-cfg.git'
 
-    version('0.4', tag='v0.4', preferred=True)
-    version('0.3.1', tag='v0.3.1')
-    version('0.3', tag='v0.3')
-    version('0.2', tag='v0.2')
-    version('0.1', tag='v0.1')
+    version('0.1', tag='v0.1', preferred=True)
     version('develop', branch='master')
     version('master', branch='master')
 
-    depends_on('mochi-cfg@0.1:', when='@0.4:')
-    depends_on('argobots@1.0:')
+    depends_on('jansson')
     depends_on('autoconf@2.67:', type=("build"))
     depends_on('m4', type=("build"))
     depends_on('automake', type=("build"))
     depends_on('libtool', type=("build"))
     depends_on('pkg-config', type=("build"))
-    depends_on('openssl', type=("build", "link", "run"))
-
-    # dependencies for develop version
-    depends_on('mochi-cfg@develop', when='@develop')

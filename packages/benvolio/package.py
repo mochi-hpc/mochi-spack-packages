@@ -39,8 +39,8 @@ class Benvolio(AutotoolsPackage):
 
     def configure_args(self):
         extra_args = []
-        if '+mpi' in spec:
+        if '+mpi' in self.spec:
             extra_args.extend(['CC=%s' % self.spec['mpi'].mpicc])
-            extra_args.extend(['CXX=%s' % self.spec['mpi'].mpicc])
+            extra_args.extend(['CXX=%s' % self.spec['mpi'].mpicxx])
 
         return extra_args
