@@ -40,7 +40,7 @@ class MochiMona(CMakePackage):
 
     depends_on('cmake@3.14:', type=('build'))
     depends_on('argobots@1.0:', type=("build", "link", "run"))
-    depends_on('mercury@2.0.0a1:', type=("build", "link", "run"))
+    depends_on('mercury@master', type=("build", "link", "run")) # change to 2.0.0 when it comes out
     depends_on('mpi', when='+benchmark', type=("build", "link", "run"))
 
     # dependencies for develop version
