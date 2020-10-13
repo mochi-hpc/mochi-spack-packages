@@ -51,13 +51,15 @@ class PyMochiSsg(PythonPackage):
     depends_on('py-mpi4py', when='+mpi')
     depends_on('mpi', when='+mpi', type=("build"))
     
-#    depends_on('mochi-ssg+mpi@0.4.1:', when='@0.1.2: +mpi')
-#    depends_on('mochi-ssg@0.4.1:', when='@0.1.2: ~mpi')
-#    depends_on('mochi-ssg+mpi@0.1:0.2', when='@:0.1.1 +mpi')
-#    depends_on('mochi-ssg@0.1:0.2', when='@:0.1.1 ~mpi')
-    depends_on('mochi-ssg')
+    depends_on('mochi-ssg+mpi@0.4.1:', when='@0.1.2: +mpi')
+    depends_on('mochi-ssg@0.4.1:', when='@0.1.2: ~mpi')
+    depends_on('mochi-ssg+mpi@0.1:0.2', when='@0.1:0.1.1 +mpi')
+    depends_on('mochi-ssg@0.1:0.2', when='@0.1:0.1.1 ~mpi')
     depends_on('py-mochi-margo@0.1:')
 
     depends_on('mochi-ssg+mpi@develop', when='+mpi @develop')
     depends_on('mochi-ssg@develop', when='~mpi @develop')
     depends_on('py-mochi-margo@develop', when='@develop')
+
+    depends_on('mochi-ssg+mpi@dev-error-codes', when='+mpi @dev-new-ssg-api')
+    depends_on('mochi-ssg@dev-error-codes', when='~mpi @dev-new-ssg-api')
