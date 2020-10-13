@@ -35,6 +35,7 @@ class MochiMargo(AutotoolsPackage):
     version('master', branch='master')
     version('develop', branch='master')
     version('head-prio-pool', branch='carns/dev-prio-pool')
+    version('0.8.5', tag='v0.8.5')
     version('0.8.4', tag='v0.8.4')
     version('0.8.3', tag='v0.8.3')
     version('0.8.2', tag='v0.8.2')
