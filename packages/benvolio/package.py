@@ -24,7 +24,8 @@ class Benvolio(AutotoolsPackage):
     depends_on('autoconf')
     depends_on('libtool')
     # thallium-0.5 provided engine::wrap()
-    depends_on('mochi-thallium@0.5:')
+    # thallim-0.8.2 provided an engine constructor that takes margo hints
+    depends_on('mochi-thallium@0.8.2:')
     depends_on('mochi-abt-io@0.2:')
     # pick up ssg API rework that landed in ssg-0.4.0
     # can bootstrap with either pmix or mpi.. not sure how to specify that in spack
