@@ -59,7 +59,8 @@ class MochiMargo(AutotoolsPackage):
     version('0.4.3', tag='v0.4.3')
     version('0.4.2', tag='v0.4.2')
 
-    depends_on('mochi-cfg@0.1:', when='@0.8:')
+    depends_on('mochi-cfg@0.1:', when='@0.8:0.8.5')
+    depends_on('json-c', when='@master,develop')
     depends_on('autoconf@2.65:', type=("build"))
     depends_on('m4', type=('build'))
     depends_on('automake', type=("build"))
