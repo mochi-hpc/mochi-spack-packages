@@ -13,7 +13,7 @@ class MochiBedrock(CMakePackage):
 
     depends_on('mochi-margo@master', when='@master')
     depends_on('mochi-thallium')
-    depends_on('mochi-ssg@master')
+    depends_on('mochi-ssg@master', when='@master')
     depends_on('mochi-abt-io')
 
     depends_on('mochi-thallium@develop', when='@develop')
