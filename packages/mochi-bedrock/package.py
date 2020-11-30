@@ -12,7 +12,7 @@ class MochiBedrock(CMakePackage):
     version('master', branch='master')
     version('0.1', tag='v0.1', preferred=True)
 
-    depends_on('mochi-margo@master', when='@0.1:9.9.9')
+    depends_on('mochi-margo@0.9:', when='@0.1:9.9.9')
     depends_on('mochi-thallium')
     depends_on('mochi-ssg@master', when='@0.1:9.9.9')
     depends_on('mochi-abt-io')
