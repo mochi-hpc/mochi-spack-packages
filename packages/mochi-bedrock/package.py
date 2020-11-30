@@ -9,11 +9,12 @@ class MochiBedrock(CMakePackage):
     git = 'https://xgitlab.cels.anl.gov/sds/bedrock.git'
 
     version('develop', branch='master')
-    version('master', branch='master', preferred=True)
+    version('master', branch='master')
+    version('0.1', tag='v0.1', preferred=True)
 
-    depends_on('mochi-margo@master', when='@master')
+    depends_on('mochi-margo@master', when='@0.1:9.9.9')
     depends_on('mochi-thallium')
-    depends_on('mochi-ssg@master', when='@master')
+    depends_on('mochi-ssg@master', when='@0.1:9.9.9')
     depends_on('mochi-abt-io')
 
     depends_on('mochi-thallium@develop', when='@develop')
