@@ -14,7 +14,7 @@ class MochiBedrock(CMakePackage):
 
     depends_on('mochi-margo@0.9:', when='@0.1:9.9.9')
     depends_on('mochi-thallium')
-    depends_on('mochi-ssg@master', when='@0.1:9.9.9')
+    depends_on('mochi-ssg@master', when='@0.1:9.9.9,master')
     depends_on('mochi-abt-io')
 
     depends_on('mochi-thallium@develop', when='@develop')
