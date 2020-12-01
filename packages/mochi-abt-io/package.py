@@ -40,7 +40,7 @@ class MochiAbtIo(AutotoolsPackage):
     version('develop', branch='master')
     version('master', branch='master')
 
-    depends_on('mochi-cfg@0.1:', when='@0.4:')
+    depends_on('mochi-cfg@0.1:', when='@0.4:0.4.1')
     depends_on('argobots@1.0:')
     depends_on('autoconf@2.67:', type=("build"))
     depends_on('m4', type=("build"))
@@ -50,4 +50,4 @@ class MochiAbtIo(AutotoolsPackage):
     depends_on('openssl', type=("build", "link", "run"))
 
     # dependencies for develop version
-    depends_on('mochi-cfg@develop', when='@develop')
+    depends_on('json-c', when='@develop')
