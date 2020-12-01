@@ -38,8 +38,6 @@ class MochiBake(AutotoolsPackage):
     depends_on('pmdk')
     depends_on('mochi-remi@0.1:', when='@:0.3.3')
     depends_on('mochi-remi@0.2.2:', when='+remi @0.3.4:')
-    # dev-file-backend version still requires remi until it is rebased
-    depends_on('mochi-remi@0.2.2:', when='@dev-file-backend')
     depends_on('libuuid')
     depends_on('jsoncpp@1.9.1:', when='+benchmark')
     depends_on('mpi', when='+benchmark')
