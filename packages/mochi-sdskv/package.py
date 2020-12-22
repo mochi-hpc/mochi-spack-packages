@@ -53,6 +53,7 @@ class MochiSdskv(AutotoolsPackage):
     variant('bdb', default=True, description="Enable Berkely DB keyval backend")
     variant('leveldb', default=True, description="Enable LevelDB keyval backend")
     variant('lmdb', default=False, description="Enable lmdb keyval backend")
+    variant('bedrock', default=True, description="Enable bedrock (Mochi loader")
 
     depends_on('autoconf@2.65:')
     depends_on('automake@1.13.4:')
@@ -74,6 +75,7 @@ class MochiSdskv(AutotoolsPackage):
     # variable dependencies
     depends_on('berkeley-db', when="+bdb")
     depends_on('leveldb', when="+leveldb")
+    depends_on('mochi-bedrock', when="+bedrock")
 
     # requires c++11 if bwtree selected
     conflicts('%gcc@:4.8.0', when="+bwtree")
@@ -108,6 +110,11 @@ class MochiSdskv(AutotoolsPackage):
                 extra_args.append('--enable-remi')
             else:
                 extra_args.append('--disable-remi')
+        if spec.satisfies('@0.1.9.1:'):
+            if '+bedrock' in spec:
+                extra_args.append('--enable-bedrock')
+            else:
+                extra_args.append('--disable-bedrock')
 
         # cray compilers needed -latomic to build BwTree;
         # gcc7, at least on my Ubuntu laptop did, also
