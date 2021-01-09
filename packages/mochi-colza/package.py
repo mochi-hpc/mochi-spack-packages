@@ -28,7 +28,7 @@ class MochiColza(CMakePackage):
 
     # dependencies for develop version
     depends_on('mochi-thallium @develop', when='@develop')
-    depends_on('mochi-mona @deveop', when='@develop')
+    depends_on('mochi-mona @develop', when='@develop')
     depends_on('mochi-bedrock @develop', when='@develop +bedrock')
     depends_on('mochi-ssg@develop', when='@develop')
 
