@@ -10,6 +10,8 @@ class MochiBake(AutotoolsPackage):
 
     version('develop', branch='master')
     version('master', branch='master')
+    # branch with bedrock support under development
+    version('develop-bedrock', branch='dev-bedrock-26')
     # branch with misc experimental features combined for testing
     version('head-carns-exp', branch='carns/dev-experimental')
     version('0.5', tag='v0.5.0')
@@ -29,6 +31,7 @@ class MochiBake(AutotoolsPackage):
     variant('remi', default=False, description="Enable support for migration with REMI")
     variant('sizecheck', default=False, description="Enable size/bound checking (may degrade performance)")
     variant('timers', default=False, description="Enable timers on stdout (use for performance tuning)")
+    variant('bedrock', default=False, description='Enable building Bedrock module')
 
     depends_on('autoconf@2.65:', type=("build"))
     depends_on('automake@1.13.4:', type=("build"))
@@ -41,11 +44,15 @@ class MochiBake(AutotoolsPackage):
     depends_on('libuuid')
     depends_on('jsoncpp@1.9.1:', when='+benchmark')
     depends_on('mpi', when='+benchmark')
+    depends_on('mochi-bedrock', type='build', when='+bedrock')
 
     # dependencies for develop version
     depends_on('mochi-margo@develop', when='@develop')
     depends_on('mochi-remi@develop', when='+remi @develop')
     depends_on('mochi-abt-io@develop', when='@develop')
+
+    conflicts('+bedrock', when='@:0.5',
+              msg='+bedrock variant only available starting from 0.6')
 
     def configure_args(self):
         spec = self.spec
