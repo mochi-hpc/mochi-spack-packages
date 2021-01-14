@@ -70,6 +70,11 @@ class MochiBake(AutotoolsPackage):
         else:
             extra_args.append('--disable-sizecheck')
 
+        if '+bedrock' in spec:
+            extra_args.append('--enable-bedrock')
+        else:
+            extra_args.append('--disable-bedrock')
+
         if '+timers' in spec:
             extra_args.append('--enable-timers')
         else:
