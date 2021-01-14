@@ -11,7 +11,7 @@ class MochiBake(AutotoolsPackage):
     version('develop', branch='master')
     version('master', branch='master')
     # branch with bedrock support under development
-    version('develop-bedrock', branch='dev-bedrock-26')
+    version('head-bedrock', branch='dev-bedrock-26')
     # branch with misc experimental features combined for testing
     version('head-carns-exp', branch='carns/dev-experimental')
     version('0.5', tag='v0.5.0')
