@@ -22,7 +22,7 @@ class MochiSonata(CMakePackage):
     variant('daemon', default=True, description='Enable building sonata-daemon')
     variant('unqlite_st', default=True, description='Single-threaded UnQLite')
 
-    depends_on('pkg-config', type=('build', 'link'))
+    depends_on('pkgconfig', type=('build', 'link'))
     depends_on('mochi-thallium@develop', when='@develop')
     depends_on('mochi-thallium@0.7', when='@:0.4')
     depends_on('mochi-thallium@0.8:', when='@0.5:')

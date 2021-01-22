@@ -48,5 +48,5 @@ class MochiAbtIo(AutotoolsPackage):
     depends_on('m4', type=("build"))
     depends_on('automake', type=("build"))
     depends_on('libtool', type=("build"))
-    depends_on('pkg-config', type=("build"))
+    depends_on('pkgconfig', type=("build"))
     depends_on('openssl', type=("build", "link", "run"))

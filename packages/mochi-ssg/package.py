@@ -39,7 +39,7 @@ class MochiSsg(AutotoolsPackage):
     depends_on('m4', type=('build'))
     depends_on('automake', type=("build"))
     depends_on('libtool', type=("build"))
-    depends_on('pkg-config', type=("build"))
+    depends_on('pkgconfig', type=("build"))
 
     depends_on('mochi-margo@0.4:')
     depends_on('mochi-margo@0.6:', when='@0.4.1:')

@@ -16,7 +16,7 @@ class MochiColza(CMakePackage):
             description='Build bedrock module')
 
     depends_on('mpi')
-    depends_on('pkg-config')
+    depends_on('pkgconfig')
     depends_on('nlohmann-json')
     depends_on('spdlog')
     depends_on('tclap')
