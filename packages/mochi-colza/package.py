@@ -14,6 +14,8 @@ class MochiColza(CMakePackage):
 
     variant('bedrock', default=True,
             description='Build bedrock module')
+    variant('examples', default=True,
+            description='Build colza examples')
 
     depends_on('mpi')
     depends_on('pkg-config')
@@ -38,4 +40,8 @@ class MochiColza(CMakePackage):
             args.append('-DENABLE_BEDROCK=ON')
         else:
             args.append('-DENABLE_BEDROCK=OFF')
+        if '+examples' in self.spec:
+            args.append('-DENABLE_EXAMPLES=ON')
+        else:
+            args.append('-DENABLE_EXAMPLES=OFF')
         return args
