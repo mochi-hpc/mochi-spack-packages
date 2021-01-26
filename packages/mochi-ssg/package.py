@@ -27,6 +27,7 @@ class MochiSsg(AutotoolsPackage):
     patch('0001-Improve-deserialize-error-reporting.patch', when='@0.4.1')
     patch('0001-WIP-TIMEOUT-instead-of-IMMEDIATE.patch', when='@0.4.0:')
 
+    variant('valgrind', default=False, description='Build a Valgrind-friendly SSG')
     variant('mpi', default=True, description='Build with MPI support')
     variant('pmix', default=False, description='Build with PMIx support')
     variant('drc', default=False, description='Support Cray Dynamic RDMA Credentials')
@@ -62,6 +63,11 @@ class MochiSsg(AutotoolsPackage):
         if '+drc' in spec:
             extra_args.extend([
                 "--enable-drc"
+            ])
+
+        if '+valgrind' in spec:
+            extra_args.extend([
+                "--enable-valgrind"
             ])
 
         return extra_args
