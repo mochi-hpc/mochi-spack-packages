@@ -24,6 +24,14 @@ class Libfabric(Libfabric):
 
     patch('libfabric-1.11-option-disable-spinlocks.patch', when="+disable-spinlocks")
 
+    def configure_args(self):
+        spec = self.spec
+        extra_args = []
+
+        if '+disable-spinlocks' in spec:
+            extra_args.append('--disable-spinlocks')
+        return extra_args
+
 #
 #    depends_on('m4', when='@1.10.1', type=('build'))
 #    depends_on('autoconf', when='@1.10.1', type=('build'))
