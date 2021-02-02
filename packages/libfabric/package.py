@@ -32,15 +32,7 @@ class Libfabric(Libfabric):
             extra_args.append('--disable-spinlocks')
         return extra_args
 
-#
-#    depends_on('m4', when='@1.10.1', type=('build'))
-#    depends_on('autoconf', when='@1.10.1', type=('build'))
-#    depends_on('automake', when='@1.10.1', type=('build'))
-#    depends_on('libtool', when='@1.10.1', type=('build'))
-#
-#    @when('@1.10.1')
-#    def autoreconf(self, spec, prefix):
-#        bash = which('bash')
-#        bash('./autogen.sh')
-#        with working_dir('fabtests'):
-#            bash('./autogen.sh')
+    depends_on('m4', when='@master', type=('build'))
+    depends_on('autoconf', when='@master', type=('build'))
+    depends_on('automake', when='@master', type=('build'))
+    depends_on('libtool', when='@master', type=('build'))
