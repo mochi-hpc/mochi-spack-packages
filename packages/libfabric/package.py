@@ -21,15 +21,9 @@ class Libfabric(Libfabric):
     variant('disable-spinlocks', default=False, description='Replace all spin locks with mutex locks')
     conflicts('+disable-spinlocks', when='@:9999.99',
               msg='+disable-spinlocks variant only available for @master')
-    depends_on('autoconf', when="+disable-spinlocks", type='build')
-    depends_on('automake', when="+disable-spinlocks", type='build')
 
     patch('libfabric-1.11-option-disable-spinlocks.patch', when="+disable-spinlocks")
 
-    @when("+disable-spinlocks")
-    def autoreconf(self, spec, prefix):
-        bash = which('bash')
-        bash('./autogen.sh')
 #
 #    depends_on('m4', when='@1.10.1', type=('build'))
 #    depends_on('autoconf', when='@1.10.1', type=('build'))
