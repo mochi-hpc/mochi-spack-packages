@@ -18,15 +18,21 @@ class Libfabric(Libfabric):
             sha256='9938abf628e7ea8dcf60a94a4b62d499fbc0dbc6733478b6db2e6a373c80d58f',
         url='https://github.com/ofiwg/libfabric/releases/download/v1.11.0/libfabric-1.11.0.tar.bz2')
 
-#
-#    depends_on('m4', when='@1.10.1', type=('build'))
-#    depends_on('autoconf', when='@1.10.1', type=('build'))
-#    depends_on('automake', when='@1.10.1', type=('build'))
-#    depends_on('libtool', when='@1.10.1', type=('build'))
-#
-#    @when('@1.10.1')
-#    def autoreconf(self, spec, prefix):
-#        bash = which('bash')
-#        bash('./autogen.sh')
-#        with working_dir('fabtests'):
-#            bash('./autogen.sh')
+    variant('disable-spinlocks', default=False, description='Replace all spin locks with mutex locks')
+    conflicts('+disable-spinlocks', when='@:9999.99',
+              msg='+disable-spinlocks variant only available for @master')
+
+    patch('libfabric-1.11-option-disable-spinlocks.patch', when="+disable-spinlocks")
+
+    def configure_args(self):
+        spec = self.spec
+        extra_args = []
+
+        if '+disable-spinlocks' in spec:
+            extra_args.append('--disable-spinlocks')
+        return extra_args
+
+    depends_on('m4', when='@master', type=('build'))
+    depends_on('autoconf', when='@master', type=('build'))
+    depends_on('automake', when='@master', type=('build'))
+    depends_on('libtool', when='@master', type=('build'))

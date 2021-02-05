@@ -1,0 +1,27 @@
+diff --git a/configure.ac b/configure.ac
+index 475753271..36af8ffe3 100644
+--- a/configure.ac
++++ b/configure.ac
+@@ -169,9 +169,19 @@ dnl Checks for libraries
+ AC_CHECK_LIB(pthread, pthread_mutex_init, [],
+     AC_MSG_ERROR([pthread_mutex_init() not found.  libfabric requires libpthread.]))
+ 
+-AC_CHECK_FUNC([pthread_spin_init],
+-	[have_spinlock=1],
+-	[have_spinlock=0])
++AC_ARG_ENABLE([spinlocks],
++    [AS_HELP_STRING([--disable-spinlocks],
++        [Use mutexes in place of spinlocks for mutual exclusion @<:@default=no@:>@])
++    ],
++    [
++        AS_IF([test x"$enableval" = x"no"],
++           [have_spinlock=0],[have_spinlock=1])
++    ],
++    [
++        AC_CHECK_FUNC([pthread_spin_init],
++	    [have_spinlock=1],
++	    [have_spinlock=0])
++    ])
+ 
+ dnl shm_open not used in the common code on os-x
+ 
