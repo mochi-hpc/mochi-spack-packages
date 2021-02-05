@@ -19,6 +19,7 @@ class Benvolio(AutotoolsPackage):
 
     variant('mpi', default=False, description='Bootstrap Benvolio providers with MPI');
     variant('pmix', default=True, description='Bootstrap Benvolio providers with PMIx');
+    variant('cray-drc', default=False, description='Use Cray Dynamic RDMA Credientials');
 
     depends_on('automake')
     depends_on('autoconf')
@@ -31,6 +32,7 @@ class Benvolio(AutotoolsPackage):
     # can bootstrap with either pmix or mpi.. not sure how to specify that in spack
     depends_on('mochi-ssg@0.4.0:+pmix', when='+pmix')
     depends_on('mochi-ssg@0.4.0:+mpi', when='+mpi')
+    depends_on('rdma-credentials', when='+cray-drc')
 
     # @develop version
     #depends_on('mochi-thallium@develop', when='@develop')
