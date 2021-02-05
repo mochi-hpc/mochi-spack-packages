@@ -26,11 +26,12 @@ class Libfabric(Libfabric):
 
     def configure_args(self):
         spec = self.spec
-        extra_args = []
+        config_args = super(Libfabric, self).configure_args()
+
 
         if '+disable-spinlocks' in spec:
-            extra_args.append('--disable-spinlocks')
-        return extra_args
+            config_args.append('--disable-spinlocks')
+        return config_args
 
     depends_on('m4', when='@master', type=('build'))
     depends_on('autoconf', when='@master', type=('build'))
