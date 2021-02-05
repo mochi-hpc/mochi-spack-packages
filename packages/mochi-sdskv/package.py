@@ -32,6 +32,7 @@ class MochiSdskv(AutotoolsPackage):
     url = "https://xgitlab.cels.anl.gov/sds/sds-keyval"
     git='https://xgitlab.cels.anl.gov/sds/sds-keyval.git'
 
+    version('dev-bedrock', branch='dev-bedrock');
     version('develop', branch='master')
     version('master', branch='master')
     version('0.1.10', tag='v0.1.10')
@@ -110,11 +111,10 @@ class MochiSdskv(AutotoolsPackage):
                 extra_args.append('--enable-remi')
             else:
                 extra_args.append('--disable-remi')
-        if spec.satisfies('@0.1.9.1:'):
-            if '+bedrock' in spec:
-                extra_args.append('--enable-bedrock')
-            else:
-                extra_args.append('--disable-bedrock')
+        if '+bedrock' in spec:
+            extra_args.append('--enable-bedrock')
+        else:
+            extra_args.append('--disable-bedrock')
 
         # cray compilers needed -latomic to build BwTree;
         # gcc7, at least on my Ubuntu laptop did, also
