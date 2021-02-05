@@ -32,8 +32,9 @@ class HepnosDataloader(CMakePackage):
     url = "https://xgitlab.cels.anl.gov/sds/hep/HEPnOS-Dataloader"
     git = 'https://xgitlab.cels.anl.gov/sds/hep/HEPnOS-Dataloader.git'
 
-    version('develop', branch='master')
-    version('master', branch='master')
+    version('develop', branch='master', submodules=True)
+    version('master', branch='master', submodules=True)
+    version('0.3', tag='v0.3')
     version('0.2.1', tag='v0.2.1')
     version('0.2', tag='v0.2')
     version('0.1', tag='v0.1')
