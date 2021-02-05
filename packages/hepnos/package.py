@@ -58,7 +58,7 @@ class Hepnos(CMakePackage):
     depends_on('mochi-ch-placement@0.1:')
     depends_on('mochi-thallium@0.5.2:', when='@0.2.0:')
     depends_on('mochi-margo@0.5.2:', when='@0.1.8') # past 0.1.8, HEPnOS requires thallium
-    depends_on('mochi-sdskv@0.1.9:', when='@0.3.1:')
+    depends_on('mochi-sdskv@0.1.10:', when='@0.3.1:')
     depends_on('mochi-sdskv@0.1.8:', when='@0.2.0:')
     depends_on('mochi-sdskv@0.1.7:', when='@0.1.8:')
     depends_on('mochi-sdskv@0.1:')
