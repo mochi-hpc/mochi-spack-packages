@@ -28,12 +28,12 @@ from spack import *
 class HepnosDataloader(CMakePackage):
     """Dataloader for HEPnOS."""
 
-    homepage = "https://xgitlab.cels.anl.gov/sds/hep/HEPnOS-Dataloader"
-    url = "https://xgitlab.cels.anl.gov/sds/hep/HEPnOS-Dataloader"
-    git = 'https://xgitlab.cels.anl.gov/sds/hep/HEPnOS-Dataloader.git'
+    homepage = "https://github.com/hepnos/HEPnOS-Dataloader"
+    url = "https://github.com/hepnos/HEPnOS-Dataloader"
+    git = "https://github.com/hepnos/HEPnOS-Dataloader.git"
 
     version('develop', branch='master', submodules=True)
-    version('master', branch='master', submodules=True)
+    version('main', branch='main', submodules=True)
     version('0.3', tag='v0.3', submodules=True)
     version('0.2.1', tag='v0.2.1')
     version('0.2', tag='v0.2')

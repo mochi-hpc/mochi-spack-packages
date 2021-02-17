@@ -28,9 +28,9 @@ from spack import *
 class Hepnos(CMakePackage):
     """Object store for High Energy Physics, build around Mochi components"""
 
-    homepage = "https://xgitlab.cels.anl.gov/sds/hep/HEPnOS"
-    url = "https://xgitlab.cels.anl.gov/sds/hep/HEPnOS"
-    git = 'https://xgitlab.cels.anl.gov/sds/hep/HEPnOS.git'
+    homepage = "https://github.com/hepnos/HEPnOS"
+    url = "https://github.com/hepnos/HEPnOS"
+    git = "https://github.com/hepnos/HEPnOS.git"
 
     version('0.4.1', tag='v0.4.1')
     version('0.4.0', tag='v0.4.0')
@@ -48,7 +48,7 @@ class Hepnos(CMakePackage):
     version('0.1.1', tag='v0.1.1')
     version('0.1',   tag='v0.1')
     version('develop', branch='master')
-    version('master', branch='master')
+    version('main', branch='main')
 
     depends_on('mpi')
     depends_on('yaml-cpp@develop')
