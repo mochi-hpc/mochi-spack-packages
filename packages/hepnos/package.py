@@ -50,6 +50,12 @@ class Hepnos(CMakePackage):
     version('develop', branch='master')
     version('main', branch='main')
 
+    variant('cxxstd',
+            default='14',
+            values=('14', '17'),
+            multi=False,
+            description='Use the specified C++ standard when building.')
+
     depends_on('mpi')
     depends_on('yaml-cpp@develop')
     depends_on('boost+serialization')
@@ -72,4 +78,5 @@ class Hepnos(CMakePackage):
     def cmake_args(self):
         extra_args = ['-DBUILD_SHARED_LIBS=ON']
         extra_args.extend(['-DCMAKE_CXX_COMPILER=%s' % self.spec['mpi'].mpicxx])
+        extra_args.extend(['-DCMAKE_CXX_STANDARD=%s' % self.spec.variants['cxxstd'].value])
         return extra_args
