@@ -10,7 +10,8 @@ class MochiBedrock(CMakePackage):
 
     version('develop', branch='master')
     version('master', branch='master')
-    version('0.1', tag='v0.1', preferred=True)
+    version('0.2', tag='v0.2', preferred=True)
+    version('0.1', tag='v0.1')
 
     depends_on('mochi-margo@0.9:', when='@0.1:9.9.9')
     depends_on('mochi-thallium')
