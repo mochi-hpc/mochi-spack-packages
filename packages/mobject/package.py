@@ -32,6 +32,7 @@ class Mobject(AutotoolsPackage):
     url = "https://xgitlab.cels.anl.gov/sds/mobject-store"
     git = 'https://xgitlab.cels.anl.gov/sds/mobject-store.git'
 
+    version('0.4.3', tag='v0.4.3')
     version('0.4.2', tag='v0.4.2')
     version('0.4.1', tag='v0.4.1')
     version('0.4', tag='v0.4')
@@ -56,7 +57,8 @@ class Mobject(AutotoolsPackage):
     depends_on('mochi-sdskv@0.1:')
     depends_on('mochi-bake@0.1:')
     depends_on('mochi-bake@0.3:0.3.6', when='@:0.4.1')
-    depends_on('mochi-bake@0.4:', when='@0.4.2:');
+    depends_on('mochi-bake@0.4:', when='@0.4.2');
+    depends_on('mochi-bake@0.6:', when='@0.4.3:');
 
     # Mochi dependencies for develop version
     depends_on('mochi-margo@develop', when='@develop')
