@@ -12,6 +12,7 @@ class MochiRemi(CMakePackage):
 
     version('develop', branch='master')
     version('master', branch='master')
+    version('0.3.1', tag='v0.3.1')
     version('0.3', tag='v0.3')
     version('0.2.3', tag='v0.2.3')
     version('0.2.2', tag='v0.2.2')
@@ -27,7 +28,8 @@ class MochiRemi(CMakePackage):
     depends_on('mochi-thallium@0.4.2:', when='@0.2.2')
     depends_on('mochi-thallium@0.3:', when='@:0.2.1')
     depends_on('mochi-abt-io@0.1:')
-    depends_on('mochi-bedrock', when='@0.3: +bedrock')
+    depends_on('mochi-bedrock@0.1', when='@0.3 +bedrock')
+    depends_on('mochi-bedrock@0.2:', when='@0.3.1: +bedrock')
 
     # dependencies for develop version
     depends_on('mochi-thallium@develop', when='@develop')
