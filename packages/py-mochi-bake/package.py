@@ -36,8 +36,9 @@ class PyMochiBake(PythonPackage):
     url      = "https://xgitlab.cels.anl.gov/sds/py-bake.git"
     git      = "https://xgitlab.cels.anl.gov/sds/py-bake.git"
 
-    version('develop',  branch="master")
-    version('master',  branch="master")
+    version('develop', branch="master")
+    version('master', branch="master")
+    version('0.6', tag='v0.6')
     version('0.4.1', tag='v0.4.1')
     version('0.4', tag='v0.4')
     version('0.3', tag='v0.3')
