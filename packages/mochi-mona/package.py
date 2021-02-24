@@ -29,19 +29,19 @@ class MochiMona(CMakePackage):
     """A library that provides Argobots bindings to Mercury's underlying
     NA communication library for use in the context of Mochi projects."""
 
-    homepage = 'https://xgitlab.cels.anl.gov/sds/mona'
-    git = 'https://xgitlab.cels.anl.gov/sds/mona.git'
+    homepage = 'https://github.com/mochi-hpc/mochi-mona'
+    url = 'https://github.com/mochi-hpc/mochi-mona'
+    git = 'https://github.com/mochi-hpc/mochi-mona.git'
 
-    version('master', branch='master', preferred=True)
-    version('develop', branch='master')
+    version('main', branch='main', preferred=True)
+    version('develop', branch='main')
 
     variant('benchmark', default=False,
             description='Build a benchmark to compare performance against MPI')
 
     depends_on('cmake@3.14:', type=('build'))
     depends_on('argobots@1.0:', type=("build", "link", "run"))
-    # TODO when='@master' should be changed as new versions get released
-    depends_on('mercury@2.0.0', type=("build", "link", "run"), when='@master')
+    depends_on('mercury@2.0.0:', type=("build", "link", "run"), when='@master')
     depends_on('mpi', when='+benchmark', type=("build", "link", "run"))
 
     # dependencies for develop version
