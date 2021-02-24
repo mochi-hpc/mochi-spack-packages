@@ -4,12 +4,12 @@ from spack import *
 class PyMochiTmci(PythonPackage):
     """Python Mochi library to enable generic, C++ level access to Tensorflow memory"""
 
-    homepage = "https://xgitlab.cels.anl.gov/sds/tmci"
-    url      = "https://xgitlab.cels.anl.gov/sds/tmci.git"
-    git      = "https://xgitlab.cels.anl.gov/sds/tmci.git"
+    homepage = 'https://github.com/mochi-hpc/mochi-tmci'
+    url      = 'https://github.com/mochi-hpc/mochi-tmci'
+    git      = 'https://github.com/mochi-hpc/mochi-tmci.git'
 
-    version('master', branch="master", preferred=True)
-    version('develop', branch="master")
+    version('main', branch='main', preferred=True)
+    version('develop', branch='main')
 
     variant('theta', default=False,
             description='Option to enable when building on Theta')
