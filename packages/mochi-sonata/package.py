@@ -3,12 +3,12 @@ from spack import *
 class MochiSonata(CMakePackage):
     """Sonata is a Mochi-based document store that uses UnQLite as a backend."""
 
-    homepage = "https://xgitlab.cels.anl.gov/sds/sonata"
-    url = "https://xgitlab.cels.anl.gov/sds/sonata"
-    git = "https://xgitlab.cels.anl.gov/sds/sonata.git"
+    homepage = 'https://github.com/mochi-hpc/mochi-sonata'
+    url = 'https://github.com/mochi-hpc/mochi-sonata'
+    git = 'https://github.com/mochi-hpc/mochi-sonata.git'
 
-    version('master', branch='master')
-    version('develop', branch='master')
+    version('main', branch='main')
+    version('develop', branch='main')
     version('0.6.1', tag='v0.6.1')
     version('0.6', tag='v0.6')
     version('0.5.1', tag='v0.5.1')
