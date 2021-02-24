@@ -28,12 +28,12 @@ from spack import *
 class PyMochiBedrock(PythonPackage):
     """Mochi Bedrock's Python library and wrapper."""
 
-    homepage = "https://xgitlab.cels.anl.gov/sds/py-bedrock"
-    url      = "https://xgitlab.cels.anl.gov/sds/py-bedrock.git"
-    git      = "https://xgitlab.cels.anl.gov/sds/py-bedrock.git"
+    homepage = 'https://github.com/mochi-hpc/py-mochi-bedrock'
+    url      = 'https://github.com/mochi-hpc/py-mochi-bedrock'
+    git      = 'https://github.com/mochi-hpc/py-mochi-bedrock.git'
 
-    version('develop', branch="master")
-    version('master', branch="master", preferred=True)
+    version('develop', branch='main')
+    version('main', branch='main', preferred=True)
 
     depends_on('python')
     depends_on('py-pkgconfig', type=('build'))
