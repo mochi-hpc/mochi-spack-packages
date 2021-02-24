@@ -4,12 +4,13 @@ from spack import *
 class MochiBedrock(CMakePackage):
     """Mochi bootstrapping system"""
 
-    homepage = "https://xgitlab.cels.anl.gov/sds/bedrock"
-    url = "https://xgitlab.cels.anl.gov/sds/bedrock"
-    git = 'https://xgitlab.cels.anl.gov/sds/bedrock.git'
+    homepage = 'https://github.com/mochi-hpc/mochi-bedrock'
+    url = 'https://github.com/mochi-hpc/mochi-bedrock'
+    git = 'https://github.com/mochi-hpc/mochi-bedrock.git'
 
-    version('develop', branch='master')
-    version('master', branch='master')
+    version('develop', branch='main')
+    version('main', branch='main')
+    version('master', branch='main')
     version('0.2', tag='v0.2', preferred=True)
     version('0.1', tag='v0.1')
 
