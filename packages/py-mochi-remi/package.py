@@ -32,11 +32,12 @@ from spack import *
 class PyMochiRemi(PythonPackage):
     """Python wrapper for the Mochi REMI library"""
 
-    homepage = "https://xgitlab.cels.anl.gov/sds/py-remi"
-    git      = "https://xgitlab.cels.anl.gov/sds/py-remi.git"
+    homepage = 'https://github.com/mochi-hpc/py-mochi-remi'
+    url      = 'https://github.com/mochi-hpc/py-mochi-remi'
+    git      = 'https://github.com/mochi-hpc/py-mochi-remi.git'
 
-    version('develop',  branch='master')
-    version('master',  branch='master')
+    version('develop',  branch='main')
+    version('main',  branch='main')
     version('0.1.2', tag='v0.1.2')
     version('0.1.1', tag='v0.1.1')
     version('0.1', tag='v0.1')
