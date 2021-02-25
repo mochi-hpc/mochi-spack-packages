@@ -4,12 +4,12 @@ class MochiThallium(CMakePackage):
     """A Mochi C++14 library wrapping Margo, Mercury,
     and Argobots and providing an object-oriented way to use these libraries."""
 
-    homepage = "https://xgitlab.cels.anl.gov/sds/thallium"
-    url = "https://xgitlab.cels.anl.gov/sds/thallium"
-    git = "https://xgitlab.cels.anl.gov/sds/thallium.git"
+    homepage = 'https://github.com/mochi-hpc/mochi-thallium'
+    url = 'https://github.com/mochi-hpc/mochi-thallium'
+    git = 'https://github.com/mochi-hpc/mochi-thallium.git'
 
-    version('master', branch='master')
-    version('develop', branch='master')
+    version('main', branch='main')
+    version('develop', branch='main')
     version('0.8.4', tag='v0.8.4')
     version('0.8.3', tag='v0.8.3')
     version('0.8.2', tag='v0.8.2')
