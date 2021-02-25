@@ -5,9 +5,9 @@ class MochiColza(CMakePackage):
     """Colza is a Mochi microservice designed to handle an elastic
     staging area for elastic in situ analysis and visualization."""
 
-    homepage = "https://xgitlab.cels.anl.gov/sds/colza"
-    url = "https://xgitlab.cels.anl.gov/sds/colza"
-    git='https://xgitlab.cels.anl.gov/sds/colza.git'
+    homepage = 'https://github.com/mochi-hpc/mochi-colza'
+    url = 'https://github.com/mochi-hpc/mochi-colza'
+    git = 'https://github.com/mochi-hpc/mochi-colza.git'
 
     version('develop', branch='main')
     version('main', branch='main', preferred=True)
