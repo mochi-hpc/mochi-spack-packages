@@ -10,13 +10,13 @@ from spack import *
 class Flamestore(PythonPackage):
     """Transient distributed object store for deep learning"""
 
-    homepage = "https://xgitlab.cels.anl.gov/sds/flamestore"
-    url      = "https://xgitlab.cels.anl.gov/sds/flamestore"
-    git      = "https://xgitlab.cels.anl.gov/sds/flamestore.git"
+    homepage = 'https://github.com/mochi-hpc/flamestore'
+    url      = 'https://github.com/mochi-hpc/flamestore'
+    git      = 'https://github.com/mochi-hpc/flamestore.git'
 
-    version('master', branch='develop', preferred=True)
+    version('main', branch='develop', preferred=True)
     version('develop', branch='develop')
-   
+
     variant('theta', default=False,
             description='Option to enable when building on Theta')
 
