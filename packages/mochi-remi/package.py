@@ -6,12 +6,12 @@ class MochiRemi(CMakePackage):
     from a node to another. It uses RDMA and memory mapping to efficiently transfer
     potentially large groups of files at once."""
 
-    homepage = "https://xgitlab.cels.anl.gov/sds/remi"
-    url = "https://xgitlab.cels.anl.gov/sds/remi"
-    git='https://xgitlab.cels.anl.gov/sds/remi.git'
+    homepage = 'https://github.com/mochi-hpc/mochi-remi'
+    url = 'https://github.com/mochi-hpc/mochi-remi'
+    git = 'https://github.com/mochi-hpc/mochi-remi.git'
 
-    version('develop', branch='master')
-    version('master', branch='master')
+    version('develop', branch='main')
+    version('main', branch='main')
     version('0.3.1', tag='v0.3.1')
     version('0.3', tag='v0.3')
     version('0.2.3', tag='v0.2.3')
