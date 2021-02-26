@@ -28,8 +28,8 @@ from spack import *
 class MochiAbtIo(AutotoolsPackage):
     """a Mochi library that provides Argobots bindings to POSIX I/O functions."""
 
-    homepage = 'https://xgitlab.cels.anl.gov/sds/abt-io'
-    git = 'https://xgitlab.cels.anl.gov/sds/abt-io.git'
+    homepage = 'https://github.com/mochi-hpc/mochi-abt-io'
+    git = 'https://github.com/mochi-hpc/mochi-abt-io.git'
 
     version('0.5', tag='v0.5', preferred=True)
     version('0.3.1', tag='v0.3.1')
