@@ -36,8 +36,8 @@ class MochiAbtIo(AutotoolsPackage):
     version('0.3', tag='v0.3')
     version('0.2', tag='v0.2')
     version('0.1', tag='v0.1')
-    version('develop', branch='master')
-    version('master', branch='master')
+    version('develop', branch='main')
+    version('main', branch='main')
 
     depends_on('json-c', when='@0.5:')
     depends_on('argobots@1.0:')
