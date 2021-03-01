@@ -28,12 +28,12 @@ from spack import *
 class MochiSdsdkv(AutotoolsPackage):
     """a Mochi library that provides a distributed Margo-based keyval service"""
 
-    homepage = "https://xgitlab.cels.anl.gov/sds/sdsdkv"
-    url = "https://xgitlab.cels.anl.gov/sds/sdsdkv"
-    git = 'https://xgitlab.cels.anl.gov/sds/sdsdkv.git'
+    homepage = 'https://github.com/mochi-hpc/mochi-sdsdkv'
+    url = 'https://github.com/mochi-hpc/mochi-sdsdkv'
+    git = 'https://github.com/mochi-hpc/mochi-sdsdkv.git'
 
-    version('master', branch='master')
-    version('develop', branch='master')
+    version('main', branch='main')
+    version('develop', branch='main')
     version('0.1', tag='v0.1')
 
     depends_on('autoconf@2.65:')
