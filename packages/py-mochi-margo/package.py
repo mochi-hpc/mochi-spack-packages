@@ -33,12 +33,12 @@ from spack import *
 class PyMochiMargo(PythonPackage):
     """Python wrapper for the Mochi Margo library"""
 
-    homepage = "https://xgitlab.cels.anl.gov/sds/py-margo"
-    url      = "https://xgitlab.cels.anl.gov/sds/py-margo.git"
-    git      = "https://xgitlab.cels.anl.gov/sds/py-margo.git"
+    homepage = 'https://github.com/mochi-hpc/py-mochi-margo'
+    url      = 'https://github.com/mochi-hpc/py-mochi-margo'
+    git      = 'https://github.com/mochi-hpc/py-mochi-margo.git'
 
-    version('develop', branch="master")
-    version('master', branch="master")
+    version('develop', branch='main')
+    version('main', branch='main')
     version('0.3.2', tag='v0.3.2')
     version('0.3.1', tag='v0.3.1')
     version('0.3', tag='v0.3')
