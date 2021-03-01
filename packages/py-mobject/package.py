@@ -32,12 +32,12 @@ from spack import *
 class PyMobject(PythonPackage):
     """Python wrapper for the Mobject microservice"""
 
-    homepage = "https://xgitlab.cels.anl.gov/sds/py-mobject"
-    url      = "https://xgitlab.cels.anl.gov/sds/py-mobject"
-    git      = "https://xgitlab.cels.anl.gov/sds/py-mobject.git"
+    homepage = 'https://github.com/mochi-hpc/py-mobject'
+    url      = 'https://github.com/mochi-hpc/py-mobject'
+    git      = 'https://github.com/mochi-hpc/py-mobject.git'
 
-    version('develop',  branch="master")
-    version('master',  branch="master")
+    version('develop',  branch="main")
+    version('main',  branch="main")
     version('0.1.2', tag='v0.1.2')
     version('0.1.1', tag='v0.1.1')
     version('0.1', tag='v0.1')
