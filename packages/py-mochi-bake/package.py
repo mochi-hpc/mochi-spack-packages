@@ -32,12 +32,12 @@ from spack import *
 class PyMochiBake(PythonPackage):
     """Python wrapper for the Mochi Bake library"""
 
-    homepage = "https://xgitlab.cels.anl.gov/sds/py-bake"
-    url      = "https://xgitlab.cels.anl.gov/sds/py-bake.git"
-    git      = "https://xgitlab.cels.anl.gov/sds/py-bake.git"
+    homepage = 'https://github.com/mochi-hpc/py-mochi-bake'
+    url      = 'https://github.com/mochi-hpc/py-mochi-bake'
+    git      = 'https://github.com/mochi-hpc/py-mochi-bake.git'
 
-    version('develop', branch="master")
-    version('master', branch="master")
+    version('develop', branch="main")
+    version('main', branch="main")
     version('0.6', tag='v0.6')
     version('0.4.1', tag='v0.4.1')
     version('0.4', tag='v0.4')
