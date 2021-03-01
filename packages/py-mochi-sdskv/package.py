@@ -32,12 +32,12 @@ from spack import *
 class PyMochiSdskv(PythonPackage):
     """Python wrapper for the Mochi KV library"""
 
-    homepage = "https://xgitlab.cels.anl.gov/sds/py-sdskv"
-    url      = "https://xgitlab.cels.anl.gov/sds/py-sdskv"
-    git      = "https://xgitlab.cels.anl.gov/sds/py-sdskv.git"
+    homepage = 'https://github.com/mochi-hpc/py-mochi-sdskv'
+    url      = 'https://github.com/mochi-hpc/py-mochi-sdskv'
+    git      = 'https://github.com/mochi-hpc/py-mochi-sdskv.git'
 
-    version('develop',  branch="master")
-    version('master',  branch="master")
+    version('develop',  branch="main")
+    version('main',  branch="main")
     version('0.1.4', tag='v0.1.4')
     version('0.1.3', tag='v0.1.3')
     version('0.1.2', tag='v0.1.2')
