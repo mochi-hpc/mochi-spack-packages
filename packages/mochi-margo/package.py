@@ -10,14 +10,14 @@ class MochiMargo(AutotoolsPackage):
     """A library that provides Argobots bindings to the Mercury RPC
     implementation."""
 
-    homepage = 'https://xgitlab.cels.anl.gov/sds/margo'
-    git = 'https://xgitlab.cels.anl.gov/sds/margo.git'
-    url = 'https://xgitlab.cels.anl.gov/sds/margo/-/archive/v0.9/margo-v0.9.tar.gz'
+    homepage = 'https://github.com/mochi-hpc/mochi-margo'
+    git = 'https://github.com/mochi-hpc/mochi-margo.git'
+    url = 'https://github.com/mochi-hpc/mochi-margo/archive/v0.9.tar.gz'
 
     maintainers = ['carns', 'mdorier', 'fbudin69500', 'chuckatkins']
 
-    version('master', branch='master')
-    version('develop', branch='master')
+    version('main', branch='main')
+    version('develop', branch='main')
     version('0.9', sha256='a24376f66450cc8fd7a43043e189f8efce5a931585e53c1e2e41894a3e99b517')
     version('0.7', sha256='492d1afe2e7984fa638614a5d34486d2ff761f5599b5984efd5ae3f55cafde54')
     version('0.7.2', sha256='0ca796abdb82084813a5de033d92364910b5ad1a0df135534d6b1c36ef627859')
