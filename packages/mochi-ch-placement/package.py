@@ -29,11 +29,11 @@ class MochiChPlacement(AutotoolsPackage):
     It can be used by a distributed storage system to access multiple
     hashing algorithms, distance metrics, and virtual node settings using a consistent API."""
 
-    homepage = "https://xgitlab.cels.anl.gov/codes/ch-placement"
-    url      = "https://xgitlab.cels.anl.gov/codes/ch-placement"
-    git      = 'https://xgitlab.cels.anl.gov/codes/ch-placement.git'
+    homepage = "https://github.com/mochi-hpc/mochi-ch-placement"
+    url      = "https://github.com/mochi-hpc/mochi-ch-placement/archive/v0.1.tar.gz"
+    git      = 'https://github.com/mochi-hpc/mochi-ch-placement.git'
 
-    version('develop', branch='master')
+    version('develop', branch='main')
     version('0.1', tag='v0.1')
 
     depends_on('m4')
