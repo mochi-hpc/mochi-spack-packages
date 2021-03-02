@@ -4,12 +4,12 @@ from spack import *
 class MochiBake(AutotoolsPackage):
     """a Mochi microservice for remote access to raw storage regions"""
 
-    homepage = "https://xgitlab.cels.anl.gov/sds/bake"
-    url      = "https://xgitlab.cels.anl.gov/sds/bake"
-    git      = 'https://xgitlab.cels.anl.gov/sds/bake.git'
+    homepage = 'https://github.com/mochi-hpc/mochi-bake/'
+    url      = 'https://github.com/mochi-hpc/mochi-bake/archive/v0.6.tar.gz'
+    git      = 'https://github.com/mochi-hpc/mochi-bake.git'
 
-    version('develop', branch='master')
-    version('master', branch='master')
+    version('develop', branch='main')
+    version('main', branch='main')
     version('0.6', tag='v0.6')
     version('0.5', tag='v0.5.0')
     version('0.4.1', tag='v0.4.1')
