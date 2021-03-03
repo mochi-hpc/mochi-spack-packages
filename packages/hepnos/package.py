@@ -29,7 +29,7 @@ class Hepnos(CMakePackage):
     """Object store for High Energy Physics, build around Mochi components"""
 
     homepage = "https://github.com/hepnos/HEPnOS"
-    url = "https://github.com/hepnos/HEPnOS"
+    url = "https://github.com/hepnos/HEPnOS/archive/v0.4.2.tar.gz"
     git = "https://github.com/hepnos/HEPnOS.git"
 
     version('0.4.2', tag='v0.4.2')
@@ -48,7 +48,7 @@ class Hepnos(CMakePackage):
     version('0.1.2', tag='v0.1.2')
     version('0.1.1', tag='v0.1.1')
     version('0.1',   tag='v0.1')
-    version('develop', branch='master')
+    version('develop', branch='main')
     version('main', branch='main')
 
     variant('cxxstd',
