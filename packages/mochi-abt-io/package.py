@@ -31,7 +31,8 @@ class MochiAbtIo(AutotoolsPackage):
     homepage = 'https://github.com/mochi-hpc/mochi-abt-io'
     git = 'https://github.com/mochi-hpc/mochi-abt-io.git'
 
-    version('0.5', tag='v0.5', preferred=True)
+    version('0.5.1', tag='v0.5.1', preferred=True)
+    version('0.5', tag='v0.5')
     version('0.3.1', tag='v0.3.1')
     version('0.3', tag='v0.3')
     version('0.2', tag='v0.2')
