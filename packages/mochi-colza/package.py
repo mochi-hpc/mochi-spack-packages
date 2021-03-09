@@ -16,6 +16,8 @@ class MochiColza(CMakePackage):
             description='Build bedrock module')
     variant('examples', default=True,
             description='Build colza examples')
+    variant('drc', default=True,
+            description='Build examples with Cray DRC support')
 
     depends_on('mpi')
     depends_on('pkgconfig')
@@ -44,4 +46,9 @@ class MochiColza(CMakePackage):
             args.append('-DENABLE_EXAMPLES=ON')
         else:
             args.append('-DENABLE_EXAMPLES=OFF')
+        if '+drc' in self.spec:
+            args.append('-DENABLE_DRC=ON')
+        else:
+            args.append('-DENABLE_DRC=OFF')
+
         return args
