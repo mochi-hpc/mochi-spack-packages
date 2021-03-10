@@ -16,7 +16,7 @@ class MochiColza(CMakePackage):
             description='Build bedrock module')
     variant('examples', default=True,
             description='Build colza examples')
-    variant('drc', default=True,
+    variant('drc', default=False,
             description='Build examples with Cray DRC support')
 
     depends_on('mpi')
