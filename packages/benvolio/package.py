@@ -10,12 +10,12 @@ from spack import *
 class Benvolio(AutotoolsPackage):
     """Mochi services for I/O"""
 
-    homepage = "https://xgitlab.cels.anl.gov/sds/benvolio"
-    url      = "https://xgitlab.cels.anl.gov/sds/benvolio"
-    git      = "https://xgitlab.cels.anl.gov/sds/benvolio.git"
+    homepage = "https://github.com/mochi-hpc/benvolio"
+    url      = "https://github.com/mochi-hpc/benvolio"
+    git      = "https://github.com/mochi-hpc/benvolio.git"
 
-    version('master', branch='master', preferred=True)
-    version('develop', branch='master')
+    version('main', branch='main', preferred=True)
+    version('develop', branch='main')
 
     variant('mpi', default=False, description='Bootstrap Benvolio providers with MPI');
     variant('pmix', default=True, description='Bootstrap Benvolio providers with PMIx');
