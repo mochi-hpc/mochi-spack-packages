@@ -33,12 +33,12 @@ from spack import *
 class PyMochiSsg(PythonPackage):
     """Python wrapper for the Mochi SSG library"""
 
-    homepage = "https://xgitlab.cels.anl.gov/sds/py-ssg"
-    url      = "https://xgitlab.cels.anl.gov/sds/py-ssg"
-    git      = "https://xgitlab.cels.anl.gov/sds/py-ssg.git"
-    
-    version('develop',  branch='master')
-    version('master',  branch='master')
+    homepage = 'https://github.com/mochi-hpc/py-mochi-ssg'
+    url      = 'https://github.com/mochi-hpc/py-mochi-ssg'
+    git      = 'https://github.com/mochi-hpc/py-mochi-ssg.git'
+
+    version('develop', branch='main')
+    version('main', branch='main')
     version('dev-new-ssg-api', branch='dev-new-ssg-api')
     version('0.1.2', tag='v0.1.2')
     version('0.1.1', tag='v0.1.1')
