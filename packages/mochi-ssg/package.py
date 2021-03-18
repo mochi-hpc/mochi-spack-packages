@@ -9,11 +9,14 @@ class MochiSsg(AutotoolsPackage):
     which is just a mapping from group member identifiers to Mercury address
     information"""
 
-    homepage = "https://xgitlab.cels.anl.gov/sds/ssg"
-    git='https://xgitlab.cels.anl.gov/sds/ssg.git'
+    homepage = 'https://github.com/mochi-hpc/mochi-ssg'
+    git = 'https://github.com/mochi-hpc/mochi-ssg.git'
+    url = 'https://github.com/mochi-hpc/mochi-ssg/archive/v0.2.tar.gz'
 
-    version('develop', branch='master')
-    version('master', branch='master')
+    maintainers = ['shanedsnyder']
+
+    version('main', branch='main')
+    version('develop', branch='main')
     version('dev-error-codes', branch='dev-error-codes')
     version('0.4.4', tag='v0.4.4')
     version('0.4.3.1', tag='v0.4.3.1')
