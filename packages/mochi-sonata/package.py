@@ -4,7 +4,7 @@ class MochiSonata(CMakePackage):
     """Sonata is a Mochi-based document store that uses UnQLite as a backend."""
 
     homepage = 'https://github.com/mochi-hpc/mochi-sonata'
-    url = 'https://github.com/mochi-hpc/mochi-sonata'
+    url = 'https://github.com/mochi-hpc/mochi-sonata/archive/v0.6.1.tar.gz'
     git = 'https://github.com/mochi-hpc/mochi-sonata.git'
 
     version('main', branch='main')
