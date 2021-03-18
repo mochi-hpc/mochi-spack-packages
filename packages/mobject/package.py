@@ -28,10 +28,12 @@ from spack import *
 class Mobject(AutotoolsPackage):
     """A Mochi microservice object store built on Margo, sds-keyval, and other components"""
 
-    homepage = "https://xgitlab.cels.anl.gov/sds/mobject-store"
-    url = "https://xgitlab.cels.anl.gov/sds/mobject-store"
-    git = 'https://xgitlab.cels.anl.gov/sds/mobject-store.git'
+    homepage = 'https://github.com/mochi-hpc/mobject'
+    url = 'https://github.com/mochi-hpc/mobject'
+    git = 'https://github.com/mochi-hpc/mobject.git'
 
+    version('main', branch='main')
+    version('develop', branch='main')
     version('0.4.3', tag='v0.4.3')
     version('0.4.2', tag='v0.4.2')
     version('0.4.1', tag='v0.4.1')
@@ -39,8 +41,6 @@ class Mobject(AutotoolsPackage):
     version('0.3', tag='v0.3')
     version('0.2', tag='v0.2')
     version('0.1', tag='v0.1')
-    version('develop', branch='master')
-    version('master', branch='master')
 
     variant('timing', default=False, description="crude timing information")
 
