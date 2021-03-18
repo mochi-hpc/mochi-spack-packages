@@ -18,6 +18,7 @@ class MochiMargo(AutotoolsPackage):
 
     version('main', branch='main')
     version('develop', branch='main')
+    version('0.9.2', sha256='de88cd725c8ff3ec63412f3f5ed22ad1a56cb367c31b842c816ce40cba777f7c')
     version('0.9.1', sha256='3fe933f2d758ef23d582bc776e4f8cfae9bf9d0849b8b1f9d73ee024e218f2bc')
     version('0.9', sha256='a24376f66450cc8fd7a43043e189f8efce5a931585e53c1e2e41894a3e99b517')
     version('0.7', sha256='492d1afe2e7984fa638614a5d34486d2ff761f5599b5984efd5ae3f55cafde54')
