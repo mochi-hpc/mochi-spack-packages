@@ -50,7 +50,6 @@ class MochiSdskv(AutotoolsPackage):
 
     variant('benchmark', default=False, description='Compiles a benchmark')
     variant('remi', default=False, description="Enables migration support using REMI")
-    variant('bwtree', default=False, description="Enable BwTree keyval backend")
     variant('bdb', default=True, description="Enable Berkely DB keyval backend")
     variant('leveldb', default=True, description="Enable LevelDB keyval backend")
     variant('lmdb', default=False, description="Enable lmdb keyval backend")
@@ -77,14 +76,6 @@ class MochiSdskv(AutotoolsPackage):
     depends_on('berkeley-db', when="+bdb")
     depends_on('leveldb', when="+leveldb")
     depends_on('mochi-bedrock', when="+bedrock")
-
-    # requires c++11 if bwtree selected
-    conflicts('%gcc@:4.8.0', when="+bwtree")
-    # clang fullly implemented C++11 in 3
-    # intel implemented c++11 in 13.0
-    # but neither clang nor intel compile the BwTree data structure
-    conflicts('%clang', when="+bwtree")
-    conflicts('%intel', when="+bwtree")
 
     def configure_args(self):
         spec = self.spec
@@ -116,13 +107,4 @@ class MochiSdskv(AutotoolsPackage):
         else:
             extra_args.append('--disable-bedrock')
 
-        # cray compilers needed -latomic to build BwTree;
-        # gcc7, at least on my Ubuntu laptop did, also
-        if '+bwtree' in spec:
-            if 'platform=cray' in self.spec:
-                extra_args.extend(['LDFLAGS=-latomic'])
-            if spec.compiler.name == "gcc" and spec.compiler.version >= Version('7'):
-                extra_args.extend(['LDFLAGS=-latomic'])
-
         return extra_args
-
