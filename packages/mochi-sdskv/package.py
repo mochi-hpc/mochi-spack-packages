@@ -28,13 +28,13 @@ from spack import *
 class MochiSdskv(AutotoolsPackage):
     """A Mochi library that provides a Margo-based keyval service"""
 
-    homepage = "https://xgitlab.cels.anl.gov/sds/sds-keyval"
-    url = "https://xgitlab.cels.anl.gov/sds/sds-keyval"
-    git='https://xgitlab.cels.anl.gov/sds/sds-keyval.git'
+    homepage = "https://github.com/mochi-hpc/mochi-sdskv"
+    url = "https://github.com/mochi-hpc/mochi-sdskv"
+    git = "https://github.com/mochi-hpc/mochi-sdskv.git"
 
     version('dev-bedrock', branch='dev-bedrock');
-    version('develop', branch='master')
-    version('master', branch='master')
+    version('develop', branch='main')
+    version('main', branch='main')
     version('0.1.10', tag='v0.1.10')
     version('0.1.9', tag='v0.1.9')
     version('0.1.8', tag='v0.1.8')
