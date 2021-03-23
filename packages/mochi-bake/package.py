@@ -10,6 +10,7 @@ class MochiBake(AutotoolsPackage):
 
     version('develop', branch='main')
     version('main', branch='main')
+    version('0.6.2', tag='v0.6.2')
     version('0.6.1', tag='v0.6.1')
     version('0.6', tag='v0.6')
     version('0.5', tag='v0.5.0')
