@@ -18,6 +18,7 @@ class MochiSsg(AutotoolsPackage):
     version('main', branch='main')
     version('develop', branch='main')
     version('dev-error-codes', branch='dev-error-codes')
+    version('0.4.5', tag='v0.4.5')
     version('0.4.4', tag='v0.4.4')
     version('0.4.3.1', tag='v0.4.3.1')
     version('0.4.2', tag='v0.4.2')
