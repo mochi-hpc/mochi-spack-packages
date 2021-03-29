@@ -29,12 +29,13 @@ class MochiSdskv(AutotoolsPackage):
     """A Mochi library that provides a Margo-based keyval service"""
 
     homepage = "https://github.com/mochi-hpc/mochi-sdskv"
-    url = "https://github.com/mochi-hpc/mochi-sdskv"
+    url = "https://github.com/mochi-hpc/mochi-sdskv/archive/refs/tags/v0.1.11.tar.gz"
     git = "https://github.com/mochi-hpc/mochi-sdskv.git"
 
     version('dev-bedrock', branch='dev-bedrock');
     version('develop', branch='main')
     version('main', branch='main')
+    version('0.1.11', sha256='50b753ffa6382be46e20c3e6e46d50b7c1466be291dfd14debc20eef5fc4fa5b')
     version('0.1.10', tag='v0.1.10')
     version('0.1.9', tag='v0.1.9')
     version('0.1.8', tag='v0.1.8')
