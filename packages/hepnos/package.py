@@ -58,6 +58,7 @@ class Hepnos(CMakePackage):
             description='Use the specified C++ standard when building.')
 
     depends_on('mpi')
+    depends_on('spdlog')
     depends_on('yaml-cpp@develop')
     depends_on('boost+serialization')
     depends_on('cmake@3.12.0:')
