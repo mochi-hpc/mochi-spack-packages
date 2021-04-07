@@ -6,11 +6,12 @@ class MochiColza(CMakePackage):
     staging area for elastic in situ analysis and visualization."""
 
     homepage = 'https://github.com/mochi-hpc/mochi-colza'
-    url = 'https://github.com/mochi-hpc/mochi-colza'
+    url = 'https://github.com/mochi-hpc/mochi-colza/archive/refs/tags/v0.1.tar.gz'
     git = 'https://github.com/mochi-hpc/mochi-colza.git'
 
     version('develop', branch='main')
-    version('main', branch='main', preferred=True)
+    version('main', branch='main')
+    version('0.1', sha256='182c31ebb4d3f0b1b8ac3e8c04daf521d025f9dd981d4728df63f2a12882b2e1')
 
     variant('bedrock', default=True,
             description='Build bedrock module')
@@ -28,13 +29,13 @@ class MochiColza(CMakePackage):
     depends_on('mochi-thallium @0.8:')
     depends_on('mochi-mona')
     depends_on('mochi-bedrock', when='+bedrock')
-    depends_on('mochi-ssg@main', when='@main')
+    depends_on('mochi-ssg @0.4.5:', when='@0.1:9.9.9,main')
 
     # dependencies for develop version
     depends_on('mochi-thallium @develop', when='@develop')
     depends_on('mochi-mona @develop', when='@develop')
     depends_on('mochi-bedrock @develop', when='@develop +bedrock')
-    depends_on('mochi-ssg@develop', when='@develop')
+    depends_on('mochi-ssg @develop', when='@develop')
 
     def cmake_args(self):
         args = ['-DBUILD_SHARED_LIBS:BOOL=ON' ]
