@@ -30,10 +30,11 @@ class MochiMona(CMakePackage):
     NA communication library for use in the context of Mochi projects."""
 
     homepage = 'https://github.com/mochi-hpc/mochi-mona'
-    url = 'https://github.com/mochi-hpc/mochi-mona'
+    url = 'https://github.com/mochi-hpc/mochi-mona/archive/refs/tags/v0.1.tar.gz'
     git = 'https://github.com/mochi-hpc/mochi-mona.git'
 
-    version('main', branch='main', preferred=True)
+    version('0.1', sha256='182c31ebb4d3f0b1b8ac3e8c04daf521d025f9dd981d4728df63f2a12882b2e1')
+    version('main', branch='main')
     version('develop', branch='main')
 
     variant('benchmark', default=False,
@@ -41,7 +42,7 @@ class MochiMona(CMakePackage):
 
     depends_on('cmake@3.14:', type=('build'))
     depends_on('argobots@1.0:', type=("build", "link", "run"))
-    depends_on('mercury@2.0.0:', type=("build", "link", "run"), when='@main')
+    depends_on('mercury@2.0.0:', type=("build", "link", "run"), when='@main,0.1:9.9.9')
     depends_on('mpi', when='+benchmark', type=("build", "link", "run"))
 
     # dependencies for develop version
