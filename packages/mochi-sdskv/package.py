@@ -74,8 +74,10 @@ class MochiSdskv(AutotoolsPackage):
     depends_on('mochi-remi@develop', when='+remi @develop')
 
     # variable dependencies
-    depends_on('berkeley-db', when="+bdb")
-    depends_on('leveldb', when="+leveldb")
+    depends_on('berkeley-db @18.1.40: +cxx +stl', when="+bdb")
+    # For now we are stuck with 1.22 because of a problem with 1.23
+    # (see https://github.com/google/leveldb/issues/891)
+    depends_on('leveldb@:1.22', when="+leveldb")
     depends_on('mochi-bedrock', when="+bedrock")
 
     def configure_args(self):
