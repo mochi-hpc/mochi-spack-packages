@@ -10,6 +10,3 @@ class Mercury(Mercury):
     git = 'https://github.com/mercury-hpc/mercury.git'
     version('2.0.0',
            sha256='9e80923712e25df56014309df70660e828dbeabbe5fcc82ee024bcc86e7eb6b7', preferred=True)
-    version('2.0.0a1', tag='v2.0.0a1', submodules=True)
-    version('2.0.0rc1', tag='v2.0.0rc1', submodules=True)
-    version('2.0.0rc2', tag='v2.0.0rc2', submodules=True)
