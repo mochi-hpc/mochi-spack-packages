@@ -8,6 +8,7 @@ from spack.pkg.builtin.mercury import Mercury
 class Mercury(Mercury):
 
     git = 'https://github.com/mercury-hpc/mercury.git'
+    version('2.0.1rc3', tag='v2.0.1rc3', submodules=True)
     version('2.0.1rc2', tag='v2.0.1rc2', submodules=True)
     version('2.0.0',
            sha256='9e80923712e25df56014309df70660e828dbeabbe5fcc82ee024bcc86e7eb6b7')
