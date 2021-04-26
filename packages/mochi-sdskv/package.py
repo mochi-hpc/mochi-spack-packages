@@ -54,31 +54,31 @@ class MochiSdskv(AutotoolsPackage):
     variant('bdb', default=True, description="Enable Berkely DB keyval backend")
     variant('leveldb', default=True, description="Enable LevelDB keyval backend")
     variant('lmdb', default=False, description="Enable lmdb keyval backend")
-    variant('bedrock', default=True, description="Enable bedrock (Mochi loader")
+    variant('bedrock', default=True, description="Enable bedrock (Mochi loader)")
 
     depends_on('autoconf@2.65:')
     depends_on('automake@1.13.4:')
     depends_on('libtool', type=("build"))
-    depends_on('jsoncpp@1.9.1:', when='+benchmark')
+    depends_on('jsoncpp@1.9.1:')
     depends_on('mpi', when='+benchmark')
-    depends_on('mochi-margo@0.4:', type=("build", "link", "run"), when='@:0.1.3')
-    depends_on('mochi-margo@0.5.2:', type=("build", "link", "run"), when='@0.1.4:')
-    depends_on('mochi-abt-io', type=("build", "link", "run"))
+    depends_on('mochi-margo@0.4:', when='@:0.1.3')
+    depends_on('mochi-margo@0.5.2:', when='@0.1.4:')
+    depends_on('mochi-abt-io', when='@:0.1.11')
     depends_on('mochi-remi@0.1:', when='@:0.1.1')
     depends_on('mochi-remi@0.2.1:', when='@0.1.2:0.1.3')
     depends_on('mochi-remi@0.2.2:', when='+remi @0.1.4:')
+    depends_on('mochi-bedrock', when="+bedrock")
 
     # dependencies for develop version
     depends_on('mochi-margo@develop', when='@develop')
-    depends_on('mochi-abt-io@develop', when='@develop')
     depends_on('mochi-remi@develop', when='+remi @develop')
+    depends_on('mochi-bedrock@develop', when="+bedrock @develop")
 
     # variable dependencies
     depends_on('berkeley-db @18.1.40: +cxx +stl', when="+bdb")
     # For now we are stuck with 1.22 because of a problem with 1.23
     # (see https://github.com/google/leveldb/issues/891)
     depends_on('leveldb@:1.22', when="+leveldb")
-    depends_on('mochi-bedrock', when="+bedrock")
 
     def configure_args(self):
         spec = self.spec
