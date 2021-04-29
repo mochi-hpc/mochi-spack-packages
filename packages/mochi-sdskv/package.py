@@ -35,6 +35,7 @@ class MochiSdskv(AutotoolsPackage):
     version('dev-bedrock', branch='dev-bedrock');
     version('develop', branch='main')
     version('main', branch='main')
+    version('0.1.12', sha256='ff7bf3baa6fff4751f4224efecb181e9ebfc6cabeb0e0a1547f43543d53f4cb1')
     version('0.1.11', sha256='50b753ffa6382be46e20c3e6e46d50b7c1466be291dfd14debc20eef5fc4fa5b')
     version('0.1.10', tag='v0.1.10')
     version('0.1.9', tag='v0.1.9')
