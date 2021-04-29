@@ -9,6 +9,7 @@ class MochiSonata(CMakePackage):
 
     version('main', branch='main')
     version('develop', branch='main')
+    version('0.6.2', sha256='ac96c885d80c573dddd869af69780bfd95d651b7e0cd48348df887afde92a069')
     version('0.6.1', tag='v0.6.1')
     version('0.6', tag='v0.6')
     version('0.5.1', tag='v0.5.1')
@@ -27,7 +28,7 @@ class MochiSonata(CMakePackage):
     depends_on('mochi-thallium@develop', when='@develop')
     depends_on('mochi-thallium@0.7', when='@:0.4')
     depends_on('mochi-thallium@0.8:', when='@0.5:')
-    depends_on('mochi-bedrock@0.2:', when='@0.6: +bedrock')
+    depends_on('mochi-bedrock@0.2.1:', when='@0.6: +bedrock')
     depends_on('unqlite', when='@0.1') # beyond 0.1, unqlite is included in the code
     depends_on('mpi', when='+benchmark')
     depends_on('tclap', type=('build', 'link'))
