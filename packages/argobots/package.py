@@ -23,7 +23,7 @@ class Argobots(Argobots):
     variant("affinity", default=False, description="Enable affinity setting")
 
     depends_on("valgrind", when="+valgrind")
-    depends_on("libunwind", when="+stack-unwind")
+    depends_on("libunwind", when="+stackunwind")
 
     def configure_args(self):
         spec = self.spec
