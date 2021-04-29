@@ -33,11 +33,12 @@ class PyMochiSdskv(PythonPackage):
     """Python wrapper for the Mochi KV library"""
 
     homepage = 'https://github.com/mochi-hpc/py-mochi-sdskv'
-    url      = 'https://github.com/mochi-hpc/py-mochi-sdskv'
+    url      = 'https://github.com/mochi-hpc/py-mochi-sdskv/archive/refs/tags/v0.1.5.tar.gz'
     git      = 'https://github.com/mochi-hpc/py-mochi-sdskv.git'
 
     version('develop',  branch="main")
     version('main',  branch="main")
+    version('0.1.5', sha256='b9b3f7b4ca78ba337ab1b20dbae3d3d7b9a411bea604fc3b6c2bed3903e34002')
     version('0.1.4', tag='v0.1.4')
     version('0.1.3', tag='v0.1.3')
     version('0.1.2', tag='v0.1.2')
@@ -46,7 +47,8 @@ class PyMochiSdskv(PythonPackage):
 
     depends_on('py-pkgconfig', type=('build'))
     depends_on('py-pybind11', type=('build'))
-    depends_on('mochi-sdskv@0.1:')
+    depends_on('mochi-sdskv@0.1.12:', when='@0.1.5:')
+    depends_on('mochi-sdskv@:0.1.11', when='@:0.1.4')
     depends_on('mochi-sdskv@0.1.3:', when='@0.1.3:')
     depends_on('mochi-sdskv@develop', when='@develop')
     depends_on('py-mochi-margo@0.1:', when='@:0.1.1')
