@@ -9,7 +9,7 @@ class MochiSonata(CMakePackage):
 
     version('main', branch='main')
     version('develop', branch='main')
-    version('0.6.2', sha256='ac96c885d80c573dddd869af69780bfd95d651b7e0cd48348df887afde92a069')
+    version('0.6.2', sha256='180f6c2e7991331813d21538b99101cc5af01fb35c66fd0b9ca971205c746347')
     version('0.6.1', tag='v0.6.1')
     version('0.6', tag='v0.6')
     version('0.5.1', tag='v0.5.1')
