@@ -41,6 +41,7 @@ class MochiBedrock(CMakePackage):
         extra_args = ['-DBUILD_SHARED_LIBS=ON']
         if '+mpi' in self.spec:
             extra_args.append('-DENABLE_MPI=ON')
+            extra_args.append('-DCMAKE_CXX_COMPILER=%s' % self.spec['mpi'].mpicxx)
         else:
             extra_args.append('-DENABLE_MPI=OFF')
         return extra_args
