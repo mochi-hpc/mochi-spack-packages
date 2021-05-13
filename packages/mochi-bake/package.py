@@ -35,20 +35,23 @@ class MochiBake(AutotoolsPackage):
     depends_on('autoconf@2.65:', type=("build"))
     depends_on('automake@1.13.4:', type=("build"))
     depends_on('libtool', type=("build"))
-    depends_on('mochi-margo@0.4:')
-    depends_on('mochi-abt-io')
     depends_on('pmdk')
-    depends_on('mochi-remi@0.1:', when='@:0.3.3')
-    depends_on('mochi-remi@0.2.2:', when='+remi @0.3.4:')
     depends_on('libuuid')
     depends_on('jsoncpp@1.9.1:', when='+benchmark')
     depends_on('mpi', when='+benchmark')
-    depends_on('mochi-bedrock', type='build', when='+bedrock')
+
+    # dependencies for normal versions
+    depends_on('mochi-margo@0.4:')
+    depends_on('mochi-abt-io')
+    depends_on('mochi-bedrock', when='+bedrock')
+    depends_on('mochi-remi@0.1:', when='@:0.3.3')
+    depends_on('mochi-remi@0.2.2:', when='+remi @0.3.4:')
 
     # dependencies for develop version
     depends_on('mochi-margo@develop', when='@develop')
     depends_on('mochi-remi@develop', when='+remi @develop')
     depends_on('mochi-abt-io@develop', when='@develop')
+    depends_on('mochi-bedrock@develop', when='@develop +bedrock')
 
     conflicts('+bedrock', when='@:0.5',
               msg='+bedrock variant only available starting from 0.6')
