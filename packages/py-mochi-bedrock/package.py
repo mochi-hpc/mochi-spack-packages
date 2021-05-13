@@ -29,15 +29,16 @@ class PyMochiBedrock(PythonPackage):
     """Mochi Bedrock's Python library and wrapper."""
 
     homepage = 'https://github.com/mochi-hpc/py-mochi-bedrock'
-    url      = 'https://github.com/mochi-hpc/py-mochi-bedrock'
+    url      = 'https://github.com/mochi-hpc/py-mochi-bedrock/archive/refs/tags/v0.1.tar.gz'
     git      = 'https://github.com/mochi-hpc/py-mochi-bedrock.git'
 
     version('develop', branch='main')
-    version('main', branch='main', preferred=True)
+    version('main', branch='main')
+    version('0.1', sha256='dd479475c90b357d0f9d6c5b0c8425609fa0170bc5316efafe1adb53e9c21ab5')
 
     depends_on('python')
     depends_on('py-pkgconfig', type=('build'))
     depends_on('py-pybind11', type=('build'))
     depends_on('py-setuptools', type=('build'))
     depends_on('py-attrs@20.3.0:')
-    depends_on('mochi-bedrock')
+    depends_on('mochi-bedrock@0.3:')
