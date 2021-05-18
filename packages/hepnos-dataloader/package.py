@@ -34,10 +34,14 @@ class HepnosDataloader(CMakePackage):
 
     version('develop', branch='master', submodules=True)
     version('main', branch='main', submodules=True)
+    version('0.3.1', tag='v0.3.1', submodules=True)
     version('0.3', tag='v0.3', submodules=True)
     version('0.2.1', tag='v0.2.1')
     version('0.2', tag='v0.2')
     version('0.1', tag='v0.1')
+
+    variant("classes", default="test", description="Which set of classes to build",
+            values=('test', 'all'), multi=False)
 
     depends_on('cmake@3.9.0:', type=('build'))
     depends_on('mpi')
@@ -50,4 +54,6 @@ class HepnosDataloader(CMakePackage):
     def cmake_args(self):
         extra_args = ['-DBUILD_SHARED_LIBS=ON']
         extra_args.extend(['-DCMAKE_CXX_COMPILER=%s' % self.spec['mpi'].mpicxx])
+        if self.spec.variants['classes'].value == 'test':
+            extra_args.extend(['-DONLY_TEST_CLASSES=ON'])
         return extra_args
