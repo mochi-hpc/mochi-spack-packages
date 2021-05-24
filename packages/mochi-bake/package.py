@@ -31,7 +31,7 @@ class MochiBake(AutotoolsPackage):
     variant('remi', default=False, description="Enable support for migration with REMI")
     variant('sizecheck', default=False, description="Enable size/bound checking (may degrade performance)")
     variant('timers', default=False, description="Enable timers on stdout (use for performance tuning)")
-    variant('bedrock', default=False, description='Enable building Bedrock module')
+    variant('bedrock', default=True, description='Enable building Bedrock module')
 
     depends_on('autoconf@2.65:', type=("build"))
     depends_on('automake@1.13.4:', type=("build"))
