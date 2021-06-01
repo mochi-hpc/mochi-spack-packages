@@ -18,4 +18,4 @@ class HepnosPepBenchmark(CMakePackage):
     depends_on('mpi')
     depends_on('hepnos@0.4:')
     depends_on('tclap')
-    depends_on('spdlog@:1.8.4') # TODO fix HEPnOS serialization so 1.8.5+ work
+    depends_on('spdlog@:1.8.0') # TODO fix HEPnOS serialization so 1.8.1+ work
