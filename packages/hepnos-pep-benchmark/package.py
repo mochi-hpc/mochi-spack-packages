@@ -10,7 +10,9 @@ class HepnosPepBenchmark(CMakePackage):
 
     version('develop', branch='main', submodules=True)
     version('main', branch='main', submodules=True)
-    version('0.1', branch='main', tag='v0.1', submodules=True, preferred=True)
+    version('0.3', branch='main', tag='v0.3', submodules=True)
+    version('0.2', branch='main', tag='v0.2', submodules=True)
+    version('0.1', branch='main', tag='v0.1', submodules=True)
 
     depends_on('cmake@3.11.0:', type=('build'))
     depends_on('mpi')
