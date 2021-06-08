@@ -29,7 +29,8 @@ class MochiColza(CMakePackage):
     depends_on('mochi-thallium @0.8:')
     depends_on('mochi-mona')
     depends_on('mochi-bedrock', when='+bedrock')
-    depends_on('mochi-ssg @0.4.5:', when='@0.1:9.9.9,main')
+    depends_on('mochi-ssg @0.4.5:', when='@0.1:9.9.9')
+    depends_on('mochi-ssg @main', when='@main') # remove when SSG API is merged
 
     # dependencies for develop version
     depends_on('mochi-thallium @develop', when='@develop')
