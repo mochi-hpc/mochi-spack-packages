@@ -32,7 +32,10 @@ class Hepnos(CMakePackage):
     url = "https://github.com/hepnos/HEPnOS/archive/v0.4.2.tar.gz"
     git = "https://github.com/hepnos/HEPnOS.git"
 
-    version('0.4.6', sha256='930012cbc684565c98b69e38bb5485eed042d4e406712e14d90ee8e284d7cc4e')
+
+    version('0.5.0', branch='dev-bedrock')
+    version('0.4.6', sha256='930012cbc684565c98b69e38bb5485eed042d4e406712e14d90ee8e284d7cc4e',
+            preferred=True)
     version('0.4.5', sha256='bd36e6b8e468d161be59a39765c7f9bd98f9a9cc5c5a3413d05ca01e6997be54')
     version('0.4.4', sha256='3782151f637927f739ae69d46aee2ea9b1cb169b53fe2557ea8b27ae849dbb7d')
     version('0.4.3', sha256='6a93ff41d7bd606e0c30c9e91d88c102ecccda354a856448405a151c82e5f81c')
@@ -52,7 +55,7 @@ class Hepnos(CMakePackage):
     version('0.1.2', tag='v0.1.2')
     version('0.1.1', tag='v0.1.1')
     version('0.1',   tag='v0.1')
-    version('develop', branch='main')
+    version('develop', branch='dev-bedrock')
     version('main', branch='main')
 
     variant('cxxstd',
@@ -61,13 +64,14 @@ class Hepnos(CMakePackage):
             multi=False,
             description='Use the specified C++ standard when building.')
 
+    # Common dependencies
     depends_on('mpi')
     depends_on('spdlog')
-    depends_on('yaml-cpp@develop')
     depends_on('boost+serialization')
     depends_on('cmake@3.12.0:')
-    depends_on('libuuid', when='@0.2.0:')
-    # Mochi dependencies for non-develop versions
+    # Dependencies for non-develop versions < 0.5.0
+    depends_on('yaml-cpp@develop', when='@:0.4.6,main')
+    depends_on('libuuid', when='@0.2.0:0.4.6,main')
     depends_on('mochi-ch-placement@0.1:')
     depends_on('mochi-thallium@0.5.2:', when='@0.2.0:')
     depends_on('mochi-margo@0.5.2:', when='@0.1.8') # past 0.1.8, HEPnOS requires thallium
@@ -76,10 +80,15 @@ class Hepnos(CMakePackage):
     depends_on('mochi-sdskv@0.1.7:', when='@0.1.8:')
     depends_on('mochi-sdskv@0.1:')
     depends_on('mochi-bake@0.1:0.3.6', when='@:0.1.7') # after 0.1.7, HEPnOS does not require bake
-    # Mochi dependencies for develop version
+    # Dependencies for develop version
     depends_on('mochi-ch-placement@develop', when='@develop')
     depends_on('mochi-thallium@develop', when='@develop')
     depends_on('mochi-sdskv@develop', when='@develop')
+    depends_on('mochi-bedrock+mpi@develop', when='@develop')
+    # Mochi dependencies for versions >= 0.5.0
+    depends_on('uuid', when='@0.5.0:9.9.9,develop')
+    depends_on('mochi-bedrock+mpi', when='@0.5.0:9.9.9')
+    depends_on('nlohmann-json', when='@0.5.0:9.9.9,develop')
 
     def cmake_args(self):
         extra_args = ['-DBUILD_SHARED_LIBS=ON']
