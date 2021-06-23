@@ -40,6 +40,10 @@ class MochiMargo(AutotoolsPackage):
     version('0.4.4', sha256='2e2e6e2a8a7d7385e2fe204c113cb149f30847f0b1f48ec8dd708a74280bd89e')
     version('0.4.3', sha256='61a634d6983bee2ffa06e1e2da4c541cb8f56ddd9dd9f8e04e8044fb38657475')
     version('0.4.2', sha256='91085e28f50e373b9616e1ae5c3c8d40a19a7d3776259592d8f361766890bcaa')
+    version('0.7.2-exp', git='https://github.com/srini009/margo.git', branch='experimental')
+
+    variant('pvar', default=False, description="extract performance data from Mercury")
+
 
     depends_on('json-c', when='@0.9:')
     depends_on('autoconf@2.65:', type=("build"))
@@ -51,6 +55,7 @@ class MochiMargo(AutotoolsPackage):
     # "breadcrumb" support not available in mercury-1.0
     depends_on('mercury@1.0.0:', type=("build", "link", "run"), when='@:0.5.1')
     depends_on('mercury@2.0.0:', type=("build", "link", "run"), when='@0.5.2:')
+    depends_on('mercury@2.0.0rc1-pvar', when='@0.7.2-exp')
 
     # dependencies for develop version
     depends_on('mercury@master', type=("build", "link", "run"), when='@develop')
@@ -58,3 +63,11 @@ class MochiMargo(AutotoolsPackage):
     def autoreconf(self, spec, prefix):
         sh = which('sh')
         sh('./prepare.sh')
+
+    def configure_args(self):
+        args = []
+
+        if '+pvar' in self.spec:
+            args.extend(["CFLAGS=-DMERCURY_PROFILING"])
+
+        return args
