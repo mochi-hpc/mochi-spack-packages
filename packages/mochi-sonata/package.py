@@ -32,9 +32,10 @@ class MochiSonata(CMakePackage):
     depends_on('unqlite', when='@0.1') # beyond 0.1, unqlite is included in the code
     depends_on('mpi', when='+benchmark')
     depends_on('tclap', type=('build', 'link'))
-    depends_on('jsoncpp')
+    depends_on('jsoncpp', when='@:0.6.2')
     depends_on('spdlog')
     depends_on('cmake', type=('build'))
+    depends_on('nlohmann-json', when='@0.6.3:')
 
     conflicts('+bedrock', when='@:0.5.1',
               msg='+bedrock variant only available starting from 0.6')
