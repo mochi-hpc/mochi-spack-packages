@@ -83,6 +83,12 @@ class MochiSdskv(AutotoolsPackage):
     # (see https://github.com/google/leveldb/issues/891)
     depends_on('leveldb@:1.22', when="+leveldb")
 
+
+    def autoreconf(self, spec, prefix):
+        bash = which('bash')
+        bash('./prepare.sh')
+
+
     def configure_args(self):
         spec = self.spec
         extra_args = []
