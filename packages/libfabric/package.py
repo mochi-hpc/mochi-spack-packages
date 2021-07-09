@@ -7,6 +7,9 @@ from spack.pkg.builtin.libfabric import Libfabric
 
 class Libfabric(Libfabric):
 
+    # new libfabric releases, not yet upstreamed to spack as of 2021-07-09
+    version('1.13.0', sha256='0c68264ae18de5c31857724c754023351614330bd61a50b40cef2b5e8f63ab28')
+
     # these versions are upstream as of 2021-07-09; duplicating here so
     # that they are available in older spack releases as well
     version('1.12.1', sha256='db3c8e0a495e6e9da6a7436adab905468aedfbd4579ee3da5232a5c111ba642c')
