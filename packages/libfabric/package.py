@@ -7,17 +7,15 @@ from spack.pkg.builtin.libfabric import Libfabric
 
 class Libfabric(Libfabric):
 
-    version('1.11.1',
-    sha512='790c9346dc5cae4100bfaf760a2fc1aeed34f8d92d1a05beaa13d004cb59cf0f66aca128e737a745dfc08b8aad4a25a6f85bc21ee8d0c1612727f0b22e1c966e',
-        url='https://github.com/ofiwg/libfabric/releases/download/v1.11.1/libfabric-1.11.1.tar.bz2',
-        preferred=True)
-    version('1.10.1',
-    sha256='889fa8c99eed1ff2a5fd6faf6d5222f2cf38476b24f3b764f2cbb5900fee8284',
-        url='https://github.com/ofiwg/libfabric/releases/download/v1.10.1/libfabric-1.10.1.tar.bz2')
-    version('1.11.0',
-            sha256='9938abf628e7ea8dcf60a94a4b62d499fbc0dbc6733478b6db2e6a373c80d58f',
-        url='https://github.com/ofiwg/libfabric/releases/download/v1.11.0/libfabric-1.11.0.tar.bz2')
+    # these versions are upstream as of 2021-07-09; duplicating here so
+    # that they are available in older spack releases as well
+    version('1.12.1', sha256='db3c8e0a495e6e9da6a7436adab905468aedfbd4579ee3da5232a5c111ba642c')
+    version('1.12.0', sha256='ca98785fe25e68a26c61e272be64a1efeea37e61b0dcebd34ccfd381bda7d9cc')
+    version('1.11.2', sha256='ff2ba821b55a54855d327e6f6fb8a14312c9c9ca7c873525b6a246d8f974d7da')
+    version('1.11.1', sha256='a72a7dac6322bed09ef1af33bcade3024ca5847a1e9c8fa369da6ab879111fe7')
 
+    # this is a local variant used to safety check if spinlocks are causing
+    # any deadlocks under heavy multithreaded workloads
     variant('disable-spinlocks', default=False, description='Replace all spin locks with mutex locks')
     conflicts('+disable-spinlocks', when='@:9999.99',
               msg='+disable-spinlocks variant only available for @master')
