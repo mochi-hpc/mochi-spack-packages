@@ -47,7 +47,7 @@ class HepnosDataloader(CMakePackage):
     depends_on('cmake@3.9.0:', type=('build'))
     depends_on('mpi')
     depends_on('hepnos@0.3.2:')
-    depends_on('hepnos@0.5.0:', when='@0.4:')
+    depends_on('hepnos@0.5.0:', when='@0.4') # make that @0.4: when dev-bedrock branches are merged
     depends_on('tclap')
     depends_on('spdlog@:1.8.0') # TODO fix HEPnOS serializations so 1.8.1+ work
     depends_on('hdf5')
