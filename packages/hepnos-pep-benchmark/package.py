@@ -23,7 +23,7 @@ class HepnosPepBenchmark(CMakePackage):
     depends_on('hepnos@0.4:')
     depends_on('tclap')
     depends_on('spdlog@:1.8.0') # TODO fix HEPnOS serialization so 1.8.1+ work
-    depends_on('hepnos@0.5.0:', when='@0.4:')
+    depends_on('hepnos@0.5.0:', when='@0.4') # make that @0.4: when dev-bedrock branches are merged
 
     def cmake_args(self):
         extra_args = ['-DBUILD_SHARED_LIBS=ON']
