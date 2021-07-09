@@ -59,6 +59,7 @@ class MochiSdskv(AutotoolsPackage):
     variant('lmdb', default=False, description="Enable lmdb keyval backend")
     variant('bedrock', default=True, description="Enable bedrock (Mochi loader)")
 
+    depends_on('pkgconfig')
     depends_on('autoconf@2.65:')
     depends_on('automake@1.13.4:')
     depends_on('libtool', type=("build"))
@@ -82,11 +83,6 @@ class MochiSdskv(AutotoolsPackage):
     # For now we are stuck with 1.22 because of a problem with 1.23
     # (see https://github.com/google/leveldb/issues/891)
     depends_on('leveldb@:1.22', when="+leveldb")
-
-
-    def autoreconf(self, spec, prefix):
-        bash = which('bash')
-        bash('./prepare.sh')
 
 
     def configure_args(self):
