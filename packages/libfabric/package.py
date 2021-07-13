@@ -29,8 +29,8 @@ class Libfabric(Libfabric):
         spec = self.spec
         config_args = super(Libfabric, self).configure_args()
 
-	# temporarily force-disable psm3 to make sure that it doesn't interfere on newer builds
-	config_args.append('--disable-psm3')
+        # temporarily force-disable psm3 to make sure that it doesn't interfere on newer builds
+        config_args.append('--disable-psm3')
 
         if '+disable-spinlocks' in spec:
             config_args.append('--disable-spinlocks')
