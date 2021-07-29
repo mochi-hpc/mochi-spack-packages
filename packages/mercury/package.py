@@ -19,7 +19,7 @@ class Mercury(Mercury):
     depends_on('ucx', when='+ucx')
 
     def cmake_args(self):
-        args = super().cmake_args()
+        args = super(Mercury, self).cmake_args()
         spec = self.spec
         variant_bool = lambda feature: str(feature in spec)
         args.append('-DNA_USE_UCX:BOOL=%s' % variant_bool('+ucx'))
