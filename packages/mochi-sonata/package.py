@@ -22,7 +22,7 @@ class MochiSonata(CMakePackage):
     variant('bedrock', default=True, description='Enable building Bedrock module')
     variant('benchmark', default=False, description='Enable building sonata-benchmark')
     variant('daemon', default=True, description='Enable building sonata-daemon')
-    variant('unqlite_st', default=True, description='Single-threaded UnQLite')
+    variant('unqlite_st', default=False, description='Single-threaded UnQLite')
 
     depends_on('pkgconfig', type=('build', 'link'))
     depends_on('mochi-thallium@develop', when='@develop')
