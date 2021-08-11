@@ -17,6 +17,10 @@ class MochiMargo(AutotoolsPackage):
     maintainers = ['carns', 'mdorier', 'fbudin69500', 'chuckatkins']
 
     version('main', branch='main')
+    # NOTE: when adding a new version here (or making any other package.py
+    # change), you should also open a PR to propagate the change to the
+    # upstream spack package as well:
+    # https://github.com/spack/spack/tree/develop/var/spack/repos/builtin/packages/mochi-margo
     version('develop', branch='main')
     version('0.9.5', sha256='b5c52477a82aa44a079f876cbb8166d0bce5a07a92bcf8a0c76670b245e728a3')
     version('0.9.4', sha256='4292e083c8375ab07bc6dd0b3b1ea2ce9c9dd864c27ac7f07c6913dcccecc746')
