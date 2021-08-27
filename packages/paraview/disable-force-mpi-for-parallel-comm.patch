@@ -1,0 +1,314 @@
+diff --git a/Remoting/Core/vtkProcessModule.cxx b/Remoting/Core/vtkProcessModule.cxx
+index fa567ac81e..1c11e90186 100644
+--- a/Remoting/Core/vtkProcessModule.cxx
++++ b/Remoting/Core/vtkProcessModule.cxx
+@@ -114,80 +114,86 @@ bool vtkProcessModule::Initialize(ProcessTypes type, int& argc, char**& argv)
+ 
+   vtkProcessModule::ProcessType = type;
+ 
+-  vtkProcessModule::GlobalController = vtkSmartPointer<vtkDummyController>::New();
++  vtkProcessModule::GlobalController = 
++      vtkMultiProcessController::GetGlobalController();
++
++  if(!vtkProcessModule::GlobalController) {
++
++    vtkProcessModule::GlobalController = vtkSmartPointer<vtkDummyController>::New();
+ 
+ #if VTK_MODULE_ENABLE_VTK_ParallelMPI
+-  // scan the arguments to determine if we need to initialize MPI on client.
+-  bool use_mpi;
+-  if (type == PROCESS_CLIENT)
+-  {
++    // scan the arguments to determine if we need to initialize MPI on client.
++    bool use_mpi;
++    if (type == PROCESS_CLIENT)
++    {
+ #if defined(PARAVIEW_INITIALIZE_MPI_ON_CLIENT)
+-    use_mpi = true;
++      use_mpi = true;
+ #else
+-    use_mpi = false;
++      use_mpi = false;
+ #endif
+-  }
+-  else
+-  {
+-    use_mpi = true;
+-  }
++    }
++    else
++    {
++      use_mpi = true;
++    }
+ 
+-  // Refer to vtkPVOptions.cxx for details.
+-  if (vtkFindArgument("--mpi", argc, argv))
+-  {
+-    use_mpi = true;
+-  }
+-  else if (vtkFindArgument("--no-mpi", argc, argv))
+-  {
+-    use_mpi = false;
+-  }
++    // Refer to vtkPVOptions.cxx for details.
++    if (vtkFindArgument("--mpi", argc, argv))
++    {
++      use_mpi = true;
++    }
++    else if (vtkFindArgument("--no-mpi", argc, argv))
++    {
++      use_mpi = false;
++    }
+ 
+-  // initialize MPI only on all processes if paraview is compiled w/MPI.
+-  int mpi_already_initialized = 0;
+-  MPI_Initialized(&mpi_already_initialized);
+-  if (mpi_already_initialized == 0 && use_mpi)
+-  {
+-    // MPICH changes the current working directory after MPI_Init. We fix that
+-    // by changing the CWD back to the original one after MPI_Init.
+-    std::string cwd = vtksys::SystemTools::GetCurrentWorkingDirectory(true);
++    // initialize MPI only on all processes if paraview is compiled w/MPI.
++    int mpi_already_initialized = 0;
++    MPI_Initialized(&mpi_already_initialized);
++    if (mpi_already_initialized == 0 && use_mpi)
++    {
++      // MPICH changes the current working directory after MPI_Init. We fix that
++      // by changing the CWD back to the original one after MPI_Init.
++      std::string cwd = vtksys::SystemTools::GetCurrentWorkingDirectory(true);
+ 
+-    // This is here to avoid false leak messages from vtkDebugLeaks when
+-    // using mpich. It appears that the root process which spawns all the
+-    // main processes waits in MPI_Init() and calls exit() when
+-    // the others are done, causing apparent memory leaks for any objects
+-    // created before MPI_Init().
+-    MPI_Init(&argc, &argv);
++      // This is here to avoid false leak messages from vtkDebugLeaks when
++      // using mpich. It appears that the root process which spawns all the
++      // main processes waits in MPI_Init() and calls exit() when
++      // the others are done, causing apparent memory leaks for any objects
++      // created before MPI_Init().
++      MPI_Init(&argc, &argv);
+ 
+-    // restore CWD to what it was before the MPI initialization.
+-    vtksys::SystemTools::ChangeDirectory(cwd.c_str());
++      // restore CWD to what it was before the MPI initialization.
++      vtksys::SystemTools::ChangeDirectory(cwd.c_str());
+ 
+-    vtkProcessModule::FinalizeMPI = true;
+-  } // END if MPI is already initialized
++      vtkProcessModule::FinalizeMPI = true;
++    } // END if MPI is already initialized
+ 
+-  if (use_mpi || mpi_already_initialized)
+-  {
+-    if (vtkMPIController* controller =
+-          vtkMPIController::SafeDownCast(vtkMultiProcessController::GetGlobalController()))
+-    {
+-      vtkProcessModule::GlobalController = controller;
+-    }
+-    else
+-    {
+-      vtkProcessModule::GlobalController = vtkSmartPointer<vtkMPIController>::New();
+-      vtkProcessModule::GlobalController->Initialize(&argc, &argv, /*initializedExternally*/ 1);
+-    }
+-    // Get number of ranks in this process group
+-    int numRanks = vtkProcessModule::GlobalController->GetNumberOfProcesses();
+-    // Ensure that the user cannot run a client with more than one rank.
+-    if (type == PROCESS_CLIENT && numRanks > 1)
++    if (use_mpi || mpi_already_initialized)
+     {
+-      throw std::runtime_error("Client process should be run with one process!");
++      if (vtkMPIController* controller =
++            vtkMPIController::SafeDownCast(vtkMultiProcessController::GetGlobalController()))
++      {
++        vtkProcessModule::GlobalController = controller;
++      }
++      else
++      {
++        vtkProcessModule::GlobalController = vtkSmartPointer<vtkMPIController>::New();
++        vtkProcessModule::GlobalController->Initialize(&argc, &argv, /*initializedExternally*/ 1);
++      }
++      // Get number of ranks in this process group
++      int numRanks = vtkProcessModule::GlobalController->GetNumberOfProcesses();
++      // Ensure that the user cannot run a client with more than one rank.
++      if (type == PROCESS_CLIENT && numRanks > 1)
++      {
++        throw std::runtime_error("Client process should be run with one process!");
++      }
+     }
+-  }
+ #else
+-  static_cast<void>(argc); // unused warning when MPI is off
+-  static_cast<void>(argv); // unused warning when MPI is off
++    static_cast<void>(argc); // unused warning when MPI is off
++    static_cast<void>(argv); // unused warning when MPI is off
+ #endif
++  }
+   vtkProcessModule::GlobalController->BroadcastTriggerRMIOn();
+   vtkMultiProcessController::SetGlobalController(vtkProcessModule::GlobalController);
+ 
+diff --git a/Remoting/Views/vtkIceTContext.cxx b/Remoting/Views/vtkIceTContext.cxx
+index 2603be9227..8e891cf7e7 100644
+--- a/Remoting/Views/vtkIceTContext.cxx
++++ b/Remoting/Views/vtkIceTContext.cxx
+@@ -19,6 +19,7 @@
+ 
+ #include "vtkIceTContext.h"
+ 
++#include "vtkLogger.h"
+ #include "vtkMPI.h"
+ #include "vtkMPICommunicator.h"
+ #include "vtkMPIController.h"
+@@ -67,26 +68,53 @@ void vtkIceTContext::SetController(vtkMultiProcessController* controller)
+ {
+   if (controller == this->Controller)
+   {
+-    return;
++    if (controller && this->Context && controller->GetMTime() > this->ContextCreationTime)
++    {
++      // the controller has been modified, maybe a new communicator was
++      // provided, lets re-create the IceT context.
++      vtkLogF(TRACE, "Controller has been modified, recreating IceT context.");
++    }
++    else
++    {
++      return;
++    }
+   }
+ 
+   vtkIceTContextOpaqueHandle* newContext = NULL;
+ 
+   if (controller)
+   {
+-    vtkMPICommunicator* communicator =
+-      vtkMPICommunicator::SafeDownCast(controller->GetCommunicator());
+-    if (!communicator)
++    IceTCommunicator icetComm = NULL;
++    vtkCommunicator* communicator = controller->GetCommunicator();
++    vtkMPICommunicator* mpi_communicator = vtkMPICommunicator::SafeDownCast(communicator);
++    if (mpi_communicator)
+     {
+-      vtkErrorMacro("IceT can currently be only used with an MPI communicator.");
+-      return;
++      MPI_Comm mpiComm = *mpi_communicator->GetMPIComm()->GetHandle();
++      icetComm = icetCreateMPICommunicator(mpiComm);
++      newContext = new vtkIceTContextOpaqueHandle;
++      newContext->Handle = icetCreateContext(icetComm);
++      icetDestroyMPICommunicator(icetComm);
++    }
++    else
++    {
++      std::string class_name = communicator->GetClassName();
++      if (iceTCommFactories.count(class_name) == 0)
++      {
++        vtkErrorMacro(
++          "Could not find a way to create an IceT communinucator from provided vtkCommunicator.");
++        return;
++      }
++      iceTCommFactoryFunction_t fn = iceTCommFactories[class_name].first;
++      void* uargs = iceTCommFactories[class_name].second;
++      icetComm = reinterpret_cast<IceTCommunicator>(fn(controller, uargs));
++      if (icetComm == NULL)
++      {
++        vtkErrorMacro("Invalid IceTCommunicator created by factory function.");
++        return;
++      }
++      newContext = new vtkIceTContextOpaqueHandle;
++      newContext->Handle = icetCreateContext(icetComm);
+     }
+-
+-    MPI_Comm mpiComm = *communicator->GetMPIComm()->GetHandle();
+-    IceTCommunicator icetComm = icetCreateMPICommunicator(mpiComm);
+-    newContext = new vtkIceTContextOpaqueHandle;
+-    newContext->Handle = icetCreateContext(icetComm);
+-    icetDestroyMPICommunicator(icetComm);
+ 
+     if (this->UseOpenGL)
+     {
+@@ -110,6 +138,7 @@ void vtkIceTContext::SetController(vtkMultiProcessController* controller)
+ 
+   this->Controller = controller;
+   this->Context = newContext;
++  this->ContextCreationTime.Modified();
+ 
+   if (this->Controller)
+   {
+@@ -176,3 +205,16 @@ int vtkIceTContext::IsValid()
+ {
+   return ((this->Controller != NULL) && (this->Context != NULL));
+ }
++
++//-----------------------------------------------------------------------------
++
++void vtkIceTContext::RegisterIceTCommunicatorFactory(
++  const char* comm_class_name, iceTCommFactoryFunction_t function, void* uargs)
++{
++  iceTCommFactories[comm_class_name] = std::make_pair(function, uargs);
++}
++
++//-----------------------------------------------------------------------------
++
++std::unordered_map<std::string, vtkIceTContext::iceTCommFactory_t>
++  vtkIceTContext::iceTCommFactories;
+diff --git a/Remoting/Views/vtkIceTContext.h b/Remoting/Views/vtkIceTContext.h
+index 9139df2bc8..b0f07e1cdf 100644
+--- a/Remoting/Views/vtkIceTContext.h
++++ b/Remoting/Views/vtkIceTContext.h
+@@ -44,6 +44,8 @@
+ #include "vtkObject.h"
+ #include "vtkRemotingViewsModule.h" // needed for export macro
+ 
++#include <unordered_map>
++
+ class vtkMultiProcessController;
+ 
+ class vtkIceTContextOpaqueHandle;
+@@ -64,7 +66,7 @@ public:
+   virtual void SetController(vtkMultiProcessController* controller);
+   vtkGetObjectMacro(Controller, vtkMultiProcessController);
+   //@}
+-
++  
+   /**
+    * Make this context the current one.
+    */
+@@ -92,6 +94,28 @@ public:
+    */
+   virtual int IsValid();
+ 
++    
++  typedef void*(*iceTCommFactoryFunction_t)(vtkMultiProcessController*,void*);
++  typedef std::pair<iceTCommFactoryFunction_t, void*> iceTCommFactory_t;
++
++  /**
++   * @brief Registers a function that takes a vtkMultiProcessController
++   * and creates an IceTCommunicator from it. Such factory functions are
++   * used in SetController: if the vtkCommunicator produced by the
++   * vtkMultiProcessController is not a vtkMPICommunicator, then SetController
++   * will look in the registered factories for a name matching
++   * the communicator's class name (obtained via GetClassName()) and
++   * call the corresponding function.
++   *
++   * @param comm_class_name Class name of the communicator.
++   * @param function Function pointer of the factory function.
++   * @param uargs User-provided context argument for the function.
++   */
++  static void RegisterIceTCommunicatorFactory(
++          const char* comm_class_name,
++          iceTCommFactoryFunction_t function,
++          void* uargs);
++
+ protected:
+   vtkIceTContext();
+   ~vtkIceTContext();
+@@ -105,6 +129,9 @@ private:
+   void operator=(const vtkIceTContext&) = delete;
+ 
+   vtkIceTContextOpaqueHandle* Context;
++  vtkTimeStamp ContextCreationTime;
++
++  static std::unordered_map<std::string, iceTCommFactory_t> iceTCommFactories;
+ };
+ 
+ #endif // vtkIceTContext_h
