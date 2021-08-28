@@ -19,7 +19,7 @@ class Paraview(Paraview):
         if '+mochi' in self.spec:
             args.remove('-DPARAVIEW_BUILD_WITH_EXTERNAL=ON')
             args.append('-DPARAVIEW_BUILD_WITH_EXTERNAL=OFF')
-            args.append('-VTK_PYTHON_OPTIONAL_LINK=OFF')
+            args.append('-DVTK_PYTHON_OPTIONAL_LINK=OFF')
         return args
 
     def install(self, spec, prefix):
