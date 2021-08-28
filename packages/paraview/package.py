@@ -23,7 +23,7 @@ class Paraview(Paraview):
         return args
 
     def install(self, spec, prefix):
-        super(ParaView, self).install(spec, prefix)
+        super(Paraview, self).install(spec, prefix)
         if '+mochi' in spec:
             install('ThirdParty/IceT/vtkicet/src/include/*.h',
                     prefix.include+'/paraview-5.8')
