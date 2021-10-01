@@ -29,14 +29,14 @@ class PyMochiSonata(PythonPackage):
     """Python wrapper for the Mochi Sonata library"""
 
     homepage = 'https://github.com/mochi-hpc/py-mochi-sonata'
-    url      = 'https://github.com/mochi-hpc/py-mochi-sonata'
+    url      = 'https://github.com/mochi-hpc/py-mochi-sonata/archive/refs/tags/v0.1.2.tar.gz'
     git      = 'https://github.com/mochi-hpc/py-mochi-sonata.git'
 
     version('develop', branch='main')
     version('main', branch='main')
-    version('0.1.2', tag='v0.1.2')
-    version('0.1.1', tag='v0.1.1')
-    version('0.1', tag='v0.1')
+    version('0.1.2', sha256='e72a6e9dde563fa2f6fba9a9808e91dd035aa02d16d82e20a794a7b916da1e55')
+    version('0.1.1', sha256='95cdb62edd7661917bbc0baaa5a4f3e50eb2d174c2571ed6c43c4c50873d48c8')
+    version('0.1',   sha256='d91a9ba7786d87e5fe5576ac72fcae9a5393fa8088cfd047dc8b31a5252bda83')
 
     depends_on('python')
     depends_on('py-pkgconfig', type=('build'))
