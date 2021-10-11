@@ -39,6 +39,7 @@ class PyMochiMargo(PythonPackage):
 
     version('develop', branch='main')
     version('main', branch='main')
+    version('0.4', sha256='8f2b8123299047f853883a98dc570582a5d22ed221f81899c75742e431e26f09')
     version('0.3.2', sha256='8aa04000b601fb4463e0b44a7ad562dba0b36f4105b83487d5f89341ee1faa82')
     version('0.3.1', sha256='f998aa7373e0b507685f9fe0dbb9d54f2bdf791d0e6d8fea112fdd7453edba29')
     version('0.3',   sha256='a574c91bf22dcd1bd54ea8bf87b00f257524e827b3afefc43bce01cf635acd73')
@@ -50,7 +51,7 @@ class PyMochiMargo(PythonPackage):
     version('0.1',   sha256='b32bb6e6b02185dc1180144987e28d4b1f2df4806c965c5d2290519d031cd202')
 
     depends_on('python')
-    depends_on('py-numpy', when='@0.2:')
+    depends_on('py-numpy', when='@0.2:0.3.2')
     depends_on('py-pkgconfig', type=('build'))
     depends_on('py-pybind11', type=('build'))
 
