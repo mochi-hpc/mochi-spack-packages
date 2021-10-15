@@ -13,7 +13,8 @@ class MochiYokan(CMakePackage, PythonPackage):
     git = "https://github.com/mochi-hpc/mochi-yokan.git"
 
     version('develop', branch='main')
-    version('main', branch='main', preferred=True)
+    version('main', branch='main')
+    version('0.1', sha256='b5043ba37102e8956ae59201953e9e7ce56378dde19a4c99b6e82b9ff575d675')
 
     variant('berkeleydb', default=False, description="Enable BerkelyDB backend")
     variant('leveldb', default=False, description="Enable LevelDB backend")
