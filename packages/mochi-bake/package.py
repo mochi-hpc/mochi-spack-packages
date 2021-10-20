@@ -57,6 +57,14 @@ class MochiBake(AutotoolsPackage):
     conflicts('+bedrock', when='@:0.5',
               msg='+bedrock variant only available starting from 0.6')
 
+    # NOTE: The default autoreconf steps should work fine for this package.
+    #       The explicit definition is just here as a workaround; Spack's
+    #       default autoreconf step is prone to libtool version mismatch as
+    #       of 2021/10/20.
+    def autoreconf(self, spec, prefix):
+        sh = which('sh')
+        sh('./prepare.sh')
+
     def configure_args(self):
         spec = self.spec
         extra_args = []
