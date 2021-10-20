@@ -38,6 +38,14 @@ class Benvolio(AutotoolsPackage):
     #depends_on('mochi-thallium@develop', when='@develop')
     #depends_on('mochi-ssg+mpi@develop', when='@develop')
 
+    # NOTE: The default autoreconf steps should work fine for this package.
+    #       The explicit definition is just here as a workaround; Spack's
+    #       default autoreconf step is prone to libtool version mismatch as
+    #       of 2021/10/20.
+    def autoreconf(self, spec, prefix):
+        sh = which('sh')
+        sh('-c', 'autoreconf -fi')
+
     # Require a custom configure_args if we need to build with MPI wrapper
 
     def configure_args(self):

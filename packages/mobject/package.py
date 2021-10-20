@@ -75,6 +75,14 @@ class Mobject(AutotoolsPackage):
 
     patch('0001-crude-timing-information.patch', when='+timing @:0.4.1')
 
+    # NOTE: The default autoreconf steps should work fine for this package.
+    #       The explicit definition is just here as a workaround; Spack's
+    #       default autoreconf step is prone to libtool version mismatch as
+    #       of 2021/10/20.
+    def autoreconf(self, spec, prefix):
+        sh = which('sh')
+        sh('./prepare.sh')
+
     def configure_args(self):
         extra_args = []
         if self.version < Version('0.5'):

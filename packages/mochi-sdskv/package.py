@@ -84,6 +84,13 @@ class MochiSdskv(AutotoolsPackage):
     # (see https://github.com/google/leveldb/issues/891)
     depends_on('leveldb@:1.22', when="+leveldb")
 
+    # NOTE: The default autoreconf steps should work fine for this package.
+    #       The explicit definition is just here as a workaround; Spack's
+    #       default autoreconf step is prone to libtool version mismatch as
+    #       of 2021/10/20.
+    def autoreconf(self, spec, prefix):
+        sh = which('sh')
+        sh('./prepare.sh')
 
     def configure_args(self):
         spec = self.spec
