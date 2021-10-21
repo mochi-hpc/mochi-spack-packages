@@ -30,6 +30,7 @@ class MochiYokan(CMakePackage, PythonPackage):
     depends_on('pkgconfig')
     depends_on('uuid')
     depends_on('nlohmann-json')
+    depends_on('tclap')
 
     # mochi dependencies
     depends_on('mochi-margo@0.9.5:')
