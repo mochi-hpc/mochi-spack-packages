@@ -5,7 +5,7 @@
 from spack import *
 
 
-class MochiYokan(CMakePackage, PythonPackage):
+class MochiYokan(CMakePackage):
     """A Mochi library that provides a Margo-based key/value service."""
 
     homepage = "https://github.com/mochi-hpc/mochi-yokan"
@@ -58,6 +58,8 @@ class MochiYokan(CMakePackage, PythonPackage):
     depends_on('python@3.6.0:', when='+python')
     depends_on('py-pybind11@2.7.0:', when='+python')
 
+    extends('python', when='+python')
+
     def cmake_args(self):
         args = []
         variant_bool = lambda feature: str(feature in self.spec)
@@ -72,6 +74,3 @@ class MochiYokan(CMakePackage, PythonPackage):
         args.append('-DENABLE_PYTHON:BOOL=%s' % variant_bool('+python'))
         args.append('-DENABLE_BEDROCK:BOOL=%s' % variant_bool('+bedrock'))
         return args
-
-    def install(self, spec, prefix):
-        CMakePackage.install(self, spec, prefix)
