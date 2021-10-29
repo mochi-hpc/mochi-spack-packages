@@ -22,10 +22,10 @@ class MochiBedrock(CMakePackage):
 
     depends_on('mochi-margo@0.9:', when='@0.1:9.9.9')
     depends_on('mochi-thallium')
-    depends_on('mochi-ssg@0.4.5:', when='@0.1:9.9.9')
-    depends_on('mochi-ssg+mpi@0.4.5:', when='@0.1:9.9.9 +mpi')
-    depends_on('mochi-ssg@main', when='@main')
-    depends_on('mochi-ssg+mpi@main', when='@main +mpi')
+    depends_on('mochi-ssg@0.4.5', when='@0.1:0.3')
+    depends_on('mochi-ssg+mpi@0.4.5', when='@0.1:0.3 +mpi')
+    depends_on('mochi-ssg@main', when='@0.3.1:')
+    depends_on('mochi-ssg+mpi@main', when='@0.3.1: +mpi')
     depends_on('mochi-abt-io')
 
     depends_on('mochi-thallium@develop', when='@develop')
