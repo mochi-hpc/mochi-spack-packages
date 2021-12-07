@@ -14,6 +14,7 @@ class MochiYokan(CMakePackage):
 
     version('develop', branch='main')
     version('main', branch='main')
+    version('0.2', sha256='aea3f435342a37c2f3332200fac8894ef78b0e6f2b200ec18be9f41389902f78')
     version('0.1', sha256='b5043ba37102e8956ae59201953e9e7ce56378dde19a4c99b6e82b9ff575d675')
 
     variant('berkeleydb', default=False, description="Enable BerkelyDB backend")
