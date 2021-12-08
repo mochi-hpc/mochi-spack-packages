@@ -32,6 +32,7 @@ class MochiYokan(CMakePackage):
     depends_on('uuid')
     depends_on('nlohmann-json')
     depends_on('tclap')
+    depends_on('mpi', when='+bedrock')
 
     # mochi dependencies
     depends_on('mochi-margo@0.9.5:')
