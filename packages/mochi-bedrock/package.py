@@ -32,8 +32,8 @@ class MochiBedrock(CMakePackage):
     depends_on('mochi-ssg@0.4.6', when='@0.3.1:0.3.2')
     depends_on('mochi-ssg+mpi@0.4.6', when='@0.3.1:0.3.2 +mpi')
     # SSG dependencies for version >= 0.3.3
-    depends_on('mochi-ssg@0.5', when='@0.3.3:')
-    depends_on('mochi-ssg+mpi@0.5', when='@0.3.3: +mpi')
+    depends_on('mochi-ssg@0.5:', when='@0.3.3:')
+    depends_on('mochi-ssg+mpi@0.5:', when='@0.3.3: +mpi')
 
     depends_on('mochi-thallium@develop', when='@develop')
     depends_on('mochi-margo@develop', when='@develop')
