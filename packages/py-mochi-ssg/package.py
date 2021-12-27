@@ -52,8 +52,10 @@ class PyMochiSsg(PythonPackage):
     depends_on('py-mpi4py', when='+mpi')
     depends_on('mpi', when='+mpi', type=("build"))
 
-    depends_on('mochi-ssg+mpi@0.4.1:', when='@0.1.2: +mpi')
-    depends_on('mochi-ssg@0.4.1:', when='@0.1.2: ~mpi')
+    depends_on('mochi-ssg+mpi@0.5.0:', when='@main +mpi') # change main into version at next release
+    depends_on('mochi-ssg@0.5.0:', when='@main ~mpi') # same
+    depends_on('mochi-ssg+mpi@0.4.1:0.4.6', when='@0.1.2: +mpi')
+    depends_on('mochi-ssg@0.4.1:0.4.6', when='@0.1.2: ~mpi')
     depends_on('mochi-ssg+mpi@0.1:0.2', when='@0.1:0.1.1 +mpi')
     depends_on('mochi-ssg@0.1:0.2', when='@0.1:0.1.1 ~mpi')
     depends_on('py-mochi-margo@0.1:')
