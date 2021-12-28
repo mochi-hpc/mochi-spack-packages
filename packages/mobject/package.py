@@ -55,7 +55,8 @@ class Mobject(AutotoolsPackage):
     depends_on('mochi-margo @0.9.4:', when='@0.5:')
     depends_on('mochi-ssg +mpi @0.2', when='@:0.3')
     depends_on('mochi-ssg +mpi @0.4.0:', when='@0.4:0.4.1')
-    depends_on('mochi-ssg @0.4.5', when='@0.5:999')
+    depends_on('mochi-ssg @0.4.6', when='@0.5:999')
+    depends_on('mochi-ssg @0.5:', when='@main') # change to numbered version when released
     depends_on('mochi-ch-placement @0.1:')
     depends_on('mochi-sdskv @0.1:')
     depends_on('mochi-sdskv +bedrock @0.1.13:', when='@0.5:')
