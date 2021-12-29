@@ -32,9 +32,13 @@ class Mobject(AutotoolsPackage):
     url = 'https://github.com/mochi-hpc/mobject/archive/refs/tags/v0.5.tar.gz'
     git = 'https://github.com/mochi-hpc/mobject.git'
 
+    # Note: version 0.5 has become unsatisfiable because mobject requires mochi-ssg@0.4.5
+    # but also mochi-bedrock, which requires at least mochi-ssg@0.4.6.
+
     version('main', branch='main')
     version('develop', branch='main')
-    version('0.5', sha256='ac612e6fe3b85ee54b00c7e08e51689a0eda7ffa057085a5df5053476ada86bc')
+    version('0.6', sha256='6c58df9a58d8bd9394fb4fc5538fcc39cbddee344864af5038ca60cdb2ac08fe')
+    #version('0.5', sha256='ac612e6fe3b85ee54b00c7e08e51689a0eda7ffa057085a5df5053476ada86bc')
     version('0.4.3', tag='v0.4.3')
     version('0.4.2', tag='v0.4.2')
     version('0.4.1', tag='v0.4.1')
@@ -55,8 +59,8 @@ class Mobject(AutotoolsPackage):
     depends_on('mochi-margo @0.9.4:', when='@0.5:')
     depends_on('mochi-ssg +mpi @0.2', when='@:0.3')
     depends_on('mochi-ssg +mpi @0.4.0:', when='@0.4:0.4.1')
-    depends_on('mochi-ssg @0.4.5', when='@0.5:999')
-    depends_on('mochi-ssg @0.5:', when='@main') # change to numbered version when released
+    #depends_on('mochi-ssg @0.4.5', when='@0.5')
+    depends_on('mochi-ssg @0.5:', when='@0.6:')
     depends_on('mochi-ch-placement @0.1:')
     depends_on('mochi-sdskv @0.1:')
     depends_on('mochi-sdskv +bedrock @0.1.13:', when='@0.5:')
