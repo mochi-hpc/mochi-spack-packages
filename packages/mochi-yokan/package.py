@@ -14,6 +14,7 @@ class MochiYokan(CMakePackage):
 
     version('develop', branch='main')
     version('main', branch='main')
+    version('0.2.2', sha256='43ea2d7bf17a465747ffea516eb51d96a7f3ac9f5090ef669227f66bb91531cd')
     version('0.2.1', sha256='d5731d2c83c37f231ef0026ed3df82f774b94dd365d75bb396ed68d1884288c3')
     version('0.2', sha256='aea3f435342a37c2f3332200fac8894ef78b0e6f2b200ec18be9f41389902f78')
     version('0.1', sha256='b5043ba37102e8956ae59201953e9e7ce56378dde19a4c99b6e82b9ff575d675')
