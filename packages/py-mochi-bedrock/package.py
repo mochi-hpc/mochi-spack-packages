@@ -36,9 +36,16 @@ class PyMochiBedrock(PythonPackage):
     version('main', branch='main')
     version('0.1', sha256='dd479475c90b357d0f9d6c5b0c8425609fa0170bc5316efafe1adb53e9c21ab5')
 
-    depends_on('python')
-    depends_on('py-pkgconfig', type=('build'))
-    depends_on('py-pybind11', type=('build'))
-    depends_on('py-setuptools', type=('build'))
+    variant('client', default=False, when='@main,develop',
+            description="Build the C++ extension for the Bedrock client")
+
+    depends_on('python@3.6:')
     depends_on('py-attrs@20.3.0:')
-    depends_on('mochi-bedrock@0.3:')
+    depends_on('py-setuptools', type=('build'))
+    depends_on('py-pkgconfig', type=('build'), when='+client')
+    depends_on('py-pybind11', type=('build'), when='+client')
+    depends_on('mochi-bedrock@0.3:', when='+client')
+
+    def setup_build_environment(self, env):
+        if '+client' in self.spec:
+            env.set('BUILD_PY_BEDROCK_CLIENT', '1')
