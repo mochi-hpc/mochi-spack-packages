@@ -44,7 +44,7 @@ class MochiYokan(CMakePackage):
     # mochi dependencies for develop version
     depends_on('mochi-margo@develop', when='@develop')
     depends_on('mochi-bedrock@develop', when="+bedrock @develop")
-    depends_on('py-mochi-margo@develop', when='+python')
+    depends_on('py-mochi-margo@develop', when='+python @develop')
 
     # backends
     depends_on('berkeley-db @18.1.40: +cxx +stl', when='+berkeleydb')
