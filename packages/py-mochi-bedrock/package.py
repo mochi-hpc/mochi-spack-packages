@@ -34,9 +34,10 @@ class PyMochiBedrock(PythonPackage):
 
     version('develop', branch='main')
     version('main', branch='main')
+    version('0.2', sha256='833c871f9811d0a498512fe96784e6a55fa923b3ffbdafc708a32dbf47c67733')
     version('0.1', sha256='dd479475c90b357d0f9d6c5b0c8425609fa0170bc5316efafe1adb53e9c21ab5')
 
-    variant('client', default=False, when='@main,develop',
+    variant('client', default=False, when='@0.2:',
             description="Build the C++ extension for the Bedrock client")
 
     depends_on('python@3.6:')
