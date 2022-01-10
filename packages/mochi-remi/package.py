@@ -23,6 +23,7 @@ class MochiRemi(CMakePackage):
 
     variant('bedrock', default=True, description='Enable building Bedrock module')
 
+    depends_on('cmake@3.12:', type='build')
     depends_on('libuuid')
     depends_on('mochi-thallium@0.6.0:+cereal', when='@0.2.3:')
     depends_on('mochi-thallium@0.4.2:', when='@0.2.2')
