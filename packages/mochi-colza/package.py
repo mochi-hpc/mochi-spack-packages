@@ -21,6 +21,7 @@ class MochiColza(CMakePackage):
     variant('drc', default=False,
             description='Build examples with Cray DRC support')
 
+    depends_on('cmake@3.8:', type='build')
     depends_on('mpi')
     depends_on('pkgconfig')
     depends_on('nlohmann-json')
