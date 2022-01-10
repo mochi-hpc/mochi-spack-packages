@@ -31,6 +31,7 @@ class MochiYokan(CMakePackage):
     variant('python', default=False, description="Enable Python binding")
     variant('bedrock', default=False, description="Enable Bedrock support")
 
+    depends_on('cmake@3.15:', type='build')
     depends_on('pkgconfig')
     depends_on('uuid')
     depends_on('nlohmann-json')
