@@ -24,6 +24,36 @@ class Libfabric(Libfabric):
 
     patch('libfabric-1.11-option-disable-spinlocks.patch', when="+disable-spinlocks")
 
+
+    # overriding the inherited class member has unusual side effects
+    # ==> Error: module 'spack' has no attribute 'Libfabric'
+    # so we'll copy 'fabrics' and add cxi ourselves.
+    fabrics = ('efa',
+               'gni',
+               'mlx',
+               'mrail',
+               'psm',
+               'psm2',
+               'psm3',
+               'rxm',
+               'rxd',
+               'shm',
+               'sockets',
+               'tcp',
+               'udp',
+               'usnic',
+               'verbs',
+               'xpmem',
+               'cxi')
+
+    # need to copy this blurb from builtin libfabric, else get an error:
+    # ``` invalid values for variant "fabrics" ```
+    variant('fabrics',
+            default='sockets,tcp,udp',
+            description='A list of enabled fabrics',
+            values=fabrics,
+            multi=True)
+
     def configure_args(self):
         spec = self.spec
         config_args = super(Libfabric, self).configure_args()
