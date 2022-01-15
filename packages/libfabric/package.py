@@ -24,17 +24,6 @@ class Libfabric(Libfabric):
 
     patch('libfabric-1.11-option-disable-spinlocks.patch', when="+disable-spinlocks")
 
-
-    fabrics = spack.pkg.builtin.libfabric.Libfabric.fabrics + ('cxi',)
-
-    # need to copy this blurb from builtin libfabric, else get an error:
-    # ``` invalid values for variant "fabrics" ```
-    variant('fabrics',
-            default='sockets,tcp,udp',
-            description='A list of enabled fabrics',
-            values=fabrics,
-            multi=True)
-
     def configure_args(self):
         spec = self.spec
         config_args = super(Libfabric, self).configure_args()
