@@ -42,7 +42,7 @@ class Flamestore(PythonPackage):
     depends_on('py-mochi-margo@develop', when='@develop')
     depends_on('py-mochi-tmci@develop', when='@develop')
 
-    @run_before('build')
+    @run_before('install')
     def move_file(self):
         if '+theta' in self.spec:
             src = self.stage.source_path+'/theta/tensorflow.json'
