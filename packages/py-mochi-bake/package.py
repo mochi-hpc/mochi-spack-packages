@@ -49,8 +49,10 @@ class PyMochiBake(PythonPackage):
     variant('numpy', default=False, description="Enables Numpy support")
 
     depends_on('py-pybind11', type=('build'))
-    depends_on('py-numpy', when='+numpy')
+    depends_on('py-setuptools', type=('build'))
     depends_on('py-pkgconfig', type=('build'))
+
+    depends_on('py-numpy', when='+numpy')
 
     depends_on('mochi-bake@0.4:', when='@0.4:')
     depends_on('mochi-bake@0.3.1:0.3.6', when='@0.3')

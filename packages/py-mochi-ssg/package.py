@@ -49,6 +49,7 @@ class PyMochiSsg(PythonPackage):
 
     depends_on('py-pkgconfig', type=('build'))
     depends_on('py-pybind11', type=('build'))
+    depends_on('py-setuptools', type=('build'))
     depends_on('py-mpi4py', when='+mpi')
     depends_on('mpi', when='+mpi', type=("build"))
 

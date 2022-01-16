@@ -52,6 +52,7 @@ class PyMochiMargo(PythonPackage):
 
     depends_on('python')
     depends_on('py-numpy', when='@0.2:0.3.2')
+    depends_on('py-setuptools', type=('build'))
     depends_on('py-pkgconfig', type=('build'))
     depends_on('py-pybind11', type=('build'))
 

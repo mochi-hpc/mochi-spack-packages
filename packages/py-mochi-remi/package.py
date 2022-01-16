@@ -44,6 +44,7 @@ class PyMochiRemi(PythonPackage):
 
     depends_on('py-pkgconfig', type=('build'))
     depends_on('py-pybind11', type=('build'))
+    depends_on('py-setuptools', type=('build'))
     depends_on('mochi-remi@0.1:')
     depends_on('py-mochi-margo@0.1:')
 
