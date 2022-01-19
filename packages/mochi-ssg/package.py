@@ -72,9 +72,14 @@ class MochiSsg(AutotoolsPackage):
                 "--enable-mpi",
                 "CC=%s" % spec['mpi'].mpicc
                 ])
-        elif '+pmix' in spec:
+
+        if '+pmix' in spec:
             extra_args.extend([
                 "--enable-pmix"
+                ])
+        else:
+            extra_args.extend([
+                "--disable-pmix"
                 ])
 
         if '+drc' in spec:
