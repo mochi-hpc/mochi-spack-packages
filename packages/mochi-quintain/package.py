@@ -9,7 +9,7 @@ class MochiQuintain(AutotoolsPackage):
 
     maintainers = ['carns']
 
-    version('main', branch='main')
+    version('main', branch='main', preferred=True)
     version('develop', branch='main')
 
     variant('mpi', default=True, description='Build with MPI support')
