@@ -10,6 +10,7 @@ class HepnosPepBenchmark(CMakePackage):
 
     version('develop', branch='main', submodules=True)
     version('main', branch='main', submodules=True)
+    version('0.5', tag='v0.5', submodules=True)
     version('0.4', tag='v0.4', submodules=True)
     version('0.3', tag='v0.3', submodules=True)
     version('0.2', tag='v0.2', submodules=True)
@@ -20,11 +21,12 @@ class HepnosPepBenchmark(CMakePackage):
 
     depends_on('cmake@3.11.0:', type=('build'))
     depends_on('mpi')
-    depends_on('hepnos@0.4:')
+    depends_on('hepnos@0.6:', when='@0.5:')
+    depends_on('hepnos@0.5', when='@0.4')
+    depends_on('hepnos@0.4:0.5', when='@:0.4')
+    depends_on('hepnos@:0.4.6', when='@:0.3')
     depends_on('tclap')
     depends_on('spdlog@:1.8.0') # TODO fix HEPnOS serialization so 1.8.1+ work
-    depends_on('hepnos@0.5:', when='@0.4:')
-    depends_on('hepnos@:0.4.6', when='@:0.3')
 
     def cmake_args(self):
         extra_args = ['-DBUILD_SHARED_LIBS=ON']

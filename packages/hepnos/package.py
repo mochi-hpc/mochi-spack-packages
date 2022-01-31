@@ -33,6 +33,7 @@ class Hepnos(CMakePackage):
     git = "https://github.com/hepnos/HEPnOS.git"
 
 
+    version('0.6', sha256='b3091114fabedac6683867114e9a4f603ba8de451d4c93eec933232c70f87521')
     version('0.5', sha256='42b58f0b7c9268ab8411f353da276835f0627ae38853ebb9ab709c9b36a75d06')
     version('0.4.6', sha256='930012cbc684565c98b69e38bb5485eed042d4e406712e14d90ee8e284d7cc4e')
     version('0.4.5', sha256='bd36e6b8e468d161be59a39765c7f9bd98f9a9cc5c5a3413d05ca01e6997be54')
@@ -78,8 +79,7 @@ class Hepnos(CMakePackage):
     depends_on('mochi-ch-placement@0.1:')
     depends_on('mochi-thallium@0.5.2:', when='@0.2.0:')
     depends_on('mochi-bedrock+mpi', when='@0.5:')
-    depends_on('mochi-sdskv@0.1.10:', when='@0.3.1:0.5')
-    depends_on('mochi-yokan+bedrock@0.2.1:', when='@main')
+    depends_on('mochi-yokan+bedrock@0.2.1:', when='@0.6:')
     # ---------------------------------------------
     # Dependencies for develop version
     # ---------------------------------------------
@@ -93,6 +93,7 @@ class Hepnos(CMakePackage):
     depends_on('yaml-cpp@develop', when='@:0.4.6')
     depends_on('libuuid', when='@0.2.0:0.4.6')
     depends_on('mochi-margo@0.5.2:', when='@0.1.8')
+    depends_on('mochi-sdskv@0.1.10:', when='@0.3.1:0.5')
     depends_on('mochi-sdskv@0.1.8:', when='@0.2.0:0.5')
     depends_on('mochi-sdskv@0.1.7:', when='@0.1.8:0.5')
     depends_on('mochi-sdskv@0.1:', when='@:0.5')
