@@ -9,6 +9,7 @@ class Libfabric(Libfabric):
 
     # NOTE: some of these are duplicated in the upstream Spack package depending
     # on what version of Spack you are using.
+    version('main', branch='main')
     version('1.13.2', sha256='25d783b0722a8df8fe61c1de75fafca684c5fe520303180f26f0ad6409cfc0b9')
     version('1.13.0', sha256='0c68264ae18de5c31857724c754023351614330bd61a50b40cef2b5e8f63ab28')
     version('1.12.1', sha256='db3c8e0a495e6e9da6a7436adab905468aedfbd4579ee3da5232a5c111ba642c')
@@ -65,7 +66,7 @@ class Libfabric(Libfabric):
             config_args.append('--disable-spinlocks')
         return config_args
 
-    depends_on('m4', when='@master', type=('build'))
-    depends_on('autoconf', when='@master', type=('build'))
-    depends_on('automake', when='@master', type=('build'))
-    depends_on('libtool', when='@master', type=('build'))
+    depends_on('m4', when='@main', type=('build'))
+    depends_on('autoconf', when='@main', type=('build'))
+    depends_on('automake', when='@main', type=('build'))
+    depends_on('libtool', when='@main', type=('build'))
