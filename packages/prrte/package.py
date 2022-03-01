@@ -1,6 +1,6 @@
-from spack.pkg.builtin.prrte import Prrte
+from spack.pkg.builtin.prrte import Prrte as BuiltinPrrte
 
-class Prrte(Prrte):
+class Prrte(BuiltinPrrte):
 
     def configure_args(self):
         # spack-0.14.2 prrte configure asks for libev (--with-libev) but passes

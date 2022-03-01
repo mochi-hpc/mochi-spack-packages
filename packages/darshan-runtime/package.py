@@ -1,8 +1,8 @@
 
-from spack.pkg.builtin.darshan_runtime import DarshanRuntime
+from spack.pkg.builtin.darshan_runtime import DarshanRuntime as BuiltinDarshanRuntime
 
 
-class DarshanRuntime(DarshanRuntime):
+class DarshanRuntime(BuiltinDarshanRuntime):
 
     variant('hdf5', default=False, description='additional HDF5 statistics')
 

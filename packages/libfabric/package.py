@@ -3,9 +3,9 @@
 #
 # SPDX-License-Identifier: (Apache-2.0 OR MIT)
 
-from spack.pkg.builtin.libfabric import Libfabric
+from spack.pkg.builtin.libfabric import Libfabric as BuiltinLibfabric
 
-class Libfabric(Libfabric):
+class Libfabric(BuiltinLibfabric):
 
     # NOTE: some of these are duplicated in the upstream Spack package depending
     # on what version of Spack you are using.

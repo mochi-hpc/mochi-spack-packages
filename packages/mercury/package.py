@@ -3,9 +3,9 @@
 #
 # SPDX-License-Identifier: (Apache-2.0 OR MIT)
 
-from spack.pkg.builtin.mercury import Mercury
+from spack.pkg.builtin.mercury import Mercury as BuiltinMercury
 
-class Mercury(Mercury):
+class Mercury(BuiltinMercury):
 
     git = 'https://github.com/mercury-hpc/mercury.git'
 

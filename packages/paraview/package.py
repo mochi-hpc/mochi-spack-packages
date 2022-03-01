@@ -3,9 +3,9 @@
 #
 # SPDX-License-Identifier: (Apache-2.0 OR MIT)
 
-from spack.pkg.builtin.paraview import Paraview
+from spack.pkg.builtin.paraview import Paraview as BuiltinParaview
 
-class Paraview(Paraview):
+class Paraview(BuiltinParaview):
 
     variant('mochi', default=False,
             description='Patch the source to enable non-MPI communicators')

@@ -3,9 +3,9 @@
 #
 # SPDX-License-Identifier: (Apache-2.0 OR MIT)
 
-from spack.pkg.builtin.ior import Ior
+from spack.pkg.builtin.ior import Ior as BuiltinIor
 
-class Ior(Ior):
+class Ior(BuiltinIor):
 
     git = 'https://github.com/shanedsnyder/ior'
     version('develop', branch='master', submodules=True)

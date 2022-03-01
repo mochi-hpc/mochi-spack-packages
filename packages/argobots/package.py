@@ -1,8 +1,8 @@
 
 
-from spack.pkg.builtin.argobots import Argobots
+from spack.pkg.builtin.argobots import Argobots as BuiltinArgobots
 
-class Argobots(Argobots):
+class Argobots(BuiltinArgobots):
 
     # these are available upstream, but we also define them here for users
     # working against previous spack releases
