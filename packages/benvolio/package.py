@@ -17,8 +17,8 @@ class Benvolio(AutotoolsPackage):
     version('main', branch='main', preferred=True)
     version('develop', branch='main')
 
-    variant('mpi', default=False, description='Bootstrap Benvolio providers with MPI');
-    variant('pmix', default=True, description='Bootstrap Benvolio providers with PMIx');
+    variant('mpi', default=True, description='Bootstrap Benvolio providers with MPI');
+    variant('pmix', default=False, description='Bootstrap Benvolio providers with PMIx');
     variant('cray-drc', default=False, description='Use Cray Dynamic RDMA Credientials');
 
     depends_on('automake')
@@ -28,11 +28,12 @@ class Benvolio(AutotoolsPackage):
     # thallim-0.8.2 provided an engine constructor that takes margo hints
     depends_on('mochi-thallium@0.8.2:')
     depends_on('mochi-abt-io@0.2:')
-    # pick up ssg API rework that landed in ssg-0.4.0
+    # pick up another ssg API rework that landed in ssg-0.5.2
     # can bootstrap with either pmix or mpi.. not sure how to specify that in spack
-    depends_on('mochi-ssg@0.4.0:+pmix', when='+pmix')
-    depends_on('mochi-ssg@0.4.0:+mpi', when='+mpi')
+    depends_on('mochi-ssg@0.5.2:+pmix', when='+pmix')
+    depends_on('mochi-ssg@0.5.2:+mpi', when='+mpi')
     depends_on('rdma-credentials', when='+cray-drc')
+    depends_on('mochi-bedrock')
 
     # @develop version
     #depends_on('mochi-thallium@develop', when='@develop')
