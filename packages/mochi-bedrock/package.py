@@ -48,6 +48,7 @@ class MochiBedrock(CMakePackage):
     depends_on('nlohmann-json')
     depends_on('spdlog')
     depends_on('tclap')
+    depends_on('fmt', when='@0.4.1:')
 
     def cmake_args(self):
         extra_args = ['-DBUILD_SHARED_LIBS=ON']
