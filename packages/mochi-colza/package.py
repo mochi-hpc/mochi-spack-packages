@@ -11,7 +11,8 @@ class MochiColza(CMakePackage):
 
     version('develop', branch='main')
     version('main', branch='main')
-    version('0.1.1', tag='v0.1.1')
+    version('0.1.2', sha256='40a78dc5a455608641a399e1f6c397d02dc730c6a81340233ad42aad691dda92')
+    version('0.1.1', sha256='fcbb09ebb3c1e566c608918feb8371cc6fbf2c992e73fa3b8eddd77abc26055f')
     version('0.1', sha256='182c31ebb4d3f0b1b8ac3e8c04daf521d025f9dd981d4728df63f2a12882b2e1')
 
     variant('bedrock', default=True,
