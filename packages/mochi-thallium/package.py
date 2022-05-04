@@ -38,7 +38,8 @@ class MochiThallium(CMakePackage):
     version('0.3',   sha256='4f9f78e52c1725f6ea5f933d7548bde36729dd9eff08f58fe7fe40682bc5f748')
 
     variant('cereal', default=True,
-            description='Use the cereal library for serialization')
+            description='Use the cereal library for serialization',
+            when='@0.4.1:')
 
     depends_on('pkgconfig', type=('build'))
     depends_on('mochi-margo@develop', when='@develop')
@@ -47,13 +48,13 @@ class MochiThallium(CMakePackage):
     depends_on('mochi-margo@0.6:', when='@0.5:')
     depends_on('mochi-margo@0.4:', when='@:0.3.4')
     depends_on('mochi-margo@0.5:', when='@0.4:0.4.2')
-    depends_on('cereal@:1.3.0', when='@0.4.1:0.10.0 +cereal')
-    depends_on('cereal@1.3.1:', when='@0.10.1: +cereal')
+    with when('+cereal'):
+        depends_on('cereal@:1.3.0', when='@0.4.1:0.10.0')
+        depends_on('cereal@1.3.1:', when='@0.10.1:')
     # thallium relies on std::decay_t
     conflicts('%gcc@:4.9.0');
 
     def cmake_args(self):
-        args = ["-DBUILD_SHARED_LIBS:BOOL=ON" ]
-        if '+cereal' in self.spec:
-            args.append("-DENABLE_CEREAL:BOOL=ON")
+        args = []
+        args.append(self.define_from_variant("ENABLE_CEREAL", "cereal"))
         return args
