@@ -12,7 +12,12 @@ class Mercury(BuiltinMercury):
     # note that these may be duplicated upstream; we repeat them here to
     # make sure that newer versions of Mercury are available for people on
     # older spack releases
-    version('2.1.0', sha256='9a58437161e9273b1b1c484d2f1a477a89eea9afe84575415025d47656f3761b')
+
+    # Note that 2.2.0rc1 is available but we are marking the previous full
+    # release (2.1.0) as preferred for now.  2.2.0rc1 is just for testing
+    # and development purposes right now.
+    version('2.2.0rc1', sha256='a14e4da68828da6b6914471b9775ecbfa33efdfb6923f1e956b17ce8f6ebfedb')
+    version('2.1.0', sha256='9a58437161e9273b1b1c484d2f1a477a89eea9afe84575415025d47656f3761b', preferred=True)
     version('2.0.1', sha256='335946d9620ac669643ffd9861a5fb3ee486834bab674b7779eaac9d6662e3fa')
     version('2.0.0',
            sha256='9e80923712e25df56014309df70660e828dbeabbe5fcc82ee024bcc86e7eb6b7')
