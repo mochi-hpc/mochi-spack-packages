@@ -54,7 +54,7 @@ class HepnosDataloader(CMakePackage):
     depends_on('hepnos@0.5:', when='@0.4')
     depends_on('hepnos@0.3.2:0.4.6', when='@:0.3')
     depends_on('tclap')
-    depends_on('spdlog@:1.8.0') # TODO fix HEPnOS serializations so 1.8.1+ work
+    depends_on('spdlog')
     depends_on('hdf5')
     depends_on('boost+serialization')
 
