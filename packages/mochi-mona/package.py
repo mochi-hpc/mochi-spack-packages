@@ -33,6 +33,7 @@ class MochiMona(CMakePackage):
     url = 'https://github.com/mochi-hpc/mochi-mona/archive/refs/tags/v0.1.tar.gz'
     git = 'https://github.com/mochi-hpc/mochi-mona.git'
 
+    version('0.2', sha256='7e0d724ae15aa8574fc047a9036c92b519cfbe6f06e142d1f5320bb53339858a')
     version('0.1.1', sha256='574d29a4751b27c9ba8a2b17c8d157186604137f6025ec3e8402f14eed18e5bd')
     version('0.1', sha256='815be710beafebb0cf4b1b78ba83781982849ef962dfa66e46adae027dff88e8')
     version('main', branch='main')
@@ -40,11 +41,14 @@ class MochiMona(CMakePackage):
 
     variant('benchmark', default=False,
             description='Build a benchmark to compare performance against MPI')
+    variant('mpi', default=False, when='@0.2:',
+            description='Build and install library of MPI wrappers')
 
     depends_on('cmake@3.14:', type=('build'))
     depends_on('argobots@1.0:', type=("build", "link", "run"))
     depends_on('mercury@2.0.0:', type=("build", "link", "run"), when='@main,0.1:9.9.9')
     depends_on('mpi', when='+benchmark', type=("build", "link", "run"))
+    depends_on('mpi', when='+mpi', type=("build", "link", "run"))
 
     # dependencies for develop version
     depends_on('mercury@master', type=("build", "link", "run"), when='@develop')
@@ -53,5 +57,8 @@ class MochiMona(CMakePackage):
         args = ['-DBUILD_SHARED_LIBS:BOOL=ON']
         if '+benchmark' in self.spec:
             args.append('-DENABLE_BENCHMARK:BOOL=ON')
+        if '+mpi' in self.spec:
+            args.append('-DENABLE_MPI_WRAPPERS:BOOL=ON')
+        if '+benchmark' in self.spec or '+mpi' in self.spec:
             args.append('-DCMAKE_C_COMPILER=%s' % self.spec['mpi'].mpicc)
         return args
