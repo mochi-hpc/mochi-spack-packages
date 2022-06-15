@@ -61,4 +61,5 @@ class MochiMona(CMakePackage):
             args.append('-DENABLE_MPI_WRAPPERS:BOOL=ON')
         if '+benchmark' in self.spec or '+mpi' in self.spec:
             args.append('-DCMAKE_C_COMPILER=%s' % self.spec['mpi'].mpicc)
+            args.append('-DCMAKE_CXX_COMPILER=%s' % self.spec['mpi'].mpicxx)
         return args
