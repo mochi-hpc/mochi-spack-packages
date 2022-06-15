@@ -33,7 +33,7 @@ class MochiMona(CMakePackage):
     url = 'https://github.com/mochi-hpc/mochi-mona/archive/refs/tags/v0.1.tar.gz'
     git = 'https://github.com/mochi-hpc/mochi-mona.git'
 
-    version('0.2', sha256='7e0d724ae15aa8574fc047a9036c92b519cfbe6f06e142d1f5320bb53339858a')
+    version('0.2', sha256='e14dab43a42afb6fcc0f362f4feeec9599381e101d4c594a6feb3db71dc5e000')
     version('0.1.1', sha256='574d29a4751b27c9ba8a2b17c8d157186604137f6025ec3e8402f14eed18e5bd')
     version('0.1', sha256='815be710beafebb0cf4b1b78ba83781982849ef962dfa66e46adae027dff88e8')
     version('main', branch='main')
