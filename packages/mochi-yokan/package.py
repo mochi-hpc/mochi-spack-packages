@@ -56,6 +56,7 @@ class MochiYokan(CMakePackage):
     depends_on('leveldb@:1.22', when='+leveldb')
     depends_on('lmdb', when='+lmdb')
     depends_on('rocksdb', when='+rocksdb')
+    depends_on('rocksdb@:6', when='+rocksdb @:0.2.5')
     depends_on('tkrzw', when='+tkrzw')
     depends_on('gdbm', when='+gdbm')
     depends_on('unqlite@master', when='+unqlite')
