@@ -10,6 +10,7 @@ class MochiBedrock(CMakePackage):
 
     version('develop', branch='main')
     version('main', branch='main')
+    version('0.5.0', sha256='e29a1c7277a93d6b6b76b336245eda48cbbe65849660e525c042f2f9e7506d90')
     version('0.4.1', sha256='c461c39ac61a72d6251d1d3fe1f00492bdf31cac50088837ecf50bd25e8fb795')
     version('0.4', sha256='485a8b87ab15803590903257091d9a4872459d710d864718dab88f11a5b2a5b6')
     version('0.3.3', sha256='aca8f197ffd093327daafa872fe090641de96079e57bd0accb51d21cc0897125')
@@ -22,26 +23,36 @@ class MochiBedrock(CMakePackage):
     version('0.2', tag='v0.2')
     version('0.1', tag='v0.1')
 
+    variant('ssg', when='@0.5.0:', default=True, description='Enable SSG support')
+    variant('abtio', when='@0.5.0:', default=True, description='Enable ABT-IO support')
+    variant('mona', when='@0.5.0:', default=False, description='Enable MoNA support')
     variant('mpi', default=False, description='Enable MPI bootstrapping')
+
 
     depends_on('mochi-margo@0.9:')
     depends_on('mochi-thallium')
-    depends_on('mochi-abt-io')
+    depends_on('mochi-abt-io', when='@:0.4.1')
+    depends_on('mochi-abt-io', when='+abtio @0.5.0:')
+    depends_on('mochi-mona', when='+mona')
     # SSG dependencies for versions up to 0.3
     depends_on('mochi-ssg@0.4.5', when='@0.1.0:0.3.0')
     depends_on('mochi-ssg+mpi@0.4.5', when='@0.1.0:0.3.0 +mpi')
     # SSG dependencies for versions up to 0.3.2
     depends_on('mochi-ssg@0.4.6', when='@0.3.1:0.3.2')
     depends_on('mochi-ssg+mpi@0.4.6', when='@0.3.1:0.3.2 +mpi')
-    # SSG dependencies for version >= 0.3.3
-    depends_on('mochi-ssg@0.5:', when='@0.3.3:')
-    depends_on('mochi-ssg+mpi@0.5:', when='@0.3.3: +mpi')
+    # SSG dependencies for version >= 0.3.3 and < 0.5.0
+    depends_on('mochi-ssg@0.5:', when='@0.3.3:0.4.1')
+    depends_on('mochi-ssg+mpi@0.5:', when='@0.3.3:0.4.1 +mpi')
+    # SSG dependencies for version >= 0.5.0
+    depends_on('mochi-ssg@0.5:', when='@0.5.0: +ssg')
+    depends_on('mochi-ssg+mpi@0.5:', when='@0.5.0: +ssg +mpi')
 
     depends_on('mochi-thallium@develop', when='@develop')
     depends_on('mochi-margo@develop', when='@develop')
-    depends_on('mochi-ssg@develop', when='@develop')
-    depends_on('mochi-ssg+mpi@develop', when='@develop +mpi')
-    depends_on('mochi-abt-io@develop', when='@develop')
+    depends_on('mochi-ssg@develop', when='@develop +ssg')
+    depends_on('mochi-ssg+mpi@develop', when='@develop +mpi +ssg')
+    depends_on('mochi-abt-io@develop', when='@develop +abtio')
+    depends_on('mochi-mona@develop', when='@develop +mona')
 
     depends_on('mpi', when='+mpi')
 
@@ -53,9 +64,10 @@ class MochiBedrock(CMakePackage):
 
     def cmake_args(self):
         extra_args = ['-DBUILD_SHARED_LIBS=ON']
+        extra_args.append(self.define_from_variant("ENABLE_MPI", "mpi"))
+        extra_args.append(self.define_from_variant("ENABLE_MONA", "mona"))
+        extra_args.append(self.define_from_variant("ENABLE_SSG", "ssg"))
+        extra_args.append(self.define_from_variant("ENABLE_ABT_IO", "abtio"))
         if '+mpi' in self.spec:
-            extra_args.append('-DENABLE_MPI=ON')
             extra_args.append('-DCMAKE_CXX_COMPILER=%s' % self.spec['mpi'].mpicxx)
-        else:
-            extra_args.append('-DENABLE_MPI=OFF')
         return extra_args
