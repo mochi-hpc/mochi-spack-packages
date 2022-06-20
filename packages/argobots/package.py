@@ -21,7 +21,7 @@ class Argobots(BuiltinArgobots):
             values=('none', 'canary-32', 'mprotect', 'mprotect-strict'), multi=False)
     variant("tool", default=False, description="Enable ABT_tool interface")
     variant("affinity", default=False, description="Enable affinity setting")
-    variant("lazy-stack-alloc", default=False, description="Enable lazy stack allocation")
+    variant("lazy_stack_alloc", default=False, description="Enable lazy stack allocation")
 
     depends_on("valgrind", when="+valgrind")
     depends_on("libunwind", when="+stackunwind")
@@ -43,7 +43,7 @@ class Argobots(BuiltinArgobots):
         else:
             args.append('--disable-debug')
 
-        if '+lazy-stack-alloc' in self.spec:
+        if '+lazy_stack_alloc' in self.spec:
             args.append('--enable-lazy-stack-alloc=yes')
         else:
             args.append('--disable-lazy-stack-alloc')
