@@ -25,12 +25,15 @@ class Mercury(BuiltinMercury):
     version('master-ucx', branch='ucx', submodules=True)
 
     variant('ucx', default=False, description='Use UCX plugin')
+    variant('psm2', default=False, description='Use PSM2 plugin')
 
     depends_on('ucx', when='+ucx')
+    depends_on('opa-psm2', when='+psm2')
 
     def cmake_args(self):
         args = super(Mercury, self).cmake_args()
         spec = self.spec
         variant_bool = lambda feature: str(feature in spec)
         args.append('-DNA_USE_UCX:BOOL=%s' % variant_bool('+ucx'))
+        args.append('-DNA_USE_PSM2:BOOL=%s' % variant_bool('+psm2'))
         return args
