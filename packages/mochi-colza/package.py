@@ -11,6 +11,7 @@ class MochiColza(CMakePackage):
 
     version('develop', branch='main')
     version('main', branch='main')
+    version('0.2.1', sha256='0c4e8d96a4e147705835c674182a8c23e0429587343331bd21e09cc63365f853')
     version('0.2.0', sha256='5a9de73cdcb7e8e66325143741fde756346362ee84217ff308674827a11029c7')
     version('0.1.3', sha256='af339244676916658bcb305d57836b576ea55def61cfb3efd323694922eb7613')
     version('0.1.2', sha256='40a78dc5a455608641a399e1f6c397d02dc730c6a81340233ad42aad691dda92')
