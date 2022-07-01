@@ -33,6 +33,7 @@ class Hepnos(CMakePackage):
     git = "https://github.com/hepnos/HEPnOS.git"
 
 
+    version('0.6.5', sha256='4f650ace99fa1b90e739237b40c8c6e94313ebc666b9706820f38950ede9ba45')
     version('0.6.4', sha256='86558a700144abc7ffa2ba8f2b3963e16f97c175e80f6a004c34dfa6b4b6f564')
     version('0.6.3', sha256='b1e7b5ebd159771cc0f0cec08d76d563ee831fba82c5aa5ea92078b22fe34fc1')
     version('0.6.2', sha256='83a96f3f438aacf01c2d4e917726bd3b1911dbb4f824517bebfbf15d8ea0bdd6')
