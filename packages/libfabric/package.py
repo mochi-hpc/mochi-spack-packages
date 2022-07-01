@@ -10,6 +10,10 @@ class Libfabric(BuiltinLibfabric):
     # NOTE: some of these are duplicated in the upstream Spack package depending
     # on what version of Spack you are using.
     version('main', branch='main')
+
+    version('1.15.1', sha256='cafa3005a9dc86064de179b0af4798ad30b46b2f862fe0268db03d13943e10cd')
+    version('1.15.0', sha256='70982c58eadeeb5b1ddb28413fd645e40b206618b56fbb2b18ab1e7f607c9bea')
+    version('1.14.1', sha256='6cfabb94bca8e419d9015212506f5a367d077c5b11e94b9f57997ec6ca3d8aed')
     version('1.14.0', sha256='fc261388848f3cff555bd653f5cb901f6b9485ad285e5c53328b13f0e69f749a')
     version('1.13.2', sha256='25d783b0722a8df8fe61c1de75fafca684c5fe520303180f26f0ad6409cfc0b9')
     version('1.13.0', sha256='0c68264ae18de5c31857724c754023351614330bd61a50b40cef2b5e8f63ab28')
@@ -34,6 +38,7 @@ class Libfabric(BuiltinLibfabric):
                'gni',
                'mlx',
                'mrail',
+               'opx',
                'psm',
                'psm2',
                'psm3',
@@ -60,13 +65,11 @@ class Libfabric(BuiltinLibfabric):
         spec = self.spec
         config_args = super(Libfabric, self).configure_args()
 
-        # temporarily force-disable psm3 to make sure that it doesn't interfere on newer builds
-        config_args.append('--disable-psm3')
-
         if '+disable-spinlocks' in spec:
             config_args.append('--disable-spinlocks')
         return config_args
 
+    depends_on('numactl', when='fabrics=opx')
     depends_on('m4', when='@main', type=('build'))
     depends_on('autoconf', when='@main', type=('build'))
     depends_on('automake', when='@main', type=('build'))
