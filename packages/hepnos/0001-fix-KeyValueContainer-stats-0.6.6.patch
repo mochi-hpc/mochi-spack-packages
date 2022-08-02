@@ -1,0 +1,22 @@
+diff --git a/include/hepnos/KeyValueContainer.hpp b/include/hepnos/KeyValueContainer.hpp
+index 44dd80c..37d0d97 100644
+--- a/include/hepnos/KeyValueContainer.hpp
++++ b/include/hepnos/KeyValueContainer.hpp
+@@ -308,7 +308,7 @@ class KeyValueContainer {
+         auto t3 = wtime();
+         if(stats) {
+             stats->serialization_time.updateWith(t2-t1);
+-            stats->raw_storage_time(t3-t2);
++            stats->raw_storage_time.updateWith(t3-t2);
+         }
+         return result;
+     }
+@@ -327,7 +327,7 @@ class KeyValueContainer {
+         auto t3 = wtime();
+         if(stats) {
+             stats->serialization_time.updateWith(t2-t1);
+-            stats->raw_storage_time(t3-t2);
++            stats->raw_storage_time.updateWith(t3-t2);
+         }
+         return result;
+     }

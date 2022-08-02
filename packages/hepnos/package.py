@@ -105,6 +105,8 @@ class Hepnos(CMakePackage):
     depends_on('mochi-sdskv@0.1:', when='@:0.5')
     depends_on('mochi-bake@0.1:0.3.6', when='@:0.1.7')
 
+    patch('0001-fix-KeyValueContainer-stats-0.6.6.patch', when='@0.6.6')
+
     def cmake_args(self):
         extra_args = ['-DBUILD_SHARED_LIBS=ON']
         extra_args.extend(['-DCMAKE_CXX_COMPILER=%s' % self.spec['mpi'].mpicxx])
