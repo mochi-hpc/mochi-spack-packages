@@ -18,6 +18,7 @@ class MochiSsg(AutotoolsPackage):
     version('main', branch='main')
     version('develop', branch='main')
     version('dev-error-codes', branch='dev-error-codes')
+    version('0.5.3', sha256='554830f80d045485db10f8955d9a74ee78464af0ee335844fb0a483c35a15d7a')
     version('0.5.2', tag='v0.5.2')
     version('0.5.1', tag='v0.5.1')
     version('0.5.0', tag='v0.5.0')
