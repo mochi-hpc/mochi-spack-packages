@@ -33,6 +33,7 @@ class Hepnos(CMakePackage):
     git = "https://github.com/hepnos/HEPnOS.git"
 
 
+    version('0.6.7', sha256='d0e71f3dc0d2219a38d5caad4aa79213fb4459ffb929f99cdecdd40696122a3b')
     version('0.6.6', sha256='ee72933d94ceaf35d1d056fef1e522b437d98057d4271bdd29f8508d946f9f2c')
     version('0.6.5', sha256='4f650ace99fa1b90e739237b40c8c6e94313ebc666b9706820f38950ede9ba45')
     version('0.6.4', sha256='86558a700144abc7ffa2ba8f2b3963e16f97c175e80f6a004c34dfa6b4b6f564')
@@ -75,7 +76,8 @@ class Hepnos(CMakePackage):
     # ---------------------------------------------
     depends_on('mpi')
     depends_on('spdlog')
-    depends_on('boost+serialization')
+    depends_on('boost+serialization', when='@:0.6.6')
+    depends_on('boost+serialization+iostreams', when='@0.6.7:')
     depends_on('cmake@3.12.0:')
     depends_on('uuid', when='@0.5:')
     depends_on('nlohmann-json', when='@0.5:')
