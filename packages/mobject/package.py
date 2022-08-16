@@ -37,6 +37,7 @@ class Mobject(AutotoolsPackage):
 
     version('main', branch='main')
     version('develop', branch='main')
+    version("0.6.1", sha256="ce2ee0249acee7d2d0e1b62782fe67000d42566c8cbe27be116c1e35f8fad049")
     version('0.6', sha256='6c58df9a58d8bd9394fb4fc5538fcc39cbddee344864af5038ca60cdb2ac08fe')
     #version('0.5', sha256='ac612e6fe3b85ee54b00c7e08e51689a0eda7ffa057085a5df5053476ada86bc')
     version('0.4.3', tag='v0.4.3')
@@ -97,6 +98,9 @@ class Mobject(AutotoolsPackage):
         extra_args = []
         if '+bedrock' in self.spec:
             extra_args.append('--enable-bedrock')
+        else:
+            extra_args.append('--disable-bedrock')
+
         if self.version < Version('0.5'):
             extra_args.extend(['CC=%s' % self.spec['mpi'].mpicc])
             extra_args.extend(['CXX=%s' % self.spec['mpi'].mpicxx])
