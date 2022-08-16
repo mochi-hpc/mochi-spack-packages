@@ -48,6 +48,7 @@ class Mobject(AutotoolsPackage):
     version('0.1', tag='v0.1')
 
     variant('timing', default=False, description="crude timing information")
+    variant('bedrock', default=False, description='Enable Bedrock support')
 
     depends_on('mpi', when='@:0.4.1')
     depends_on('autoconf')
@@ -63,20 +64,24 @@ class Mobject(AutotoolsPackage):
     depends_on('mochi-ssg @0.5:', when='@0.6:')
     depends_on('mochi-ch-placement @0.1:')
     depends_on('mochi-sdskv @0.1:')
-    depends_on('mochi-sdskv +bedrock @0.1.13:', when='@0.5:')
+    depends_on('mochi-sdskv @0.1.13:', when='@0.5:')
+    depends_on('mochi-sdskv +bedrock @0.1.13:', when='@0.5: +bedrock')
     depends_on('mochi-bake @0.1:')
     depends_on('mochi-bake @0.3:0.3.6', when='@:0.4.1')
     depends_on('mochi-bake @0.4:', when='@0.4.2')
     depends_on('mochi-bake @0.6:', when='@0.4.3:')
-    depends_on('mochi-bake +bedrock @0.6.3:', when='@0.5:')
-    depends_on('mochi-bedrock @0.3:', when='@0.5:')
+    depends_on('mochi-bake @0.6.3:', when='@0.5:')
+    depends_on('mochi-bake +bedrock @0.6.3:', when='@0.5: +bedrock')
+    depends_on('mochi-bedrock @0.3:', when='@0.5: +bedrock')
 
     # Mochi dependencies for develop version
     depends_on('mochi-margo @develop', when='@develop')
     depends_on('mochi-ssg+mpi @develop', when='@develop')
     depends_on('mochi-ch-placement @develop', when='@develop')
-    depends_on('mochi-sdskv +bedrock @develop', when='@develop')
-    depends_on('mochi-bake +bedrock @develop', when='@develop')
+    depends_on('mochi-sdskv @develop', when='@develop')
+    depends_on('mochi-sdskv +bedrock @develop', when='@develop +bedrock')
+    depends_on('mochi-bake @develop', when='@develop')
+    depends_on('mochi-bake +bedrock @develop', when='@develop +bedrock')
 
     patch('0001-crude-timing-information.patch', when='+timing @:0.4.1')
 
@@ -90,6 +95,8 @@ class Mobject(AutotoolsPackage):
 
     def configure_args(self):
         extra_args = []
+        if '+bedrock' in self.spec:
+            extra_args.append('--enable-bedrock')
         if self.version < Version('0.5'):
             extra_args.extend(['CC=%s' % self.spec['mpi'].mpicc])
             extra_args.extend(['CXX=%s' % self.spec['mpi'].mpicxx])
