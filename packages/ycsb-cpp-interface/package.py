@@ -5,12 +5,12 @@
 from spack import *
 
 
-class MochiYcsbBackends(CMakePackage):
-    """Mochi-based DB backends for the YCSB benchmark."""
+class YcsbCppInterface(CMakePackage):
+    """Java/C++ library to enable writing YCSB DB implementations in C++."""
 
-    homepage = "https://github.com/mochi-hpc/mochi-ycsb-backends"
-    url = "https://github.com/mochi-hpc/mochi-ycsb-backends/archive/refs/tags/v0.1.tar.gz"
-    git = "https://github.com/mochi-hpc/mochi-ycsb-backends.git"
+    homepage = "https://github.com/mochi-hpc/ycsb-cpp-interface"
+    url = "https://github.com/mochi-hpc/ycsb-cpp-interface/archive/refs/tags/v0.1.tar.gz"
+    git = "https://github.com/mochi-hpc/ycsb-cpp-interface.git"
 
     version('develop', branch='main')
     version('main', branch='main')
