@@ -40,6 +40,7 @@ class PyMochiS4m(PythonPackage):
     depends_on('py-pybind11', type=('build'))
     depends_on('py-mpi4py')
     depends_on('mpi')
+    depends_on('spdlog')
     depends_on('mochi-thallium')
 
     depends_on('mochi-thallium@develop', when='@develop')
