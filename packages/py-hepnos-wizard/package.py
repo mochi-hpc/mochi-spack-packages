@@ -29,11 +29,12 @@ class PyHepnosWizard(PythonPackage):
     """Python utility to help configure the HEPnOS service."""
 
     homepage = 'https://github.com/hepnos/HEPnOS-Wizard'
-    url      = 'https://github.com/hepnos/HEPnOS-Wizard/archive/refs/tags/v0.1.tar.gz'
+    url      = 'https://github.com/hepnos/HEPnOS-Wizard/archive/refs/tags/v0.0.1.tar.gz'
     git      = 'https://github.com/hepnos/HEPnOS-Wizard.git'
 
     version('develop', branch='main')
-    version('main', branch='main', preferred=True)
+    version('main', branch='main')
+    version("0.0.1", sha256="0fc7026e56efad7bad628f26131fba9dbf0c8836ba87ec4f294fdb0b3f2b7bed")
 
     depends_on('py-setuptools', type=('build'))
     depends_on('py-mochi-bedrock')
