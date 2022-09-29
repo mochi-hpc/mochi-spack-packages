@@ -32,7 +32,7 @@ class Hepnos(CMakePackage):
     url = "https://github.com/hepnos/HEPnOS/archive/v0.4.2.tar.gz"
     git = "https://github.com/hepnos/HEPnOS.git"
 
-
+    version("0.6.12", sha256="7c3b27b7ea24f86227e69cc8e5ddb82debf7eb452f5613958b2f72b38bbaa79e")
     version("0.6.11", sha256="7fd48636ccfb38c7a68ab36a4991b8d3831092e31d70c83e0737a3fa497f0674")
     version("0.6.10", sha256="105390e1bc3596e98104802b89a019def4f1c3cb0d6dfb8b1aff385e8cd47104")
     version("0.6.9", sha256="00cf558907b73de99ab0bb052f551fbec4b00f81c0322e16df38756391922706")
