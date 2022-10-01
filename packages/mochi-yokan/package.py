@@ -14,6 +14,7 @@ class MochiYokan(CMakePackage):
 
     version('develop', branch='main')
     version('main', branch='main')
+    version("0.2.9", sha256="8a8b6c614fc8f6afd890d95c8526f54571c8c0ddcd9e9e2557a6addbf837e096")
     version("0.2.8", sha256="2f89876d07f482b22f4bddc790f4830a264dc2c6f9dd701cb51c19f01dbd059e")
     version('0.2.7', sha256='ff32bf67c2d908acad872a2d9b8d077d1011c90367979d8ed8b03d47c586cfd4')
     version('0.2.6', sha256='0b4e60aa8241283c10edc136ddf69514f96e2ce08020fc5a5c38173b1e7bc9e2')
@@ -59,6 +60,7 @@ class MochiYokan(CMakePackage):
     depends_on('leveldb@:1.22', when='+leveldb')
     depends_on('lmdb', when='+lmdb')
     depends_on('rocksdb', when='+rocksdb')
+    depends_on('rocksdb+rtti', when='+rocksdb @0.2.9:')
     depends_on('rocksdb@:6', when='+rocksdb @:0.2.5')
     depends_on('tkrzw', when='+tkrzw')
     depends_on('gdbm', when='+gdbm')
