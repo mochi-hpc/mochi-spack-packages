@@ -34,6 +34,7 @@ class PyHepnosWizard(PythonPackage):
 
     version('develop', branch='main')
     version('main', branch='main')
+    version("0.0.2", sha256="ea8dbbaa1066d0e2bafff55a654d18e3439893753a5a068ba868a55c40d4ae23")
     version("0.0.1", sha256="0fc7026e56efad7bad628f26131fba9dbf0c8836ba87ec4f294fdb0b3f2b7bed")
 
     depends_on('py-setuptools', type=('build'))
