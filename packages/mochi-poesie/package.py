@@ -34,7 +34,7 @@ class MochiPoesie(CMakePackage):
 
     version('develop', branch='main')
     version('main', branch='main')
-    version("0.2", sha256="762640fa6037b327fec6356c88cd1a2f102909c4377c69d88bc6e3afc0ab2485")
+    version("0.2", sha256="dafbdcdd8feb8d81f0dd31cc329c3656e22c8381b5c6a628e57567822190e9d3")
 
     variant('lua',    default=True, description="Enable Lua interpreters")
     variant('python', default=True, description="Enable Python interpreters")
