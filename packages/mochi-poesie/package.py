@@ -25,53 +25,34 @@
 from spack import *
 
 
-class MochiPoesie(AutotoolsPackage):
+class MochiPoesie(CMakePackage):
     """A Mochi library that provides a Margo-based embedded scripting service"""
 
     homepage = 'https://github.com/mochi-hpc/mochi-poesie'
-    url = 'https://github.com/mochi-hpc/mochi-poesie'
+    url = 'https://github.com/mochi-hpc/mochi-poesie/archive/refs/tags/v0.2.tar.gz'
     git = 'https://github.com/mochi-hpc/mochi-poesie.git'
 
     version('develop', branch='main')
     version('main', branch='main')
-    version('0.1.1', tag='v0.1.1')
+    version("0.2", sha256="85aef19bce721267babe1ad6e834fe934a840b7c2995df5dd7a7d73dac509d13")
 
     variant('lua',    default=True, description="Enable Lua interpreters")
     variant('python', default=True, description="Enable Python interpreters")
+    variant('bedrock', default=False, description="Enable Bedrock support")
 
-    depends_on('autoconf@2.65:', type=("build"))
-    depends_on('automake@1.13.4:', type=("build"))
-    depends_on('libtool', type=("build"))
-    depends_on('m4', type=("build"))
-    depends_on('mochi-margo@0.4:', type=("build", "link", "run"))
-    depends_on('mochi-margo@develop', type=("build", "link", "run"), when='@develop')
-    # variable dependencies
+    depends_on('mochi-margo@0.9:')
+    depends_on('mochi-margo@develop', when='@develop')
+    depends_on('mochi-bedrock', when='+bedrock')
+    depends_on('mochi-bedrock@develop', when='+bedrock @develop')
+
+    depends_on('json-c')
     depends_on('lua', when="+lua")
-    depends_on('python', when="+python")
+    depends_on('python@3.6:', when="+python")
 
-    # NOTE: The default autoreconf steps should work fine for this package.
-    #       The explicit definition is just here as a workaround; Spack's
-    #       default autoreconf step is prone to libtool version mismatch as
-    #       of 2021/10/20.
-    def autoreconf(self, spec, prefix):
-        sh = which('sh')
-        sh('./prepare.sh')
-
-    def configure_args(self):
-        spec = self.spec
-        extra_args = []
-
-        if '+lua' in spec:
-            extra_args.extend([
-                "--enable-lua"
-                ])
-        if '+python' in spec:
-            extra_args.extend([
-                "--enable-python"
-                ])
-        if '~python' in spec:
-            extra_args.extend([
-                "--disable-python"
-                ])
-
-        return extra_args
+    def cmake_args(self):
+        args = []
+        variant_bool = lambda feature: str(feature in self.spec)
+        args.append('-DENABLE_PYTHON:BOOL=%s' % variant_bool('+python'))
+        args.append('-DENABLE_LUA:BOOL=%s' % variant_bool('+lua'))
+        args.append('-DENABLE_BEDROCK:BOOL=%s' % variant_bool('+bedrock'))
+        return args
