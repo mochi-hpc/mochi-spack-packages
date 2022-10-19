@@ -37,7 +37,7 @@ class Mobject(AutotoolsPackage):
 
     version('main', branch='main')
     version('develop', branch='main')
-    version('0.7rc1', commit='b659fbd7f31c2f7eb0cb62fcc76c6169773c3226')
+    version('0.7rc1', tag='v0.7rc1')
     version("0.6.1", sha256="ce2ee0249acee7d2d0e1b62782fe67000d42566c8cbe27be116c1e35f8fad049")
     version('0.6', sha256='6c58df9a58d8bd9394fb4fc5538fcc39cbddee344864af5038ca60cdb2ac08fe')
     version('0.4.3', tag='v0.4.3')
