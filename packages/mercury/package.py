@@ -19,6 +19,7 @@ class Mercury(BuiltinMercury):
     version('2.0.0',
            sha256='9e80923712e25df56014309df70660e828dbeabbe5fcc82ee024bcc86e7eb6b7')
     version('2.0.0rc1-pvar', git='https://github.com/srini009/mercury.git', branch='mercury_profiling_interface')
+    version('2.2.0-multi_recv', git='https://github.com/soumagne/mercury.git', branch='multi_recv', preferred=False)
 
     variant('ucx', default=False, description='Use UCX plugin')
     variant("psm", default=False, when="@2.2.0:", description="Use PSM plugin")
