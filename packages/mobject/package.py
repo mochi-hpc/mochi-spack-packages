@@ -80,8 +80,8 @@ class Mobject(AutotoolsPackage):
     depends_on('mochi-margo @develop', when='@develop')
     depends_on('mochi-ssg+mpi @develop', when='@develop')
     depends_on('mochi-ch-placement @develop', when='@develop')
-    depends_on('mochi-sdskv @develop', when='@develop')
-    depends_on('mochi-sdskv +bedrock @develop', when='@develop +bedrock')
+    depends_on('mochi-yokan @develop', when='@develop')
+    depends_on('mochi-yokan +bedrock @develop', when='@develop +bedrock')
     depends_on('mochi-bake @develop', when='@develop')
     depends_on('mochi-bake +bedrock @develop', when='@develop +bedrock')
 
