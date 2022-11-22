@@ -49,7 +49,7 @@ class Mobject(AutotoolsPackage):
     version('0.1', tag='v0.1')
 
     variant('timing', default=False, description="crude timing information")
-    variant('bedrock', default=False, description='Enable Bedrock support')
+    variant('bedrock', default=True, description='Enable Bedrock support')
 
     depends_on('mpi', when='@:0.4.1')
     depends_on('autoconf')
