@@ -10,6 +10,7 @@ class MochiBake(AutotoolsPackage):
 
     version('develop', branch='main')
     version('main', branch='main')
+    version('0.6.4', sha256='e6221b639e1efafa440ba62de67330883e2d9acc90a25092c4b44f4686ffd889')
     version('0.6.3', sha256='e53bdab06bf38548e47430c435e4ea47f27f30d4866c9e6e5da1c227d32fd92e')
     version('0.6.2', sha256='0ecefab1ce25f2c4450080255f0adafe1ee8ce3496507e422f800fc648d61ffc')
     version('0.6.1', sha256='178a8bed163910df9dcd20b94508f94387db7814d0af45db8cf57fc2d9a432ce')
