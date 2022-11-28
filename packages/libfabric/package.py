@@ -30,6 +30,13 @@ class Libfabric(BuiltinLibfabric):
 
     patch('libfabric-1.11-option-disable-spinlocks.patch', when="+disable-spinlocks")
 
+    # This is a local variant used to configure libfabric with cuda support
+    #   "none": will generate the configuration option: --with-cuda
+    #   "/usr/local/cuda": path to cuda library on thetagpu
+    #                    : will generate the configuration option: --with-cuda=/usr/local/cuda
+    # Can add values for other platforms
+    variant("cuda", default="none", description="Configure with cuda support",
+            values=('none', '/usr/local/cuda'), multi=False)
 
     # overriding the inherited class member has unusual side effects
     # ==> Error: module 'spack' has no attribute 'Libfabric'
@@ -67,6 +74,13 @@ class Libfabric(BuiltinLibfabric):
 
         if '+disable-spinlocks' in spec:
             config_args.append('--disable-spinlocks')
+
+        cudapath = self.spec.variants['cuda'].value
+        if cudapath != 'none':
+            config_args.append('--with-cuda={0}'.format(cudapath))
+        else:
+            config_args.append('--with-cuda')
+
         return config_args
 
     depends_on('numactl', when='fabrics=opx')
