@@ -1,0 +1,13 @@
+diff --git a/src/aiori-RADOS.c b/src/aiori-RADOS.c
+index b8789d4..8099c9f 100755
+--- a/src/aiori-RADOS.c
++++ b/src/aiori-RADOS.c
+@@ -22,6 +22,8 @@
+ #include <sys/stat.h>
+ #include <rados/librados.h>
+ 
++#include <errno.h>
++
+ #include "ior.h"
+ #include "iordef.h"
+ #include "aiori.h"

@@ -17,12 +17,13 @@ class Ior(BuiltinIor):
     variant('gpfs', default=False, description='support configurable GPFS in IOR')
 
     # depend on latest mobject to bring in latest bake
-    depends_on('mobject@0.4.2:', when='+mobject')
+    depends_on('mobject@0.7rc1:', when='+mobject')
     depends_on('mobject@develop', when='+mobject @develop')
     # rados and mobject are incompatible
     conflicts('+mobject', when='+rados')
     conflicts('+rados', when='+mobject')
 
+    patch('errno.patch')
     patch('0001-DO-NOT-MERGE-mobject-specific-hackery.patch', when='+mobject')
 
     def configure_args(self):

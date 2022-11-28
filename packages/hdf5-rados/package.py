@@ -10,9 +10,9 @@ class Hdf5Rados(CMakePackage):
 
     homepage = ''
     url = ''
-    git = 'https://git.hdfgroup.org/scm/hdf5vol/rados-api.git'
+    git = 'https://github.com/HDFGroup/vol-rados.git'
 
-    maintainers = ['soumagne']
+    maintainers = ['soumagne', 'jhendersonHDF']
 
     version('master', branch='master', submodules=True)
 
@@ -20,7 +20,7 @@ class Hdf5Rados(CMakePackage):
 
     depends_on('cmake@2.8.12.2:', type='build')
     depends_on('mobject', when='+mobject')
-    depends_on('hdf5@1.12.0:+mpi')
+    depends_on('hdf5@1.13.3:+mpi')
 
     def cmake_args(self):
         """Populate cmake arguments for HDF5 RADOS."""
