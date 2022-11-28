@@ -39,6 +39,7 @@ class PyMochiMargo(PythonPackage):
 
     version('develop', branch='main')
     version('main', branch='main')
+    version("0.5.2", sha256="0c5cd5c20e013a8f9d82cc587ee7e6b480733b62fde5ab8f938e78cd7a126b87")
     version("0.5.1", sha256="115ccc12be5b9e21d9d5cc3a435f443db3a6fa13db9691cbeb6ed958995a61ca")
     version("0.5", sha256="1d4b8f932962ae3f48aaaafe84921fdee431b3bf976faf21897d4db82dc45532")
     version('0.4', sha256='8f2b8123299047f853883a98dc570582a5d22ed221f81899c75742e431e26f09')
