@@ -1,0 +1,25 @@
+diff --git a/src/Makefile.am b/src/Makefile.am
+index 9d225a8..e406cbf 100755
+--- a/src/Makefile.am
++++ b/src/Makefile.am
+@@ -91,7 +91,6 @@ endif
+ 
+ if USE_RADOS_AIORI
+ extraSOURCES += aiori-RADOS.c
+-extraLDADD += -lrados
+ endif
+ 
+ if USE_CEPHFS_AIORI
+diff --git a/src/aiori-RADOS.c b/src/aiori-RADOS.c
+index 56d667a..ab24e34 100755
+--- a/src/aiori-RADOS.c
++++ b/src/aiori-RADOS.c
+@@ -21,7 +21,7 @@
+ #include <stdlib.h>
+ #include <sys/stat.h>
+ #include <errno.h>
+-#include <rados/librados.h>
++#include <librados-mobject-store.h>
+ 
+ #include "ior.h"
+ #include "iordef.h"
