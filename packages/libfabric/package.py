@@ -71,6 +71,9 @@ class Libfabric(BuiltinLibfabric):
         if '+disable-spinlocks' in spec:
             config_args.append('--disable-spinlocks')
 
+        if '+cuda' in spec:
+            config_args.append('--with-cuda={0}'.format(self.spec['cuda'].prefix))
+
         return config_args
 
     depends_on('numactl', when='fabrics=opx')
