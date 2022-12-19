@@ -30,6 +30,9 @@ class Libfabric(BuiltinLibfabric):
 
     patch('libfabric-1.11-option-disable-spinlocks.patch', when="+disable-spinlocks")
 
+    # This is a local variant used to configure libfabric with cuda support
+    variant('cuda', default=False, description='Configure with cuda support')
+    depends_on('cuda', when='+cuda')
 
     # overriding the inherited class member has unusual side effects
     # ==> Error: module 'spack' has no attribute 'Libfabric'
@@ -67,6 +70,10 @@ class Libfabric(BuiltinLibfabric):
 
         if '+disable-spinlocks' in spec:
             config_args.append('--disable-spinlocks')
+
+        if '+cuda' in spec:
+            config_args.append('--with-cuda={0}'.format(self.spec['cuda'].prefix))
+
         return config_args
 
     depends_on('numactl', when='fabrics=opx')
