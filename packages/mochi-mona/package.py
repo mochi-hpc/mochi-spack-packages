@@ -49,12 +49,15 @@ class MochiMona(CMakePackage):
 
     depends_on('cmake@3.14:', type=('build'))
     depends_on('argobots@1.0:', type=("build", "link", "run"))
-    depends_on('mercury@2.0.0:', type=("build", "link", "run"), when='@main,0.1:9.9.9')
+    depends_on('mercury@2.0.0:2.2.0', type=("build", "link", "run"), when='@main,0.1:9.9.9')
     depends_on('mpi', when='+benchmark', type=("build", "link", "run"))
     depends_on('mpi', when='+mpi', type=("build", "link", "run"))
 
     # dependencies for develop version
-    depends_on('mercury@master', type=("build", "link", "run"), when='@develop')
+    depends_on('mercury@2.2.0', type=("build", "link", "run"), when='@develop')
+
+    # note: a change in mercury > 2.2.0 (na_addr_t no longer a pointer)
+    # will require mona to be updated once a new release of mercury lands.
 
     def cmake_args(self):
         args = ['-DBUILD_SHARED_LIBS:BOOL=ON']
