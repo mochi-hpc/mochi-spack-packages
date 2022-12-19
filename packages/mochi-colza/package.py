@@ -40,10 +40,11 @@ class MochiColza(CMakePackage):
     depends_on('mochi-ssg @0.5.2:', when='@main,0.1.2:')
 
     # dependencies for develop version
-    depends_on('mochi-thallium @develop', when='@develop')
-    depends_on('mochi-mona @develop', when='@develop')
-    depends_on('mochi-bedrock+ssg+mona @develop', when='@develop +bedrock')
-    depends_on('mochi-ssg @develop', when='@develop')
+    # (cannot be built for now because of some changes in Mercury's NA API messing up with mona)
+    # depends_on('mochi-thallium @develop', when='@develop')
+    # depends_on('mochi-mona @develop', when='@develop')
+    # depends_on('mochi-bedrock+ssg+mona @develop', when='@develop +bedrock')
+    # depends_on('mochi-ssg @develop', when='@develop')
 
     def cmake_args(self):
         args = ['-DBUILD_SHARED_LIBS:BOOL=ON' ]
