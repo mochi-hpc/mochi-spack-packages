@@ -34,6 +34,8 @@ class Libfabric(BuiltinLibfabric):
     variant('cuda', default=False, description='Configure with cuda support')
     depends_on('cuda', when='+cuda')
 
+    variant('enable-cuda-dlopen', default=False, description='Use dlopen to open cuda library during runtime and load symbol from the library')
+
     # overriding the inherited class member has unusual side effects
     # ==> Error: module 'spack' has no attribute 'Libfabric'
     # so we'll copy 'fabrics' and add cxi ourselves.
@@ -73,6 +75,9 @@ class Libfabric(BuiltinLibfabric):
 
         if '+cuda' in spec:
             config_args.append('--with-cuda={0}'.format(self.spec['cuda'].prefix))
+
+        if '+enable-cuda-dlopen' in spec:
+            config_args.append('--enable-cuda-dlopen')
 
         return config_args
 
