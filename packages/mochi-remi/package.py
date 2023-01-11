@@ -7,11 +7,12 @@ class MochiRemi(CMakePackage):
     potentially large groups of files at once."""
 
     homepage = 'https://github.com/mochi-hpc/mochi-remi'
-    url = 'https://github.com/mochi-hpc/mochi-remi'
+    url = 'https://github.com/mochi-hpc/mochi-remi/archive/refs/tags/v0.3.2.tar.gz'
     git = 'https://github.com/mochi-hpc/mochi-remi.git'
 
     version('develop', branch='main')
     version('main', branch='main')
+    version("0.3.2", sha256="b289c5612316d6e65173004f0ad79e6e9123391ad79c6ac43b9a0b59dd0cf2bf")
     version('0.3.1', tag='v0.3.1')
     version('0.3', tag='v0.3')
     version('0.2.3', tag='v0.2.3')
@@ -24,12 +25,12 @@ class MochiRemi(CMakePackage):
     variant('bedrock', default=True, description='Enable building Bedrock module')
 
     depends_on('cmake@3.12:', type='build')
-    depends_on('libuuid')
     depends_on('mochi-thallium@0.6.0:+cereal', when='@0.2.3:')
     depends_on('mochi-thallium@0.4.2:', when='@0.2.2')
     depends_on('mochi-thallium@0.3:', when='@:0.2.1')
     depends_on('mochi-abt-io@0.1:')
     depends_on('mochi-bedrock@0.2:', when='@0.3: +bedrock')
+    depends_on('uuid')
 
     # dependencies for develop version
     depends_on('mochi-thallium@develop', when='@develop')
