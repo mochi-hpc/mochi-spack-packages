@@ -11,6 +11,7 @@ class Libfabric(BuiltinLibfabric):
     # on what version of Spack you are using.
     version('main', branch='main')
 
+    version('1.17.0', sha256='579c0f5ef636c0c72f4d3d6bd4da91a5aed9ac3ac4ea387404c45dbbdee4745d')
     version('1.15.1', sha256='cafa3005a9dc86064de179b0af4798ad30b46b2f862fe0268db03d13943e10cd')
     version('1.15.0', sha256='70982c58eadeeb5b1ddb28413fd645e40b206618b56fbb2b18ab1e7f607c9bea')
     version('1.14.1', sha256='6cfabb94bca8e419d9015212506f5a367d077c5b11e94b9f57997ec6ca3d8aed')
