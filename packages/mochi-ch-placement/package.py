@@ -36,10 +36,10 @@ class MochiChPlacement(AutotoolsPackage):
     version('develop', branch='main')
     version('0.1', tag='v0.1')
 
-    depends_on('m4')
-    depends_on('autoconf')
-    depends_on('automake')
-    depends_on('libtool')
+    depends_on('m4', type='build')
+    depends_on('autoconf', type='build')
+    depends_on('automake', type='build')
+    depends_on('libtool', type='build')
 
     # NOTE: The default autoreconf steps should work fine for this package.
     #       The explicit definition is just here as a workaround; Spack's
