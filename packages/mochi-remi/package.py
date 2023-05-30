@@ -12,6 +12,7 @@ class MochiRemi(CMakePackage):
 
     version('develop', branch='main')
     version('main', branch='main')
+    version("0.3.3", sha256="ad481e282ed2d349a0f19cb082183614426c165ff75b2b9893543991e22fdf59")
     version("0.3.2", sha256="b289c5612316d6e65173004f0ad79e6e9123391ad79c6ac43b9a0b59dd0cf2bf")
     version('0.3.1', tag='v0.3.1')
     version('0.3', tag='v0.3')
