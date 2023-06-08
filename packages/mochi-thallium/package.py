@@ -45,6 +45,7 @@ class MochiThallium(CMakePackage):
 
     depends_on('pkgconfig', type=('build'))
     depends_on('mochi-margo@develop', when='@develop')
+    depends_on('mochi-margo@0.12.0:', when='@main') # TODO change this to the next version
     depends_on('mochi-margo@0.9.8:', when='@0.10.0:')
     depends_on('mochi-margo@0.7:', when='@0.7:')
     depends_on('mochi-margo@0.6:', when='@0.5:')
