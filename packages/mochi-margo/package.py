@@ -69,6 +69,7 @@ class MochiMargo(AutotoolsPackage):
     depends_on('automake', type=("build"))
     depends_on('libtool', type=("build"))
     depends_on('pkgconfig', type=("build"))
+    depends_on('coreutils', type=("build"))
     depends_on('argobots@1.0:')
     depends_on('argobots@1.1:', when='@0.11:')
     # "breadcrumb" support not available in mercury-1.0

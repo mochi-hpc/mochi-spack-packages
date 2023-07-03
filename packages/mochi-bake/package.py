@@ -36,6 +36,7 @@ class MochiBake(AutotoolsPackage):
 
     depends_on('autoconf@2.65:', type=("build"))
     depends_on('automake@1.13.4:', type=("build"))
+    depends_on('coreutils', type=("build"))
     depends_on('libtool', type=("build"))
     depends_on('pmdk')
     depends_on('uuid')
