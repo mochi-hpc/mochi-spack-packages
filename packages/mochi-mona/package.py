@@ -33,6 +33,7 @@ class MochiMona(CMakePackage):
     url = 'https://github.com/mochi-hpc/mochi-mona/archive/refs/tags/v0.1.tar.gz'
     git = 'https://github.com/mochi-hpc/mochi-mona.git'
 
+    version("0.3.0", sha256="f783636fbc77a2289c13d348f43a0b9f5d1c2e7c258aa7228c59d6e7023f56f6")
     version('0.2.3', sha256='cf9822d12c901b80a3fe029bf128d2b03ce897aabea4a0ea827eeb761bdcb405')
     version('0.2.2', sha256='c6ac88c98e622dfa87743a4b5649eaa247fb886a707442f8bc5ff918c5ede93d')
     version('0.2.1', sha256='deae5677d99410c908f7844f46ec83b3ade4498750e25836446f4a6346470b92')
@@ -49,12 +50,13 @@ class MochiMona(CMakePackage):
 
     depends_on('cmake@3.14:', type=('build'))
     depends_on('argobots@1.0:', type=("build", "link", "run"))
-    depends_on('mercury@2.0.0:2.2.0', type=("build", "link", "run"), when='@main,0.1:9.9.9')
+    depends_on('mercury@2.0.0:2.2.0', type=("build", "link", "run"), when='@0.1:0.2.3')
+    depends_on('mercury@2.3.0:', type=("build", "link", "run"), when='@main,0.3.0:')
     depends_on('mpi', when='+benchmark', type=("build", "link", "run"))
     depends_on('mpi', when='+mpi', type=("build", "link", "run"))
 
     # dependencies for develop version
-    depends_on('mercury@2.2.0', type=("build", "link", "run"), when='@develop')
+    depends_on('mercury@master', type=("build", "link", "run"), when='@develop')
 
     # note: a change in mercury > 2.2.0 (na_addr_t no longer a pointer)
     # will require mona to be updated once a new release of mercury lands.
