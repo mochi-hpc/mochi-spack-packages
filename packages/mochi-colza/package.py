@@ -11,6 +11,7 @@ class MochiColza(CMakePackage):
 
     version('develop', branch='main')
     version('main', branch='main')
+    version("0.4.0", sha256="6022c899596901fb62cc5df687289d6d04d3dd747043b3f1c4af39a0eb364892")
     version("0.3.0", sha256="28bc9e4a87561787f93e10621ba1f48a3317f5287bc2585d8eb513708048f80c")
     version('0.2.1', sha256='0c4e8d96a4e147705835c674182a8c23e0429587343331bd21e09cc63365f853')
     version('0.2.0', sha256='5a9de73cdcb7e8e66325143741fde756346362ee84217ff308674827a11029c7')
@@ -34,7 +35,8 @@ class MochiColza(CMakePackage):
     depends_on('tclap')
 
     depends_on('mochi-thallium @0.8:')
-    depends_on('mochi-mona')
+    depends_on('mochi-mona@:0.2.3', when='@:0.3.0')
+    depends_on('mochi-mona@0.3.0:', when='@0.4.0:')
     depends_on('mochi-bedrock', when='+bedrock')
     depends_on('mochi-bedrock @0.5.0: +ssg +mona', when='@0.2.0: +bedrock')
     depends_on('mochi-ssg @0.4.5', when='@0.1:0.1.1')
