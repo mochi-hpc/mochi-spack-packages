@@ -38,7 +38,7 @@ class MochiBedrock(CMakePackage):
     depends_on('mochi-thallium')
     depends_on('mochi-abt-io', when='@:0.4.1')
     depends_on('mochi-abt-io', when='+abtio @0.5.0:')
-    depends_on('mochi-mona', when='+mona')
+    depends_on('mochi-mona@:0.2.3', when='+mona @:0.6.2')
     depends_on('mochi-mona@0.3.0:', when='+mona @develop,main') # TODO change main at next release
     # SSG dependencies for versions up to 0.3
     depends_on('mochi-ssg@0.4.5', when='@0.1.0:0.3.0')
