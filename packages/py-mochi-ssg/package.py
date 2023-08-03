@@ -53,8 +53,8 @@ class PyMochiSsg(PythonPackage):
     depends_on("py-mpi4py", when="+mpi")
     depends_on("mpi", when="+mpi", type=("build"))
 
-    depends_on("mochi-ssg+mpi@main", when="@0.2.0: +mpi") # change main into version at next release of SSG (after 0.5.3)
-    depends_on("mochi-ssg@main", when="@0.2.0: ~mpi") # same
+    depends_on("mochi-ssg+mpi@main", when="@0.2.0:999 +mpi") # change main into version at next release of SSG (after 0.5.3)
+    depends_on("mochi-ssg@main", when="@0.2.0:999 ~mpi") # same
     depends_on("mochi-ssg+mpi@0.4.1:0.4.5", when="@0.1.2 +mpi")
     depends_on("mochi-ssg@0.4.1:0.4.5", when="@0.1.2 ~mpi")
     depends_on("mochi-ssg+mpi@0.1:0.2", when="@0.1:0.1.1 +mpi")
@@ -64,9 +64,6 @@ class PyMochiSsg(PythonPackage):
     depends_on("mochi-ssg+mpi@develop", when="+mpi @develop")
     depends_on("mochi-ssg@develop", when="~mpi @develop")
     depends_on("py-mochi-margo@develop", when="@develop")
-
-    depends_on("mochi-ssg+mpi@dev-error-codes", when="+mpi @dev-new-ssg-api")
-    depends_on("mochi-ssg@dev-error-codes", when="~mpi @dev-new-ssg-api")
 
     depends_on("rdma-credentials", when="+drc")
 
