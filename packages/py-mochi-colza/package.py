@@ -42,7 +42,7 @@ class PyMochiColza(PythonPackage):
     depends_on('py-numpy')
     depends_on('py-mochi-margo')
     depends_on('py-mochi-ssg@main')
-    depends_on('mochi-colza@main')
+    depends_on('mochi-colza')
     depends_on('mpi')
 
     def setup_build_environment(self, env):

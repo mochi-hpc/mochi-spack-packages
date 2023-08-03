@@ -33,43 +33,43 @@ from spack import *
 class PyMochiSsg(PythonPackage):
     """Python wrapper for the Mochi SSG library"""
 
-    homepage = 'https://github.com/mochi-hpc/py-mochi-ssg'
-    url      = 'https://github.com/mochi-hpc/py-mochi-ssg'
-    git      = 'https://github.com/mochi-hpc/py-mochi-ssg.git'
+    homepage = "https://github.com/mochi-hpc/py-mochi-ssg"
+    url      = "https://github.com/mochi-hpc/py-mochi-ssg/archive/refs/tags/v0.2.0.tar.gz"
+    git      = "https://github.com/mochi-hpc/py-mochi-ssg.git"
 
-    version('develop', branch='main')
-    version('main', branch='main')
-    version('dev-new-ssg-api', branch='dev-new-ssg-api')
-    version('0.1.2', tag='v0.1.2')
-    version('0.1.1', tag='v0.1.1')
-    version('0.1', tag='v0.1')
+    version("develop", branch="main")
+    version("main", branch="main")
+    version("0.2.0", sha256="e1327f51b974476d253d6edc755de958bdc16451f1dd063e7e29c2819e8c659c")
+    version("0.1.2", tag="v0.1.2")
+    version("0.1.1", tag="v0.1.1")
+    version("0.1", tag="v0.1")
 
-    variant('mpi', default=True, description="Enable MPI support")
-    variant('drc', default=False, description="Enable Cray-DRC support")
+    variant("mpi", default=True, description="Enable MPI support")
+    variant("drc", default=False, description="Enable Cray-DRC support")
 
-    depends_on('py-pkgconfig', type=('build'))
-    depends_on('py-pybind11', type=('build'))
-    depends_on('py-setuptools', type=('build'))
-    depends_on('py-mpi4py', when='+mpi')
-    depends_on('mpi', when='+mpi', type=("build"))
+    depends_on("py-pkgconfig", type=("build"))
+    depends_on("py-pybind11", type=("build"))
+    depends_on("py-setuptools", type=("build"))
+    depends_on("py-mpi4py", when="+mpi")
+    depends_on("mpi", when="+mpi", type=("build"))
 
-    depends_on('mochi-ssg+mpi@0.5.0:', when='@main +mpi') # change main into version at next release
-    depends_on('mochi-ssg@0.5.0:', when='@main ~mpi') # same
-    depends_on('mochi-ssg+mpi@0.4.1:0.4.5', when='@0.1.2:999 +mpi')
-    depends_on('mochi-ssg@0.4.1:0.4.5', when='@0.1.2:999 ~mpi')
-    depends_on('mochi-ssg+mpi@0.1:0.2', when='@0.1:0.1.1 +mpi')
-    depends_on('mochi-ssg@0.1:0.2', when='@0.1:0.1.1 ~mpi')
-    depends_on('py-mochi-margo@0.1:')
+    depends_on("mochi-ssg+mpi@0.5.0:", when="@main +mpi") # change main into version at next release
+    depends_on("mochi-ssg@0.5.0:", when="@main ~mpi") # same
+    depends_on("mochi-ssg+mpi@0.4.1:0.4.5", when="@0.1.2:999 +mpi")
+    depends_on("mochi-ssg@0.4.1:0.4.5", when="@0.1.2:999 ~mpi")
+    depends_on("mochi-ssg+mpi@0.1:0.2", when="@0.1:0.1.1 +mpi")
+    depends_on("mochi-ssg@0.1:0.2", when="@0.1:0.1.1 ~mpi")
+    depends_on("py-mochi-margo@0.1:")
 
-    depends_on('mochi-ssg+mpi@develop', when='+mpi @develop')
-    depends_on('mochi-ssg@develop', when='~mpi @develop')
-    depends_on('py-mochi-margo@develop', when='@develop')
+    depends_on("mochi-ssg+mpi@develop", when="+mpi @develop")
+    depends_on("mochi-ssg@develop", when="~mpi @develop")
+    depends_on("py-mochi-margo@develop", when="@develop")
 
-    depends_on('mochi-ssg+mpi@dev-error-codes', when='+mpi @dev-new-ssg-api')
-    depends_on('mochi-ssg@dev-error-codes', when='~mpi @dev-new-ssg-api')
+    depends_on("mochi-ssg+mpi@dev-error-codes", when="+mpi @dev-new-ssg-api")
+    depends_on("mochi-ssg@dev-error-codes", when="~mpi @dev-new-ssg-api")
 
-    depends_on('rdma-credentials', when='+drc')
+    depends_on("rdma-credentials", when="+drc")
 
     def setup_build_environment(self, env):
-        env.set('CC', self.spec['mpi'].mpicc)
-        env.set('CXX', self.spec['mpi'].mpicxx)
+        env.set("CC", self.spec["mpi"].mpicc)
+        env.set("CXX", self.spec["mpi"].mpicxx)
