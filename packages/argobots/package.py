@@ -6,19 +6,13 @@ class Argobots(BuiltinArgobots):
 
     # these are available upstream, but we also define them here for users
     # working against previous spack releases
-    version("1.2rc1", sha256="10ce22b7586c51583d3dcdd41601b4a9a5e77ad82d62c00f1c359b58421ba82d", url="https://github.com/pmodels/argobots/archive/refs/tags/v1.2rc1.tar.gz")
+    version("1.2rc1", sha256="22b6e0e418dce35f4b42abaa52d9cb32caedbd53da4339b4bc37032b0333ad76")
     version("1.1", sha256="f0f971196fc8354881681c2282a2f2adb6d48ff5e84cf820ca657daad1549005")
     version("1.0.1", sha256="fa05a02d7f8f74d845647636609219ee02f6adf628ebcbf40393f829987d9036")
     version("1.0", sha256="36a0815f7bf99900a9c9c1eef61ef9b3b76aa2cfc4594a304f6c8c3296da8def")
 
     # some of these may be duplicated upstream; we want to cover them so
     # that they are available when using the mochi spack repo
-
-    # temporary for 1.2rc1
-    depends_on("m4", type=("build"), when="@1.2rc1")
-    depends_on("autoconf", type=("build"), when="@1.2rc1")
-    depends_on("automake", type=("build"), when="@1.2rc1")
-    depends_on("libtool", type=("build"), when="@1.2rc1")
 
     variant("perf", default=True, description="Add performance optimization flags")
     variant("valgrind", default=False, description="Enable Valgrind")
