@@ -5,6 +5,7 @@
 
 
 from spack.pkg.builtin.mercury import Mercury as BuiltinMercury
+from spack.package import *
 
 
 class Mercury(BuiltinMercury):

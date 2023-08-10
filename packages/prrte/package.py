@@ -1,3 +1,4 @@
+from spack.package import *
 from spack.pkg.builtin.prrte import Prrte as BuiltinPrrte
 
 class Prrte(BuiltinPrrte):

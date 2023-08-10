@@ -1,4 +1,5 @@
 from spack.pkg.builtin.mpich import Mpich as BuiltinMpich
+from spack.package import *
 
 
 class Mpich(BuiltinMpich):
