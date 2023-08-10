@@ -4,6 +4,7 @@
 #
 #     spack install flamestore
 #
+from spack.package import *
 from spack import *
 
 

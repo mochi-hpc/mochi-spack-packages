@@ -1,4 +1,6 @@
+from spack.package import *
 from spack import *
+
 
 class MochiThallium(CMakePackage):
     """A Mochi C++14 library wrapping Margo, Mercury,

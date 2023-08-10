@@ -1,4 +1,6 @@
+from spack.package import *
 from spack import *
+
 
 class MochiXferBenchmark(CMakePackage):
     """A benchmark testing various data transfer strategies for Mochi."""

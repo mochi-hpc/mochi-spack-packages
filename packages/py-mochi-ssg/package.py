@@ -28,6 +28,7 @@
 #     spack install py-ssg
 #
 from spack import *
+from spack.package import *
 
 
 class PyMochiSsg(PythonPackage):

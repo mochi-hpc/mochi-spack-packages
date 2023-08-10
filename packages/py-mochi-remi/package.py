@@ -27,7 +27,9 @@
 #
 #     spack install py-remi
 #
+from spack.package import *
 from spack import *
+
 
 class PyMochiRemi(PythonPackage):
     """Python wrapper for the Mochi REMI library"""

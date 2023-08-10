@@ -28,6 +28,8 @@
 #     spack install py-sdskv
 #
 from spack import *
+from spack.package import *
+
 
 class PyMochiSdskv(PythonPackage):
     """Python wrapper for the Mochi KV library"""

@@ -1,6 +1,8 @@
 
 
+from spack.package import *
 from spack.pkg.builtin.argobots import Argobots as BuiltinArgobots
+
 
 class Argobots(BuiltinArgobots):
 

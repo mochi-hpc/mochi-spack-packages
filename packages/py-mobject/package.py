@@ -27,6 +27,7 @@
 #
 #     spack install py-mobject
 #
+from spack.package import *
 from spack import *
 
 class PyMobject(PythonPackage):

@@ -1,5 +1,6 @@
 from spack.pkg.builtin.mpich import Mpich as BuiltinMpich
 
+
 class Mpich(BuiltinMpich):
     version('3.4.2', sha256='5c19bea8b84e8d74cca5f047e82b147ff3fba096144270e3911ad623d6c587bf')
     version('3.4.1', sha256='8836939804ef6d492bcee7d54abafd6477d2beca247157d92688654d13779727')

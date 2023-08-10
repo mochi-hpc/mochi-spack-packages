@@ -27,6 +27,7 @@
 #
 #     spack install py-margo
 #
+from spack.package import *
 from spack import *
 
 

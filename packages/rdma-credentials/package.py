@@ -5,6 +5,7 @@
 
 # ----------------------------------------------------------------------------
 from spack import *
+from spack.package import *
 
 
 # in order to use this package you will need to load the modules. In

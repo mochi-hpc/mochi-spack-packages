@@ -27,6 +27,7 @@
 #
 #     spack install py-bake
 #
+from spack.package import *
 from spack import *
 
 class PyMochiBake(PythonPackage):
