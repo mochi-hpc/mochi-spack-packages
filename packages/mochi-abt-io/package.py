@@ -33,13 +33,13 @@ class MochiAbtIo(AutotoolsPackage):
     git = "https://github.com/mochi-hpc/mochi-abt-io.git"
     url = "https://github.com/mochi-hpc/mochi-abt-io/archive/refs/tags/v0.6.0.tar.gz"
 
-    version("0.6.0", sha256="bc5c94df823727e9151b4852c8c11bf54ebf0b636fb8a460e17ed711658ed768")
+    version("0.6.0", sha256="b2936cdca2157ef76c970825e3734d1f288140e7defdf3392d80eefa99f3359a")
     version("0.5.1", tag="v0.5.1")
-    version("0.5", tag="v0.5")
+    version("0.5.0", tag="v0.5")
     version("0.3.1", tag="v0.3.1")
-    version("0.3", tag="v0.3")
-    version("0.2", tag="v0.2")
-    version("0.1", tag="v0.1")
+    version("0.3.0", tag="v0.3")
+    version("0.2.0", tag="v0.2")
+    version("0.1.0", tag="v0.1")
     version("develop", branch="main")
     version("main", branch="main")
 
@@ -51,7 +51,7 @@ class MochiAbtIo(AutotoolsPackage):
     depends_on("libtool", type=("build"))
     depends_on("pkgconfig", type=("build"))
     depends_on("coreutils", type=("build"))
-    depends_on("openssl", type=("build", "link", "run"))
+    depends_on("openssl", type=("build", "link", "run"), when="@:0.5.1")
 
     # NOTE: The default autoreconf steps should work fine for this package.
     #       The explicit definition is just here as a workaround; Spack"s
