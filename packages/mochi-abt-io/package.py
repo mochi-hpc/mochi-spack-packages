@@ -29,32 +29,34 @@ from spack import *
 class MochiAbtIo(AutotoolsPackage):
     """a Mochi library that provides Argobots bindings to POSIX I/O functions."""
 
-    homepage = 'https://github.com/mochi-hpc/mochi-abt-io'
-    git = 'https://github.com/mochi-hpc/mochi-abt-io.git'
+    homepage = "https://github.com/mochi-hpc/mochi-abt-io"
+    git = "https://github.com/mochi-hpc/mochi-abt-io.git"
+    url = "https://github.com/mochi-hpc/mochi-abt-io/archive/refs/tags/v0.6.0.tar.gz"
 
-    version('0.5.1', tag='v0.5.1', preferred=True)
-    version('0.5', tag='v0.5')
-    version('0.3.1', tag='v0.3.1')
-    version('0.3', tag='v0.3')
-    version('0.2', tag='v0.2')
-    version('0.1', tag='v0.1')
-    version('develop', branch='main')
-    version('main', branch='main')
+    version("0.6.0", sha256="bc5c94df823727e9151b4852c8c11bf54ebf0b636fb8a460e17ed711658ed768")
+    version("0.5.1", tag="v0.5.1")
+    version("0.5", tag="v0.5")
+    version("0.3.1", tag="v0.3.1")
+    version("0.3", tag="v0.3")
+    version("0.2", tag="v0.2")
+    version("0.1", tag="v0.1")
+    version("develop", branch="main")
+    version("main", branch="main")
 
-    depends_on('json-c', when='@0.5:')
-    depends_on('argobots@1.0:')
-    depends_on('autoconf@2.67:', type=("build"))
-    depends_on('m4', type=("build"))
-    depends_on('automake', type=("build"))
-    depends_on('libtool', type=("build"))
-    depends_on('pkgconfig', type=("build"))
-    depends_on('coreutils', type=("build"))
-    depends_on('openssl', type=("build", "link", "run"))
+    depends_on("json-c", when="@0.5:")
+    depends_on("argobots@1.0:")
+    depends_on("autoconf@2.67:", type=("build"))
+    depends_on("m4", type=("build"))
+    depends_on("automake", type=("build"))
+    depends_on("libtool", type=("build"))
+    depends_on("pkgconfig", type=("build"))
+    depends_on("coreutils", type=("build"))
+    depends_on("openssl", type=("build", "link", "run"))
 
     # NOTE: The default autoreconf steps should work fine for this package.
-    #       The explicit definition is just here as a workaround; Spack's
+    #       The explicit definition is just here as a workaround; Spack"s
     #       default autoreconf step is prone to libtool version mismatch as
     #       of 2021/10/20.
     def autoreconf(self, spec, prefix):
-        sh = which('sh')
-        sh('./prepare.sh')
+        sh = which("sh")
+        sh("./prepare.sh")
