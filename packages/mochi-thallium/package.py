@@ -12,7 +12,7 @@ class MochiThallium(CMakePackage):
 
     version('main', branch='main')
     version('develop', branch='main')
-    version("0.11.3", sha256="4b62913a0ba2bf3241fdb22322bab7d430a26a517518890fbab8046b44c44c9e")
+    version("0.11.3", sha256="d1ffd7ee1ccbcfb00f246cb29c5bc2560e59f8808609cbc19b7098aa8fc903c4")
     version("0.11.2", sha256="4f1e57ca843b7592525c179dec73bfb603a27fbda4feaf028d636e05c1b38e36")
     version("0.11.1", sha256="be99bec2309ce1945a777fba720175f409972cbf27b73388728a740d6406a040")
     version("0.11.0", sha256="c216310fdef9281e1c7e3264c148c560d7f5edd15816d35866efcc543185b7ee")
