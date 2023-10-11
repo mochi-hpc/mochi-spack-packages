@@ -49,6 +49,7 @@ class PyMochiSdskv(PythonPackage):
 
     depends_on('py-pkgconfig', type=('build'))
     depends_on('py-pybind11', type=('build'))
+    depends_on('py-pybind11@:2.10.4', type=('build'), when='@:0.1.5')
     depends_on('py-setuptools', type=('build'))
     depends_on('mochi-sdskv@0.1.12:', when='@0.1.5:')
     depends_on('mochi-sdskv@:0.1.11', when='@:0.1.4')
