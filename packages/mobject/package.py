@@ -57,6 +57,10 @@ class Mobject(AutotoolsPackage):
     depends_on('automake')
     depends_on('libtool')
 
+    # NOTE: uses yokan up to 0.3.0 because of the API break in
+    # next versions. Need to change mobject in the future
+    # to adapt to the new Yokan API.
+
     # Mochi dependencies for normal versions
     depends_on('mochi-margo @0.4:')
     depends_on('mochi-margo @0.9.4:', when='@0.5:')
@@ -67,8 +71,8 @@ class Mobject(AutotoolsPackage):
     depends_on('mochi-sdskv @0.1:', when='@:0.6.1')
     depends_on('mochi-sdskv @0.1.13:', when='@0.5:0.6.1')
     depends_on('mochi-sdskv +bedrock @0.1.13:', when='@0.5:0.6.1 +bedrock')
-    depends_on('mochi-yokan @0.2.10:', when='@0.7:')
-    depends_on('mochi-yokan +bedrock @0.2.10:', when='@0.7: +bedrock')
+    depends_on('mochi-yokan @0.2.10:0.3.0', when='@0.7:')
+    depends_on('mochi-yokan +bedrock @0.2.10:0.3.0', when='@0.7: +bedrock')
     depends_on('mochi-bake @0.1:')
     depends_on('mochi-bake @0.3:0.3.6', when='@:0.4.1')
     depends_on('mochi-bake @0.4:', when='@0.4.2')
@@ -81,8 +85,8 @@ class Mobject(AutotoolsPackage):
     depends_on('mochi-margo @develop', when='@develop')
     depends_on('mochi-ssg+mpi @develop', when='@develop')
     depends_on('mochi-ch-placement @develop', when='@develop')
-    depends_on('mochi-yokan @develop', when='@develop')
-    depends_on('mochi-yokan +bedrock @develop', when='@develop +bedrock')
+    depends_on('mochi-yokan @:0.3.0', when='@develop')
+    depends_on('mochi-yokan +bedrock @:0.3.0', when='@develop +bedrock')
     depends_on('mochi-bake @develop', when='@develop')
     depends_on('mochi-bake +bedrock @develop', when='@develop +bedrock')
 

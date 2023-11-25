@@ -96,13 +96,13 @@ class Hepnos(CMakePackage):
     depends_on('mochi-ch-placement@0.1:')
     depends_on('mochi-thallium+cereal@0.5.2:', when='@0.2.0:')
     depends_on('mochi-bedrock+mpi', when='@0.5:')
-    depends_on('mochi-yokan+bedrock@0.2.1:', when='@0.6:')
+    depends_on('mochi-yokan+bedrock@0.2.1:0.3.0', when='@0.6:')
     # ---------------------------------------------
     # Dependencies for develop version
     # ---------------------------------------------
     depends_on('mochi-ch-placement@develop', when='@develop')
     depends_on('mochi-thallium@develop', when='@develop')
-    depends_on('mochi-yokan+bedrock@develop', when='@develop')
+    depends_on('mochi-yokan+bedrock@:0.3.0', when='@develop')
     depends_on('mochi-bedrock+mpi@develop', when='@develop')
     # ---------------------------------------------
     # Old dependencies
