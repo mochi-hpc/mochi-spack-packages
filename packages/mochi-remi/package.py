@@ -13,7 +13,7 @@ class MochiRemi(CMakePackage):
 
     version('develop', branch='main')
     version('main', branch='main')
-    version("0.4.0", sha256="6ccd344a4e94e2fcbe333c392bfd05972db07332ea5bb7dcee6284e8972ff69b")
+    version("0.4.0", sha256="6e0a90fd6f5f521100b361cfd367f7cc3e15af6f0265cd17d548e3cfea8245bf")
     version("0.3.3", sha256="ad481e282ed2d349a0f19cb082183614426c165ff75b2b9893543991e22fdf59")
     version("0.3.2", sha256="b289c5612316d6e65173004f0ad79e6e9123391ad79c6ac43b9a0b59dd0cf2bf")
     version('0.3.1', tag='v0.3.1')
