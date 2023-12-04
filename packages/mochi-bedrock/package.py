@@ -11,6 +11,7 @@ class MochiBedrock(CMakePackage):
 
     version("develop", branch="main")
     version("main", branch="main")
+    version("0.8.0", sha256="0916e0ca059bc4f59391ddf5c8369e8b2fe2fa9896e54c432fbe01a9abbfc0d9")
     version("0.7.0", sha256="02d905412cc77a57bdfdb383c95f09870ed2c477986164332eecb332de78e054")
     version("0.6.2", sha256="2e1870ab957496a42ee1d1556f7f9c6f6a117af706909023472554c2c821be13")
     version("0.6.1", sha256="11422c59c1fa3db9824db009e78fd8c29ab2407f6bf5c0b69c4b2902ac790489")
@@ -37,7 +38,9 @@ class MochiBedrock(CMakePackage):
 
 
     depends_on("mochi-margo@0.9:")
+    depends_on("mochi-margo@0.15.0:", when="@0.8.0:")
     depends_on("mochi-thallium")
+    depends_on("mochi-thallium@0.12.0:", when="@0.8.0:")
     depends_on("mochi-abt-io", when="@:0.4.1")
     depends_on("mochi-abt-io", when="+abtio @0.5.0:")
     depends_on("mochi-mona@:0.2.3", when="+mona @:0.6.2")
