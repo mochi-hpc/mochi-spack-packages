@@ -18,6 +18,7 @@ class MochiWarabi(CMakePackage):
 
     version("main", branch="main")
     version("develop", branch="main")
+    version("0.2.0", sha256="35ad6cc45ac1e28fc3d68984acedab692bebd2979bb05b0d29a8001f5819c34b")
     version("0.1.0", sha256="a327f1a0c63e5e913b1d16e9cd73590e9f7b675acd187d9938cb3dcc5210486f")
 
     variant("bedrock", default=False, description="Enable Bedrock support")
@@ -36,6 +37,11 @@ class MochiWarabi(CMakePackage):
     depends_on("mochi-bedrock", when="+bedrock")
     depends_on("mochi-abt-io")
     depends_on("mochi-remi", when="+remi")
+
+    depends_on("mochi-thallium@0.12.0:", when="@0.2.0:")
+    depends_on("mochi-margo@0.15.0:", when="@0.2.0:")
+    depends_on("mochi-remi@0.4.0:", when="+remi @0.2.0:")
+    depends_on("mochi-bedrock@0.8.0:", when="+bedrock @0.2.0:")
 
     depends_on("mochi-thallium@develop", when="@develop")
     depends_on("mochi-bedrock@develop", when="@develop +bedrock")
