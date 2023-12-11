@@ -52,7 +52,7 @@ class Libfabric(BuiltinLibfabric):
                'shm',
                'sockets',
                'tcp',
-               'ucx'
+               'ucx',
                'udp',
                'usnic',
                'verbs',
