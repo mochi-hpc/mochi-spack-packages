@@ -11,6 +11,7 @@ class MochiBedrock(CMakePackage):
 
     version("develop", branch="main")
     version("main", branch="main")
+    version("0.8.1", sha256="71639a58389651d8a9e5d374e700f919d8a1e5600026b30b6ab2c77232b87a89")
     version("0.8.0", sha256="0916e0ca059bc4f59391ddf5c8369e8b2fe2fa9896e54c432fbe01a9abbfc0d9")
     version("0.7.0", sha256="02d905412cc77a57bdfdb383c95f09870ed2c477986164332eecb332de78e054")
     version("0.6.2", sha256="2e1870ab957496a42ee1d1556f7f9c6f6a117af706909023472554c2c821be13")
