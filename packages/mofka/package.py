@@ -10,12 +10,14 @@ from spack.package import *
 class Mofka(CMakePackage):
     """Mofka is a Mochi-based distributed event-streaming service for HPC."""
 
+    url = "https://github.com/mochi-hpc/mofka/archive/refs/tags/v0.0.1.tar.gz"
     homepage = "https://github.com/mochi-hpc/mofka"
     git = "https://github.com/mochi-hpc/mofka.git"
 
     maintainers("mdorier")
 
     version("main", branch="main")
+    version("0.0.1", sha256="ba58521053ab3c1d6ba08614257c11c7e15e51636c2fc24415fcf8cf20451365")
 
     depends_on("pkg-config", type=("build",))
     depends_on("uuid")
