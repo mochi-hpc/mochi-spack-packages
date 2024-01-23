@@ -52,6 +52,7 @@ class MochiAbtIo(AutotoolsPackage):
     depends_on("pkgconfig", type=("build"))
     depends_on("coreutils", type=("build"))
     depends_on("openssl", type=("build", "link", "run"), when="@:0.5.1")
+    depends_on("zlib", type=("build"))
 
     # NOTE: The default autoreconf steps should work fine for this package.
     #       The explicit definition is just here as a workaround; Spack"s
@@ -60,3 +61,8 @@ class MochiAbtIo(AutotoolsPackage):
     def autoreconf(self, spec, prefix):
         sh = which("sh")
         sh("./prepare.sh")
+
+    def configure_args(self):
+        zlib_path = self.spec["zlib"].prefix
+        args = [f"--with-zlib={zlib_path}"]
+        return args
