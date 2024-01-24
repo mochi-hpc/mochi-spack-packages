@@ -11,6 +11,7 @@ class MochiBedrock(CMakePackage):
 
     version("develop", branch="main")
     version("main", branch="main")
+    version("0.8.4", sha256="3d18cc87ddb523482df75f693b86de34949c6c850e66a9d5b37aa654b1cd9e58")
     version("0.8.3", sha256="9e437fce6811db225714c7e0dbb2d7204a6bde3e1bf99eb679cdd402fca5c78e")
     version("0.8.2", sha256="cd3d1fd7602295d067954f980d1712353b2482af61d9a95abae571a979564c76")
     version("0.8.1", sha256="71639a58389651d8a9e5d374e700f919d8a1e5600026b30b6ab2c77232b87a89")
@@ -38,7 +39,7 @@ class MochiBedrock(CMakePackage):
     variant("abtio", when="@0.5.0:", default=True, description="Enable ABT-IO support")
     variant("mona", when="@0.5.0:", default=False, description="Enable MoNA support")
     variant("mpi", default=False, description="Enable MPI bootstrapping")
-
+    variant("python", when="@0.8.4:", default=False, description="Enable Python module")
 
     depends_on("mochi-margo@0.9:")
     depends_on("mochi-margo@0.15.0:", when="@0.8.0:")
@@ -48,6 +49,9 @@ class MochiBedrock(CMakePackage):
     depends_on("mochi-abt-io", when="+abtio @0.5.0:")
     depends_on("mochi-mona@:0.2.3", when="+mona @:0.6.2")
     depends_on("mochi-mona@0.3.0:", when="+mona @0.7.0:")
+    depends_on("py-mochi-margo", when="+python")
+    depends_on("py-pybind11", when="+python")
+    depends_on("py-attrs@20.3.0:", when="+python")
     # SSG dependencies for versions up to 0.3
     depends_on("mochi-ssg@0.4.5", when="@0.1.0:0.3.0")
     depends_on("mochi-ssg+mpi@0.4.5", when="@0.1.0:0.3.0 +mpi")
@@ -67,6 +71,7 @@ class MochiBedrock(CMakePackage):
     depends_on("mochi-ssg+mpi@develop", when="@develop +mpi +ssg")
     depends_on("mochi-abt-io@develop", when="@develop +abtio")
     depends_on("mochi-mona@develop", when="@develop +mona")
+    depends_on("py-mochi-margo@develop", when="@develop +python")
 
     depends_on("mpi", when="+mpi")
 
@@ -76,12 +81,15 @@ class MochiBedrock(CMakePackage):
     depends_on("tclap")
     depends_on("fmt", when="@0.4.1:")
 
+    extends("python", when="+python")
+
     def cmake_args(self):
         extra_args = ["-DBUILD_SHARED_LIBS=ON"]
         extra_args.append(self.define_from_variant("ENABLE_MPI", "mpi"))
         extra_args.append(self.define_from_variant("ENABLE_MONA", "mona"))
         extra_args.append(self.define_from_variant("ENABLE_SSG", "ssg"))
         extra_args.append(self.define_from_variant("ENABLE_ABT_IO", "abtio"))
+        extra_args.append(self.define_from_variant("ENABLE_PYTHON", "python"))
         if "+mpi" in self.spec:
             extra_args.append("-DCMAKE_CXX_COMPILER=%s" % self.spec["mpi"].mpicxx)
         return extra_args
