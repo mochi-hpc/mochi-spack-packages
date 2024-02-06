@@ -52,7 +52,7 @@ class MochiBedrock(CMakePackage):
     depends_on("mochi-mona@0.3.0:", when="+mona @0.7.0:")
     depends_on("py-mochi-margo", when="+python")
     depends_on("py-pybind11", when="+python")
-    depends_on("py-attrs@20.3.0:", when="+python")
+    depends_on("py-attrs@22.2.0:", when="+python")
     # SSG dependencies for versions up to 0.3
     depends_on("mochi-ssg@0.4.5", when="@0.1.0:0.3.0")
     depends_on("mochi-ssg+mpi@0.4.5", when="@0.1.0:0.3.0 +mpi")
