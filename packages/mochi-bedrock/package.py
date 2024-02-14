@@ -79,6 +79,7 @@ class MochiBedrock(CMakePackage):
 
     depends_on("cmake@3.8:", type="build")
     depends_on("nlohmann-json")
+    depends_on("valijson", when="@main,develop") # TODO change this after new release
     depends_on("spdlog")
     depends_on("tclap")
     depends_on("fmt", when="@0.4.1:")
