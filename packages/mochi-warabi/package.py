@@ -28,11 +28,12 @@ class MochiWarabi(CMakePackage):
     depends_on("pkgconfig")
     depends_on("uuid")
     depends_on("nlohmann-json")
+    depends_on("nlohmann-json-schema-validator", type=("build",), when="@0.3.0:")
     depends_on("pmdk")
     depends_on("spdlog")
     depends_on("fmt")
     depends_on("tclap")
-    depends_on("valijson")
+    depends_on("valijson", when="@:0.2.0")
 
     depends_on("mochi-thallium@0.11.3:")
     depends_on("mochi-bedrock", when="+bedrock")
