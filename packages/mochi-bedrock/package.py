@@ -1,5 +1,6 @@
 from spack.package import *
 from spack import *
+import llnl.util.tty as tty
 
 
 class MochiBedrock(CMakePackage):
@@ -40,8 +41,8 @@ class MochiBedrock(CMakePackage):
     variant("ssg", when="@0.5.0:", default=True, description="Enable SSG support")
     variant("abtio", when="@0.5.0:", default=True, description="Enable ABT-IO support")
     variant("mona", when="@0.5.0:", default=False, description="Enable MoNA support")
-    variant("mpi", default=False, description="Enable MPI bootstrapping")
-    variant("python", when="@0.8.4:", default=False, description="Enable Python module")
+    variant("mpi", default=True, description="Enable MPI bootstrapping")
+    variant("python", when="@0.8.4:", default=True, description="Enable Python module")
 
     depends_on("mochi-margo@0.9:")
     depends_on("mochi-margo@0.15.0:", when="@0.8.0:")
@@ -54,6 +55,9 @@ class MochiBedrock(CMakePackage):
     depends_on("py-mochi-margo", when="+python")
     depends_on("py-pybind11", when="+python")
     depends_on("py-attrs@22.2.0:", when="+python")
+    depends_on("py-typer", when="@0.10.0: +python")
+    depends_on("py-rich", when="@0.10.0: +python")
+    depends_on("py-mochi-ssg", when="@0.10.0: +python")
     # SSG dependencies for versions up to 0.3
     depends_on("mochi-ssg@0.4.5", when="@0.1.0:0.3.0")
     depends_on("mochi-ssg+mpi@0.4.5", when="@0.1.0:0.3.0 +mpi")
@@ -79,7 +83,7 @@ class MochiBedrock(CMakePackage):
 
     depends_on("cmake@3.8:", type="build")
     depends_on("nlohmann-json")
-    depends_on("valijson", when="@main,develop") # TODO change this after new release
+    depends_on("nlohmann-json-schema-validator@2.3.0:", when="@0.10.0:")
     depends_on("spdlog")
     depends_on("tclap")
     depends_on("fmt", when="@0.4.1:")
@@ -96,3 +100,13 @@ class MochiBedrock(CMakePackage):
         if "+mpi" in self.spec:
             extra_args.append("-DCMAKE_CXX_COMPILER=%s" % self.spec["mpi"].mpicxx)
         return extra_args
+
+    """
+    @when("@0.10.0:")
+    def setup_run_environment(self, env):
+        from spack.util.environment import EnvironmentModifications
+        import os
+        file_to_source = os.path.join(self.prefix, "bin", "bedrockctl-setup.sh")
+        tty.debug("sourcing " + file_to_source)
+        env.extend(EnvironmentModifications.from_sourcing_file(file_to_source))
+    """
