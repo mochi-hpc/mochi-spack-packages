@@ -40,4 +40,6 @@ class Mofka(CMakePackage):
 
     def cmake_args(self):
         args = ["-DENABLE_BAKE=OFF"]
+        if "+python" in self.spec:
+            args.append("-DENABLE_PYTHON=ON")
         return args
