@@ -21,8 +21,8 @@ class Mofka(CMakePackage):
     version("0.0.2", sha256="024c18be993a3fe6cde6918b81486c2a9727050da060800a92a634355d8ad83d")
     version("0.0.1", sha256="ba58521053ab3c1d6ba08614257c11c7e15e51636c2fc24415fcf8cf20451365")
 
-    variants("python", default=True, when="@0.0.3:",
-             description="Enable python support")
+    variant("python", default=True, when="@0.0.3:",
+            description="Enable python support")
 
     depends_on("pkg-config", type=("build",))
     depends_on("uuid")
