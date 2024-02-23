@@ -36,7 +36,7 @@ class Mofka(CMakePackage):
     depends_on("valijson", when="@:0.0.3")
     depends_on("mochi-thallium")
     depends_on("mochi-bedrock@0.8.3:0.9.2+ssg", when="@:0.0.2")
-    depends_on("mochi-bedrock@0.10.0+ssg", when="@0.0.3:")
+    depends_on("mochi-bedrock@0.10.0:+ssg", when="@0.0.3:")
     depends_on("mochi-bedrock+python", when="+python")
     depends_on("mochi-yokan@0.2.0:+bedrock", when="@0.0.2:")
     depends_on("mochi-warabi@0.4.2:+bedrock", when="@0.0.2:")
