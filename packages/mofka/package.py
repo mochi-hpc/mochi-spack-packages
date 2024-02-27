@@ -25,6 +25,7 @@ class Mofka(CMakePackage):
     variant("python", default=True, when="@0.0.3:",
             description="Enable python support")
 
+    depends_on("cmake@3.21:", type=("build",))
     depends_on("pkg-config", type=("build",))
     depends_on("uuid")
     depends_on("spdlog+fmt_external")
