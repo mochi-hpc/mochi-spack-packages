@@ -47,10 +47,10 @@ class MochiYokan(CMakePackage):
     variant("bedrock", default=False, description="Enable Bedrock support")
 
     depends_on("cmake@3.15:", type="build")
-    depends_on("pkgconfig")
+    depends_on("pkgconfig", type="build")
     depends_on("uuid")
     depends_on("nlohmann-json")
-    depends_on("tclap")
+    depends_on("tclap", type="build")
 
     # mochi dependencies
     depends_on("mochi-margo@0.15.0:", when="@0.4.0:")

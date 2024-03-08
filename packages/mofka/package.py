@@ -29,7 +29,7 @@ class Mofka(CMakePackage):
     extends("python", when="+python")
 
     depends_on("cmake@3.21:", type=("build",))
-    depends_on("pkg-config", type=("build",))
+    depends_on("pkgconfig", type=("build",))
     depends_on("uuid")
     depends_on("spdlog+fmt_external")
     depends_on("fmt")

@@ -25,14 +25,14 @@ class MochiWarabi(CMakePackage):
     variant("bedrock", default=False, description="Enable Bedrock support")
     variant("remi", default=False, description="Enable REMI support")
 
-    depends_on("pkgconfig")
+    depends_on("pkgconfig", type=("build",))
     depends_on("uuid")
     depends_on("nlohmann-json")
     depends_on("nlohmann-json-schema-validator@2.3.0:", type=("build",), when="@0.3.0:")
     depends_on("pmdk")
     depends_on("spdlog")
     depends_on("fmt")
-    depends_on("tclap")
+    depends_on("tclap", type=("build",))
     depends_on("valijson", when="@:0.2.0")
 
     depends_on("mochi-thallium@0.11.3:")
