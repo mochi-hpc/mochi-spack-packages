@@ -45,6 +45,9 @@ class Mofka(CMakePackage):
     depends_on("mochi-warabi@0.3.0:+bedrock", when="@0.0.2:")
     depends_on("py-pybind11", type=("build",), when="+python")
     depends_on("py-mochi-margo", when="+python")
+    depends_on("py-typer", when="+python")
+    depends_on("py-rich", when="+python")
+    depends_on("py-mochi-ssg", when="+python")
 
     depends_on("rapidjson", when="@:0.0.3")
     depends_on("valijson", when="@:0.0.3")
