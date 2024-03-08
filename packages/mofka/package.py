@@ -35,7 +35,7 @@ class Mofka(CMakePackage):
     depends_on("fmt")
     depends_on("tclap", type=("build",))
     depends_on("nlohmann-json", when="@0.0.4:")
-    depends_on("nlohmann-json-schema-validator", type=("build",), when="@0.0.4:")
+    depends_on("nlohmann-json-schema-validator", when="@0.0.4:")
     depends_on("mochi-thallium")
     depends_on("mochi-bedrock@0.8.3:0.9.2+ssg", when="@:0.0.2")
     depends_on("mochi-bedrock@0.10.0:+ssg", when="@0.0.3:")
