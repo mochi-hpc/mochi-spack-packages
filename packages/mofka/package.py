@@ -31,7 +31,7 @@ class Mofka(CMakePackage):
     depends_on("cmake@3.21:", type=("build",))
     depends_on("pkgconfig", type=("build",))
     depends_on("uuid")
-    depends_on("spdlog+fmt_external")
+    depends_on("spdlog")
     depends_on("fmt")
     depends_on("tclap", type=("build",))
     depends_on("nlohmann-json", when="@0.0.4:")
