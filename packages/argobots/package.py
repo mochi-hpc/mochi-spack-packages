@@ -8,6 +8,7 @@ class Argobots(BuiltinArgobots):
 
     # these are available upstream, but we also define them here for users
     # working against previous spack releases
+    version("1.2", sha256="1c056429d9c0a27c041d4734f6318b801fc2ec671854e42c35251c4c7d0d43e1", preferred=True)
     version("1.2rc1", sha256="22b6e0e418dce35f4b42abaa52d9cb32caedbd53da4339b4bc37032b0333ad76")
     version("1.1", sha256="f0f971196fc8354881681c2282a2f2adb6d48ff5e84cf820ca657daad1549005")
     version("1.0.1", sha256="fa05a02d7f8f74d845647636609219ee02f6adf628ebcbf40393f829987d9036")
