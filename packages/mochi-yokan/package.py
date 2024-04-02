@@ -79,7 +79,7 @@ class MochiYokan(CMakePackage):
     depends_on("unqlite@master", when="+unqlite")
 
     # additional dependencies
-    depends_on("lua-sol2", when="+lua")
+    depends_on("lua-sol2@:3.2.3", when="+lua")
     depends_on("python@3.6.0:", when="+python")
     depends_on("py-pybind11@2.7.0:", when="+python")
     depends_on("py-pybind11@2.7.0:2.10.4", type=("build"), when="@:0.3.0 +python")
