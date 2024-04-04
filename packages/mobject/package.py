@@ -72,7 +72,7 @@ class Mobject(AutotoolsPackage):
     depends_on('mochi-sdskv @0.1.13:', when='@0.5:0.6.1')
     depends_on('mochi-sdskv +bedrock @0.1.13:', when='@0.5:0.6.1 +bedrock')
     depends_on('mochi-yokan @0.2.10:0.3.0', when='@0.7:')
-    depends_on('mochi-yokan +bedrock @0.2.10:0.3.0', when='@0.7: +bedrock')
+    depends_on('mochi-yokan +bedrock @0.2.10:0.3.0', when='@0.7rc1,0.7: +bedrock')
     depends_on('mochi-bake @0.1:')
     depends_on('mochi-bake @0.3:0.3.6', when='@:0.4.1')
     depends_on('mochi-bake @0.4:', when='@0.4.2')
