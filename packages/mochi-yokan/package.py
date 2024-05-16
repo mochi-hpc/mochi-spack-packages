@@ -39,7 +39,7 @@ class MochiYokan(CMakePackage):
     variant("leveldb", default=False, description="Enable LevelDB backend")
     variant("lmdb", default=False, description="Enable LMDB backend")
     variant("rocksdb", default=False, description="Enable RocksDB backend")
-    variant("tkrzw@:0.9.99", default=False, description="Enable TKRZW backend")
+    variant("tkrzw", default=False, description="Enable TKRZW backend")
     variant("gdbm", default=False, description="Enable GDBM backend")
     variant("unqlite", default=False, description="Enable Unqlite backend")
     variant("lua", default=False, description="Enable Lua filtering")
@@ -74,7 +74,7 @@ class MochiYokan(CMakePackage):
     depends_on("rocksdb", when="+rocksdb")
     depends_on("rocksdb+rtti", when="+rocksdb @0.2.9:")
     depends_on("rocksdb@:6", when="+rocksdb @:0.2.5")
-    depends_on("tkrzw", when="+tkrzw")
+    depends_on("tkrzw@:0.9.99", when="+tkrzw")
     depends_on("gdbm", when="+gdbm")
     depends_on("unqlite@master", when="+unqlite")
 
