@@ -39,7 +39,7 @@ class MochiYokan(CMakePackage):
     variant("leveldb", default=False, description="Enable LevelDB backend")
     variant("lmdb", default=False, description="Enable LMDB backend")
     variant("rocksdb", default=False, description="Enable RocksDB backend")
-    variant("tkrzw", default=False, description="Enable TKRZW backend")
+    variant("tkrzw@:0.9.99", default=False, description="Enable TKRZW backend")
     variant("gdbm", default=False, description="Enable GDBM backend")
     variant("unqlite", default=False, description="Enable Unqlite backend")
     variant("lua", default=False, description="Enable Lua filtering")
