@@ -34,34 +34,53 @@ class Mofka(CMakePackage):
     depends_on("uuid")
     depends_on("spdlog")
     depends_on("fmt")
-    depends_on("tclap", type=("build",))
-    depends_on("nlohmann-json", when="@0.0.4:")
-    depends_on("nlohmann-json-schema-validator", when="@0.0.4:")
+
+    with when("@0.0.4:"):
+        depends_on("nlohmann-json")
+        depends_on("nlohmann-json-schema-validator")
+
+    with when("@:0.0.3"):
+        depends_on("rapidjson", when="@:0.0.3")
+        depends_on("valijson", when="@:0.0.3")
+
+    depends_on("tclap", type=("build",), when="@:0.0.5")
+
     depends_on("argobots@1.2:")
+
     depends_on("mochi-thallium")
-    depends_on("mochi-bedrock@0.8.3:0.9.2+ssg", when="@:0.0.2")
-    depends_on("mochi-bedrock@0.10.0:+ssg", when="@0.0.3:")
-    depends_on("mochi-bedrock+python", when="+python")
+
+    depends_on("mochi-bedrock@0.10.0:", when="@0.0.3:")
+    depends_on("mochi-bedrock@0.8.3:0.9.2", when="@:0.0.2")
+    depends_on("mochi-bedrock+ssg", when="@:0.0.5")
+
     depends_on("mochi-yokan@0.2.0:+bedrock", when="@0.0.2:")
     depends_on("mochi-yokan@0.4.2:+bedrock", when="@0.0.4:")
+
     depends_on("mochi-warabi@0.3.0:+bedrock", when="@0.0.2:")
-    depends_on("py-pybind11", type=("build",), when="+python")
-    depends_on("py-mochi-margo", when="+python")
-    depends_on("py-typer", when="+python")
-    depends_on("py-rich", when="+python")
-    depends_on("py-mochi-ssg", when="+python")
 
-    depends_on("rapidjson", when="@:0.0.3")
-    depends_on("valijson", when="@:0.0.3")
+    depends_on("mochi-flock@0.2.1:+bedrock", when="@0.0.6:")
 
-    depends_on("mochi-thallium@develop", when="@develop")
-    depends_on("mochi-bedrock@develop", when="@develop")
-    depends_on("mochi-yokan@develop", when="@develop")
-    depends_on("mochi-warabi@develop", when="@develop")
-    depends_on("py-mochi-margo@develop", when="@develop +python")
+    with when("+python"):
+        depends_on("mochi-bedrock+python")
+        depends_on("mochi-flock+python", when="@0.0.6:")
+        depends_on("py-mochi-ssg", when="@:0.0.5")
+        depends_on("py-mochi-margo")
+        depends_on("py-pybind11", type=("build",))
+        depends_on("py-typer")
+        depends_on("py-rich")
+
+    with when("@develop"):
+        depends_on("mochi-thallium@develop")
+        depends_on("mochi-bedrock@develop")
+        depends_on("mochi-yokan@develop")
+        depends_on("mochi-warabi@develop")
+        depends_on("py-mochi-margo@develop", when="+python")
+        depends_on("mochi-flock@develop")
 
     def cmake_args(self):
-        args = ["-DENABLE_BAKE=OFF"]
+        args = []
+        if self.spec.satisfies("@0.0.1"):
+            args.append("-DENABLE_BAKE=OFF")
         if "+python" in self.spec:
             args.append("-DENABLE_PYTHON=ON")
         return args
