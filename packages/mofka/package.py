@@ -26,6 +26,8 @@ class Mofka(CMakePackage):
 
     variant("python", default=True, when="@0.0.3:",
             description="Enable python support")
+    variant("mpi", default=True, when="@0.0.6:",
+            description="Enable MPI support in Mofka and its dependencies")
 
     extends("python", when="+python")
 
@@ -52,13 +54,16 @@ class Mofka(CMakePackage):
     depends_on("mochi-bedrock@0.10.0:", when="@0.0.3:")
     depends_on("mochi-bedrock@0.8.3:0.9.2", when="@:0.0.2")
     depends_on("mochi-bedrock+ssg", when="@:0.0.5")
+    depends_on("mochi-bedrock+mpi", when="+mpi")
 
     depends_on("mochi-yokan@0.2.0:+bedrock", when="@0.0.2:")
     depends_on("mochi-yokan@0.4.2:+bedrock", when="@0.0.4:")
 
     depends_on("mochi-warabi@0.3.0:+bedrock", when="@0.0.2:")
 
-    depends_on("mochi-flock@0.2.1:+bedrock", when="@0.0.6:")
+    with when("@0.0.6:"):
+        depends_on("mochi-flock@0.2.2:+bedrock")
+        depends_on("mochi-flock@0.2.2:+mpi", when="+mpi")
 
     with when("+python"):
         depends_on("mochi-bedrock+python")
