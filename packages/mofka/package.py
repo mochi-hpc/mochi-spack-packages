@@ -18,6 +18,8 @@ class Mofka(CMakePackage):
 
     version("main", branch="main")
     version("develop", branch="main")
+    version("0.1.0", sha256="7f90bfd82a6b453f699989a08f30bde4b771f2cfbcafe0197286104badec4569")
+
     version("0.0.5", sha256="0006185370461a74cc6a8f064e743f455228bbce81daed502dd9a88f253dafeb")
     version("0.0.4", sha256="020d320834dd2e39c11f354a8a5255424ab942bd63ef4baa1f048c22d8c3367d")
     version("0.0.3", sha256="429beac2735c0a75cacf39d1523d26772ad9ddaa42552ba972a033f1cc8f7b35")
@@ -26,7 +28,7 @@ class Mofka(CMakePackage):
 
     variant("python", default=True, when="@0.0.3:",
             description="Enable python support")
-    variant("mpi", default=True, when="@0.0.6:",
+    variant("mpi", default=True, when="@0.1.0:",
             description="Enable MPI support in Mofka and its dependencies")
 
     extends("python", when="+python")
@@ -67,7 +69,7 @@ class Mofka(CMakePackage):
 
     with when("+python"):
         depends_on("mochi-bedrock+python")
-        depends_on("mochi-flock+python", when="@0.0.6:")
+        depends_on("mochi-flock+python", when="@0.1.0:")
         depends_on("py-mochi-ssg", when="@:0.0.5")
         depends_on("py-mochi-margo")
         depends_on("py-pybind11", type=("build",))
