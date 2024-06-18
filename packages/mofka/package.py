@@ -53,6 +53,7 @@ class Mofka(CMakePackage):
 
     depends_on("mochi-thallium")
 
+    depends_on("mochi-bedrock@0.11.0:", when="@0.1.0:")
     depends_on("mochi-bedrock@0.10.0:", when="@0.0.3:")
     depends_on("mochi-bedrock@0.8.3:0.9.2", when="@:0.0.2")
     depends_on("mochi-bedrock+ssg", when="@:0.0.5")
