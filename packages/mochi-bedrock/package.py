@@ -40,7 +40,7 @@ class MochiBedrock(CMakePackage):
     version("0.2", tag="v0.2")
     version("0.1", tag="v0.1")
 
-    variant("ssg", when="@0.5.0:", default=True, description="Enable SSG support")
+    variant("ssg", when="@0.5.0:", default=False, description="Enable SSG support")
     variant("abtio", when="@0.5.0:", default=True, description="Enable ABT-IO support")
     variant("mona", when="@0.5.0:", default=False, description="Enable MoNA support")
     variant("mpi", default=True, description="Enable MPI bootstrapping")
