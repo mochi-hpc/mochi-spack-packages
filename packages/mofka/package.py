@@ -51,6 +51,7 @@ class Mofka(CMakePackage):
 
     depends_on("argobots@1.2:")
 
+    depends_on("mochi-margo@0.17.1:")
     depends_on("mochi-thallium")
 
     depends_on("mochi-bedrock@0.11.0:", when="@0.1.0:")
