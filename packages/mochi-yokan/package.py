@@ -15,6 +15,7 @@ class MochiYokan(CMakePackage):
 
     version("develop", branch="main")
     version("main", branch="main")
+    version("0.5.0", sha256="e7962724a0425e7c51cc030e5fdab62053fcafc46ef6617b2b5cbab828bc1e73")
     version("0.4.2", sha256="717c32c17d97edecd5f7d4b549aad18c079c421cc5bd502dcc1e70da0e11ec30")
     version("0.4.1", sha256="f394c7e19747f80a86e5ffd3326920625334a1004725bbd21c4d89f7aa89f20b")
     version("0.4.0", sha256="25397070d8322bc9ebfc5c866f9215c88f9fa9941f132518e3845232ae38b273")
@@ -55,14 +56,15 @@ class MochiYokan(CMakePackage):
     # mochi dependencies
     depends_on("mochi-margo@0.15.0:", when="@0.4.0:")
     depends_on("mochi-margo@0.9.5:")
-    depends_on("mochi-bedrock", when="+bedrock")
-    depends_on("mochi-bedrock@0.8.0:", when="+bedrock @0.4.0:")
+    depends_on("mochi-bedrock", when="+bedrock @:0.4.2")
+    depends_on("mochi-bedrock@0.8.0:", when="+bedrock @0.4.0:0.4.2")
+    depends_on("mochi-bedrock-module-api", when="+bedrock @0.5.0:")
     depends_on("py-mochi-margo@0.4:", when="+python")
     depends_on("mochi-remi@0.4.0:", when="+remi")
 
     # mochi dependencies for develop version
     depends_on("mochi-margo@develop", when="@develop")
-    depends_on("mochi-bedrock@develop", when="+bedrock @develop")
+    depends_on("mochi-bedrock-module-api@develop", when="+bedrock @develop")
     depends_on("py-mochi-margo@develop", when="+python @develop")
 
     # backends

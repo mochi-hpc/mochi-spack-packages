@@ -38,7 +38,7 @@ class MochiFlock(CMakePackage):
     depends_on("mochi-bedrock-module-api", when="+bedrock @0.3.0:")
 
     depends_on("mochi-margo@develop", when="@develop")
-    depends_on("mochi-bedrock@develop", when="@develop +bedrock")
+    depends_on("mochi-bedrock-module-api@develop", when="@develop +bedrock")
     depends_on("mochi-thallium@develop", when="@develop")
     depends_on("py-mochi-margo@develop", when="@develop +python")
 
