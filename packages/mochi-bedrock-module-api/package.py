@@ -11,7 +11,8 @@ class MochiBedrockModuleApi(CMakePackage):
     git = "https://github.com/mochi-hpc/mochi-bedrock-module-api.git"
 
     version("develop", branch="main")
-    version("main", branch="main", preferred=True)
+    version("main", branch="main")
+    version("0.1.0", sha256="44b2622f90a39b23fab59d4ffa15721ff59138fe0f1ceca9491efd9324489a9d")
 
     depends_on("mochi-thallium@0.12.0:")
 

@@ -12,6 +12,7 @@ class MochiBedrock(CMakePackage):
 
     version("develop", branch="main")
     version("main", branch="main")
+    version("0.12.0", sha256="282455a32f9db80d6faa5ca4671c298d1843715905c5bc8469ddc153b0de00d6")
     version("0.11.0", sha256="d8861a71758e7eb91a1d494ad54e27ec599a16f222ad3e0f311666a5f02640b8")
     version("0.10.0", sha256="394b73d96c00b207bee95f511dd3f1d11ff190c5cd412d769559f484202687da")
     version("0.9.1", sha256="6408fbb94f3905d69b34f047c77e1d6d9ce46734c88ab3d74a7946e0ade03ea8")
@@ -40,12 +41,13 @@ class MochiBedrock(CMakePackage):
     version("0.2", tag="v0.2")
     version("0.1", tag="v0.1")
 
-    variant("ssg", when="@0.5.0:", default=False, description="Enable SSG support")
-    variant("abtio", when="@0.5.0:", default=True, description="Enable ABT-IO support")
-    variant("mona", when="@0.5.0:", default=False, description="Enable MoNA support")
     variant("mpi", default=True, description="Enable MPI bootstrapping")
     variant("python", when="@0.8.4:", default=True, description="Enable Python module")
+    variant("ssg", when="@0.5.0:", default=False, description="Enable SSG support")
+    variant("abtio", when="@0.5.0:", default=False, description="Enable ABT-IO support")
+    variant("mona", when="@0.5.0:", default=False, description="Enable MoNA support")
 
+    depends_on("mochi-bedrock-module-api", when="@0.12.0:")
     depends_on("mochi-margo@0.9:")
     depends_on("mochi-margo@0.15.0:", when="@0.8.0:")
     depends_on("mochi-thallium")
