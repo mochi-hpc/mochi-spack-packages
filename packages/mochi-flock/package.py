@@ -28,6 +28,7 @@ class MochiFlock(CMakePackage):
     variant("mpi", default=False, description="Enable MPI support")
     variant("python", default=False, description="Enable Python support")
 
+    depends_on("mpi", when="+mpi")
     depends_on("pkgconfig", type=("build",))
     depends_on("json-c")
     depends_on("py-pybind11", when="@0.2.0: +python")
