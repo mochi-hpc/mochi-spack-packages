@@ -43,6 +43,7 @@ class MochiBedrock(CMakePackage):
 
     variant("mpi", default=True, description="Enable MPI bootstrapping")
     variant("python", when="@0.8.4:", default=True, description="Enable Python module")
+    variant("flock", when="@0.13.0:", default=True, description="Enable Flock support")
     variant("ssg", when="@0.5.0:", default=False, description="Enable SSG support")
     variant("abtio", when="@0.5.0:", default=False, description="Enable ABT-IO support")
     variant("mona", when="@0.5.0:", default=False, description="Enable MoNA support")
@@ -56,12 +57,13 @@ class MochiBedrock(CMakePackage):
     depends_on("mochi-abt-io", when="+abtio @0.5.0:")
     depends_on("mochi-mona@:0.2.3", when="+mona @:0.6.2")
     depends_on("mochi-mona@0.3.0:", when="+mona @0.7.0:")
+    depends_on("mochi-flock@0.3.0:", when="+flock")
+    depends_on("mochi-flock+mpi", when="+flock +mpi")
     depends_on("py-mochi-margo", when="+python")
     depends_on("py-pybind11", when="+python")
     depends_on("py-attrs@22.2.0:", when="+python")
     depends_on("py-typer", when="@0.10.0: +python")
     depends_on("py-rich", when="@0.10.0: +python")
-    depends_on("py-mochi-ssg", when="@0.10.0: +python")
     # SSG dependencies for versions up to 0.3
     depends_on("mochi-ssg@0.4.5", when="@0.1.0:0.3.0")
     depends_on("mochi-ssg+mpi@0.4.5", when="@0.1.0:0.3.0 +mpi")
@@ -74,7 +76,10 @@ class MochiBedrock(CMakePackage):
     # SSG dependencies for version >= 0.5.0
     depends_on("mochi-ssg@0.5:", when="@0.5.0: +ssg")
     depends_on("mochi-ssg+mpi@0.5:", when="@0.5.0: +ssg +mpi")
+    depends_on("py-mochi-ssg", when="@0.10.0: +ssg +python")
 
+    depends_on("mochi-bedrock-module-api@develop", when="@develop")
+    depends_on("mochi-flock@develop", when="@develop")
     depends_on("mochi-thallium@develop", when="@develop")
     depends_on("mochi-margo@develop", when="@develop")
     depends_on("mochi-ssg@develop", when="@develop +ssg")
@@ -88,6 +93,7 @@ class MochiBedrock(CMakePackage):
     depends_on("cmake@3.8:", type="build")
     depends_on("nlohmann-json")
     depends_on("nlohmann-json-schema-validator@2.3.0:", when="@0.10.0:")
+    depends_on("toml11@4.0.0:", when="@0.13.0:")
     depends_on("spdlog")
     depends_on("tclap")
     depends_on("fmt", when="@0.4.1:")
