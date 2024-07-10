@@ -32,6 +32,8 @@ class Mofka(CMakePackage):
             description="Enable MPI support in Mofka and its dependencies")
     variant("benchmark", default=True, when="@0.1.0:",
             description="Enable building the Mofka benchmark")
+    requires("+mpi", when="+benchmark",
+             msg="+mpi variant is required to build the Mofka benchmark")
 
     extends("python", when="+python")
 
