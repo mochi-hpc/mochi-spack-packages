@@ -30,6 +30,8 @@ class Mofka(CMakePackage):
             description="Enable python support")
     variant("mpi", default=True, when="@0.1.0:",
             description="Enable MPI support in Mofka and its dependencies")
+    variant("benchmark", default=True, when="@0.1.0:",
+            description="Enable building the Mofka benchmark")
 
     extends("python", when="+python")
 
@@ -92,4 +94,10 @@ class Mofka(CMakePackage):
             args.append("-DENABLE_BAKE=OFF")
         if "+python" in self.spec:
             args.append("-DENABLE_PYTHON=ON")
+        else:
+            args.append("-DENABLE_PYTHON=OFF")
+        if "+benchmark" in self.spec:
+            args.append("-DENABLE_BENCHMARK=ON")
+        else:
+            args.append("-DENABLE_BENCHMARK=OFF")
         return args
