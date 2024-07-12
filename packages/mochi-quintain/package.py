@@ -23,6 +23,7 @@ class MochiQuintain(AutotoolsPackage):
     # dependencies for normal versions
     depends_on('mochi-bedrock')
     depends_on('json-c')
+    depends_on('zlib-api')
 
     # dependencies for develop version
     depends_on('mochi-bedrock@develop', when='@develop')
