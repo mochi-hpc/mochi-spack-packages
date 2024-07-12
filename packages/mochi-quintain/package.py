@@ -21,7 +21,7 @@ class MochiQuintain(AutotoolsPackage):
     depends_on('mpi', when='+mpi')
 
     # dependencies for normal versions
-    depends_on('mochi-bedrock')
+    depends_on('mochi-bedrock@main+ssg')
     depends_on('json-c')
     depends_on('zlib-api')
 
