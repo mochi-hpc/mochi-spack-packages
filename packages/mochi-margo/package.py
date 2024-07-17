@@ -24,6 +24,8 @@ class MochiMargo(AutotoolsPackage):
     # upstream spack package as well:
     # https://github.com/spack/spack/tree/develop/var/spack/repos/builtin/packages/mochi-margo
     version('develop', branch='main')
+    version("0.17.1", sha256="835d2a98ac6f6c647fa0e7e152a802c489d72170c82d3b7ba7af9a26fdd13367")
+    version("0.17.0", sha256="5c456cdc2e3156f902e5068468ee6d061eb252dcfdfcb2b570726e9cf84fc2e8")
     version("0.16.0", sha256="5fb7ea3633b5bcc735e605dba27187ea893958bf86b8928184028735a338c61b")
     version("0.15.0", sha256="f962f02ddaae125eaf15bf89126ee47b4f852d366b14248d2d67a0be8f661224")
     version("0.14.1", sha256="69229a9126b76aff7fd47e25c4a8f72804f101c5c603c4e4ef93f4fb7a1b6662")

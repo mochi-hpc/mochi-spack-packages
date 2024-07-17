@@ -70,5 +70,6 @@ class PyMochiSsg(PythonPackage):
     depends_on("rdma-credentials", when="+drc")
 
     def setup_build_environment(self, env):
-        env.set("CC", self.spec["mpi"].mpicc)
-        env.set("CXX", self.spec["mpi"].mpicxx)
+        if "+mpi" in self.spec:
+            env.set("CC", self.spec["mpi"].mpicc)
+            env.set("CXX", self.spec["mpi"].mpicxx)
