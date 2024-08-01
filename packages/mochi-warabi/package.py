@@ -23,8 +23,9 @@ class MochiWarabi(CMakePackage):
     version("0.2.0", sha256="35ad6cc45ac1e28fc3d68984acedab692bebd2979bb05b0d29a8001f5819c34b")
     version("0.1.0", sha256="a327f1a0c63e5e913b1d16e9cd73590e9f7b675acd187d9938cb3dcc5210486f")
 
+    variant("python", default=False, description="Enable Python support")
     variant("bedrock", default=False, description="Enable Bedrock support")
-    variant("remi", default=False, description="Enable REMI support")
+    variant("remi", default=False, description="Enable REMI support", when="@0.5.0:")
 
     depends_on("pkgconfig", type=("build",))
     depends_on("uuid")
@@ -52,9 +53,12 @@ class MochiWarabi(CMakePackage):
     depends_on("mochi-abt-io@develop", when="@develop")
     depends_on("mochi-remi@develop", when="@develop +remi")
 
+    depends_on("python", when="+python")
+
     def cmake_args(self):
         args = []
         variant_bool = lambda feature: str(feature in self.spec)
         args.append("-DENABLE_BEDROCK:BOOL=%s" % variant_bool("+bedrock"))
         args.append("-DENABLE_REMI:BOOL=%s" % variant_bool("+remi"))
+        args.append("-DENABLE_PYTHON:BOOL=%s" % variant_bool("+python"))
         return args
