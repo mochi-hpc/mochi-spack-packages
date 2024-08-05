@@ -12,6 +12,7 @@ class MochiBedrock(CMakePackage):
 
     version("develop", branch="main")
     version("main", branch="main")
+    version("0.14.0", sha256="52fe6b0b56204fd5dab20dff4fc94e898b8694170908b4b43eae31228af62593")
     version("0.13.1", sha256="08e4a7a733125ef8d8558b96413e7c7b03976e3c87872cdde313a8115b0bf35d")
     version("0.13.0", sha256="218a929f9b8e8720a83fc2878a08c0297b6ccd36beee65ce1559322a1e04cd65")
     version("0.12.0", sha256="282455a32f9db80d6faa5ca4671c298d1843715905c5bc8469ddc153b0de00d6")
@@ -49,6 +50,9 @@ class MochiBedrock(CMakePackage):
     variant("ssg", when="@0.5.0:", default=False, description="Enable SSG support")
     variant("abtio", when="@0.5.0:", default=False, description="Enable ABT-IO support")
     variant("mona", when="@0.5.0:", default=False, description="Enable MoNA support")
+    variant("space", when="@0.14.0:", default=False, description="Enable configuration space")
+
+    conflicts("~python", when="+space")
 
     depends_on("mochi-bedrock-module-api", when="@0.12.0:")
     depends_on("mochi-margo@0.9:")
@@ -101,6 +105,8 @@ class MochiBedrock(CMakePackage):
     depends_on("fmt", when="@0.4.1:")
 
     extends("python", when="+python")
+
+    depends_on("py-configspace@1.1.4:", when="+space")
 
     def cmake_args(self):
         extra_args = ["-DBUILD_SHARED_LIBS=ON"]
