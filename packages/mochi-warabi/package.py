@@ -59,7 +59,7 @@ class MochiWarabi(CMakePackage):
 
     depends_on("python", when="+python")
     depends_on("py-configspace@1.1.4:", when="+space")
-    depends_on("py-mochi-bedrock+space", when="+space")
+    depends_on("mochi-bedrock+space", when="+space")
 
     extends("python", when="+python")
 

@@ -90,7 +90,7 @@ class MochiYokan(CMakePackage):
     depends_on("py-pybind11@2.7.0:", when="+python")
     depends_on("py-pybind11@2.7.0:2.10.4", type=("build"), when="@:0.3.0 +python")
     depends_on("py-configspace@1.1.4:", when="+space")
-    depends_on("py-mochi-bedrock+space", when="+space")
+    depends_on("mochi-bedrock+space", when="+space")
 
     extends("python", when="+python")
 
