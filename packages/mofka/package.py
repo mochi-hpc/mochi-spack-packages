@@ -18,14 +18,9 @@ class Mofka(CMakePackage):
 
     version("main", branch="main")
     version("develop", branch="main")
+    version("0.1.2", sha256="ad33d9068bcf5776878245b3ecc11f4be314ec4eadc2ad89397fbe4e2dd5719a")
     version("0.1.1", sha256="fc10556968ad047154fe524489e6585c3eb253940dfef20a02c80ffd23629013")
     version("0.1.0", sha256="7f90bfd82a6b453f699989a08f30bde4b771f2cfbcafe0197286104badec4569")
-
-    version("0.0.5", sha256="0006185370461a74cc6a8f064e743f455228bbce81daed502dd9a88f253dafeb")
-    version("0.0.4", sha256="020d320834dd2e39c11f354a8a5255424ab942bd63ef4baa1f048c22d8c3367d")
-    version("0.0.3", sha256="429beac2735c0a75cacf39d1523d26772ad9ddaa42552ba972a033f1cc8f7b35")
-    version("0.0.2", sha256="024c18be993a3fe6cde6918b81486c2a9727050da060800a92a634355d8ad83d")
-    version("0.0.1", sha256="ba58521053ab3c1d6ba08614257c11c7e15e51636c2fc24415fcf8cf20451365")
 
     variant("python", default=True, when="@0.0.3:",
             description="Enable python support")
@@ -43,46 +38,42 @@ class Mofka(CMakePackage):
     depends_on("uuid")
     depends_on("spdlog")
     depends_on("fmt")
-
-    with when("@0.0.4:"):
-        depends_on("nlohmann-json")
-        depends_on("nlohmann-json-schema-validator")
-
-    with when("@:0.0.3"):
-        depends_on("rapidjson", when="@:0.0.3")
-        depends_on("valijson", when="@:0.0.3")
-
-    depends_on("tclap", type=("build",), when="@:0.0.5")
+    depends_on("nlohmann-json")
+    depends_on("nlohmann-json-schema-validator")
 
     depends_on("argobots@1.2:")
 
     depends_on("mochi-margo@0.17.1:")
     depends_on("mochi-thallium")
 
+    depends_on("mochi-bedrock@0.14.0:", when="@0.1.2:")
     depends_on("mochi-bedrock@0.12.0:", when="@0.1.1:")
-    depends_on("mochi-bedrock@0.11.0:", when="@0.1.0:")
-    depends_on("mochi-bedrock@0.10.0:", when="@0.0.3:")
-    depends_on("mochi-bedrock@0.8.3:0.9.2", when="@:0.0.2")
-    depends_on("mochi-bedrock+ssg", when="@:0.0.5")
+    depends_on("mochi-bedrock@0.11.0:")
     depends_on("mochi-bedrock+mpi", when="+mpi")
 
-    depends_on("mochi-yokan@0.2.0:+bedrock", when="@0.0.2:")
-    depends_on("mochi-yokan@0.4.2:+bedrock", when="@0.0.4:")
+    depends_on("mochi-yokan@0.6.0:+bedrock", when="@0.1.2:")
+    depends_on("mochi-yokan@0.4.2:+bedrock")
 
-    depends_on("mochi-warabi@0.3.0:+bedrock", when="@0.0.2:")
+    depends_on("mochi-warabi@0.5.0:+bedrock", when="@0.1.2:")
+    depends_on("mochi-warabi@0.3.0:+bedrock")
 
-    with when("@0.0.6:"):
-        depends_on("mochi-flock@0.2.2:+bedrock")
-        depends_on("mochi-flock@0.2.2:+mpi", when="+mpi")
+    depends_on("mochi-flock@0.2.2:+bedrock")
+    depends_on("mochi-flock@0.2.2:+mpi", when="+mpi")
 
     with when("+python"):
         depends_on("mochi-bedrock+python")
         depends_on("mochi-flock+python", when="@0.1.0:")
-        depends_on("py-mochi-ssg", when="@:0.0.5")
+        depends_on("mochi-yokan+python")
+        depends_on("mochi-warabi+python")
         depends_on("py-mochi-margo")
         depends_on("py-pybind11", type=("build",))
         depends_on("py-typer")
         depends_on("py-rich")
+
+    with when("+benchmark"):
+        depends_on("mochi-bedrock+space")
+        depends_on("mochi-yokan+space")
+        depends_on("mochi-warabi+space")
 
     with when("@develop"):
         depends_on("mochi-thallium@develop")
