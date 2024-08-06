@@ -15,6 +15,7 @@ class MochiYokan(CMakePackage):
 
     version("develop", branch="main")
     version("main", branch="main")
+    version("0.6.0", sha256="a102b4eb1334351601f12863c84ee5438b96394f8a4ff90c4e3431a4f5c3288f")
     version("0.5.0", sha256="e7962724a0425e7c51cc030e5fdab62053fcafc46ef6617b2b5cbab828bc1e73")
     version("0.4.2", sha256="717c32c17d97edecd5f7d4b549aad18c079c421cc5bd502dcc1e70da0e11ec30")
     version("0.4.1", sha256="f394c7e19747f80a86e5ffd3326920625334a1004725bbd21c4d89f7aa89f20b")
@@ -46,6 +47,9 @@ class MochiYokan(CMakePackage):
     variant("lua", default=False, description="Enable Lua filtering")
     variant("python", default=False, description="Enable Python binding")
     variant("bedrock", default=False, description="Enable Bedrock support")
+    variant("space", default=False, description="Enable configuration space", when="@0.6.0:")
+
+    conflicts("~python", when="+space")
 
     depends_on("cmake@3.15:", type="build")
     depends_on("pkgconfig", type="build")
@@ -85,6 +89,8 @@ class MochiYokan(CMakePackage):
     depends_on("python@3.6.0:", when="+python")
     depends_on("py-pybind11@2.7.0:", when="+python")
     depends_on("py-pybind11@2.7.0:2.10.4", type=("build"), when="@:0.3.0 +python")
+    depends_on("py-configspace@1.1.4:", when="+space")
+    depends_on("py-mochi-bedrock+space", when="+space")
 
     extends("python", when="+python")
 
