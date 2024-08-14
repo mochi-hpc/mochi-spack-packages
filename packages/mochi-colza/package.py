@@ -35,6 +35,7 @@ class MochiColza(CMakePackage):
     depends_on('spdlog')
     depends_on('tclap')
 
+    depends_on('mercury @:2.3.1')
     depends_on('mochi-thallium @0.8:')
     depends_on('mochi-mona@:0.2.3', when='@:0.3.0')
     depends_on('mochi-mona@0.3.0:', when='@0.4.0:')
