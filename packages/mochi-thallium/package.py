@@ -12,6 +12,7 @@ class MochiThallium(CMakePackage):
 
     version('main', branch='main')
     version('develop', branch='main')
+    version("0.14.0", sha256="3af3c2e4cae15a256e76df89ed9ad46ced68ca9b045216a9510f563e96722104")
     version("0.13.1", sha256="8166c412ebeb58898198069adbaf126362cffb2ba80ccf3c24b5cead0368acfa")
     version("0.13.0", sha256="29f50b338c247ce5945ea90241ad938b951c4bac8af070cc3136f10f309ae542")
     version("0.12.0", sha256="cbb6ea8f479d74a4310847ffd7eb4fb11107732540ebc13b5989b7c9809f6d06")
@@ -47,8 +48,7 @@ class MochiThallium(CMakePackage):
     version('0.3',   sha256='4f9f78e52c1725f6ea5f933d7548bde36729dd9eff08f58fe7fe40682bc5f748')
 
     variant('cereal', default=True,
-            description='Use the cereal library for serialization',
-            when='@0.4.1:0.13.1')
+            description='Use the cereal library for serialization')
 
     depends_on('pkgconfig')
     depends_on('mochi-margo@develop', when='@develop')
@@ -66,6 +66,8 @@ class MochiThallium(CMakePackage):
     depends_on('cereal@1.3.1:', when='@0.14.0:')
     # thallium relies on std::decay_t
     conflicts('%gcc@:4.9.0');
+    conflicts('~cereal', when='@0.14.0:',
+              msg='Thallium 0.14.0 and above requires Cereal')
 
     def cmake_args(self):
         args = []
