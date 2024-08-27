@@ -55,10 +55,10 @@ class MochiBedrock(CMakePackage):
     conflicts("~python", when="+space")
 
     depends_on("mochi-bedrock-module-api", when="@0.12.0:")
-    depends_on("mochi-margo@0.9:")
+    depends_on("mochi-margo@0.9:0.17.3", when="@:0.14.0") # FIXME update Bedrock to work with 0.18.0
     depends_on("mochi-margo@0.15.0:", when="@0.8.0:")
     depends_on("mochi-thallium")
-    depends_on("mochi-thallium@0.12.0:", when="@0.8.0:")
+    depends_on("mochi-thallium@0.12.0:0.13.1", when="@0.8.0:0.14.0") # FIXME update Bedrock to work with 0.14.0
     depends_on("mochi-abt-io", when="@:0.4.1")
     depends_on("mochi-abt-io", when="+abtio @0.5.0:")
     depends_on("mochi-mona@:0.2.3", when="+mona @:0.6.2")
