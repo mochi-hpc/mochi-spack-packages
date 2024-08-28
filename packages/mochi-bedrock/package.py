@@ -12,6 +12,7 @@ class MochiBedrock(CMakePackage):
 
     version("develop", branch="main")
     version("main", branch="main")
+    version("0.14.1", sha256="4407885ac15f9c214430c3110df3fc63d189d8339d83eea26b7d3991a298d327")
     version("0.14.0", sha256="52fe6b0b56204fd5dab20dff4fc94e898b8694170908b4b43eae31228af62593")
     version("0.13.1", sha256="08e4a7a733125ef8d8558b96413e7c7b03976e3c87872cdde313a8115b0bf35d")
     version("0.13.0", sha256="218a929f9b8e8720a83fc2878a08c0297b6ccd36beee65ce1559322a1e04cd65")
@@ -55,10 +56,12 @@ class MochiBedrock(CMakePackage):
     conflicts("~python", when="+space")
 
     depends_on("mochi-bedrock-module-api", when="@0.12.0:")
-    depends_on("mochi-margo@0.9:0.17.3", when="@:0.14.0") # FIXME update Bedrock to work with 0.18.0
+    depends_on("mochi-margo@0.18.1:", when="@0.14.1:")
+    depends_on("mochi-margo@0.9:0.17.3", when="@:0.14.0")
     depends_on("mochi-margo@0.15.0:", when="@0.8.0:")
     depends_on("mochi-thallium")
-    depends_on("mochi-thallium@0.12.0:0.13.1", when="@0.8.0:0.14.0") # FIXME update Bedrock to work with 0.14.0
+    depends_on("mochi-thallium@0.14.3:", when="@0.14.1:")
+    depends_on("mochi-thallium@0.12.0:0.13.1", when="@0.8.0:0.14.0")
     depends_on("mochi-abt-io", when="@:0.4.1")
     depends_on("mochi-abt-io", when="+abtio @0.5.0:")
     depends_on("mochi-mona@:0.2.3", when="+mona @:0.6.2")
@@ -107,6 +110,9 @@ class MochiBedrock(CMakePackage):
     extends("python", when="+python")
 
     depends_on("py-configspace@1.1.4:", when="+space")
+
+    conflicts("^mochi-thallium@0.14.0:0.14.2")
+    conflicts("^mochi-margo@0.18.0")
 
     def cmake_args(self):
         extra_args = ["-DBUILD_SHARED_LIBS=ON"]
