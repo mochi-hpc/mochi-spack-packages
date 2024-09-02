@@ -39,23 +39,36 @@ class MochiPoesie(CMakePackage):
 
     variant("lua", default=True, description="Enable Lua interpreters")
     variant("python", default=True, description="Enable Python interpreters")
-    variant("js", default=True, description="Enable Javascript interpreters", when="@main")
-    variant("bedrock", default=False, description="Enable Bedrock support")
+    variant("ruby", default=True, description="Enable Ruby interpreters", when="@main")
+    variant("bedrock", default=True, description="Enable Bedrock support")
 
-    depends_on("mochi-margo@0.9:")
+    depends_on("mochi-thallium", when="@main")
+
+    depends_on("mochi-margo@0.9:", when="@0.2")
+    depends_on("mochi-bedrock", when="+bedrock @0.2")
+    depends_on("mochi-bedrock-module-api", when="+bedrock @0.3.0:")
+
+    depends_on("mochi-thallium@develop", when="@develop")
     depends_on("mochi-margo@develop", when="@develop")
-    depends_on("mochi-bedrock", when="+bedrock")
-    depends_on("mochi-bedrock@develop", when="+bedrock @develop")
+    depends_on("mochi-bedrock-module-api@develop", when="+bedrock @develop")
 
     depends_on("json-c")
-    depends_on("quickjs", when="+js")
-    depends_on("lua", when="+lua")
-    depends_on("python@3.6:", when="+python")
+    depends_on("lua", when="+lua @0.2")
+    depends_on("lua-sol2", when="+lua @0.3.0:")
+    depends_on("python@3.6:", when="+python @0.2")
+    depends_on("py-pybind11", when="+python @0.3.0:")
+    depends_on("mruby@3.3.0: cflags=-fPIC", when="+ruby @0.3.0:")
+    depends_on("pkgconfig", type=("build",), when="@0.3.0:")
+    depends_on("nlohmann-json", when="@0.3.0:")
+    depends_on("nlohmann-json-schema-validator", when="@0.3.0:")
+    depends_on("spdlog", when="@0.3.0:")
+    depends_on("fmt", when="@0.3.0:")
+    depends_on("tclap", type=("build",), when="@0.3.0:")
 
     def cmake_args(self):
         cmake_args = [
             self.define_from_variant("ENABLE_PYTHON", "python"),
             self.define_from_variant("ENABLE_LUA", "lua"),
-            self.define_from_variant("ENABLE_JAVASCRIPT", "js"),
+            self.define_from_variant("ENABLE_RUBY", "ruby"),
         ]
         return cmake_args
