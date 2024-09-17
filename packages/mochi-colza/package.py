@@ -40,7 +40,7 @@ class MochiColza(CMakePackage):
     depends_on('mochi-mona@:0.2.3', when='@:0.3.0')
     depends_on('mochi-mona@0.3.0:', when='@0.4.0:')
     depends_on('mochi-bedrock', when='+bedrock')
-    depends_on('mochi-bedrock @0.5.0: +ssg +mona', when='@0.2.0: +bedrock')
+    depends_on('mochi-bedrock @0.5.0:0.14.2 +ssg +mona', when='@0.2.0: +bedrock')
     depends_on('mochi-ssg @0.4.5', when='@0.1:0.1.1')
     depends_on('mochi-ssg @0.5.2:', when='@main,0.1.2:')
 

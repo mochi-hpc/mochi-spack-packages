@@ -33,7 +33,7 @@ class MochiRemi(CMakePackage):
     depends_on('mochi-thallium@0.4.2:', when='@0.2.2')
     depends_on('mochi-thallium@0.3:', when='@:0.2.1')
     depends_on('mochi-abt-io@0.1:')
-    depends_on('mochi-bedrock@0.2:', when='@0.3: +bedrock')
+    depends_on('mochi-bedrock@0.2:0.14.2', when='@0.3: +bedrock')
     depends_on('uuid')
 
     # dependencies for develop version

@@ -47,7 +47,7 @@ class MochiBake(AutotoolsPackage):
     # dependencies for normal versions
     depends_on('mochi-margo@0.4:')
     depends_on('mochi-abt-io')
-    depends_on('mochi-bedrock', when='+bedrock')
+    depends_on('mochi-bedrock@:0.14.2', when='+bedrock')
     depends_on('mochi-remi@0.1:', when='@:0.3.3')
     depends_on('mochi-remi@0.2.2:', when='+remi @0.3.4:')
 

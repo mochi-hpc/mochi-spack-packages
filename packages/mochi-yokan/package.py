@@ -35,8 +35,8 @@ class MochiYokan(CMakePackage):
     version("0.2", sha256="aea3f435342a37c2f3332200fac8894ef78b0e6f2b200ec18be9f41389902f78")
     version("0.1", sha256="b5043ba37102e8956ae59201953e9e7ce56378dde19a4c99b6e82b9ff575d675")
 
-    variant("remi", default=False, description="Enable migration with REMI",
-            when="@0.4.0:")
+    variant("bedrock", default=True, description="Enable Bedrock support")
+    variant("remi", default=False, description="Enable migration with REMI", when="@0.4.0:")
     variant("berkeleydb", default=False, description="Enable BerkelyDB backend")
     variant("leveldb", default=False, description="Enable LevelDB backend")
     variant("lmdb", default=False, description="Enable LMDB backend")
@@ -46,7 +46,6 @@ class MochiYokan(CMakePackage):
     variant("unqlite", default=False, description="Enable Unqlite backend")
     variant("lua", default=False, description="Enable Lua filtering")
     variant("python", default=False, description="Enable Python binding")
-    variant("bedrock", default=False, description="Enable Bedrock support")
     variant("space", default=False, description="Enable configuration space", when="@0.6.0:")
 
     conflicts("~python", when="+space")
@@ -60,9 +59,10 @@ class MochiYokan(CMakePackage):
     # mochi dependencies
     depends_on("mochi-margo@0.15.0:", when="@0.4.0:")
     depends_on("mochi-margo@0.9.5:")
-    depends_on("mochi-bedrock", when="+bedrock @:0.4.2")
-    depends_on("mochi-bedrock@0.8.0:", when="+bedrock @0.4.0:0.4.2")
-    depends_on("mochi-bedrock-module-api", when="+bedrock @0.5.0:")
+    depends_on("mochi-bedrock@:0.14.2", when="+bedrock @:0.4.2")
+    depends_on("mochi-bedrock@0.8.0:0.14.2", when="+bedrock @0.4.0:0.4.2")
+    depends_on("mochi-bedrock-module-api@0.1.0", when="+bedrock @0.5.0:")
+    # TODO depends_on("mochi-bedrock-module-api@0.2.0:", when="+bedrock @0.5.1:")
     depends_on("py-mochi-margo@0.4:", when="+python")
     depends_on("mochi-remi@0.4.0:", when="+remi")
 

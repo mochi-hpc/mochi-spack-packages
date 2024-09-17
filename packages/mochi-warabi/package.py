@@ -25,7 +25,7 @@ class MochiWarabi(CMakePackage):
     version("0.1.0", sha256="a327f1a0c63e5e913b1d16e9cd73590e9f7b675acd187d9938cb3dcc5210486f")
 
     variant("python", default=False, description="Enable Python support")
-    variant("bedrock", default=False, description="Enable Bedrock support")
+    variant("bedrock", default=True, description="Enable Bedrock support")
     variant("remi", default=False, description="Enable REMI support", when="@0.5.0:")
     variant("space", default=False, description="Enable configuration space", when="@0.5.0:")
 
@@ -42,15 +42,16 @@ class MochiWarabi(CMakePackage):
     depends_on("valijson", when="@:0.2.0")
 
     depends_on("mochi-thallium@0.11.3:")
-    depends_on("mochi-bedrock", when="+bedrock @:0.3.0")
-    depends_on("mochi-bedrock-module-api", when="+bedrock @0.4.0:")
+    depends_on("mochi-bedrock@:0.14.2", when="+bedrock @:0.3.0")
+    depends_on("mochi-bedrock-module-api@0.1.0", when="+bedrock @0.4.0:0.5.0")
+    # TODO depends_on("mochi-bedrock-module-api@0.2.0:", when="+bedrock @0.5.1")
     depends_on("mochi-abt-io")
     depends_on("mochi-remi", when="+remi")
 
     depends_on("mochi-thallium@0.12.0:", when="@0.2.0:")
     depends_on("mochi-margo@0.15.0:", when="@0.2.0:")
     depends_on("mochi-remi@0.4.0:", when="+remi @0.2.0:")
-    depends_on("mochi-bedrock@0.8.0:", when="+bedrock @0.2.0:0.3.0")
+    depends_on("mochi-bedrock@0.8.0:0.14.2", when="+bedrock @0.2.0:0.3.0")
 
     depends_on("mochi-thallium@develop", when="@develop")
     depends_on("mochi-bedrock-module-api@develop", when="@develop +bedrock")

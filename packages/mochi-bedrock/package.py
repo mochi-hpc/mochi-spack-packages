@@ -49,14 +49,17 @@ class MochiBedrock(CMakePackage):
     variant("mpi", default=True, description="Enable MPI bootstrapping")
     variant("python", when="@0.8.4:", default=True, description="Enable Python module")
     variant("flock", when="@0.13.0:", default=True, description="Enable Flock support")
-    variant("ssg", when="@0.5.0:", default=False, description="Enable SSG support")
-    variant("abtio", when="@0.5.0:", default=False, description="Enable ABT-IO support")
-    variant("mona", when="@0.5.0:", default=False, description="Enable MoNA support")
     variant("space", when="@0.14.0:", default=False, description="Enable configuration space")
+
+    # deprecated variants
+    variant("ssg", when="@0.5.0:0.14.2", default=False, description="Enable SSG support")
+    variant("abtio", when="@0.5.0:0.14.2", default=False, description="Enable ABT-IO support")
+    variant("mona", when="@0.5.0:0.14.2", default=False, description="Enable MoNA support")
 
     conflicts("~python", when="+space")
 
-    depends_on("mochi-bedrock-module-api", when="@0.12.0:")
+    depends_on("mochi-bedrock-module-api@0.1.0", when="@0.12.0:0.14.2")
+    # TODO depends_on("mochi-bedrock-module-api@0.2.0:", when="@0.15.0:")
     depends_on("mochi-margo@0.18.1:", when="@0.14.1:")
     depends_on("mochi-margo@0.9:0.17.3", when="@:0.14.0")
     depends_on("mochi-margo@0.15.0:", when="@0.8.0:")

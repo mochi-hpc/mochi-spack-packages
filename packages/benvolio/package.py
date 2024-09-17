@@ -34,7 +34,7 @@ class Benvolio(AutotoolsPackage):
     depends_on('mochi-ssg@0.5.2:+pmix', when='+pmix')
     depends_on('mochi-ssg@0.5.2:+mpi', when='+mpi')
     depends_on('rdma-credentials', when='+cray-drc')
-    depends_on('mochi-bedrock')
+    depends_on('mochi-bedrock@:0.14.2')
 
     # @develop version
     #depends_on('mochi-thallium@develop', when='@develop')

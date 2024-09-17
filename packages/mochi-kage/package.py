@@ -19,7 +19,7 @@ class MochiKage(CMakePackage):
     version("main", branch="main")
     version("develop", branch="main")
 
-    variant("bedrock", default=False, description="Enable Bedrock support")
+    variant("bedrock", default=True, description="Enable Bedrock support")
     variant("zmq", default=True, description="Enable ZeroMQ support")
 
     depends_on("pkgconfig", type=("build",))
@@ -30,7 +30,8 @@ class MochiKage(CMakePackage):
     depends_on("cppzmq", when="+zmq")
 
     depends_on("mochi-thallium@0.13.1:")
-    depends_on("mochi-bedrock-module-api", when="+bedrock")
+    depends_on("mochi-bedrock-module-api@0.1.0", when="+bedrock")
+    # TODO depends_on("mochi-bedrock-module-api@0.2.0", when="+bedrock")
 
     depends_on("mochi-thallium@develop", when="@develop")
     depends_on("mochi-bedrock-module-api@develop", when="@develop +bedrock")

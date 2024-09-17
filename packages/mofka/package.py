@@ -46,9 +46,10 @@ class Mofka(CMakePackage):
     depends_on("mochi-margo@0.17.1:")
     depends_on("mochi-thallium")
 
-    depends_on("mochi-bedrock@0.14.0:", when="@0.1.2:")
-    depends_on("mochi-bedrock@0.12.0:", when="@0.1.1:")
-    depends_on("mochi-bedrock@0.11.0:")
+    # TODO depends_on("mochi-bedrock@0.15.0:", when="@0.2.0:")
+    depends_on("mochi-bedrock@0.14.0:0.14.2", when="@0.1.2:")
+    depends_on("mochi-bedrock@0.12.0:0.14.2", when="@0.1.1:")
+    depends_on("mochi-bedrock@0.11.0:0.14.2")
     depends_on("mochi-bedrock+mpi", when="+mpi")
 
     depends_on("mochi-yokan@0.6.0:+bedrock", when="@0.1.2:")

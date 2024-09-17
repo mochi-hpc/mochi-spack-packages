@@ -79,7 +79,7 @@ class Mobject(AutotoolsPackage):
     depends_on('mochi-bake @0.6:', when='@0.4.3:')
     depends_on('mochi-bake @0.6.3:', when='@0.5:')
     depends_on('mochi-bake +bedrock @0.6.3:', when='@0.5: +bedrock')
-    depends_on('mochi-bedrock @0.3:', when='@0.5: +bedrock')
+    depends_on('mochi-bedrock @0.3:0.14.2', when='@0.5: +bedrock')
 
     # Mochi dependencies for develop version
     depends_on('mochi-margo @develop', when='@develop')
