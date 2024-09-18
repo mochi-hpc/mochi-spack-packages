@@ -35,6 +35,7 @@ class MochiChPlacement(AutotoolsPackage):
     git      = 'https://github.com/mochi-hpc/mochi-ch-placement.git'
 
     version('develop', branch='main')
+    version('main', branch='main')
     version('0.1', tag='v0.1')
 
     depends_on('m4', type='build')
