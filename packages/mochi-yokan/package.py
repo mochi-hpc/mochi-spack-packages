@@ -61,9 +61,8 @@ class MochiYokan(CMakePackage):
     depends_on("mochi-margo@0.9.5:")
     depends_on("mochi-bedrock@:0.14.2", when="+bedrock @:0.4.2")
     depends_on("mochi-bedrock@0.8.0:0.14.2", when="+bedrock @0.4.0:0.4.2")
+    depends_on("mochi-bedrock-module-api@0.2.0:", when="+bedrock @0.6.1:")
     depends_on("mochi-bedrock-module-api@0.1.0", when="+bedrock @0.5.0:0.6.0")
-    depends_on("mochi-bedrock-module-api@0.1.0", when="+bedrock @main") # TODO remove
-    # TODO depends_on("mochi-bedrock-module-api@0.2.0:", when="+bedrock @0.6.1:")
     depends_on("py-mochi-margo@0.4:", when="+python")
     depends_on("mochi-remi@0.4.0:", when="+remi")
 
