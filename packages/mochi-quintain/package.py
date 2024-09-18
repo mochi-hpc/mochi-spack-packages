@@ -22,11 +22,13 @@ class MochiQuintain(AutotoolsPackage):
 
     # dependencies for normal versions
     depends_on('mochi-bedrock@0.14.0:0.14.2+flock')
+    depends_on('mochi-flock@0.3.0:+mpi')
     depends_on('json-c')
     depends_on('zlib-api')
 
     # dependencies for develop version
-    depends_on('mochi-bedrock@develop', when='@develop')
+    depends_on('mochi-bedrock@develop+flock', when='@develop')
+    depends_on('mochi-flock@develop+mpi', when='@develop')
 
     # NOTE: The default autoreconf steps should work fine for this package.
     #       The explicit definition is just here as a workaround; Spack's
