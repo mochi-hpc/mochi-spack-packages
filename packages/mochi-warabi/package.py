@@ -43,8 +43,9 @@ class MochiWarabi(CMakePackage):
 
     depends_on("mochi-thallium@0.11.3:")
     depends_on("mochi-bedrock@:0.14.2", when="+bedrock @:0.3.0")
-    depends_on("mochi-bedrock-module-api@0.1.0", when="+bedrock @0.4.0:0.5.0")
-    # TODO depends_on("mochi-bedrock-module-api@0.2.0:", when="+bedrock @0.5.1")
+    depends_on("mochi-bedrock-module-api@0.1.0", when="+bedrock @0.4.0:0.5.0,main")
+    depends_on("mochi-bedrock-module-api@0.1.0", when="+bedrock @main") # TODO remove
+    # TODO depends_on("mochi-bedrock-module-api@0.2.0:", when="+bedrock @0.5.1:")
     depends_on("mochi-abt-io")
     depends_on("mochi-remi", when="+remi")
 
