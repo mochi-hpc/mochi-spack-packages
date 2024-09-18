@@ -72,5 +72,6 @@ class MochiPoesie(CMakePackage):
             self.define_from_variant("ENABLE_PYTHON", "python"),
             self.define_from_variant("ENABLE_LUA", "lua"),
             self.define_from_variant("ENABLE_RUBY", "ruby"),
+            self.define_from_variant("ENABLE_BEDROCK", "bedrock"),
         ]
         return cmake_args
