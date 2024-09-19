@@ -31,6 +31,7 @@ class MochiKage(CMakePackage):
 
     depends_on("mochi-thallium@0.13.1:")
     depends_on("mochi-bedrock-module-api@0.2.0:", when="+bedrock")
+    depends_on("mercury@2.4.0:") # need HG_Get_in/output_payload_size
 
     depends_on("mochi-thallium@develop", when="@develop")
     depends_on("mochi-bedrock-module-api@develop", when="@develop +bedrock")
