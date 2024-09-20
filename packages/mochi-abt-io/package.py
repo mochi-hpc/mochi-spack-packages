@@ -59,6 +59,7 @@ class MochiAbtIo(AutotoolsPackage):
     depends_on("openssl", type=("build", "link", "run"), when="@:0.5.1")
     depends_on("zlib", type=("build"))
     depends_on("liburing", when='+liburing')
+    depends_on("bedrock-module-api@0.2.0:", when="+bedrock")
 
     # NOTE: The default autoreconf steps should work fine for this package.
     #       The explicit definition is just here as a workaround; Spack"s
