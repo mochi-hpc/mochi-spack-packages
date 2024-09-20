@@ -45,6 +45,8 @@ class MochiAbtIo(AutotoolsPackage):
     version("main", branch="main")
 
     variant('liburing', default=False, description='Enable liburing support (Linux-specific)')
+    # TODO in the variant bellow, change @main,develop to @0.8.0: when 0.8.0 is released
+    variant("bedrock", default=True, when="@main,develop", description="Enable Bedrock support")
 
     depends_on("json-c", when="@0.5:")
     depends_on("argobots@1.0:")
@@ -75,5 +77,10 @@ class MochiAbtIo(AutotoolsPackage):
             args.append('--enable-liburing')
         else:
             args.append('--disable-liburing')
+
+        if '+bedrock' in spec:
+            args.append('--enable-bedrock')
+        else:
+            args.append('--disable-bedrock')
 
         return args
