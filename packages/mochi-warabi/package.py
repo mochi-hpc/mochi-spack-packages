@@ -18,6 +18,7 @@ class MochiWarabi(CMakePackage):
 
     version("main", branch="main")
     version("develop", branch="main")
+    version("0.6.0", sha256="99e4f16cf924304ff957a613bb87e22f1a3f99945fee51cb6e7bf15d13c1a232")
     version("0.5.0", sha256="2455f9dffe6c9880a27468ad185ddbc2fbe9b3b037d94c06d8113088a1acc45d")
     version("0.4.0", sha256="ec532f045675d3061dd41a0cac49dbaa0c6e2ea3450b6938979cfaa5710bbf73")
     version("0.3.0", sha256="476009ca8abfa1256e7ddfb6ea1d1509b1d230109c34f4cc24d531ca581849e3")
@@ -43,7 +44,7 @@ class MochiWarabi(CMakePackage):
 
     depends_on("mochi-thallium@0.11.3:")
     depends_on("mochi-bedrock@:0.14.2", when="+bedrock @:0.3.0")
-    depends_on("mochi-bedrock-module-api@0.2.0:", when="+bedrock @0.5.1:")
+    depends_on("mochi-bedrock-module-api@0.2.0:", when="+bedrock @0.6.0:")
     depends_on("mochi-bedrock-module-api@0.1.0", when="+bedrock @0.4.0:0.5.0")
     depends_on("mochi-abt-io")
     depends_on("mochi-remi", when="+remi")

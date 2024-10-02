@@ -15,6 +15,7 @@ class MochiYokan(CMakePackage):
 
     version("develop", branch="main")
     version("main", branch="main")
+    version("0.7.0", sha256="2f1901495a95b272a5408a13acb9dfd46bd743feb8772bd279dc47c43975ccea")
     version("0.6.0", sha256="a102b4eb1334351601f12863c84ee5438b96394f8a4ff90c4e3431a4f5c3288f")
     version("0.5.0", sha256="e7962724a0425e7c51cc030e5fdab62053fcafc46ef6617b2b5cbab828bc1e73")
     version("0.4.2", sha256="717c32c17d97edecd5f7d4b549aad18c079c421cc5bd502dcc1e70da0e11ec30")
@@ -61,11 +62,11 @@ class MochiYokan(CMakePackage):
     depends_on("mochi-margo@0.9.5:")
     depends_on("mochi-bedrock@:0.14.2", when="+bedrock @:0.4.2")
     depends_on("mochi-bedrock@0.8.0:0.14.2", when="+bedrock @0.4.0:0.4.2")
-    depends_on("mochi-bedrock-module-api@0.2.0:", when="+bedrock @0.6.1:")
+    depends_on("mochi-bedrock-module-api@0.2.0:", when="+bedrock @0.7.0:")
     depends_on("mochi-bedrock-module-api@0.1.0", when="+bedrock @0.5.0:0.6.0")
     depends_on("py-mochi-margo@0.4:", when="+python")
-    depends_on("mochi-remi@0.4.0:", when="+remi")
-    depends_on("mochi-remi@0.5.0:", when="+remi @0.6.1:")
+    depends_on("mochi-remi@0.4.0", when="+remi @:0.6.0")
+    depends_on("mochi-remi@0.5.0:", when="+remi @0.7.0:")
 
     # mochi dependencies for develop version
     depends_on("mochi-margo@develop", when="@develop")

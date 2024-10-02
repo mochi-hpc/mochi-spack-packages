@@ -33,6 +33,7 @@ class MochiAbtIo(AutotoolsPackage):
     git = "https://github.com/mochi-hpc/mochi-abt-io.git"
     url = "https://github.com/mochi-hpc/mochi-abt-io/archive/refs/tags/v0.6.0.tar.gz"
 
+    version("0.8.0", sha256="1800f095142dc6739e5deee41c1893b59b9988bdc3d82f5d7ba6cd8ecccd0e29")
     version("0.7.0", sha256="068822df373a56188719deee1853a904cb5c264d6855487bf6e6fb9c2716ee7b")
     version("0.6.0", sha256="b2936cdca2157ef76c970825e3734d1f288140e7defdf3392d80eefa99f3359a")
     version("0.5.1", tag="v0.5.1")
@@ -45,8 +46,7 @@ class MochiAbtIo(AutotoolsPackage):
     version("main", branch="main")
 
     variant('liburing', default=False, description='Enable liburing support (Linux-specific)')
-    # TODO in the variant bellow, change @main,develop to @0.8.0: when 0.8.0 is released
-    variant("bedrock", default=True, when="@main,develop", description="Enable Bedrock support")
+    variant("bedrock", default=True, when="@0.8.0:", description="Enable Bedrock support")
 
     depends_on("json-c", when="@0.5:")
     depends_on("argobots@1.0:")

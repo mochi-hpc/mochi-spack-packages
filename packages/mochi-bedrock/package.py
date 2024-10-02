@@ -47,6 +47,8 @@ class MochiBedrock(CMakePackage):
     version("0.2", tag="v0.2")
     version("0.1", tag="v0.1")
 
+    provides("mochi-bedrock-headers", when="@:0.11.0")
+
     variant("mpi", default=True, description="Enable MPI bootstrapping")
     variant("python", when="@0.8.4:", default=True, description="Enable Python module")
     variant("flock", when="@0.13.0:", default=True, description="Enable Flock support")
