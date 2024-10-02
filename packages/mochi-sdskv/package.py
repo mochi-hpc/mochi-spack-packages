@@ -72,12 +72,12 @@ class MochiSdskv(AutotoolsPackage):
     depends_on('mochi-remi@0.1:0.3.2', when='@:0.1.1')
     depends_on('mochi-remi@0.2.1:0.3.2', when='@0.1.2:0.1.3')
     depends_on('mochi-remi@0.2.2:0.3.2', when='+remi @0.1.4:')
-    depends_on('mochi-bedrock@:0.14.2', when="+bedrock")
+    depends_on('mochi-bedrock@:0.11.0', when="+bedrock")
 
     # dependencies for develop version
     depends_on('mochi-margo@develop', when='@develop')
     depends_on('mochi-remi@0.3.2', when='+remi @develop')
-    depends_on('mochi-bedrock@develop', when="+bedrock @develop")
+    depends_on('mochi-bedrock@:0.11.0', when="+bedrock @develop")
 
     # variable dependencies
     depends_on('berkeley-db @18.1.40: +cxx +stl', when="+bdb")
