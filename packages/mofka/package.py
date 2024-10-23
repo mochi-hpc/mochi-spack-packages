@@ -18,6 +18,7 @@ class Mofka(CMakePackage):
 
     version("main", branch="main")
     version("develop", branch="main")
+    version("0.3.1", sha256="b60811e023ad57ada70b68ea1dbabeeac020930b72a37013fec6b36827db52ce")
     version("0.3.0", sha256="6489051756444a53b175ced040a10a4acaa942df5fe92c1f8e22b45f50537436")
     version("0.2.0", sha256="038ce14a8643ff143311616adf7e0ade6bdf47448012b13e3417e53167f8bbee")
     version("0.1.2", sha256="ad33d9068bcf5776878245b3ecc11f4be314ec4eadc2ad89397fbe4e2dd5719a")
@@ -39,6 +40,7 @@ class Mofka(CMakePackage):
 
     depends_on("cmake@3.21:", type=("build",))
     depends_on("pkgconfig", type=("build",))
+    depends_on("curl", when="@0.3.0")
     depends_on("uuid")
     depends_on("spdlog")
     depends_on("fmt")
