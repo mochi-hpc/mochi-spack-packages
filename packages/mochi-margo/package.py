@@ -24,11 +24,8 @@ class MochiMargo(AutotoolsPackage):
     # upstream spack package as well:
     # https://github.com/spack/spack/tree/develop/var/spack/repos/builtin/packages/mochi-margo
     version('develop', branch='main')
-    # NOTE: forcing 0.18.1 to preferred to make sure it takes precedence
-    # over the hg-event branch unless its explicitly asked for
     version("0.18.2", sha256="a3a9fde826954be06b9123887533f91e6725faf6f6c682c080b97c2172a22057")
     version("0.18.1", sha256="06221986deaa5eb20001c49f29d580722a16b5bde66c1333b3b02f677ef973b5")
-    version("0.18.1-hg-event", branch='carns/dev-hg-event')
     version("0.18.0", sha256="5b3e8b64217490bd8643506699cd06538abaf1bb19eb0429506de62bf0c8402e")
     version("0.17.3", sha256="286ec8bab62e8f21b1d1acb0afa6699be247504de783897433b5d81ef3b5fe18")
     version("0.17.2", sha256="2da1a3dbbe7d5eb6bb51cead00c0428f2d699da9fd4c3bae86088c9e36080089")
