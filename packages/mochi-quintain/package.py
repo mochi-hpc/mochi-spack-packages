@@ -13,6 +13,7 @@ class MochiQuintain(AutotoolsPackage):
 
     version('main', branch='main')
     version('develop', branch='main')
+    version("0.4.0", sha256="00d05387ebf78627f9c74e68d417066ecc6925c30eaae24cdd1d8fb4e032a20c")
     version("0.3.0", sha256="b72a711f3c5065d73c2ea513f8d7bb266dad48a67428b765826cb4c7cbafdce4")
 
     variant('mpi', default=True, description='Build with MPI support')
@@ -23,6 +24,7 @@ class MochiQuintain(AutotoolsPackage):
     depends_on('mpi', when='+mpi')
 
     # dependencies for normal versions
+    depends_on('mochi-bedrock@0.15.0:+flock', when='@0.4.0:')
     depends_on('mochi-bedrock@0.14.0:0.14.2+flock', when='@0.3.0')
     depends_on('mochi-bedrock@0.15.0:+flock', when='@main') # TODO change to @0.4.0: when released
     depends_on('mochi-flock@0.3.0:+mpi')
