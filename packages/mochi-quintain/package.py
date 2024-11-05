@@ -13,6 +13,7 @@ class MochiQuintain(AutotoolsPackage):
 
     version('main', branch='main')
     version('develop', branch='main')
+    version("0.5.0", sha256="fdefcf7f2844b5b37c3adcd747c92cd96802939c37227b1a343c4f9d7c8696f4")
     version("0.4.0", sha256="00d05387ebf78627f9c74e68d417066ecc6925c30eaae24cdd1d8fb4e032a20c")
     version("0.3.0", sha256="b72a711f3c5065d73c2ea513f8d7bb266dad48a67428b765826cb4c7cbafdce4")
 
