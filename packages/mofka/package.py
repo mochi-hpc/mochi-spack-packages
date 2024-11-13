@@ -18,6 +18,7 @@ class Mofka(CMakePackage):
 
     version("main", branch="main")
     version("develop", branch="main")
+    version("0.4.0", sha256="e58754d35a9ec9f6b7df43942f8b8887c65e1ff025078c15d045cbe5590f2ee3")
     version("0.3.3", sha256="bd814287a60ae045deea52c4b1843ae59b6017497096242f8143d3ffd3843466")
     version("0.3.2", sha256="6fcbe81487093e111cba82d7d7fd8ec82190e27f8309446e0164d6ff84608ff3")
     version("0.3.1", sha256="b60811e023ad57ada70b68ea1dbabeeac020930b72a37013fec6b36827db52ce")
@@ -52,6 +53,7 @@ class Mofka(CMakePackage):
     depends_on("argobots@1.2:")
 
     depends_on("mochi-margo@0.17.1:")
+    depends_on("mochi-margo@0.18.3:", when="@0.4.0:")
     depends_on("mochi-thallium")
 
     depends_on("mochi-bedrock@0.15.0:", when="@0.2.0:")
