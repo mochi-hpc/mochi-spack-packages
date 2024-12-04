@@ -129,6 +129,7 @@ class MochiBedrock(CMakePackage):
         extra_args.append(self.define_from_variant("ENABLE_SSG", "ssg"))
         extra_args.append(self.define_from_variant("ENABLE_ABT_IO", "abtio"))
         extra_args.append(self.define_from_variant("ENABLE_PYTHON", "python"))
+        extra_args.append(self.define_from_variant("ENABLE_FLOCK", "flock"))
         if "+mpi" in self.spec:
             extra_args.append("-DCMAKE_CXX_COMPILER=%s" % self.spec["mpi"].mpicxx)
         return extra_args
