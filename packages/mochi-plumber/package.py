@@ -34,6 +34,7 @@ class MochiPlumber(AutotoolsPackage):
 
     version('develop', branch='main')
     version('main', branch='main')
+    version('0.1.1', tag='v0.1.1')
     version('0.1.0', tag='v0.1.0')
 
     depends_on('m4', type='build')
