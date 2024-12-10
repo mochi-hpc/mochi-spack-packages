@@ -72,10 +72,9 @@ class MochiMargo(AutotoolsPackage):
     version('0.4.3', sha256='61a634d6983bee2ffa06e1e2da4c541cb8f56ddd9dd9f8e04e8044fb38657475')
     version('0.4.2', sha256='91085e28f50e373b9616e1ae5c3c8d40a19a7d3776259592d8f361766890bcaa')
     version('0.7.2-exp', git='https://github.com/srini009/margo.git', branch='experimental')
-    version('main-plumber', branch="carns/dev-plumber")
 
     variant('pvar', default=False, description="extract performance data from Mercury")
-    variant('plumber', default=False, when="@main-plumber", description="use mochi-plumber to auto-select network cards when possible")
+    variant('plumber', default=False, when="@main", description="use mochi-plumber to auto-select network cards when possible")
 
     depends_on('json-c', when='@0.9:')
     depends_on('autoconf@2.65:', type=("build"))
