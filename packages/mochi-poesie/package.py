@@ -46,7 +46,7 @@ class MochiPoesie(CMakePackage):
     depends_on("mochi-thallium@0.14.5:", when="@0.3.0:")
 
     depends_on("mochi-margo@0.9:", when="@0.2")
-    depends_on("mochi-bedrock", when="+bedrock @0.2")
+    depends_on("mochi-bedrock@:0.11.0", when="+bedrock @0.2")
     depends_on("mochi-bedrock-module-api@0.1.0", when="+bedrock @0.3.0")
     depends_on("mochi-bedrock-module-api@0.2.0:", when="+bedrock @0.3.1:")
 
