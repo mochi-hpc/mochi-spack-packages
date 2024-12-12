@@ -35,6 +35,7 @@ class MochiPoesie(CMakePackage):
 
     version("develop", branch="main")
     version("main", branch="main")
+    version("0.3.1", sha256="07c0049199958dd91ce1402b67ded1467a6147c23805415ad38ac10f5400121b")
     version("0.3.0", sha256="e21c262242333097f892c332bd14409fc60d3bd3b66e1e71d1a1e0c33a07cba6")
     version("0.2", sha256="dafbdcdd8feb8d81f0dd31cc329c3656e22c8381b5c6a628e57567822190e9d3")
 
