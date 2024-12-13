@@ -40,6 +40,7 @@ class PyMochiMargo(PythonPackage):
 
     version('develop', branch='main')
     version('main', branch='main')
+    version("0.5.3", sha256="c5c40f77eb19a86fe817853330c569f91f03efa5ffb1bf0be7f797cad72ecf06")
     version("0.5.2", sha256="0c5cd5c20e013a8f9d82cc587ee7e6b480733b62fde5ab8f938e78cd7a126b87")
     version("0.5.1", sha256="115ccc12be5b9e21d9d5cc3a435f443db3a6fa13db9691cbeb6ed958995a61ca")
     version("0.5", sha256="1d4b8f932962ae3f48aaaafe84921fdee431b3bf976faf21897d4db82dc45532")
@@ -59,6 +60,7 @@ class PyMochiMargo(PythonPackage):
     depends_on('py-setuptools', type=('build'))
     depends_on('py-pkgconfig', type=('build'))
     depends_on('py-pybind11', type=('build'))
+    depends_on('py-pybind11@2.11.0:', type=('build'), when='@0.5.3:')
     depends_on('py-pybind11@:2.10.4', type=('build'), when='@:0.5.2')
 
     depends_on('mochi-margo@0.6:', when='@0.3:')
