@@ -16,7 +16,7 @@ class MochiKage(CMakePackage):
 
     maintainers("mdorier")
 
-    version("main", branch="main")
+    version("main", branch="main", preferred=True)
     version("develop", branch="main")
 
     variant("bedrock", default=True, description="Enable Bedrock support")
