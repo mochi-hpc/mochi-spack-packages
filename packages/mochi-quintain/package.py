@@ -18,6 +18,7 @@ class MochiQuintain(AutotoolsPackage):
     version("0.3.0", sha256="b72a711f3c5065d73c2ea513f8d7bb266dad48a67428b765826cb4c7cbafdce4")
 
     variant('mpi', default=True, description='Build with MPI support')
+    variant('hpctoolkit', default=False, when="@main", description="Explicitly enable HPCToolkit support during benchmarking")
 
     depends_on('autoconf', type=("build"))
     depends_on('automake', type=("build"))
@@ -30,6 +31,7 @@ class MochiQuintain(AutotoolsPackage):
     depends_on('mochi-flock@0.3.0:+mpi')
     depends_on('json-c')
     depends_on('zlib-api')
+    depends_on('hpctoolkit', when='+hpctoolkit')
 
     # dependencies for develop version
     depends_on('mochi-bedrock@develop+flock', when='@develop')
@@ -52,5 +54,7 @@ class MochiQuintain(AutotoolsPackage):
                 "--enable-mpi",
                 "CC=%s" % spec['mpi'].mpicc
                 ])
+        if '+hpctoolkit' in spec:
+            extra_args.append("--with-hpctoolkit")
 
         return extra_args
