@@ -10,4 +10,5 @@ from spack.package import *
 
 class Pmdk(BuiltinPmdk):
 
+    depends_on('cmake', type='build')
     depends_on('gmake', type='build')
