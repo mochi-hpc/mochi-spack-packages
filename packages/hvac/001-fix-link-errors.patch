@@ -1,0 +1,112 @@
+diff --git a/src/hvac_internal.h b/src/hvac_internal.h
+index 6f42615..84d1b45 100755
+--- a/src/hvac_internal.h
++++ b/src/hvac_internal.h
+@@ -28,6 +28,9 @@
+ #define REAL_DECL(func,ret,args) \
+      ret (*__real_ ## func)args;
+ 
++#define EXT_REAL_DECL(func,ret,args) \
++     extern ret (*__real_ ## func)args;
++
+ #define WRAP_DECL(__name) __name
+ 
+ #define MAP_OR_FAIL(func) \
+@@ -43,6 +46,9 @@
+ #else
+ 
+ #define REAL_DECL(func,ret,args) \
++    ret __real_ ## func args;
++
++#define EXT_REAL_DECL(func,ret,args) \
+     extern ret __real_ ## func args;
+ 
+ #define WRAP_DECL(__name) __wrap_ ## __name
+@@ -75,40 +81,40 @@ extern ssize_t WRAP_DECL(pwrite)(int fd, const void *buf, size_t count, off_t of
+ 
+ #endif
+ 
+-REAL_DECL(fopen, FILE *, (const char *path, const char *mode)) 
++EXT_REAL_DECL(fopen, FILE *, (const char *path, const char *mode)) 
+ FILE *WRAP_DECL(fopen)(const char *path, const char *mode);
+ 
+-REAL_DECL(fopen64, FILE *, (const char *path, const char *mode)) 
++EXT_REAL_DECL(fopen64, FILE *, (const char *path, const char *mode)) 
+ FILE *WRAP_DECL(fopen64)(const char *path, const char *mode);
+ 
+-REAL_DECL(pread, ssize_t, (int fd, void *buf, size_t count, off_t offset))
++EXT_REAL_DECL(pread, ssize_t, (int fd, void *buf, size_t count, off_t offset))
+ extern ssize_t WRAP_DECL(pread)(int fd, void *buf, size_t count, off_t offset);
+ 
+-REAL_DECL(readv, ssize_t, (int fd, const struct iovec *iov, int iovcnt))
++EXT_REAL_DECL(readv, ssize_t, (int fd, const struct iovec *iov, int iovcnt))
+ extern ssize_t WRAP_DECL(readv)(int fd, const struct iovec *iov, int iovcnt);
+ 
+-REAL_DECL(write, ssize_t, (int fd, const void *buf, size_t count))
++EXT_REAL_DECL(write, ssize_t, (int fd, const void *buf, size_t count))
+ extern ssize_t WRAP_DECL(write)(int fd, const void *buf, size_t count);
+ 
+-REAL_DECL(open, int, (const char *pathname, int flags, ...))
++EXT_REAL_DECL(open, int, (const char *pathname, int flags, ...))
+ extern int WRAP_DECL(open)(const char *pathname, int flags, ...);
+ 
+-REAL_DECL(open64, int, (const char *pathname, int flags, ...))
++EXT_REAL_DECL(open64, int, (const char *pathname, int flags, ...))
+ extern int WRAP_DECL(open64)(const char *pathname, int flags, ...);
+ 
+-REAL_DECL(read, ssize_t, (int fd, void *buf, size_t count))
++EXT_REAL_DECL(read, ssize_t, (int fd, void *buf, size_t count))
+ extern ssize_t WRAP_DECL(read)(int fd, void *buf, size_t count);
+ 
+-REAL_DECL(read64, ssize_t, (int fd, void *buf, size_t count))
++EXT_REAL_DECL(read64, ssize_t, (int fd, void *buf, size_t count))
+ extern ssize_t WRAP_DECL(read64)(int fd, void *buf, size_t count);
+ 
+-REAL_DECL(close, int, (int fd))
++EXT_REAL_DECL(close, int, (int fd))
+ extern int WRAP_DECL(close)(int fd);
+ 
+-REAL_DECL(lseek, off_t, (int fd, off_t offset, int whence))
++EXT_REAL_DECL(lseek, off_t, (int fd, off_t offset, int whence))
+ extern off_t WRAP_DECL(lseek)(int fd, off_t offset, int whence);
+ 
+-REAL_DECL(lseek64, off64_t, (int fd, off64_t offset, int whence))
++EXT_REAL_DECL(lseek64, off64_t, (int fd, off64_t offset, int whence))
+ extern off64_t WRAP_DECL(lseek64)(int fd, off64_t offset, int whence);
+ 
+ /*
+diff --git a/src/wrappers.c b/src/wrappers.c
+index 7e780b5..ab2423d 100755
+--- a/src/wrappers.c
++++ b/src/wrappers.c
+@@ -24,6 +24,30 @@
+ #include "hvac_logging.h"
+ #include "execinfo.h"
+ 
++REAL_DECL(fopen, FILE *, (const char *path, const char *mode))
++
++REAL_DECL(fopen64, FILE *, (const char *path, const char *mode))
++
++REAL_DECL(pread, ssize_t, (int fd, void *buf, size_t count, off_t offset))
++
++REAL_DECL(readv, ssize_t, (int fd, const struct iovec *iov, int iovcnt))
++
++REAL_DECL(write, ssize_t, (int fd, const void *buf, size_t count))
++
++REAL_DECL(open, int, (const char *pathname, int flags, ...))
++
++REAL_DECL(open64, int, (const char *pathname, int flags, ...))
++
++REAL_DECL(read, ssize_t, (int fd, void *buf, size_t count))
++
++REAL_DECL(read64, ssize_t, (int fd, void *buf, size_t count))
++
++REAL_DECL(close, int, (int fd))
++
++REAL_DECL(lseek, off_t, (int fd, off_t offset, int whence))
++
++REAL_DECL(lseek64, off64_t, (int fd, off64_t offset, int whence))
++
+ // Global symbol that will "turn off" all I/O redirection.  Set during init
+ // and shutdown to prevent us from getting into init loops that cause a
+ // segfault. (ie: fopen() calls hvac_init()) which needs to write a log
