@@ -42,14 +42,18 @@ class Redpanda(Package):
         with working_dir(prefix):
             tar = which("tar")
             tar("xvf", self.stage.archive_file)
+        # Rename "lib" into "_lib" to avoid poluting LD_LIBRARY_PATH
+        os.rename(join_path(prefix, "lib"), join_path(prefix, "redpanda_lib"))
+        os.rename(join_path(prefix, "libexec"), join_path(prefix, "redpanda_libexec"))
         # Replace all instances of "/opt/redpanda" in all files
         # in the bin directory with the installation prefix
         bin_dir = join_path(prefix, 'bin')
         for file_name in os.listdir(bin_dir):
             file_path = join_path(bin_dir, file_name)
+            filter_file('/opt/redpanda/lib', join_path(prefix, "redpanda_lib"), file_path)
             filter_file('/opt/redpanda', prefix, file_path)
         # Call patchelf do edit linker setting
-        libexec_dir = join_path(prefix, 'libexec')
+        libexec_dir = join_path(prefix, 'redpanda_libexec')
         patchelf = which('patchelf')
         for file_name in os.listdir(libexec_dir):
             # NOTE: to be more generic, we should use "file <file_name>" to check
@@ -57,4 +61,4 @@ class Redpanda(Package):
             if file_name in ["test.sh", "rpk"]:
                 continue
             file_path = join_path(libexec_dir, file_name)
-            patchelf('--set-interpreter', join_path(prefix, 'lib', 'ld.so'), file_path)
+            patchelf('--set-interpreter', join_path(prefix, 'redpanda_lib', 'ld.so'), file_path)
