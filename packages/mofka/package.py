@@ -103,6 +103,9 @@ class Mofka(CMakePackage):
 
     def cmake_args(self):
         args = []
+        if "+mpi" in self.spec:
+            args.append("-DCMAKE_CXX_COMPILER="+self.spec["mpi"].mpicxx)
+            args.append("-DCMAKE_C_COMPILER="+self.spec["mpi"].mpicc)
         if self.spec.satisfies("@0.0.1"):
             args.append("-DENABLE_BAKE=OFF")
         if "+python" in self.spec:
