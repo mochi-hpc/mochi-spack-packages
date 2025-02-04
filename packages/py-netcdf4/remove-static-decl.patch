@@ -1,0 +1,34 @@
+commit 5f2175a753868e0623638d136c444f2be68bc65a (HEAD -> master)
+Author: Rob Latham <robl@mcs.anl.gov>
+Date:   Fri Dec 13 11:35:36 2024 -0600
+
+    remove static declarations
+
+diff --git a/include/netcdf-compat.h b/include/netcdf-compat.h
+index d1144d97..e24ce004 100644
+--- a/include/netcdf-compat.h
++++ b/include/netcdf-compat.h
+@@ -181,8 +181,8 @@ static inline int nc_inq_var_zstandard(int ncid, int varid, int* hasfilterp, int
+ #define HAS_BZIP2_SUPPORT 1
+ #else
+ # ifndef NC_HAS_BZ2
+-static inline int nc_def_var_bzip2(int ncid, int varid, int level) { return NC_EINVAL; }
+-static inline int nc_inq_var_bzip2(int ncid, int varid, int* hasfilterp, int *levelp) { return NC_EINVAL; }
++inline int nc_def_var_bzip2(int ncid, int varid, int level) { return NC_EINVAL; }
++inline int nc_inq_var_bzip2(int ncid, int varid, int* hasfilterp, int *levelp) { return NC_EINVAL; }
+ # define H5Z_FILTER_BZIP2 307
+ # endif
+ #define HAS_BZIP2_SUPPORT 0
+@@ -192,10 +192,10 @@ static inline int nc_inq_var_bzip2(int ncid, int varid, int* hasfilterp, int *le
+ #define HAS_BLOSC_SUPPORT 1
+ #else
+ # ifndef NC_HAS_BLOSC
+-static inline int nc_def_var_blosc(int ncid, int varid, unsigned subcompressor, unsigned level, unsigned blocksize, unsigned addshuffle) {
++inline int nc_def_var_blosc(int ncid, int varid, unsigned subcompressor, unsigned level, unsigned blocksize, unsigned addshuffle) {
+   return NC_EINVAL;
+ }
+-static inline int nc_inq_var_blosc(int ncid, int varid, int* hasfilterp, unsigned* subcompressorp, unsigned* levelp, unsigned* blocksizep, unsigned* addshufflep) {
++inline int nc_inq_var_blosc(int ncid, int varid, int* hasfilterp, unsigned* subcompressorp, unsigned* levelp, unsigned* blocksizep, unsigned* addshufflep) {
+   return NC_EINVAL;
+ }
+ # define H5Z_FILTER_BLOSC 32001
