@@ -24,6 +24,7 @@ class MochiMargo(AutotoolsPackage):
     # upstream spack package as well:
     # https://github.com/spack/spack/tree/develop/var/spack/repos/builtin/packages/mochi-margo
     version('develop', branch='main')
+    version("0.19.0", sha256="269e3b52228fb59a8ab502b8fac4761fc15440817455bb006f311093bd4c02f3")
     version("0.18.3", sha256="4871af11d3cadc81e6f08a2112782c61324d9cdabc9e9b61c595c95da6d75127")
     version("0.18.2", sha256="a3a9fde826954be06b9123887533f91e6725faf6f6c682c080b97c2172a22057")
     version("0.18.1", sha256="06221986deaa5eb20001c49f29d580722a16b5bde66c1333b3b02f677ef973b5")
@@ -74,7 +75,7 @@ class MochiMargo(AutotoolsPackage):
     version('0.7.2-exp', git='https://github.com/srini009/margo.git', branch='experimental')
 
     variant('pvar', default=False, description="extract performance data from Mercury")
-    variant('plumber', default=False, when="@main", description="use mochi-plumber to auto-select network cards when possible")
+    variant('plumber', default=False, when="@0.19:", description="use mochi-plumber to auto-select network cards when possible")
 
     depends_on('json-c', when='@0.9:')
     depends_on('autoconf@2.65:', type=("build"))
