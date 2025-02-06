@@ -34,7 +34,7 @@ class Mofka(CMakePackage):
             description="Enable python support")
     variant("mpi", default=True, when="@0.1.0:",
             description="Enable MPI support in Mofka and its dependencies")
-    variant("benchmark", default=True, when="@0.1.0:",
+    variant("benchmark", default=False, when="@0.1.0:",
             description="Enable building the Mofka benchmark")
     variant("kafka", default=False, when="@0.3.0:",
             description="Enable Kafka support")
