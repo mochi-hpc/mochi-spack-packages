@@ -21,6 +21,9 @@ class MochiQuintain(AutotoolsPackage):
     variant('mpi', default=True, description='Build with MPI support')
     variant('hpctoolkit', default=False, when="@0.6.0:", description="Explicitly enable HPCToolkit support during benchmarking")
 
+    depends_on("c", type="build")
+    depends_on("cxx", type="build")
+
     depends_on('autoconf', type=("build"))
     depends_on('automake', type=("build"))
     depends_on('libtool', type=("build"))

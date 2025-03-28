@@ -38,6 +38,7 @@ class MochiChPlacement(AutotoolsPackage):
     version('main', branch='main')
     version('0.1', tag='v0.1')
 
+    depends_on("c", type="build")
     depends_on('m4', type='build')
     depends_on('autoconf', type='build')
     depends_on('automake', type='build')

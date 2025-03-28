@@ -27,6 +27,7 @@ class Argobots(BuiltinArgobots):
     variant("affinity", default=False, description="Enable affinity setting")
     variant("lazy_stack_alloc", default=False, description="Enable lazy stack allocation")
 
+    depends_on("c", type="build")
     depends_on("valgrind", when="+valgrind")
     depends_on("libunwind", when="+stackunwind")
 

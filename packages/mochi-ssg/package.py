@@ -43,6 +43,8 @@ class MochiSsg(AutotoolsPackage):
     variant('pmix', default=False, description='Build with PMIx support')
     variant('drc', default=False, description='Support Cray Dynamic RDMA Credentials')
 
+    depends_on("c", type="build")
+
     depends_on('mpi', when='+mpi')
     depends_on('pmix', when='+pmix')
     depends_on('rdma-credentials', when="+drc")

@@ -55,6 +55,9 @@ class PyMochiMargo(PythonPackage):
     version('0.2',   sha256='199e163bed9f6bf2fbed463dc6b4522630b80b4f9047ac28857dc29e695e8cae')
     version('0.1',   sha256='b32bb6e6b02185dc1180144987e28d4b1f2df4806c965c5d2290519d031cd202')
 
+    depends_on("c", type="build")
+    depends_on("cxx", type="build")
+
     depends_on('python')
     depends_on('py-numpy', when='@0.2:0.3.2')
     depends_on('py-setuptools', type=('build'))

@@ -21,6 +21,8 @@ class MochiBedrockModuleApi(CMakePackage):
 
     depends_on("mochi-thallium@develop", when="@develop")
 
+    depends_on("c", type="build")
+    depends_on("cxx", type="build")
     depends_on("cmake@3.8:", type="build")
     depends_on("nlohmann-json")
     depends_on("spdlog")

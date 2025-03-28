@@ -64,6 +64,9 @@ class MochiBedrock(CMakePackage):
 
     conflicts("~python", when="+space")
 
+
+    depends_on("c", type="build")
+    depends_on("cxx", type="build")
     depends_on("mochi-bedrock-module-api@0.2.0:", when="@0.15.0:")
     depends_on("mochi-bedrock-module-api@0.1.0", when="@0.12.0:0.14.2")
     depends_on("mochi-margo@0.18.1:", when="@0.14.1:")

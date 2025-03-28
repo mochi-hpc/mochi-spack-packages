@@ -52,6 +52,8 @@ class Mobject(AutotoolsPackage):
     variant('timing', default=False, description="crude timing information")
     variant('bedrock', default=True, description='Enable Bedrock support')
 
+    depends_on("c", type="build")
+    depends_on("cxx", type="build")
     depends_on('mpi', when='@:0.4.1')
     depends_on('autoconf')
     depends_on('automake')

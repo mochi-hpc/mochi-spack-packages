@@ -57,6 +57,9 @@ class MochiThallium(CMakePackage):
     variant('cereal', default=True,
             description='Use the cereal library for serialization')
 
+    depends_on("c", type="build")
+    depends_on("cxx", type="build")
+
     depends_on('pkgconfig')
     depends_on('mochi-margo@develop', when='@develop')
     depends_on('mochi-margo@0.18.0:', when='@0.14.0:')

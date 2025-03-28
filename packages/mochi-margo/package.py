@@ -78,6 +78,9 @@ class MochiMargo(AutotoolsPackage):
     variant('pvar', default=False, description="extract performance data from Mercury")
     variant('plumber', default=False, when="@0.19:", description="use mochi-plumber to auto-select network cards when possible")
 
+    depends_on("c", type="build")
+    depends_on("cxx", type="build")
+
     depends_on('json-c', when='@0.9:')
     depends_on('autoconf@2.65:', type=("build"))
     depends_on('m4', type=('build'))

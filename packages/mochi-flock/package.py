@@ -34,6 +34,8 @@ class MochiFlock(CMakePackage):
     variant("mpi", default=False, description="Enable MPI support")
     variant("python", default=False, description="Enable Python support")
 
+    depends_on("c", type="build")
+    depends_on("cxx", type="build")
     depends_on("mpi", when="+mpi")
     depends_on("pkgconfig", type=("build",))
     depends_on("json-c")

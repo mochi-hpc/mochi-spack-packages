@@ -33,6 +33,9 @@ class MochiWarabi(CMakePackage):
 
     conflicts("~python", when="+space")
 
+    depends_on("c", type="build")
+    depends_on("cxx", type="build")
+
     depends_on("pkgconfig", type=("build",))
     depends_on("uuid")
     depends_on("nlohmann-json")

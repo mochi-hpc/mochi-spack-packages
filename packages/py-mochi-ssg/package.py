@@ -48,6 +48,9 @@ class PyMochiSsg(PythonPackage):
     variant("mpi", default=True, description="Enable MPI support")
     variant("drc", default=False, description="Enable Cray-DRC support")
 
+    depends_on("c", type="build")
+    depends_on("cxx", type="build")
+
     depends_on("py-pkgconfig", type=("build"))
     depends_on("py-pybind11", type=("build"))
     depends_on('py-pybind11@:2.10.4', type=('build'), when='@:0.2.0')

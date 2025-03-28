@@ -49,6 +49,9 @@ class MochiMona(CMakePackage):
     variant('mpi', default=False, when='@0.2:',
             description='Build and install library of MPI wrappers')
 
+    depends_on("c", type="build")
+    depends_on("cxx", type="build")
+
     depends_on('cmake@3.14:', type=('build'))
     depends_on('argobots@1.0:', type=("build", "link", "run"))
     depends_on('mercury@2.0.0:2.2.0', type=("build", "link", "run"), when='@0.1:0.2.3')

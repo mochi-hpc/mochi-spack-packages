@@ -49,6 +49,8 @@ class MochiAbtIo(AutotoolsPackage):
     variant('liburing', default=False, description='Enable liburing support (Linux-specific)')
     variant("bedrock", default=True, when="@0.8.0:", description="Enable Bedrock support")
 
+    depends_on("c", type="build")
+    depends_on("cxx", type="build")
     depends_on("json-c", when="@0.5:")
     depends_on("argobots@1.0:")
     depends_on("autoconf@2.67:", type=("build"))

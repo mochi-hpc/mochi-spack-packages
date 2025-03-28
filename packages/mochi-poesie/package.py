@@ -45,6 +45,8 @@ class MochiPoesie(CMakePackage):
     variant("ruby", default=True, description="Enable Ruby interpreters", when="@main")
     variant("bedrock", default=True, description="Enable Bedrock support")
 
+    depends_on("c", type="build")
+    depends_on("cxx", type="build")
     depends_on("mochi-thallium@0.14.5:", when="@0.3.0:")
 
     depends_on("mochi-margo@0.9:", when="@0.2")
