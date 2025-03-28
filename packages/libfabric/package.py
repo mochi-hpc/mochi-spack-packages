@@ -57,7 +57,8 @@ class Libfabric(BuiltinLibfabric):
                'usnic',
                'verbs',
                'xpmem',
-               'cxi')
+               'cxi',
+               'lnx')
 
     # need to copy this blurb from builtin libfabric, else get an error:
     # ``` invalid values for variant "fabrics" ```
