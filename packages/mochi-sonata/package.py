@@ -27,6 +27,9 @@ class MochiSonata(CMakePackage):
     variant('daemon', default=True, description='Enable building sonata-daemon')
     variant('unqlite_st', default=False, description='Single-threaded UnQLite')
 
+    depends_on("c", type="build")
+    depends_on("cxx", type="build")
+
     depends_on('cmake@3.12:', type='build')
     depends_on('pkgconfig', type=('build', 'link'))
     depends_on('mochi-thallium@develop', when='@develop')
