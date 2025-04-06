@@ -18,6 +18,7 @@ class Mofka(CMakePackage):
 
     version("main", branch="main")
     version("develop", branch="main")
+    version("0.6.4", sha256="cb229acfc756f913d997b27d85cd588488176468eb70e90968ee91bda13889be")
     version("0.6.3", sha256="80fad71e621be86d4c9a162d4e327b2f3d5fca424a20f3dab74d8bdbf9efc420")
     version("0.6.2", sha256="6d3d49b2be69d6a66febdeebf12acc223458d2545b475ac19d97852c87c1a91e")
     version("0.6.1", sha256="cbb1b82e13c1787c629dcc113ff0c009ba47a3cbe058ab1be39bff9e5e2faa93")
