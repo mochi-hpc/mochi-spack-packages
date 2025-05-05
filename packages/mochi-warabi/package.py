@@ -18,6 +18,7 @@ class MochiWarabi(CMakePackage):
 
     version("main", branch="main")
     version("develop", branch="main")
+    version("0.6.3", sha256="8e1fbea5ff84271a83f353902e28dab7095daae4a7a94ff621432f6c19283799")
     version("0.6.2", sha256="5d654704a5d96d2c56d69ddaa2fd1edc267b692f590282ddcb107cca14630a93")
     version("0.6.1", sha256="27e4f5bbb31fbd18985beea64a95b25f14f0a3a65f29f49d6d8472ad768f56e3")
     version("0.6.0", sha256="99e4f16cf924304ff957a613bb87e22f1a3f99945fee51cb6e7bf15d13c1a232")
