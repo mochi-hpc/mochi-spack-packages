@@ -4,8 +4,11 @@
 # SPDX-License-Identifier: (Apache-2.0 OR MIT)
 
 
-from spack.pkg.builtin.mercury import Mercury as BuiltinMercury
 from spack.package import *
+try:
+    from spack_repo.builtin.packages.mercury.package import Mercury as BuiltinMercury
+except ImportError:
+    from spack.pkg.builtin.mercury import Mercury as BuiltinMercury
 
 
 class Mercury(BuiltinMercury):

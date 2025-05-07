@@ -1,4 +1,8 @@
-from spack.pkg.builtin.mpich import Mpich as BuiltinMpich
+
+try:
+    from spack_repo.builtin.packages.mpich.package import Mpich as BuiltinMpich
+except ImportError:
+    from spack.pkg.builtin.mpich import Mpich as BuiltinMpich
 from spack.package import *
 
 

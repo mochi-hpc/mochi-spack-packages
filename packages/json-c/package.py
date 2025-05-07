@@ -5,7 +5,10 @@
 
 
 from spack.package import *
-from spack.pkg.builtin.json_c import JsonC as BuiltinJsonC
+try:
+    from spack_repo.builtin.packages.json_c.package import JsonC as BuiltinJsonC
+except ImportError:
+    from spack.pkg.builtin.json_c import JsonC as BuiltinJsonC
 
 class JsonC(BuiltinJsonC):
 

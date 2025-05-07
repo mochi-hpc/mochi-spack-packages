@@ -1,7 +1,12 @@
 
 
 from spack.package import *
-from spack.pkg.builtin.argobots import Argobots as BuiltinArgobots
+try:
+    # new version of spack
+    from spack_repo.builtin.packages.argobots.package import Argobots as BuiltinArgobots
+except ImportError:
+    # old version of spack
+    from spack.pkg.builtin.argobots import Argobots as BuiltinArgobots
 
 
 class Argobots(BuiltinArgobots):

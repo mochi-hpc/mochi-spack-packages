@@ -4,7 +4,10 @@
 # SPDX-License-Identifier: (Apache-2.0 OR MIT)
 
 
-from spack.pkg.builtin.toml11 import Toml11 as BuiltinToml11
+try:
+    from spack_repo.builtin.packages.toml11.package import Toml11 as BuiltinToml11
+except ImportError:
+    from spack.pkg.builtin.toml11 import Toml11 as BuiltinToml11
 from spack.package import *
 
 

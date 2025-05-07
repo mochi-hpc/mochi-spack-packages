@@ -4,7 +4,10 @@
 # SPDX-License-Identifier: (Apache-2.0 OR MIT)
 
 
-from spack.pkg.builtin.pmdk import Pmdk as BuiltinPmdk
+try:
+    from spack_repo.builtin.packages.pmdk.package import Pmdk as BuiltinPmdk
+except:
+    from spack.pkg.builtin.pmdk import Pmdk as BuiltinPmdk
 from spack.package import *
 
 

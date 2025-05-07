@@ -4,7 +4,10 @@
 # SPDX-License-Identifier: (Apache-2.0 OR MIT)
 
 from spack.package import *
-from spack.pkg.builtin.rocksdb import Rocksdb as BuiltinRocksdb
+try:
+    from spack_repo.builtin.packages.rocksdb.package import Rocksdb as BuiltinRocksdb
+except ImportError:
+    from spack.pkg.builtin.rocksdb import Rocksdb as BuiltinRocksdb
 
 class Rocksdb(BuiltinRocksdb):
 

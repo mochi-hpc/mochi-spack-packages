@@ -1,5 +1,8 @@
 from spack.package import *
-from spack.pkg.builtin.prrte import Prrte as BuiltinPrrte
+try:
+    from spack_repo.builtin.packages.prrte.package import Prrte as BuiltinPrrte
+except ImportError:
+    from spack.pkg.builtin.prrte import Prrte as BuiltinPrrte
 
 class Prrte(BuiltinPrrte):
 

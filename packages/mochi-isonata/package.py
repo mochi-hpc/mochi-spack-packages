@@ -5,7 +5,6 @@
 
 
 from spack.package import *
-from spack.package import *
 
 
 class MochiIsonata(CMakePackage):

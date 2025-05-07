@@ -4,7 +4,10 @@
 # SPDX-License-Identifier: (Apache-2.0 OR MIT)
 
 from spack.package import *
-from spack.pkg.builtin.paraview import Paraview as BuiltinParaview
+try:
+    from spack_repo.builtin.packages.paraview.package import Paraview as BuiltinParaview
+except ImportError:
+    from spack.pkg.builtin.paraview import Paraview as BuiltinParaview
 
 class Paraview(BuiltinParaview):
 

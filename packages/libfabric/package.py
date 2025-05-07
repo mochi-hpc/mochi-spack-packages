@@ -4,7 +4,10 @@
 # SPDX-License-Identifier: (Apache-2.0 OR MIT)
 
 from spack.package import *
-from spack.pkg.builtin.libfabric import Libfabric as BuiltinLibfabric
+try:
+    from spack_repo.builtin.packages.libfabric.package import Libfabric as BuiltinLibfabric
+except ImportError:
+    from spack.pkg.builtin.libfabric import Libfabric as BuiltinLibfabric
 
 class Libfabric(BuiltinLibfabric):
 
