@@ -1,7 +1,10 @@
 
 
 from spack.package import *
-from spack.pkg.builtin.darshan_runtime import DarshanRuntime as BuiltinDarshanRuntime
+try:
+    from spack_repo.builtin.packages.darshan_runtime.package import DarshanRuntime as BuiltinDarshanRuntime
+except ImportError:
+    from spack.pkg.builtin.darshan_runtime import DarshanRuntime as BuiltinDarshanRuntime
 
 
 class DarshanRuntime(BuiltinDarshanRuntime):
