@@ -19,7 +19,8 @@ class Mercury(BuiltinMercury):
     # make sure that newer versions of Mercury are available for people on
     # older spack releases
 
-    version("2.4.0", sha256="8926cd177f6e3c04e8ae1683d42f7c8b27163a93d4d99a305fe497fa8ca86e79")
+    version("2.4.1rc1", sha256="924fd58e67525b3f42750842ec026de40474c2084df2fb82c797a55a03ff9fd9")
+    version("2.4.0", sha256="8926cd177f6e3c04e8ae1683d42f7c8b27163a93d4d99a305fe497fa8ca86e79", preferred=True)
     version("2.4.0rc5", sha256="e1ac95d32211ef1bd3524fe7c76f55f36109e5080212e50cb7f8ccb1e033d56d")
     version("2.4.0rc4", sha256="22558c4453c2681b908f09c00be40b4f16f78220aa9fef4ce7532253b48aeede")
     version("2.3.1", sha256="36182d49f2db7e2b075240cab4aaa1d4ec87a7756450c87643ededd1e6f16104")
