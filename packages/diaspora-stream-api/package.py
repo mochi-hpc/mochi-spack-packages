@@ -7,12 +7,12 @@
 from spack.package import *
 
 
-class MofkaApi(CMakePackage):
-    """Mofka-API is an API for distributed event-streaming service for HPC."""
+class DiasporaStreamApi(CMakePackage):
+    """An API for distributed event-streaming service for HPC."""
 
-    url = "https://github.com/mochi-hpc/mofka-api/archive/refs/tags/v0.0.1.tar.gz"
-    homepage = "https://github.com/mochi-hpc/mofka-api"
-    git = "https://github.com/mochi-hpc/mofka-api.git"
+    url = "https://github.com/diaspora-project/diaspora-stream-api/archive/refs/tags/v0.0.1.tar.gz"
+    homepage = "https://github.com/mdiaspora-project/diaspora-stream-api"
+    git = "https://github.com/diaspora-project/diaspora-stream-api.git"
 
     maintainers("mdorier")
 
