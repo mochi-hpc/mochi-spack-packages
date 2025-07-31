@@ -1,6 +1,5 @@
 from spack.package import *
 from spack import *
-import llnl.util.tty as tty
 
 
 class MochiBedrockModuleApi(CMakePackage):
