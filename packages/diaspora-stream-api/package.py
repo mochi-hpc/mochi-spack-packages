@@ -10,7 +10,7 @@ from spack.package import *
 class DiasporaStreamApi(CMakePackage):
     """An API for distributed event-streaming service for HPC."""
 
-    url = "https://github.com/diaspora-project/diaspora-stream-api/archive/refs/tags/v0.0.1.tar.gz"
+    url = "https://github.com/diaspora-project/diaspora-stream-api/archive/refs/tags/v0.1.0.tar.gz"
     homepage = "https://github.com/mdiaspora-project/diaspora-stream-api"
     git = "https://github.com/diaspora-project/diaspora-stream-api.git"
 
@@ -18,6 +18,7 @@ class DiasporaStreamApi(CMakePackage):
 
     version("main", branch="main")
     version("develop", branch="main")
+    version("0.1.0", sha256="e61b776300ab6f61d34dbb7cee115f2ca64f05f73f2719e730f0debe1f8f1594")
 
     variant("python", default=True, when="@0.0.3:",
             description="Enable python support")
