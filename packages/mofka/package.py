@@ -64,6 +64,8 @@ class Mofka(CMakePackage):
 
     depends_on("argobots@1.2:")
 
+    depends_on("diaspora-stream-api", when="@main,develop")
+
     depends_on("mochi-margo@0.17.1:")
     depends_on("mochi-margo@0.18.3:", when="@0.4.0:")
     depends_on("mochi-margo@0.19.1:", when="@0.5.3:")
