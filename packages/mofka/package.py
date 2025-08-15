@@ -18,6 +18,7 @@ class Mofka(CMakePackage):
 
     version("main", branch="main")
     version("develop", branch="main")
+    version("0.7.0", sha256="2b9822e6ea95f1437d26635a5d324db126e29f433d36d65da1cf6d9f9c777b12")
     version("0.6.4", sha256="cb229acfc756f913d997b27d85cd588488176468eb70e90968ee91bda13889be")
     version("0.6.3", sha256="80fad71e621be86d4c9a162d4e327b2f3d5fca424a20f3dab74d8bdbf9efc420")
     version("0.6.2", sha256="6d3d49b2be69d6a66febdeebf12acc223458d2545b475ac19d97852c87c1a91e")
@@ -39,11 +40,11 @@ class Mofka(CMakePackage):
 
     variant("python", default=True, when="@0.0.3:",
             description="Enable python support")
-    variant("mpi", default=True, when="@0.1.0:",
+    variant("mpi", default=True, when="@0.1.0:0.6.4",
             description="Enable MPI support in Mofka and its dependencies")
-    variant("benchmark", default=False, when="@0.1.0:",
+    variant("benchmark", default=False, when="@0.1.0:0.6.4",
             description="Enable building the Mofka benchmark")
-    variant("kafka", default=False, when="@0.3.0:",
+    variant("kafka", default=False, when="@0.3.0:0.6.4",
             description="Enable Kafka support")
     requires("+mpi", when="+benchmark",
              msg="+mpi variant is required to build the Mofka benchmark")
@@ -64,7 +65,7 @@ class Mofka(CMakePackage):
 
     depends_on("argobots@1.2:")
 
-    depends_on("diaspora-stream-api", when="@main,develop")
+    depends_on("diaspora-stream-api@0.2.0:", when="@0.7.0:")
 
     depends_on("mochi-margo@0.17.1:")
     depends_on("mochi-margo@0.18.3:", when="@0.4.0:")
