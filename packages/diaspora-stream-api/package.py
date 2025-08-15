@@ -18,6 +18,7 @@ class DiasporaStreamApi(CMakePackage):
 
     version("main", branch="main")
     version("develop", branch="main")
+    version("0.2.0", sha256="e72bd78401ba480c895a4897a1d0c618433ad7a729fd3badefa7250567921672")
     version("0.1.0", sha256="e61b776300ab6f61d34dbb7cee115f2ca64f05f73f2719e730f0debe1f8f1594")
 
     variant("python", default=True, when="@0.0.3:",
