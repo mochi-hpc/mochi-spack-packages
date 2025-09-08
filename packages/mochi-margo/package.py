@@ -6,9 +6,10 @@
 
 from spack.package import *
 from spack import *
+from spack_repo.builtin.build_systems import cmake, autotools
 
 
-class MochiMargo(AutotoolsPackage):
+class MochiMargo(cmake.CMakePackage, autotools.AutotoolsPackage):
     """A library that provides Argobots bindings to the Mercury RPC
     implementation."""
 
@@ -18,12 +19,19 @@ class MochiMargo(AutotoolsPackage):
 
     maintainers = ['carns', 'mdorier', 'fbudin69500', 'chuckatkins']
 
+    build_system(
+        conditional("cmake", when="@0.21.0:"),
+        conditional("autotools", when="@:0.20.0"),
+        default="cmake",
+    )
+
     version('main', branch='main')
     # NOTE: when adding a new version here (or making any other package.py
     # change), you should also open a PR to propagate the change to the
     # upstream spack package as well:
     # https://github.com/spack/spack/tree/develop/var/spack/repos/builtin/packages/mochi-margo
     version('develop', branch='main')
+    version("0.21.0", branch="conversion-to-cmake")
     version("0.20.0", sha256="ed19f65c3c0dda42b285904f64508d1997f4b0fcef81cddb011aa9c42381eb2a")
     version("0.19.2", sha256="cfd20117744631779f0e99a0bc0668a1ca4d6d3c89fce5e9926961f830491689")
     version("0.19.1", sha256="77422156be5d1e24b16f6d65109ada29a2276c9d6fdd9a5392c23f1fbe370b98")
@@ -83,15 +91,21 @@ class MochiMargo(AutotoolsPackage):
     depends_on("c", type="build")
     depends_on("cxx", type="build")
 
+    with when("build_system=autotools"):
+        depends_on('autoconf@2.65:', type=("build"))
+        depends_on('m4', type=('build'))
+        depends_on('automake', type=("build"))
+        depends_on('libtool', type=("build"))
+
+    with when("build_system=cmake"):
+        depends_on("cmake@3.12:", type=("build"))
+
     depends_on('json-c', when='@0.9:')
-    depends_on('autoconf@2.65:', type=("build"))
-    depends_on('m4', type=('build'))
-    depends_on('automake', type=("build"))
-    depends_on('libtool', type=("build"))
     depends_on('pkgconfig', type=("build"))
     depends_on('coreutils', type=("build"))
     depends_on('argobots@1.0:')
     depends_on('argobots@1.1:', when='@0.11:')
+    depends_on('argobots@1.2:', when='@0.21.0:')
     # "breadcrumb" support not available in mercury-1.0
     depends_on('mercury@1.0.0:', type=("build", "link", "run"), when='@:0.5.1')
     depends_on('mercury@2.0.0:', type=("build", "link", "run"), when='@0.5.2:')
