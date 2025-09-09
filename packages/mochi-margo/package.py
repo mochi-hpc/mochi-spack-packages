@@ -78,7 +78,7 @@ class MochiMargo(AutotoolsPackage):
     version('0.7.2-exp', git='https://github.com/srini009/margo.git', branch='experimental')
 
     variant('pvar', default=False, description="extract performance data from Mercury")
-    variant('plumber', default=False, when="@0.19:", description="use mochi-plumber to auto-select network cards when possible")
+    variant('hwloc', default=True, when="@0.21:", description="use hwloc to help select network cards when possible")
 
     depends_on("c", type="build")
     depends_on("cxx", type="build")
@@ -96,7 +96,7 @@ class MochiMargo(AutotoolsPackage):
     depends_on('mercury@1.0.0:', type=("build", "link", "run"), when='@:0.5.1')
     depends_on('mercury@2.0.0:', type=("build", "link", "run"), when='@0.5.2:')
     depends_on('mercury@2.0.0rc1-pvar', when='@0.7.2-exp')
-    depends_on('mochi-plumber', when='+plumber')
+    depends_on('hwloc', when='+hwloc')
 
     # dependencies for develop version
     depends_on('mercury@master', type=("build", "link", "run"), when='@develop')
@@ -110,7 +110,5 @@ class MochiMargo(AutotoolsPackage):
 
         if '+pvar' in self.spec:
             args.extend(["CFLAGS=-DMERCURY_PROFILING"])
-        if '+plumber' in self.spec:
-            args.append("--with-mochi-plumber")
 
         return args
