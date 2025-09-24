@@ -20,8 +20,8 @@ class MochiMargo(cmake.CMakePackage, autotools.AutotoolsPackage):
     maintainers = ['carns', 'mdorier', 'fbudin69500', 'chuckatkins']
 
     build_system(
-        conditional("cmake", when="@0.21.0:"),
-        conditional("autotools", when="@:0.20.0"),
+        conditional("cmake", when="@0.22.0:"),
+        conditional("autotools", when="@:0.21.0"),
         default="cmake",
     )
 
@@ -31,7 +31,7 @@ class MochiMargo(cmake.CMakePackage, autotools.AutotoolsPackage):
     # upstream spack package as well:
     # https://github.com/spack/spack/tree/develop/var/spack/repos/builtin/packages/mochi-margo
     version('develop', branch='main')
-    version("0.21.0", branch="conversion-to-cmake")
+    version("0.21.0", sha256="d0a527cd0dcbeb9a8f04d090140cdedb66d9a90c6794a046d48d6bc2d11fc278")
     version("0.20.0", sha256="ed19f65c3c0dda42b285904f64508d1997f4b0fcef81cddb011aa9c42381eb2a")
     version("0.19.2", sha256="cfd20117744631779f0e99a0bc0668a1ca4d6d3c89fce5e9926961f830491689")
     version("0.19.1", sha256="77422156be5d1e24b16f6d65109ada29a2276c9d6fdd9a5392c23f1fbe370b98")
@@ -86,7 +86,7 @@ class MochiMargo(cmake.CMakePackage, autotools.AutotoolsPackage):
     version('0.7.2-exp', git='https://github.com/srini009/margo.git', branch='experimental')
 
     variant('pvar', default=False, description="extract performance data from Mercury")
-    variant('plumber', default=False, when="@0.19:", description="use mochi-plumber to auto-select network cards when possible")
+    variant('hwloc', default=True, when="@0.21:", description="use hwloc to help select network cards when possible")
 
     depends_on("c", type="build")
     depends_on("cxx", type="build")
@@ -110,7 +110,7 @@ class MochiMargo(cmake.CMakePackage, autotools.AutotoolsPackage):
     depends_on('mercury@1.0.0:', type=("build", "link", "run"), when='@:0.5.1')
     depends_on('mercury@2.0.0:', type=("build", "link", "run"), when='@0.5.2:')
     depends_on('mercury@2.0.0rc1-pvar', when='@0.7.2-exp')
-    depends_on('mochi-plumber', when='+plumber')
+    depends_on('hwloc', when='+hwloc')
 
     # dependencies for develop version
     depends_on('mercury@master', type=("build", "link", "run"), when='@develop')
@@ -124,7 +124,5 @@ class MochiMargo(cmake.CMakePackage, autotools.AutotoolsPackage):
 
         if '+pvar' in self.spec:
             args.extend(["CFLAGS=-DMERCURY_PROFILING"])
-        if '+plumber' in self.spec:
-            args.append("--with-mochi-plumber")
 
         return args
