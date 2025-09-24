@@ -6,9 +6,10 @@
 
 from spack.package import *
 from spack import *
+from spack_repo.builtin.build_systems import cmake, autotools
 
 
-class MochiMargo(AutotoolsPackage):
+class MochiMargo(cmake.CMakePackage, autotools.AutotoolsPackage):
     """A library that provides Argobots bindings to the Mercury RPC
     implementation."""
 
@@ -17,6 +18,12 @@ class MochiMargo(AutotoolsPackage):
     url = 'https://github.com/mochi-hpc/mochi-margo/archive/v0.9.tar.gz'
 
     maintainers = ['carns', 'mdorier', 'fbudin69500', 'chuckatkins']
+
+    build_system(
+        conditional("cmake", when="@0.22.0:"),
+        conditional("autotools", when="@:0.21.0"),
+        default="cmake",
+    )
 
     version('main', branch='main')
     # NOTE: when adding a new version here (or making any other package.py
@@ -84,15 +91,21 @@ class MochiMargo(AutotoolsPackage):
     depends_on("c", type="build")
     depends_on("cxx", type="build")
 
+    with when("build_system=autotools"):
+        depends_on('autoconf@2.65:', type=("build"))
+        depends_on('m4', type=('build'))
+        depends_on('automake', type=("build"))
+        depends_on('libtool', type=("build"))
+
+    with when("build_system=cmake"):
+        depends_on("cmake@3.12:", type=("build"))
+
     depends_on('json-c', when='@0.9:')
-    depends_on('autoconf@2.65:', type=("build"))
-    depends_on('m4', type=('build'))
-    depends_on('automake', type=("build"))
-    depends_on('libtool', type=("build"))
     depends_on('pkgconfig', type=("build"))
     depends_on('coreutils', type=("build"))
     depends_on('argobots@1.0:')
     depends_on('argobots@1.1:', when='@0.11:')
+    depends_on('argobots@1.2:', when='@0.21.0:')
     # "breadcrumb" support not available in mercury-1.0
     depends_on('mercury@1.0.0:', type=("build", "link", "run"), when='@:0.5.1')
     depends_on('mercury@2.0.0:', type=("build", "link", "run"), when='@0.5.2:')
