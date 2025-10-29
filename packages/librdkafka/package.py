@@ -14,6 +14,12 @@ class Librdkafka(AutotoolsPackage):
 
     license("BSD-2-Clause")
 
+    version("2.12.1", sha256="ec103fa05cb0f251e375f6ea0b6112cfc9d0acd977dc5b69fdc54242ba38a16f")
+    version("2.12.0", sha256="1355d81091d13643aed140ba0fe62437c02d9434b44e90975aaefab84c2bf237")
+    version("2.11.1", sha256="a2c87186b081e2705bb7d5338d5a01bc88d43273619b372ccb7bb0d264d0ca9f")
+    version("2.11.0", sha256="592a823dc7c09ad4ded1bc8f700da6d4e0c88ffaf267815c6f25e7450b9395ca")
+    version("2.10.1", sha256="75f59a2d948276504afb25bcb5713a943785a413b84f9099d324d26b2021f758")
+    version("2.10.0", sha256="004b1cc2685d1d6d416b90b426a0a9d27327a214c6b807df6f9ea5887346ba3a")
     version("2.8.0", sha256="5bd1c46f63265f31c6bfcedcde78703f77d28238eadf23821c2b43fc30be3e25")
     version("2.6.1", sha256="0ddf205ad8d36af0bc72a2fec20639ea02e1d583e353163bf7f4683d949e901b")
     version("2.6.0", sha256="abe0212ecd3e7ed3c4818a4f2baf7bf916e845e902bb15ae48834ca2d36ac745")
