@@ -57,4 +57,7 @@ class DiasporaStreamApi(CMakePackage):
             self.define_from_variant("ENABLE_TESTS", "tests"),
             self.define_from_variant("ENABLE_BENCHMARKS", "benchmarks"),
         ]
+        if "+mpi" in self.spec:
+            args.append("-DCMAKE_CXX_COMPILER="+self.spec["mpi"].mpicxx)
+            args.append("-DCMAKE_C_COMPILER="+self.spec["mpi"].mpicc)
         return args
