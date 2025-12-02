@@ -58,4 +58,7 @@ class MochiFlock(CMakePackage):
         args.append("-DENABLE_BEDROCK:BOOL=%s" % variant_bool("+bedrock"))
         args.append("-DENABLE_MPI:BOOL=%s" % variant_bool("+mpi"))
         args.append("-DENABLE_PYTHON:BOOL=%s" % variant_bool("+python"))
+        if "+mpi" in self.spec:
+            args.append("-DCMAKE_CXX_COMPILER="+self.spec["mpi"].mpicxx)
+            args.append("-DCMAKE_C_COMPILER="+self.spec["mpi"].mpicc)
         return args
