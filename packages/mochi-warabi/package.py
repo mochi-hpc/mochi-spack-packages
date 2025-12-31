@@ -48,7 +48,7 @@ class MochiWarabi(CMakePackage):
     depends_on("fmt")
     depends_on("tclap", type=("build",))
     depends_on("valijson", when="@:0.2.0")
-    depends_on("py-pybind11", then="@0.7.0: +python")
+    depends_on("py-pybind11", when="@0.7.0: +python")
 
     depends_on("mochi-thallium@0.11.3:")
     depends_on("mochi-bedrock@:0.14.2", when="+bedrock @:0.3.0")
