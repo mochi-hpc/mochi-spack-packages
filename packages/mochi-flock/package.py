@@ -18,6 +18,7 @@ class MochiFlock(CMakePackage):
 
     version("main", branch="main")
     version("develop", branch="main")
+    version("0.5.3", sha256="c31cd09b7e41b31267d5825e5ea31122d4354dfe715ea1f92363a9d976e4de4d")
     version("0.5.2", sha256="8ef27766ba449503dff9dd9fd58619977820e0f0fc833555193c4384a2a60d96")
     version("0.5.1", sha256="5f91515f9997342c8d4f2f212e08f3345d1927c46ffd88cadb27a0dc144cdc7e")
     version("0.5.0", sha256="88cb8d5794d8451c7595f785cbaaf1d57870a44bd86f799f5e48534178a1bcd2")
@@ -43,6 +44,7 @@ class MochiFlock(CMakePackage):
     depends_on("mochi-margo")
     depends_on("mochi-thallium", when="@0.2.0:")
     depends_on("py-mochi-margo", when="@0.2.0: +python")
+    depends_on("py-mochi-margo@0.6.1:", when="@0.5.3: +python")
     depends_on("mochi-bedrock@:0.14.2", when="+bedrock @:0.2.2")
     depends_on("mochi-bedrock-module-api@0.1.0:", when="+bedrock @0.3.0:")
     depends_on("mochi-bedrock-module-api@0.2.0:", when="+bedrock @0.5.0:")
