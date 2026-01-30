@@ -26,4 +26,4 @@ class MochiBedrockModuleApi(CMakePackage):
     depends_on("cmake@3.8:", type="build")
     depends_on("nlohmann-json")
     depends_on("spdlog")
-    depends_on("fmt", when="@0.4.1:")
+    depends_on("fmt")
