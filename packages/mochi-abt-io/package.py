@@ -24,14 +24,21 @@
 ##############################################################################
 from spack.package import *
 from spack import *
+from spack_repo.builtin.build_systems import cmake, autotools
 
 
-class MochiAbtIo(AutotoolsPackage):
-    """a Mochi library that provides Argobots bindings to POSIX I/O functions."""
+class MochiAbtIo(cmake.CMakePackage, autotools.AutotoolsPackage):
+    """A Mochi library that provides Argobots bindings to POSIX I/O functions."""
 
     homepage = "https://github.com/mochi-hpc/mochi-abt-io"
     git = "https://github.com/mochi-hpc/mochi-abt-io.git"
     url = "https://github.com/mochi-hpc/mochi-abt-io/archive/refs/tags/v0.6.0.tar.gz"
+
+    build_system(
+        conditional("cmake", when="@0.9.0:"),
+        conditional("autotools", when="@:0.8.1"),
+        default="cmake",
+    )
 
     version("0.8.1", sha256="efc576c881466df012c2bbda3fa3e674d79fc5a037bbd0aa684f6421552d555d")
     version("0.8.0", sha256="1800f095142dc6739e5deee41c1893b59b9988bdc3d82f5d7ba6cd8ecccd0e29")
@@ -46,23 +53,45 @@ class MochiAbtIo(AutotoolsPackage):
     version("develop", branch="main")
     version("main", branch="main")
 
-    variant('liburing', default=False, description='Enable liburing support (Linux-specific)')
+    variant("liburing", default=False, description="Enable liburing support (Linux-specific)")
     variant("bedrock", default=True, when="@0.8.0:", description="Enable Bedrock support")
+    variant("benchmark" default=False, when="@0.9.0:", description="Enable benchmark")
+
+    with when("build_system=autotools"):
+        depends_on('autoconf@2.67:', type=("build"))
+        depends_on('m4', type=('build'))
+        depends_on('automake', type=("build"))
+        depends_on('libtool', type=("build"))
+
+    with when("build_system=cmake"):
+        depends_on("cmake@3.12:", type=("build"))
+
+    # TODO is there a way to combine the two following "when"?
+    with when("+benchmark"):
+        depends_on("zlib", type=("build"))
+
+    with when("@:0.8.1"):
+        depends_on("zlib", type=("build"))
+
 
     depends_on("c", type="build")
     depends_on("cxx", type="build")
     depends_on("json-c", when="@0.5:")
     depends_on("argobots@1.0:")
-    depends_on("autoconf@2.67:", type=("build"))
-    depends_on("m4", type=("build"))
-    depends_on("automake", type=("build"))
-    depends_on("libtool", type=("build"))
     depends_on("pkgconfig", type=("build"))
     depends_on("coreutils", type=("build"))
     depends_on("openssl", type=("build", "link", "run"), when="@:0.5.1")
-    depends_on("zlib", type=("build"))
     depends_on("liburing", when='+liburing')
     depends_on("mochi-bedrock-module-api@0.2.0:", when="+bedrock")
+
+    def cmake_args(self):
+        args = [
+            self.define_from_variant("ENABLE_BENCHMARK", "benchmark"),
+            self.define_from_variant("ENABLE_EXAMPLES", "benchmark"),
+            self.define_from_variant("ENABLE_BEDROCK", "bedrock"),
+            self.define_from_variant("ENABLE_LIBURING", "liburing"),
+        ]
+        return args
 
     # NOTE: The default autoreconf steps should work fine for this package.
     #       The explicit definition is just here as a workaround; Spack"s
