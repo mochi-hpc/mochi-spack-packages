@@ -55,7 +55,7 @@ class MochiAbtIo(cmake.CMakePackage, autotools.AutotoolsPackage):
 
     variant("liburing", default=False, description="Enable liburing support (Linux-specific)")
     variant("bedrock", default=True, when="@0.8.0:", description="Enable Bedrock support")
-    variant("benchmark" default=False, when="@0.9.0:", description="Enable benchmark")
+    variant("benchmark", default=False, when="@0.9.0:", description="Enable benchmark")
 
     with when("build_system=autotools"):
         depends_on('autoconf@2.67:', type=("build"))
