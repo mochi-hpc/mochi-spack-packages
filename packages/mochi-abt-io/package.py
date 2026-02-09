@@ -40,7 +40,7 @@ class MochiAbtIo(cmake.CMakePackage, autotools.AutotoolsPackage):
         default="cmake",
     )
 
-    version("0.9.0", sha256="21ae54a0d1cfcc26f4b200c3033fdd7e89dfbefafb81abfda4131b86253633b8")
+    version("0.9.0", sha256="24b4b8df619d3d41b13ad6d2cc7d72ba1b2fd644e6632b7ee74fb6e8a04bff8e")
     version("0.8.1", sha256="efc576c881466df012c2bbda3fa3e674d79fc5a037bbd0aa684f6421552d555d")
     version("0.8.0", sha256="1800f095142dc6739e5deee41c1893b59b9988bdc3d82f5d7ba6cd8ecccd0e29")
     version("0.7.0", sha256="068822df373a56188719deee1853a904cb5c264d6855487bf6e6fb9c2716ee7b")
