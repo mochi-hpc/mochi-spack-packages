@@ -47,7 +47,7 @@ class MochiWarabi(CMakePackage):
     depends_on("pmdk")
     depends_on("spdlog")
     depends_on("fmt")
-    depends_on("tclap", type=("build",))
+    depends_on("tclap", type=("build",), when="@:0.7.1")
     depends_on("valijson", when="@:0.2.0")
     depends_on("py-pybind11", when="@0.7.0: +python")
 
