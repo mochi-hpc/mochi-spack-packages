@@ -20,7 +20,8 @@ class Mercury(BuiltinMercury):
     # older spack releases
 
     version("2.4.2-mdorier-new-na", branch="mdorier/new-na-backends",
-            git="https://github.com/mdorier/mercury.git")
+            git="https://github.com/mdorier/mercury.git",
+            submodules=True)
     version("2.4.1", sha256="8a372416f3fca28d402ac7f7b73f0a7dd5d4b88785281ad9e6076e105e4840b9")
     version("2.4.0", sha256="8926cd177f6e3c04e8ae1683d42f7c8b27163a93d4d99a305fe497fa8ca86e79")
     version("2.3.1", sha256="36182d49f2db7e2b075240cab4aaa1d4ec87a7756450c87643ededd1e6f16104")
