@@ -19,6 +19,8 @@ class Mercury(BuiltinMercury):
     # make sure that newer versions of Mercury are available for people on
     # older spack releases
 
+    version("2.4.2-mdorier-new-na", branch="mdorier/new-na-backends",
+            git="https://github.com/mdorier/mercury.git")
     version("2.4.1", sha256="8a372416f3fca28d402ac7f7b73f0a7dd5d4b88785281ad9e6076e105e4840b9")
     version("2.4.0", sha256="8926cd177f6e3c04e8ae1683d42f7c8b27163a93d4d99a305fe497fa8ca86e79")
     version("2.3.1", sha256="36182d49f2db7e2b075240cab4aaa1d4ec87a7756450c87643ededd1e6f16104")
@@ -35,9 +37,18 @@ class Mercury(BuiltinMercury):
         "hwloc", default=False, when="@2.2.0:", description="Use hwloc to retrieve NIC information"
     )
 
+    variant("quic", when="@2.4.2-mdorier-new-na", default=False, description="Use QUIC plugin")
+    variant("zmq", when="@2.4.2-mdorier-new-na", default=False, description="Use ZMQ plugin")
+    variant("http", when="@2.4.2-mdorier-new-na", default=False, description="Use HTTP plugin")
+
     depends_on('ucx', when='+ucx')
     depends_on('opa-psm2', when='+psm2')
     depends_on('opa-psm2', when='+psm')
+
+    depends_on('lsquic+shared', when='+quic')
+    depends_on('libzmq', when='+zmq')
+    depends_on('curl', when='+http')
+    depends_on('libmicrohttpd', when='+http')
 
     # note that the usptream mercury package is more selective about when
     # which combinations are valid; in the mochi-spack-packages repo we take
@@ -49,5 +60,6 @@ class Mercury(BuiltinMercury):
         args.append('-DNA_USE_UCX:BOOL=%s' % variant_bool('+ucx'))
         args.append('-DNA_USE_PSM:BOOL=%s' % variant_bool('+psm'))
         args.append('-DNA_USE_PSM2:BOOL=%s' % variant_bool('+psm2'))
+        args.append('-DNA_USE_LSQUIC:BOOL=%s' % variant_bool('+quic'))
         args.append('-DNA_OFI_USE_HWLOC:BOOL=%s' % variant_bool('hwloc'))
         return args
