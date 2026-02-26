@@ -1,5 +1,3 @@
-
-
 from spack.package import *
 try:
     from spack_repo.builtin.packages.darshan_runtime.package import DarshanRuntime as BuiltinDarshanRuntime
@@ -8,8 +6,13 @@ except ImportError:
 
 
 class DarshanRuntime(BuiltinDarshanRuntime):
-
+    version('dask', branch='snyder/dxt-extra-info-pthread-id', git="https://github.com/darshan-hpc/darshan.git", submodules=True)
     variant('hdf5', default=False, description='additional HDF5 statistics')
+
+    depends_on("autoconf", type="build", when="@dask")
+    depends_on("automake", type="build", when="@dask")
+    depends_on("libtool", type="build", when="@dask")
+    depends_on("m4", type="build", when="@dask")
 
     depends_on('hdf5@1.10.0:', when='+hdf5')
 
