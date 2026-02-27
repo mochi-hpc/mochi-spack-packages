@@ -36,6 +36,7 @@ class MochiFlock(CMakePackage):
     variant("bedrock", default=True, description="Enable Bedrock support")
     variant("mpi", default=False, description="Enable MPI support")
     variant("python", default=False, description="Enable Python support")
+    variant("pinggy", default=False, description="Enable Pinggy gateway support", when="@0.7.1:")
 
     depends_on("c", type="build")
     depends_on("cxx", type="build")
@@ -55,6 +56,7 @@ class MochiFlock(CMakePackage):
     depends_on("mochi-bedrock-module-api@develop", when="@develop +bedrock")
     depends_on("mochi-thallium@develop", when="@develop")
     depends_on("py-mochi-margo@develop", when="@develop +python")
+    depends_on("libpinggy", when="+pinggy")
 
     def cmake_args(self):
         args = []
