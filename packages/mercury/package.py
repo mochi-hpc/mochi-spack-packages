@@ -46,10 +46,18 @@ class Mercury(BuiltinMercury):
     depends_on('opa-psm2', when='+psm2')
     depends_on('opa-psm2', when='+psm')
 
-    depends_on('lsquic+shared', when='+quic')
-    depends_on('libzmq', when='+zmq')
-    depends_on('curl', when='+http')
-    depends_on('libmicrohttpd', when='+http')
+    with when("+quic"):
+        depends_on('lsquic+shared')
+        depends_on('openssl')
+
+    with when("+zmq"):
+        depends_on('libzmq')
+        depends_on('pkgconfig')
+
+    with when("+http"):
+        depends_on('pkgconfig')
+        depends_on('curl')
+        depends_on('libmicrohttpd')
 
     # note that the usptream mercury package is more selective about when
     # which combinations are valid; in the mochi-spack-packages repo we take
