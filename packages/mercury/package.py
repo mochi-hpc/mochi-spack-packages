@@ -19,9 +19,9 @@ class Mercury(BuiltinMercury):
     # make sure that newer versions of Mercury are available for people on
     # older spack releases
 
-    version("2.4.2-mdorier-new-na", branch="mdorier/new-na-backends",
-            git="https://github.com/mdorier/mercury.git",
-            submodules=True)
+    #version("2.4.2-mdorier-new-na", branch="mdorier/new-na-backends",
+    #        git="https://github.com/mdorier/mercury.git",
+    #        submodules=True)
     version("2.4.1", sha256="8a372416f3fca28d402ac7f7b73f0a7dd5d4b88785281ad9e6076e105e4840b9")
     version("2.4.0", sha256="8926cd177f6e3c04e8ae1683d42f7c8b27163a93d4d99a305fe497fa8ca86e79")
     version("2.3.1", sha256="36182d49f2db7e2b075240cab4aaa1d4ec87a7756450c87643ededd1e6f16104")
@@ -37,27 +37,28 @@ class Mercury(BuiltinMercury):
     variant(
         "hwloc", default=False, when="@2.2.0:", description="Use hwloc to retrieve NIC information"
     )
+    variant("plugins", default=False, description="Allow dynamic plugins")
 
-    variant("quic", when="@2.4.2-mdorier-new-na", default=False, description="Use QUIC plugin")
-    variant("zmq", when="@2.4.2-mdorier-new-na", default=False, description="Use ZMQ plugin")
-    variant("http", when="@2.4.2-mdorier-new-na", default=False, description="Use HTTP plugin")
+    #variant("quic", when="@2.4.2-mdorier-new-na", default=False, description="Use QUIC plugin")
+    #variant("zmq", when="@2.4.2-mdorier-new-na", default=False, description="Use ZMQ plugin")
+    #variant("http", when="@2.4.2-mdorier-new-na", default=False, description="Use HTTP plugin")
 
     depends_on('ucx', when='+ucx')
     depends_on('opa-psm2', when='+psm2')
     depends_on('opa-psm2', when='+psm')
 
-    with when("+quic"):
-        depends_on('lsquic+shared')
-        depends_on('openssl')
+    #with when("+quic"):
+    #    depends_on('lsquic+shared')
+    #    depends_on('openssl')
 
-    with when("+zmq"):
-        depends_on('libzmq')
-        depends_on('pkgconfig')
+    #with when("+zmq"):
+    #    depends_on('libzmq')
+    #    depends_on('pkgconfig')
 
-    with when("+http"):
-        depends_on('pkgconfig')
-        depends_on('curl')
-        depends_on('libmicrohttpd')
+    #with when("+http"):
+    #    depends_on('pkgconfig')
+    #    depends_on('curl')
+    #    depends_on('libmicrohttpd')
 
     # note that the usptream mercury package is more selective about when
     # which combinations are valid; in the mochi-spack-packages repo we take
@@ -72,5 +73,6 @@ class Mercury(BuiltinMercury):
         args.append('-DNA_USE_LSQUIC:BOOL=%s' % variant_bool('+quic'))
         args.append('-DNA_USE_ZMQ:BOOL=%s' % variant_bool('+zmq'))
         args.append('-DNA_USE_HTTP:BOOL=%s' % variant_bool('+http'))
-        args.append('-DNA_OFI_USE_HWLOC:BOOL=%s' % variant_bool('hwloc'))
+        args.append('-DNA_OFI_USE_HWLOC:BOOL=%s' % variant_bool('+hwloc'))
+        args.append('-DNA_USE_DYNAMIC_PLUGINS=%s' % variant_bool('+plugins'))
         return args
