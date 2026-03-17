@@ -70,9 +70,9 @@ class Mercury(BuiltinMercury):
         args.append('-DNA_USE_UCX:BOOL=%s' % variant_bool('+ucx'))
         args.append('-DNA_USE_PSM:BOOL=%s' % variant_bool('+psm'))
         args.append('-DNA_USE_PSM2:BOOL=%s' % variant_bool('+psm2'))
-        args.append('-DNA_USE_LSQUIC:BOOL=%s' % variant_bool('+quic'))
-        args.append('-DNA_USE_ZMQ:BOOL=%s' % variant_bool('+zmq'))
-        args.append('-DNA_USE_HTTP:BOOL=%s' % variant_bool('+http'))
+        #args.append('-DNA_USE_LSQUIC:BOOL=%s' % variant_bool('+quic'))
+        #args.append('-DNA_USE_ZMQ:BOOL=%s' % variant_bool('+zmq'))
+        #args.append('-DNA_USE_HTTP:BOOL=%s' % variant_bool('+http'))
         args.append('-DNA_OFI_USE_HWLOC:BOOL=%s' % variant_bool('+hwloc'))
         args.append('-DNA_USE_DYNAMIC_PLUGINS=%s' % variant_bool('+plugins'))
         return args
