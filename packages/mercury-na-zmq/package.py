@@ -7,11 +7,11 @@ from spack_repo.builtin.build_systems.cmake import CMakePackage
 from spack.package import *
 
 
-class MercuryNaLibp2p(CMakePackage):
-    """Mercury NA plugin using libp2p for transport."""
+class MercuryNaZmq(CMakePackage):
+    """Mercury NA plugin using ZeroMQ for transport."""
 
-    homepage = "https://github.com/mochi-hpc/mercury-na-libp2p"
-    git = "https://github.com/mochi-hpc/mercury-na-libp2p.git"
+    homepage = "https://github.com/mochi-hpc/mercury-na-zmq"
+    git = "https://github.com/mochi-hpc/mercury-na-zmq.git"
 
     maintainers("mdorier")
 
@@ -20,5 +20,8 @@ class MercuryNaLibp2p(CMakePackage):
     version("main", branch="main")
 
     depends_on("cmake@3.15:", type="build")
-    depends_on("rust@1.77:", type="build")
     depends_on("mercury@2.4:+plugins")
+    depends_on("libzmq")
+    depends_on("toml11")
+    depends_on("uuid")
+    depends_on("pkgconfig")
