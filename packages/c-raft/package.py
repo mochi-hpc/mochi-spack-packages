@@ -7,6 +7,11 @@ from spack_repo.builtin.build_systems.autotools import AutotoolsPackage
 
 from spack.package import *
 
+try:
+    from spack_repo.builtin.packages.c_raft.package import CRaft as BuiltinCRaft
+except ImportError:
+    from spack.pkg.builtin.c_raft import CRaft as BuiltinCRaft
+
 
 class CRaft(AutotoolsPackage):
     """C implementation of the Raft consensus protocol."""
