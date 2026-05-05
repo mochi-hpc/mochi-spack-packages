@@ -68,6 +68,7 @@ class MochiThallium(CMakePackage):
     depends_on("cxx", type="build")
 
     depends_on('pkgconfig')
+    depends_on('cmake@3.16:', when='@0.17.1:', type="build")
     depends_on('mochi-margo@develop', when='@develop')
     depends_on('mochi-margo@0.18.0:', when='@0.14.0:')
     depends_on('mochi-margo@0.12.0:', when='@0.11.2:')
