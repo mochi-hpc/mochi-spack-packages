@@ -89,7 +89,8 @@ class MochiYokan(CMakePackage):
     # (see https://github.com/google/leveldb/issues/891)
     depends_on("leveldb@:1.22", when="+leveldb")
     depends_on("lmdb", when="+lmdb")
-    depends_on("rocksdb", when="+rocksdb")
+    # Greater versions of rocksdb require C++20
+    depends_on("rocksdb@:10.6.2", when="+rocksdb")
     depends_on("rocksdb+rtti", when="+rocksdb @0.2.9:")
     depends_on("rocksdb@:6", when="+rocksdb @:0.2.5")
     depends_on("tkrzw@:0.9.99", when="+tkrzw")
