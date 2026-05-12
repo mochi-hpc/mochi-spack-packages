@@ -19,6 +19,7 @@ class Mofka(CMakePackage):
 
     version("main", branch="main")
     version("develop", branch="main")
+    version("0.9.0", sha256="716953e53f760236570e206a8382773594837d5e74556a300ee6b18883ac86fd")
     version("0.8.3", sha256="627c216f5f308302a9f62c1a7d723a857bac207ac4a7b9a11ec9d1db80536871")
     version("0.8.2", sha256="5e2e38a524cf7e088f74c7693d50b2241577ceb11381c786c6232547c93fc601")
     version("0.8.1", sha256="d1c6f093df5641bdb7fd19658d5b3c7edb61ed2cf74461030aa62d5b0ba0711e")
@@ -66,27 +67,32 @@ class Mofka(CMakePackage):
     depends_on("spdlog")
     depends_on("fmt")
     depends_on("nlohmann-json")
-    depends_on("nlohmann-json-schema-validator")
+    depends_on("nlohmann-json-schema-validator@2.3.0:")
 
     depends_on("argobots@1.2:")
 
+    depends_on("diaspora-stream-api@0.5.6:", when="@0.9.0:")
     depends_on("diaspora-stream-api@0.5.3:", when="@0.8.3:")
     depends_on("diaspora-stream-api@0.5.1:", when="@0.8.2:")
     depends_on("diaspora-stream-api@0.5.0:", when="@0.8.1:")
     depends_on("diaspora-stream-api@0.4.0", when="@0.8.0")
     depends_on("diaspora-stream-api@0.2.0:0.3.1", when="@0.7.0")
 
-    depends_on("mochi-margo@0.17.1:")
-    depends_on("mochi-margo@0.18.3:", when="@0.4.0:")
     depends_on("mochi-margo@0.19.1:", when="@0.5.3:")
+    depends_on("mochi-margo@0.18.3:", when="@0.4.0:")
+    depends_on("mochi-margo@0.17.1:")
+
     depends_on("mochi-thallium")
     depends_on("mochi-thallium@0.15.1:", when="@0.8.1:")
+    depends_on("mochi-thallium@0.17.1:", when="@0.9.0:")
 
+    depends_on("mochi-bedrock@0.16.1:", when="@0.9.0:")
     depends_on("mochi-bedrock@0.15.0:", when="@0.2.0:")
     depends_on("mochi-bedrock@0.14.0:0.14.2", when="@0.1.2")
     depends_on("mochi-bedrock@0.12.0:0.14.2", when="@0.1.1:0.1.2")
     depends_on("mochi-bedrock+mpi", when="+mpi")
 
+    depends_on("mochi-yokan@0.9.2:+bedrock", when="@0.9.0:")
     depends_on("mochi-yokan@0.8.0:+bedrock", when="@0.4.1:")
     depends_on("mochi-yokan@0.7.0:+bedrock", when="@0.2.0:")
     depends_on("mochi-yokan@0.6.0:+bedrock", when="@0.1.2:")
