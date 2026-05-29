@@ -63,7 +63,7 @@ class MochiYokan(CMakePackage):
 
     depends_on("cmake@3.15:", type="build")
     depends_on("pkgconfig", type="build")
-    depends_on("uuid")
+    depends_on("uuid", when="@:0.3.0")
     depends_on("nlohmann-json")
     depends_on("tclap", type="build")
 
