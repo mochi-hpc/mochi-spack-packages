@@ -107,6 +107,8 @@ class Mofka(CMakePackage):
     depends_on("mochi-flock@0.2.2:+bedrock")
     depends_on("mochi-flock@0.2.2:+mpi", when="+mpi")
 
+    depends_on("mochi-abt-io@0.9.0:+bedrock", when="@0.9.0:")
+
     with when("+python"):
         depends_on("mochi-bedrock+python")
         depends_on("mochi-flock+python", when="@0.1.0:")
