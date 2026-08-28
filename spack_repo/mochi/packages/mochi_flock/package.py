@@ -19,6 +19,7 @@ class MochiFlock(CMakePackage):
 
     version("main", branch="main")
     version("develop", branch="main")
+    version("0.8.0", sha256="b8d019796a86544304b00ea59f6acd8030f2b7ddb9cdc5ef9edb98498ca4cfab")
     version("0.7.1", sha256="dfb05948ff6034af674c085b9b7ff13a593bda7fa2a26e9e42e913ad796cde90")
     version("0.7.0", sha256="a45630c7319fd55ec897a396de2ef367387608de22e871ef6b1722c71c9598cd")
     version("0.6.0", sha256="1bd7bd54fd7a4b5f84006eadaab3f911c78afb50ec723385ad3a8f6edef2e8ac")
