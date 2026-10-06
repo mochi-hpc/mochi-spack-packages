@@ -31,6 +31,8 @@ class MochiMargo(cmake.CMakePackage, autotools.AutotoolsPackage):
     # upstream spack package as well:
     # https://github.com/spack/spack/tree/develop/var/spack/repos/builtin/packages/mochi-margo
     version('develop', branch='main')
+    version("0.24.4", sha256="2dcf456b6aa4ee65f30a08a1bfa6d59602657e555074b91760fef893d7afbcf1")
+    version("0.24.3", sha256="bb5014023d17acfb715f7d8db44611c62032bb45a454921fead63e5a6a8d1a68")
     version("0.24.2", sha256="eabfee49015349072f24cf6a3fbbc56a9345352580529f1f5a0d889577658cb5")
     version("0.24.1", sha256="05d9cdca54a8d6ccda1fcb9b12873e84f0bf9e7839d7991977f22d1c4a4bdd42")
     version("0.24.0", sha256="d16290fac3cca0f5508d8a45842274b82373a65b34b7d54e6f096faa4f877fb2")
